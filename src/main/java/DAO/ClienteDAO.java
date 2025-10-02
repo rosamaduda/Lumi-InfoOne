@@ -1,0 +1,374 @@
+package DAO;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+public class ClienteDAO {
+
+    // INSERIR
+    public boolean inserirCliente(String email, String cpf, String nome, String nomeSobrenome, Date dataNascimento, String senha, double altura, double peso, String enderecoUf, String enderecoCidade, String enderecoCep, String enderecoRua, int enderecoNumero) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco de dados
+
+        try {
+            String instrucaoSQL = "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setString(1, email);
+            pstmt.setString(2, cpf);
+            pstmt.setString(3, nome);
+            pstmt.setString(4, nomeSobrenome);
+            pstmt.setDate(5, dataNascimento);
+            pstmt.setString(6, senha);
+            pstmt.setDouble(7, altura);
+            pstmt.setDouble(8, peso);
+            pstmt.setString(9, enderecoUf);
+            pstmt.setString(10, enderecoCidade);
+            pstmt.setString(11, enderecoCep);
+            pstmt.setString(12, enderecoRua);
+            pstmt.setInt(13, enderecoNumero);
+            if (pstmt.executeUpdate() > 0) {
+                return true; // realizou a instrução
+            } else {
+                return false; // não realizou a instrução
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return false; // não realizou a instrução
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+    } // inserirCliente()
+
+    // ALTERAR
+    public int alterarCpfCliente(String email, String cpf) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar();
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET cpf = ? WHERE email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setString(1, cpf);
+            pstmt.setString(2, email);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // algum outro problema aconteceu
+        } finally {
+            conexao.desconectar(conn); // desconecta do BD
+        }
+    } // alterarCpfCliente()
+
+    public int alterarNomeCliente(String email, String nome) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar();
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET nome = ? WHERE email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setString(1, nome);
+            pstmt.setString(2, email);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // algum outro problema aconteceu
+        } finally {
+            conexao.desconectar(conn); // desconecta do BD
+        }
+    } // alterarNomeCliente()
+
+    public int alterarSobrenomeCliente(String email, String sobrenome) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar();
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET nome_sobrenome = ? WHERE email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setString(1, sobrenome);
+            pstmt.setString(2, email);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // algum outro problema aconteceu
+        } finally {
+            conexao.desconectar(conn); // desconecta do BD
+        }
+    } // alterarSobrenomeCliente()
+
+    public int alterarDataNascimentoCliente(String email, Date dataNascimento) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar();
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET data_nascimento = ? WHERE email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setDate(1, dataNascimento);
+            pstmt.setString(2, email);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // algum outro problema aconteceu
+        } finally {
+            conexao.desconectar(conn); // desconecta do BD
+        }
+    } // alterarDataNascimentoCliente()
+
+    public int alterarSenhaCliente(String email, String senha) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // fazendo a conexao com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET senha = ? WHERE email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, senha);
+            pstmt.setString(2, email);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // algum outro problema aconteceu
+        } finally {
+            conexao.desconectar(conn); // desconecta do BD
+        }
+    } // alterarSenhaCliente()
+
+    public int alterarAlturaCliente(String email, double altura) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // conectando com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET altura = ? WHERE email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setDouble(1, altura);
+            pstmt.setString(2, email);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // algum outro problema aconteceu
+        } finally {
+            conexao.desconectar(conn); // desconecta do BD
+        }
+    } // alterarAlturaCliente()
+
+    public int alterarPesoCliente(String email, double peso) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar();
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET peso = ? WHERE email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setDouble(1, peso);
+            pstmt.setString(2, email);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // algum outro problema aconteceu
+        } finally {
+            conexao.desconectar(conn); // desconecta do BD
+        }
+    } // alterarPesoCliente()
+
+    public int alterarUfCliente(int id, String enderecoUf) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET endereco_uf = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setString(1, enderecoUf);
+            pstmt.setInt(2, id);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+        }
+    } // alterarUfCliente()
+
+    public int alterarCidadeCliente(int id, String enderecoCidade) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET endereco_cidade = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setString(1, enderecoCidade);
+            pstmt.setInt(2, id);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+        }
+    } // alterarCidadeCliente()
+
+    public int alterarCepCliente(int id, String enderecoCep) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET endereco_cep = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setString(1, enderecoCep);
+            pstmt.setInt(2, id);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+        }
+    } // alterarCepCliente()
+
+    public int alterarRuaCliente(int id, String enderecoRua) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET endereco_rua = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setString(1, enderecoRua);
+            pstmt.setInt(2, id);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+        }
+    } // alterarRuaCliente()
+
+    public int alterarNumeroCliente(int id, int enderecoNumero) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE usuario SET endereco_numero = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setInt(1, enderecoNumero);
+            pstmt.setInt(2, id);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+        }
+    } // alterarNumeroCliente()
+
+    // DELETE
+    public boolean deletarCliente(String email) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // conectando o BD
+
+        try {
+            String instrucaoSQL = "DELETE FROM usuario WHERE email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, email);// setando parâmetro da instrução
+            if (pstmt.executeUpdate() > 0){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return false;
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+        }
+    } // deletarCliente()
+
+    // SELECT
+    public List<Cliente> buscarCliente() {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset = null;
+        List<Cliente> lista = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT * FROM cliente";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a query
+
+            while (rset.next()) {
+                Cliente usuario = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
+                        rset.getString("nome_sobrenome"), rset.getDate("data_nascimento"), rset.getString("senha"),
+                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("endereco_uf"),
+                        rset.getString("endereco_cidade"), rset.getString("endereco_cep"),
+                        rset.getString("endereco_rua"), rset.getInt("endereco_numero"));
+                lista.add(usuario);
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+            return lista;
+        }
+
+    } // buscarCliente()
+} // UsuarioDAO
