@@ -1,4 +1,4 @@
-package DAO;
+package Conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +20,7 @@ public class Conexao {
             String senha = dotenv.get("SENHA");
             String url = dotenv.get("URL");
 
-            conn = DriverManager.getConnection(url,usuario,senha); // criando conexão com o BD
+            conn = DriverManager.getConnection(url, usuario, senha); // criando conexão com o BD
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } catch (ClassNotFoundException cnfe) {
@@ -30,10 +30,10 @@ public class Conexao {
 
     public void desconectar(Connection conn){
         try{
-            if(conn != null && !conn.isClosed()){
+            if (conn != null && !conn.isClosed()) {
                 conn.close(); // desconectando o BD
             }
-        }catch (SQLException sqle) {
+        } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
     } // desconectar()

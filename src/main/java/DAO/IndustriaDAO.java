@@ -1,5 +1,8 @@
 package DAO;
 
+import Conexao.Conexao;
+import Model.Industria;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -299,25 +302,25 @@ public class IndustriaDAO {
     public List<Industria> buscarIndustria() {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-        ResultSet rset = null;
+        ResultSet rset;
         List<Industria> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM industria";
+            String instrucaoSQL = "SELECT i.*, p.nome as nome_plano FROM industria i JOIN plano p ON p.id = i.id_plano";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
             while (rset.next()) {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"), rset.getString("objetivo"), rset.getString("senha"),
                         rset.getString("email"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"), rset.getString("endereco_cep"),
-                        rset.getString("endereco_rua"), rset.getInt("endereco_numero"), rset.getInt("id_plano"));
+                        rset.getString("endereco_rua"), rset.getInt("endereco_numero"), rset.getString("nome_plano"));
                 lista.add(industria); // adicionando o objeto à lista
             }
-            return lista;
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
+        return lista;
     }
 } // IndustriaDAO

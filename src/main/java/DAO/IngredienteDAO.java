@@ -1,21 +1,25 @@
 package DAO;
 
+import Conexao.Conexao;
+import Model.Ingrediente;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class IngredienteDAO {
     // INSERIR
-    public boolean inserirIngrediente(String descricao) {
+    public boolean inserirIngrediente(String nome, String descricao) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "INSERT INTO ingrediente (descricao) VALUES (?)";
+            String instrucaoSQL = "INSERT INTO ingrediente (nome, descricao) VALUES (?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando parâmetros na instrução
-            pstmt.setString(1, descricao);
+            pstmt.setString(1, nome);
+            pstmt.setString(2, descricao);
 
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return true;
@@ -31,6 +35,28 @@ public class IngredienteDAO {
     } // inserirIngrediente()
 
     // ALTERAR
+    public int alterarNomeIngrediente(int id, String nome) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE ingrediente SET nome = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
+            // setando os parâmetros
+            pstmt.setString(1, nome);
+            pstmt.setInt(2, id);
+
+            if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
+                return 1; // conseguiu realizar a alteração
+            } else {
+                return 0; // não encontrou o registro
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        }
+    } /// alterarDescricaoIngrediente()
     public int alterarDescricaoIngrediente(int id, String descricao) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
@@ -38,6 +64,10 @@ public class IngredienteDAO {
         try {
             String instrucaoSQL = "UPDATE ingrediente SET descricao = ? WHERE id = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
+            // setando os parametros da instrucao
+            pstmt.setString(1, descricao);
+            pstmt.setInt(2, id);
 
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return 1; // conseguiu realizar a alteração
@@ -73,10 +103,10 @@ public class IngredienteDAO {
     } // removerIngrediente()
 
     // SELECT
-    public List buscarIngrediente() {
+    public List<Ingrediente> buscarIngrediente() {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-        ResultSet rset = null;
+        ResultSet rset;
         List<Ingrediente> lista = new ArrayList<>();
 
         try {
@@ -85,7 +115,7 @@ public class IngredienteDAO {
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
             while (rset.next()) {
-                Ingrediente ingrediente = new Ingrediente(rset.getInt("id"), rset.getString("descricao"));
+                Ingrediente ingrediente = new Ingrediente(rset.getInt("id"), rset.getString("nome"), rset.getString("descricao"));
                 lista.add(ingrediente);
             }
         } catch (SQLException sqle) {

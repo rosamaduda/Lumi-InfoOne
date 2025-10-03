@@ -1,5 +1,7 @@
 package DAO;
 
+import Conexao.Conexao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +11,7 @@ public class AdmDAO {
     public boolean validarSenhaAdm(String usuario, String senha) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco de dados
-        ResultSet rset = null;
+        ResultSet rset;
 
         try {
             String instrucaoQuery = "SELECT senha FROM ADMINISTRADOR WHERE USUARIO = ?";

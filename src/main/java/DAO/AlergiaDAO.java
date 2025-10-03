@@ -2,8 +2,12 @@ package DAO;
 
 
 
+import Conexao.Conexao;
+import Model.Alergia;
+
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AlergiaDAO {
     // INSERIR
@@ -133,7 +137,7 @@ public class AlergiaDAO {
     public List<Alergia> buscarAlergia() {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-        ResultSet rset = null;
+        ResultSet rset;
         List<Alergia> lista = new ArrayList<>();
 
         try {
