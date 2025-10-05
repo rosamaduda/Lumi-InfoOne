@@ -10,25 +10,20 @@ import java.util.List;
 
 public class IndustriaDAO {
     // INSERIR
-    public boolean inserirIndustria(String cnpj, String nome, String objetivo, String email, String senha, String enderecoUf, String enderecoCidade, String enderecoCep, String enderecoRua, int enderecoNumero, int idPlano) {
+    public boolean inserirIndustria(Industria industria) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // conectando o BD
 
         try {
-            String instrucaoSQL = "INSERT INTO industria (cnpj, nome, objetivo, email, senha, endereco_uf, endereco_cidade, endereco_cep, endereco_rua, endereco_numero, id_plano) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String instrucaoSQL = "INSERT INTO industria (cnpj, nome, objetivo, email, senha, id_plano) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
-            pstmt.setString(1, cnpj);
-            pstmt.setString(2, nome);
-            pstmt.setString(3, objetivo);
-            pstmt.setString(4, email);
-            pstmt.setString(5, senha);
-            pstmt.setString(6, enderecoUf);
-            pstmt.setString(7, enderecoCidade);
-            pstmt.setString(8, enderecoCep);
-            pstmt.setString(9, enderecoRua);
-            pstmt.setInt(10, enderecoNumero);
-            pstmt.setInt(11, idPlano);
+            pstmt.setString(1, industria.getCnpj());
+            pstmt.setString(2, industria.getNome());
+            pstmt.setString(3, industria.getObjetivo());
+            pstmt.setString(4, industria.getEmail());
+            pstmt.setString(5, industria.getSenha());
+//            pstmt.setInt(6, industria.getN);
             if (pstmt.executeUpdate() > 0) {
                 return true; // realizou a instrução
             } else {
@@ -137,121 +132,6 @@ public class IndustriaDAO {
         }
     } // alterarEmailIndustria()
 
-    public int alterarUfIndustria(int id, String enderecoUf) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE industria SET endereco_uf = ? WHERE id = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setString(1, enderecoUf);
-            pstmt.setInt(2, id);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando do BD
-        }
-    } // alterarUfIndustria()
-
-    public int alterarCidadeIndustria(int id, String enderecoCidade) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE industria SET endereco_cidade = ? WHERE id = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setString(1, enderecoCidade);
-            pstmt.setInt(2, id);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando do BD
-        }
-    } // alterarCidadeIndustria()
-
-    public int alterarCepIndustria(int id, String enderecoCep) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE industria SET endereco_cep = ? WHERE id = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setString(1, enderecoCep);
-            pstmt.setInt(2, id);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando do BD
-        }
-    } // alterarCepIndustria()
-
-    public int alterarRuaIndustria(int id, String enderecoRua) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE industria SET endereco_rua = ? WHERE id = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setString(1, enderecoRua);
-            pstmt.setInt(2, id);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando do BD
-        }
-    } // alterarRuaIndustria()
-
-    public int alterarNumeroIndustria(int id, int enderecoNumero) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE industria SET endereco_numero = ? WHERE id = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setInt(1, enderecoNumero);
-            pstmt.setInt(2, id);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando do BD
-        }
-    } // alterarNumeroIndustria()
-
     public int alterarPlanoIndustria(int id, int idPlano) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
@@ -311,9 +191,9 @@ public class IndustriaDAO {
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
             while (rset.next()) {
-                Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"), rset.getString("objetivo"), rset.getString("senha"),
-                        rset.getString("email"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"), rset.getString("endereco_cep"),
-                        rset.getString("endereco_rua"), rset.getInt("endereco_numero"), rset.getString("nome_plano"));
+                Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
+                                                    rset.getString("objetivo"), rset.getString("senha"),
+                                                    rset.getString("email"), rset.getString("nome_plano"));
                 lista.add(industria); // adicionando o objeto à lista
             }
         } catch (SQLException sqle) {

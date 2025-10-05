@@ -16,9 +16,9 @@ public class Conexao {
             Class.forName("org.postgresql.Driver"); // informando o driver de conexão usado
 
             // recebendo as informações do .env
-            String usuario = dotenv.get("USUARIO");
-            String senha = dotenv.get("SENHA");
-            String url = dotenv.get("URL");
+            String usuario = dotenv.get("DB_USER");
+            String senha = dotenv.get("DB_PASSWORD");
+            String url = dotenv.get("DB_URL");
 
             conn = DriverManager.getConnection(url, usuario, senha); // criando conexão com o BD
         } catch (SQLException sqle) {

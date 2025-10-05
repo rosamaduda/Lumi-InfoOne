@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AlergiaDAO {
     // INSERIR
-    public boolean inserirAlergia(String alergeno, String nome, String descricao) {
+    public int inserirAlergia(Alergia alergia) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
@@ -19,17 +19,17 @@ public class AlergiaDAO {
             String instrucaoSQL = "INSERT INTO alergia (alergeno, nome, descricao) VALUES(?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando os parâmetros da instrução
-            pstmt.setString(1, alergeno);
-            pstmt.setString(2, nome);
-            pstmt.setString(3, descricao);
+            pstmt.setString(1, alergia.getAlergeno());
+            pstmt.setString(2, alergia.getNome());
+            pstmt.setString(3, alergia.getDescricao());
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
-                return true;
+                return 1; // conseguiu realizar a instrução
             } else {
-                return false;
+                return 0; // não foi possível realizar a instrução
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
-            return false;
+            return -1; // caiu no catch
         } finally {
             conexao.desconectar(conn); // fechando a conexão como BD
         }

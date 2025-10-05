@@ -18,12 +18,10 @@ public class Cliente {
     private String enderecoUf;
     private String enderecoCidade;
     private String enderecoCep;
-    private String enderecoRua;
-    private int enderecoNumero;
 
     // construtor
 
-    public Cliente(String email, String cpf, String nome, String nomeSobrenome, LocalDate dataNascimento, String senha, double altura, double peso, int diabetes, boolean pressaoAlta, String telefone, String enderecoUf, String enderecoCidade, String enderecoCep, String enderecoRua, int enderecoNumero) {
+    public Cliente(String email, String cpf, String nome, String nomeSobrenome, LocalDate dataNascimento, String senha, double altura, double peso, int diabetes, boolean pressaoAlta, String telefone, String enderecoUf, String enderecoCidade, String enderecoCep) {
         this.email = email;
         this.cpf = cpf;
         this.nome = nome;
@@ -38,8 +36,6 @@ public class Cliente {
         this.enderecoUf = enderecoUf;
         this.enderecoCidade = enderecoCidade;
         this.enderecoCep = enderecoCep;
-        this.enderecoRua = enderecoRua;
-        this.enderecoNumero = enderecoNumero;
     }
 
     // getters e setters
@@ -149,21 +145,5 @@ public class Cliente {
 
     public void setEnderecoCep(String enderecoCep) {
         this.enderecoCep = enderecoCep;
-    }
-
-    public String getEnderecoRua() {
-        return enderecoRua;
-    }
-
-    public void setEnderecoRua(String enderecoRua) {
-        this.enderecoRua = enderecoRua;
-    }
-
-    public int getEnderecoNumero() {
-        return enderecoNumero;
-    }
-
-    public void setEnderecoNumero(int enderecoNumero) {
-        this.enderecoNumero = enderecoNumero;
     }
 } // Cliente

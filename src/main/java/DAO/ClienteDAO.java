@@ -15,45 +15,43 @@ import java.util.List;
 
 public class ClienteDAO {
 
-    // INSERIR
-    public boolean inserirCliente(String email, String cpf, String nome, String nomeSobrenome, Date dataNascimento, String senha, double altura, double peso, int diabetes, boolean pressaoAlta, int telefone, String enderecoUf, String enderecoCidade, String enderecoCep, String enderecoRua, int enderecoNumero) {
+    // INSERT
+    public int inserirCliente(Cliente cliente) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco de dados
 
         try {
-            String instrucaoSQL = "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String instrucaoSQL = "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
-            pstmt.setString(1, email);
-            pstmt.setString(2, cpf);
-            pstmt.setString(3, nome);
-            pstmt.setString(4, nomeSobrenome);
-            pstmt.setDate(5, dataNascimento);
-            pstmt.setString(6, senha);
-            pstmt.setDouble(7, altura);
-            pstmt.setDouble(8, peso);
-            pstmt.setInt(9, diabetes);
-            pstmt.setInt(10, telefone);
-            pstmt.setBoolean(11, pressaoAlta);
-            pstmt.setString(12, enderecoUf);
-            pstmt.setString(13, enderecoCidade);
-            pstmt.setString(14, enderecoCep);
-            pstmt.setString(15, enderecoRua);
-            pstmt.setInt(16, enderecoNumero);
-            if (pstmt.executeUpdate() > 0) {
-                return true; // realizou a instrução
+            pstmt.setString(1, cliente.getEmail());
+            pstmt.setString(2, cliente.getCpf());
+            pstmt.setString(3, cliente.getNome());
+            pstmt.setString(4, cliente.getNomeSobrenome());
+            pstmt.setObject(5, cliente.getDataNascimento());
+            pstmt.setString(6, cliente.getSenha());
+            pstmt.setDouble(7, cliente.getAltura());
+            pstmt.setDouble(8, cliente.getPeso());
+            pstmt.setInt(9, cliente.getDiabetes());
+            pstmt.setString(10, cliente.getTelefone());
+            pstmt.setBoolean(11, cliente.isPressaoAlta());
+            pstmt.setString(12, cliente.getEnderecoUf());
+            pstmt.setString(13, cliente.getEnderecoCidade());
+            pstmt.setString(14, cliente.getEnderecoCep());
+            if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
+                return 1; // conseguiu realizar a instrução
             } else {
-                return false; // não realizou a instrução
+                return 0; // não foi possível realizar a instrução
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
-            return false; // não realizou a instrução
+            return -1; // caiu no catch
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
     } // inserirCliente()
 
-    // ALTERAR
+    // UPDATE
     public int alterarCpfCliente(String email, String cpf) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
@@ -344,52 +342,6 @@ public class ClienteDAO {
         }
     } // alterarCepCliente()
 
-    public int alterarRuaCliente(String email, String enderecoRua) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE cliente SET endereco_rua = ? WHERE email = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setString(1, enderecoRua);
-            pstmt.setString(2, email);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando do BD
-        }
-    } // alterarRuaCliente()
-
-    public int alterarNumeroCliente(String email, int enderecoNumero) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE usuario SET endereco_numero = ? WHERE email = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setInt(1, enderecoNumero);
-            pstmt.setString(2, email);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando do BD
-        }
-    } // alterarNumeroCliente()
-
     // DELETE
     public boolean deletarCliente(String email) {
         Conexao conexao = new Conexao();
@@ -429,7 +381,7 @@ public class ClienteDAO {
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getInt("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getString("telefone"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"),
-                        rset.getString("endereco_cep"), rset.getString("endereco_rua"), rset.getInt("endereco_numero"));
+                        rset.getString("endereco_cep"));
                 lista.add(usuario);
             }
         } catch (SQLException sqle) {

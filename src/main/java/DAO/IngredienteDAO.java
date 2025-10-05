@@ -9,7 +9,7 @@ import java.util.List;
 
 public class IngredienteDAO {
     // INSERIR
-    public boolean inserirIngrediente(String nome, String descricao) {
+    public int inserirIngrediente(Ingrediente ingrediente) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
@@ -18,17 +18,17 @@ public class IngredienteDAO {
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando parâmetros na instrução
-            pstmt.setString(1, nome);
-            pstmt.setString(2, descricao);
+            pstmt.setString(1, ingrediente.getNome());
+            pstmt.setString(2, ingrediente.getDescricao());
 
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
-                return true;
+                return 1; // conseguiu realizar a instrução
             } else {
-                return false;
+                return 0; // não foi possível realizar a instrução
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
-            return false;
+            return -1; // caiu no catch
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
