@@ -80,14 +80,50 @@ public class IngredienteDAO {
         }
     } /// alterarDescricaoIngrediente()
 
+    public int alterarIngrediente(Ingrediente ingrediente) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE ingrediente SET nome = ?, descricao = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
+            // setando os parametros da instrucao
+            pstmt.setString(1, ingrediente.getNome());
+            pstmt.setString(2, ingrediente.getDescricao());
+            pstmt.setInt(3, ingrediente.getId());
+
+            if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
+                return 1; // conseguiu realizar a alteração
+            } else {
+                return 0; // não encontrou o registro
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        }
+    }
+
     // DELETAR
     public int removerIngrediente(int id) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "DELETE FROM ingrediente WHERE id = ?";
+            // deletando os campos que recebem a pk do ingrediente
+            String instrucaoSQL = "DELETE FROM alergia_ingrediente WHERE id_ingrediente = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+
+            instrucaoSQL = "DELETE FROM receita WHERE id_ingrediente = ?";
+            pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+
+            // deletando o ingrediente
+            instrucaoSQL = "DELETE FROM ingrediente WHERE id = ?";
+            pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id); // setando o parâmetro da instrução
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return 1; // conseguiu executar a instrução

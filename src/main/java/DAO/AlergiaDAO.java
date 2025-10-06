@@ -111,14 +111,52 @@ public class AlergiaDAO {
         }
     } // alterarDescricaoAlergia()
 
+    public int alterarAlergia(Alergia alergia) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE ingrediente SET alergeno = ?, nome = ?, descricao = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
+            // setando os parametros da instrucao
+            pstmt.setString(1, alergia.getNome());
+            pstmt.setString(2, alergia.getNome());
+            pstmt.setString(3, alergia.getDescricao());
+            pstmt.setInt(4, alergia.getId());
+
+            if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
+                return 1; // conseguiu realizar a alteração
+            } else {
+                return 0; // não encontrou o registro
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        }
+    }
+
+
     // DELETAR
     public int removerAlergia(int id) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
         try {
-            String instrucaoSQL = "DELETE FROM alergia WHERE id = ?";
+            // deletando os camposd e outras tabelas que recebem a pk
+            String instrucaoSQL = "DELETE FROM alergia_ingrediente WHERE id_alergia = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+
+            instrucaoSQL = "DELETE FROM usuario_alergia WHERE id_alergia = ?";
+            pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+
+            // deletando a alergia
+            instrucaoSQL = "DELETE FROM alergia WHERE id = ?";
+            pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id); // setando parametro na instrução
             if (pstmt.executeUpdate() > 0) { // // executando o comando e verificando o retorno
                 return 1; // conseguiu deletar

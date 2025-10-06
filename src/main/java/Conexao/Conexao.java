@@ -25,7 +25,9 @@ public class Conexao {
             sqle.printStackTrace();
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
-        } finally{return conn;}
+        } finally{
+            return conn;
+        }
     } // conectar()
 
     public void desconectar(Connection conn){

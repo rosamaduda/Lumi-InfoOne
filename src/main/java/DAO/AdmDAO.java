@@ -14,8 +14,8 @@ public class AdmDAO {
         ResultSet rset;
 
         try {
-            String instrucaoQuery = "SELECT senha FROM ADMINISTRADOR WHERE USUARIO = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoQuery);
+            String instrucaoSQL = "SELECT senha FROM ADMINISTRADOR WHERE USUARIO = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, usuario); // setando o parâmetro na instrução
             rset = pstmt.executeQuery(); // executando a query no BD
 
@@ -40,8 +40,8 @@ public class AdmDAO {
         ResultSet rset = null;
 
         try {
-            String instrucao = "SELECT * FROM ADMINISTRADOR";
-            PreparedStatement pstmt = conn.prepareStatement(instrucao);
+            String instrucaoSQL = "SELECT * FROM ADMINISTRADOR";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             rset = pstmt.executeQuery();
         } catch (SQLException sqle) {
             sqle.printStackTrace();

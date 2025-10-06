@@ -342,14 +342,66 @@ public class ClienteDAO {
         }
     } // alterarCepCliente()
 
+    public int alterarCliente(Cliente cliente) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE cliente SET cpf = ?, nome = ?, nome_sobrenome = ?, data_nascimento = ?, senha = ?, altura = ?, peso = ?, diabetes = ?, pressao_alta = ?, telefone = ?, endereco_uf = ?, endereco_cidade = ?, endereco_cep = ? WHERE email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando parâmetros da instrução
+            pstmt.setString(1, cliente.getCpf());
+            pstmt.setString(2, cliente.getNome());
+            pstmt.setString(3, cliente.getNomeSobrenome());
+            pstmt.setObject(4, cliente.getDataNascimento());
+            pstmt.setString(5, cliente.getSenha());
+            pstmt.setDouble(6, cliente.getAltura());
+            pstmt.setDouble(7, cliente.getPeso());
+            pstmt.setInt(8, cliente.getDiabetes());
+            pstmt.setString(9, cliente.getTelefone());
+            pstmt.setBoolean(10, cliente.isPressaoAlta());
+            pstmt.setString(11, cliente.getEnderecoUf());
+            pstmt.setString(12, cliente.getEnderecoCidade());
+            pstmt.setString(13, cliente.getEnderecoCep());
+            pstmt.setString(14, cliente.getEmail());
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+        }
+    } // alterarCliente()
+
     // DELETE
     public boolean deletarCliente(String email) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // conectando o BD
 
         try {
-            String instrucaoSQL = "DELETE FROM usuario WHERE email = ?";
+            // deletando os campos que recebem a pk do cliente
+            String instrucaoSQL = "DELETE FROM favorito WHERE email_cliente = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, email);
+            pstmt.executeUpdate();
+
+            instrucaoSQL = "DELETE FROM usuario_alergia WHERE email_cliente = ?";
+            pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, email);
+            pstmt.executeUpdate();
+
+            instrucaoSQL = "DELETE FROM avaliacao WHERE email_cliente = ?";
+            pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, email);
+            pstmt.executeUpdate();
+
+            // deletando o cliente
+            instrucaoSQL = "DELETE FROM usuario WHERE email = ?";
+            pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, email);// setando parâmetro da instrução
             if (pstmt.executeUpdate() > 0){
                 return true;
