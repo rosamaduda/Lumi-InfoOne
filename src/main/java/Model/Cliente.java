@@ -38,6 +38,10 @@ public class Cliente {
         this.enderecoCep = enderecoCep;
     }
 
+    public Cliente(String email) {
+        this.email = email;
+    }
+
     // getters e setters
     public String getEmail() {
         return email;

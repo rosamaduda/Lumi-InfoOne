@@ -18,20 +18,10 @@ public class ClienteAlergia {
     public int getId() {
         return id;
     }
-
     public String getEmailCliente() {
         return emailCliente;
     }
-
-    public void setEmailCliente(String emailCliente) {
-        this.emailCliente = emailCliente;
-    }
-
     public String getNomeAlergia() {
         return nomeAlergia;
-    }
-
-    public void setNomeAlergia(String nomeAlergia) {
-        this.nomeAlergia = nomeAlergia;
     }
 }

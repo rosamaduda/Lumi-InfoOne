@@ -194,5 +194,28 @@ public class AlergiaDAO {
             return lista;
         }
     } // buscarAlergia()
+
+    public List<Alergia> buscarNomeAlergia() {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Alergia> lista = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT nome FROM alergia";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // realizando a query
+
+            while (rset.next()) {
+                Alergia alergia = new Alergia(rset.getString("nome"));
+                lista.add(alergia);
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+            return lista;
+        }
+    } // buscarAlergia()
 }
 

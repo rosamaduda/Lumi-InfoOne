@@ -17,20 +17,10 @@ public class AlergiaIngrediente {
     public int getId() {
         return id;
     }
-
     public String getNomeAlergia() {
         return nomeAlergia;
     }
-
-    public void setNomeAlergia(String nomeAlergia) {
-        this.nomeAlergia = nomeAlergia;
-    }
-
     public String getNomeIngrediente() {
         return nomeIngrediente;
-    }
-
-    public void setNomeIngrediente(String nomeIngrediente) {
-        this.nomeIngrediente = nomeIngrediente;
     }
 }

@@ -17,19 +17,11 @@ public class TelefoneIndustria {
     public int getId() {
         return id;
     }
-    public void setId(int id) {
-        this.id = id;
-    }
     public int getTelefone() {
         return telefone;
-    }
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
     }
     public int getIdIndustria() {
         return idIndustria;
     }
-    public void setIdIndustria(int idIndustria) {
-        this.idIndustria = idIndustria;
-    }
+
 } // TelefoneIndustria

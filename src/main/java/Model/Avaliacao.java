@@ -20,40 +20,20 @@ public class Avaliacao {
     }
 
     // getters e setters
-
     public int getId() {
         return id;
     }
-
     public String getAvaliacao() {
         return avaliacao;
     }
-
-    public void setAvaliacao(String avaliacao) {
-        this.avaliacao = avaliacao;
-    }
-
     public LocalDateTime getDataHorario() {
         return dataHorario;
     }
-
-    public void setDataHorario(LocalDateTime dataHorario) {
-        this.dataHorario = dataHorario;
-    }
-
     public String getEmailCliente() {
         return emailCliente;
     }
-
-    public void setEmailCliente(String emailCliente) {
-        this.emailCliente = emailCliente;
-    }
-
     public String getNomeProduto() {
         return nomeProduto;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
 }

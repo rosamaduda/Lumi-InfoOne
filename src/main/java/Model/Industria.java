@@ -27,52 +27,22 @@ public class Industria {
     public int getId() {
         return id;
     }
-
     public String getCnpj() {
         return cnpj;
     }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
     public String getNome() {
         return nome;
     }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getObjetivo() {
         return objetivo;
     }
-
-    public void setObjetivo(String objetivo) {
-        this.objetivo = objetivo;
-    }
-
     public String getEmail() {
         return email;
     }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getSenha() {
         return senha;
     }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public String getNomePlano() {
         return nomePlano;
-    }
-
-    public void setNomePlano(String nomePlano) {
-        this.nomePlano = nomePlano;
     }
 } // Industria

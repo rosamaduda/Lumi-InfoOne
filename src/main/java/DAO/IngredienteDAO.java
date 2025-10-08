@@ -108,18 +108,40 @@ public class IngredienteDAO {
     public int removerIngrediente(int id) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
 
         try {
-            // deletando os campos que recebem a pk do ingrediente
+            System.out.println("Conectado ao banco: " + conn.getCatalog());
+
+            // deletando os campos que recebem a pk do ingrediente ou que tem alguma relação com o ingrediente
             String instrucaoSQL = "DELETE FROM alergia_ingrediente WHERE id_ingrediente = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id);
-            pstmt.executeUpdate();
+            pstmt.execute();
+
+
+            // selecionando o id da receita para conseguir apagar do produto_receita
+            instrucaoSQL = "SELECT id FROM RECEITA WHERE id_ingrediente = ?";
+            pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, id);
+            rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+                instrucaoSQL = "DELETE FROM produto_receita WHERE id_receita = ?";
+                pstmt = conn.prepareStatement(instrucaoSQL);
+                pstmt.setInt(1, rset.getInt("id"));
+                pstmt.execute();
+            }
+
+            instrucaoSQL = "DELETE FROM produto_receita WHERE id_ingrediente = ?";
+            pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, id);
+            pstmt.execute();
 
             instrucaoSQL = "DELETE FROM receita WHERE id_ingrediente = ?";
             pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id);
-            pstmt.executeUpdate();
+            pstmt.execute();
 
             // deletando o ingrediente
             instrucaoSQL = "DELETE FROM ingrediente WHERE id = ?";
