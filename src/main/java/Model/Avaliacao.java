@@ -1,29 +1,36 @@
 package Model;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Avaliacao {
     // atributos
     private int id;
+    private int nota;
     private String avaliacao;
-    private LocalDateTime dataHorario;
+    private Date dataHorario;
     private String emailCliente;
-    private String nomeProduto;
+    private int idProduto;
 
     // construtor
-    public Avaliacao(int id, String avaliacao, LocalDateTime dataHorario, String emailCliente, String nomeProduto) {
+    public Avaliacao(int id, int nota, String avaliacao, Date dataHorario, String emailCliente, int nomeProduto) {
         this.id = id;
+        this.nota=nota;
         this.avaliacao = avaliacao;
         this.dataHorario = dataHorario;
         this.emailCliente = emailCliente;
-        this.nomeProduto = nomeProduto;
+        this.idProduto = idProduto;
     }
 
     // getters e setters
-
+    public int getNota() {
+        return nota;
+    }
     public int getId() {
         return id;
     }
+
+
 
     public String getAvaliacao() {
         return avaliacao;
@@ -33,12 +40,8 @@ public class Avaliacao {
         this.avaliacao = avaliacao;
     }
 
-    public LocalDateTime getDataHorario() {
+    public Date getDataHorario() {
         return dataHorario;
-    }
-
-    public void setDataHorario(LocalDateTime dataHorario) {
-        this.dataHorario = dataHorario;
     }
 
     public String getEmailCliente() {
@@ -49,11 +52,8 @@ public class Avaliacao {
         this.emailCliente = emailCliente;
     }
 
-    public String getNomeProduto() {
-        return nomeProduto;
+    public int getNomeProduto() {
+        return idProduto;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
 }

@@ -3,11 +3,11 @@ package Model;
 public class TelefoneIndustria {
     // atributos
     private int id;
-    private int telefone;
+    private String telefone;
     private int idIndustria;
 
    // construtor
-   public TelefoneIndustria (int id, int telefone, int idIndustria) {
+   public TelefoneIndustria (int id, String telefone, int idIndustria) {
        this.id = id;
        this.telefone = telefone;
        this.idIndustria = idIndustria;
@@ -20,10 +20,10 @@ public class TelefoneIndustria {
     public void setId(int id) {
         this.id = id;
     }
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
     public int getIdIndustria() {
