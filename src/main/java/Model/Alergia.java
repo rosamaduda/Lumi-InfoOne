@@ -14,6 +14,9 @@ public class Alergia {
         this.nome = nome;
         this.descricao = descricao;
     }
+    public Alergia(String nome) {
+        this.nome = nome;
+    }
 
     // getter e setters
     public int getId() {
@@ -22,19 +25,10 @@ public class Alergia {
     public String getAlergeno() {
         return alergeno;
     }
-    public void setAlergeno(String alergeno) {
-        this.alergeno = alergeno;
-    }
     public String getNome() {
         return nome;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
     public String getDescricao() {
         return descricao;
-    }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 } // Alergia

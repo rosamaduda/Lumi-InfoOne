@@ -15,7 +15,7 @@ public class TelefoneIndustriaDAO {
                 try{
                     String instrucaoSQL="INSERT INTO TEL_INDUSTRIA (TELEFONE,ID_INDUSTRIA) VALUES(?,?) ";
                     PreparedStatement pstmt=conn.prepareStatement(instrucaoSQL);
-                    pstmt.setString(1,tel.getTelefone());
+                    pstmt.setInt(1,tel.getTelefone());
                     pstmt.setInt(2,tel.getIdIndustria());
                     if (pstmt.executeUpdate()>0){
                         return 1;
@@ -58,12 +58,14 @@ public class TelefoneIndustriaDAO {
             }
 
 
-            public int alterarTelefone(int id){
+            public int alterarTelefone(TelefoneIndustria tel){
                 Conexao conexao=new Conexao();
                 Connection conn=conexao.conectar();
                 try{
                     String instrucaoSQL="UPDATE TEL_INDUSTRIA SET TELEFONE=? WHERE ID=?";
                     PreparedStatement pstmt=conn.prepareStatement(instrucaoSQL);
+                    pstmt.setInt(1,tel.getTelefone());
+                    pstmt.setInt(2,tel.getId());
                     if (pstmt.executeUpdate()>0){
                         return 1;
                     }
@@ -79,7 +81,7 @@ public class TelefoneIndustriaDAO {
             }
 
 
-            public List<TelefoneIndustria> buscarTelenofe(){
+            public List<TelefoneIndustria> buscarTelefone(){
                 Conexao conexao=new Conexao();
                 Connection conn= conexao.conectar();
                 ResultSet rset;
@@ -90,7 +92,7 @@ public class TelefoneIndustriaDAO {
                     Statement stmt= conn.createStatement();
                     rset=stmt.executeQuery(instrucaoSQL);
                     while (rset.next()){
-                        TelefoneIndustria telefone=new TelefoneIndustria(rset.getInt("id"),rset.getString("telefone"),rset.getInt("id_industria"));
+                        TelefoneIndustria telefone=new TelefoneIndustria(rset.getInt("id"),rset.getInt("telefone"),rset.getInt("id_industria"));
                         tel.add(telefone);
                     }
 

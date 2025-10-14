@@ -442,6 +442,30 @@ public class ClienteDAO {
             conexao.desconectar(conn); // desconectando do BD
             return lista;
         }
-
     } // buscarCliente()
+
+
+    public List<Cliente> buscarNomeCliente() {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Cliente> lista = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT email FROM cliente";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a query
+
+            while (rset.next()) {
+                Cliente cliente = new Cliente(rset.getString("email"));
+                lista.add(cliente);
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+            return lista;
+        }
+    }
+
 } // UsuarioDAO

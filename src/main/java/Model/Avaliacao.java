@@ -13,7 +13,7 @@ public class Avaliacao {
     private int idProduto;
 
     // construtor
-    public Avaliacao(int id, int nota, String avaliacao, Date dataHorario, String emailCliente, int nomeProduto) {
+    public Avaliacao(int id, int nota, String avaliacao, Date dataHorario, String emailCliente, int idProduto) {
         this.id = id;
         this.nota=nota;
         this.avaliacao = avaliacao;
@@ -52,8 +52,9 @@ public class Avaliacao {
         this.emailCliente = emailCliente;
     }
 
-    public int getNomeProduto() {
+    public int getIdProduto() {
         return idProduto;
-    }
 
-}
+
+
+}}
