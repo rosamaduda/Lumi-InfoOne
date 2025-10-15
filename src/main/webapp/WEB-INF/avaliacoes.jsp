@@ -1,10 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lumi - Favoritos</title>
-        <link rel="icon" href="/src/main/webapp/assets/logo-infoone.ico">
+        <title>Lumi - Avaliações</title>
+        <link rel="icon" href="${pageContext.request.contextPath}/assets/logo-infoone.ico">
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -16,8 +17,8 @@
             class="bg-[#7F3FBF] text-white fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 shadow-md">
             <div
                 class="container mx-auto px-4 py-3 sm:py-4 h-full flex items-center justify-between">
-                <h1 class="sm:ml-[-5%]"><img
-                        src="/src/main/webapp/assets/logo branca.png"
+                <h1 class="ml-0 sm:ml-[-5%]"><img
+                        src="${pageContext.request.contextPath}/assets/logo branca.png"
                         width="80%" class="h-8 sm:h-auto"
                         style="align-items: center;"></h1>
 
@@ -52,11 +53,11 @@
                                         data-feather="home" class="mr-3"></i>Portal
                                     ADM</a></li>
                             <li><a href="ingredientes.html"
-                                    class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
+                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
                                         data-feather="package"
                                         class="mr-3"></i>Ingredientes</a></li>
                             <li><a href="alergias.html"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
                                         data-feather="alert-triangle"
                                         class="mr-3"></i>Alergias</a></li>
                             <li><a href="cliente.html"
@@ -72,10 +73,10 @@
                                         data-feather="heart"
                                         class="mr-3"></i>Favoritos</a></li>
                             <li><a href="avaliacoes.html"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
+                                    class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
                                         data-feather="star"
                                         class="mr-3"></i>Avaliações</a></li>
-                                        <li><a href="/src/main/webapp/index.html"
+                                        <li><a href="${pageContext.request.contextPath}/index.html"
                                             class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                                 data-feather="globe"
                                                 class="mr-3"></i>Site</a></li>
@@ -88,18 +89,18 @@
             <div id="sidebar-overlay"
                 class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
-            <main class="flex-1 p-4 sm:p-8 sm:ml-64"> 
+            <main class="flex-1 p-4 sm:p-8 ml-0 sm:ml-64"> 
 
                 <h1
                     class="text-2xl sm:text-[2.25rem] font-bold text-gray-800 mb-6 sm:mb-8"
-                    data-aos="fade-down">Ingredientes</h1>
+                    data-aos="fade-down">Avaliações</h1>
                 
                 <div class="mb-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="relative">
                         <i data-feather="search"
                             class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                        <input type="text" placeholder="Buscar ingredientes..."
-                            class="w-full pl-10 pr-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
+                        <input type="text" placeholder="Buscar avaliações..."
+                            class="w-full pl-10 pr-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bg-[#7F3FBF]] focus:border-transparent">
                     </div>
                 </div>
 
@@ -109,13 +110,17 @@
                     <table class="w-full hidden sm:table">
                         <thead>
                             <tr class="bg-[#3C9D9B] text-white">
-                                <th class="p-3 text-left">Nome</th>
-                                <th class="p-3 text-left">Descrição</th>
+                                <th class="p-3 text-left">Produto</th>
+                                <th class="p-3 text-left">Email do Cliente</th>
+                                <th class="p-3 text-left">Avaliação</th>
+                                <th class="p-3 text-left">Data e Horário</th>
                                 <th class="p-3 text-right"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="bg-white">
+                                <td class="p-3 border-b"></td>
+                                <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b text-right">
@@ -136,6 +141,8 @@
                             <tr class="bg-[#C5E2E1]">
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
+                                <td class="p-3 border-b"></td>
+                                <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b text-right">
                                     <div class="flex space-x-2 justify-end">
                                         <button
@@ -152,6 +159,8 @@
                                 </td>
                             </tr>
                             <tr class="bg-white">
+                                <td class="p-3 border-b"></td>
+                                <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b text-right">
@@ -175,7 +184,7 @@
                     <div class="sm:hidden divide-y divide-gray-200">
                         <div
                             class="p-4 bg-white text-center text-gray-500 italic">
-                            Nenhum ingrediente cadastrado
+                            Nenhuma avaliação cadastrada
                         </div>
                     </div>
 
@@ -184,7 +193,7 @@
                 <div
                     class="mt-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0"
                     data-aos="fade-up" data-aos-delay="300">
-                    <a href="cadastro_ingredientes.html"
+                    <a href="cadastro_avaliacao.jsp"
                         class="w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-6 py-2 rounded-lg flex items-center justify-center">
                         <i data-feather="plus" class="mr-2 w-4 h-4"></i>
                         Adicionar
@@ -226,9 +235,9 @@
         AOS.init({ duration: 800, once: true });
         feather.replace();
 
-         // Menu Lateral
-         const sidebar = document.getElementById('sidebar');
-        const menuBotao = document.getElementById('menu-botao');
+        // Menu Lateral
+        const sidebar = document.getElementById('sidebar');
+        const menuButton = document.getElementById('menu-botao');
         const overlay = document.getElementById('sidebar-overlay');
 
         function toggleSidebar() {
@@ -236,16 +245,18 @@
             overlay.classList.toggle('opacity-0');
             overlay.classList.toggle('opacity-50');
             overlay.classList.toggle('pointer-events-none');
+            
+            // Impede o scroll do body quando o menu está aberto em mobile
+            document.body.classList.toggle('overflow-hidden'); 
         }
 
-        menuBotao.addEventListener('click', toggleSidebar);
+        menuButton.addEventListener('click', toggleSidebar);
         overlay.addEventListener('click', toggleSidebar);
 
         // Fecha o menu ao clicar em um link 
         document.querySelectorAll('#sidebar a').forEach(item => {
             item.addEventListener('click', () => {
-                // Fecha apenas se a sidebar estiver visível (i.e., em mobile)
-                if (window.innerWidth < 640) { // O breakpoint sm é 640px
+                if (window.innerWidth < 640) {
                     toggleSidebar();
                 }
             });

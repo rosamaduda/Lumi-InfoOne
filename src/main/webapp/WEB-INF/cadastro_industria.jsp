@@ -1,10 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Indústria - LUMI</title>
-    <link rel="icon" href="/src/main/webapp/assets/logo-infoone.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/logo-infoone.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -16,7 +17,7 @@
             <div
                 class="container mx-auto px-4 py-3 sm:py-4 h-full flex items-center justify-between">
                 <h1 class="sm:ml-[-5%]"><img
-                        src="/src/main/webapp/assets/logo branca.png"
+                        src="${pageContext.request.contextPath}/assets/logo branca.png"
                         width="80%" class="h-8 sm:h-auto"
                         style="align-items: center;"></h1>
 
@@ -74,7 +75,7 @@
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                         data-feather="star"
                                         class="mr-3"></i>Avaliações</a></li>
-                                        <li><a href="/src/main/webapp/index.html"
+                                        <li><a href="${pageContext.request.contextPath}/index.html"
                                             class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                                 data-feather="globe"
                                                 class="mr-3"></i>Site</a></li>
