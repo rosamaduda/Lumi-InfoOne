@@ -50,8 +50,11 @@ public class FavoritosDAO {
         catch(SQLException e){
             e.printStackTrace();
             return -1;
-            }
         }
+        finally {
+            conexao.desconectar(conn);
+        }
+    }
 
 
         public List<Favorito> listarFavoritos(){
@@ -124,7 +127,8 @@ public class FavoritosDAO {
 
         }finally {
             conexao.desconectar(conn);
-            return fav;
         }
+        return fav;
+
     }
     }
