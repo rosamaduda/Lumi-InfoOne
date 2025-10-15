@@ -1,0 +1,85 @@
+[1mdiff --git a/src/main/java/DAO/AlergiaDAO.java b/src/main/java/DAO/AlergiaDAO.java[m
+[1mindex ac477d2..b1d980a 100644[m
+[1m--- a/src/main/java/DAO/AlergiaDAO.java[m
+[1m+++ b/src/main/java/DAO/AlergiaDAO.java[m
+[36m@@ -194,5 +194,28 @@[m [mpublic class AlergiaDAO {[m
+             return lista;[m
+         }[m
+     } // buscarAlergia()[m
+[32m+[m
+[32m+[m[32m    public List<Alergia> buscarNomeAlergia() {[m
+[32m+[m[32m        Conexao conexao = new Conexao();[m
+[32m+[m[32m        Connection conn = conexao.conectar(); // abrindo a conexão com o BD[m
+[32m+[m[32m        ResultSet rset;[m
+[32m+[m[32m        List<Alergia> lista = new ArrayList<>();[m
+[32m+[m
+[32m+[m[32m        try {[m
+[32m+[m[32m            String instrucaoSQL = "SELECT nome FROM alergia";[m
+[32m+[m[32m            Statement stmt = conn.createStatement();[m
+[32m+[m[32m            rset = stmt.executeQuery(instrucaoSQL); // realizando a query[m
+[32m+[m
+[32m+[m[32m            while (rset.next()) {[m
+[32m+[m[32m                Alergia alergia = new Alergia(rset.getString("nome"));[m
+[32m+[m[32m                lista.add(alergia);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        } catch (SQLException sqle) {[m
+[32m+[m[32m            sqle.printStackTrace();[m
+[32m+[m[32m        } finally {[m
+[32m+[m[32m            conexao.desconectar(conn); // desconectando o BD[m
+[32m+[m[32m            return lista;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    } // buscarAlergia()[m
+ }[m
+ [m
+[1mdiff --git a/src/main/java/DAO/ClienteDAO.java b/src/main/java/DAO/ClienteDAO.java[m
+[1mindex 2ea8056..9359a12 100644[m
+[1m--- a/src/main/java/DAO/ClienteDAO.java[m
+[1m+++ b/src/main/java/DAO/ClienteDAO.java[m
+[36m@@ -442,6 +442,30 @@[m [mpublic class ClienteDAO {[m
+             conexao.desconectar(conn); // desconectando do BD[m
+             return lista;[m
+         }[m
+[31m-[m
+     } // buscarCliente()[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    public List<Cliente> buscarNomeCliente() {[m
+[32m+[m[32m        Conexao conexao = new Conexao();[m
+[32m+[m[32m        Connection conn = conexao.conectar(); // abrindo a conexão com o BD[m
+[32m+[m[32m        ResultSet rset;[m
+[32m+[m[32m        List<Cliente> lista = new ArrayList<>();[m
+[32m+[m
+[32m+[m[32m        try {[m
+[32m+[m[32m            String instrucaoSQL = "SELECT email FROM cliente";[m
+[32m+[m[32m            Statement stmt = conn.createStatement();[m
+[32m+[m[32m            rset = stmt.executeQuery(instrucaoSQL); // executando a query[m
+[32m+[m
+[32m+[m[32m            while (rset.next()) {[m
+[32m+[m[32m                Cliente cliente = new Cliente(rset.getString("email"));[m
+[32m+[m[32m                lista.add(cliente);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        } catch (SQLException sqle) {[m
+[32m+[m[32m            sqle.printStackTrace();[m
+[32m+[m[32m        } finally {[m
+[32m+[m[32m            conexao.desconectar(conn); // desconectando do BD[m
+[32m+[m[32m            return lista;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+ } // UsuarioDAO[m
+[1mdiff --git a/src/main/java/DAO/IngredienteDAO.java b/src/main/java/DAO/IngredienteDAO.java[m
+[1mindex 5cecc88..f183b91 100644[m
+[1m--- a/src/main/java/DAO/IngredienteDAO.java[m
+[1m+++ b/src/main/java/DAO/IngredienteDAO.java[m
+[36m@@ -108,18 +108,40 @@[m [mpublic class IngredienteDAO {[m
+     public int removerIngrediente(int id) {[m
+         Conexao conexao = new Conexao();[m
+         Connection conn = conexao.conectar(); // abrindo a conexão com o BD[m
+[32m+[m[32m        ResultSet rset;[m
+ [m
+         try {[m
+[31m-            // deletando os campos que recebem a pk do ingrediente[m
+[32m+[m[32m            System.out.println("Conectado ao banco: " + conn.getCatalog());[m
+[32m+[m
+[32m+[m[32m            // deletando os campos que recebem a pk do ingrediente ou que tem alguma relação com o ingrediente[m
+             String instrucaoSQL = "DELETE FROM alergia_ingre

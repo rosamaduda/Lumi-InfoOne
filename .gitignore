@@ -36,5 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
-
+src/main/resources/.env
+/postgresql-42.7.6.jar
 .env
