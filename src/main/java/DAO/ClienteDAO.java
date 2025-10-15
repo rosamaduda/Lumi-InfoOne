@@ -21,7 +21,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco de dados
 
         try {
-            String instrucaoSQL = "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String instrucaoSQL = "INSERT INTO CLIENTE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, cliente.getEmail());
@@ -57,7 +57,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar();
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET cpf = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET CPF = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, cpf);
@@ -80,7 +80,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar();
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET nome = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET NOME = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, nome);
@@ -103,7 +103,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar();
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET nome_sobrenome = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET NOME_SOBRENOME = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, sobrenome);
@@ -126,7 +126,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar();
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET data_nascimento = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET DATA_NASCIMENTO = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setDate(1, dataNascimento);
@@ -149,7 +149,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // fazendo a conexao com o BD
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET senha = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET SENHA = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, senha);
             pstmt.setString(2, email);
@@ -171,7 +171,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // conectando com o BD
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET altura = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET ALTURA = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setDouble(1, altura);
             pstmt.setString(2, email);
@@ -193,7 +193,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar();
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET peso = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET PESO = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setDouble(1, peso);
             pstmt.setString(2, email);
@@ -215,7 +215,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão abrir
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET diabetes = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET DIABETES = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando os parâmetros da instrução
             pstmt.setInt(1, diabetes);
@@ -236,7 +236,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão abrir
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET pressao_alta = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET PRESSAO_ALTA = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando os parâmetros da instrução
             pstmt.setBoolean(1, pressaoAlta);
@@ -257,7 +257,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão abrir
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET telefone = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET TELEFONE = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando os parâmetros da instrução
             pstmt.setInt(1, telefone);
@@ -278,7 +278,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET endereco_uf = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET ENDERECO_UF = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, enderecoUf);
@@ -301,7 +301,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET endereco_cidade = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET ENDERECO_CIDADE = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, enderecoCidade);
@@ -324,7 +324,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET endereco_cep = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET ENDERECO_CEP = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, enderecoCep);
@@ -347,7 +347,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE cliente SET cpf = ?, nome = ?, nome_sobrenome = ?, data_nascimento = ?, senha = ?, altura = ?, peso = ?, diabetes = ?, pressao_alta = ?, telefone = ?, endereco_uf = ?, endereco_cidade = ?, endereco_cep = ? WHERE email = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET CPF = ?, NOME = ?, NOME_SOBRENOME = ?, DATA_NASCIMENTO = ?, SENHA = ?, ALTURA = ?, PESO = ?, DIABETES = ?, PRESSAO_ALTA = ?, TELEFONE = ?, ENDERECO_UF = ?, ENDERECO_CIDADE = ?, ENDERECO_CEP = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, cliente.getCpf());
@@ -384,30 +384,28 @@ public class ClienteDAO {
 
         try {
             // deletando os campos que recebem a pk do cliente
-            String instrucaoSQL = "DELETE FROM favorito WHERE email_cliente = ?";
+            String instrucaoSQL = "DELETE FROM FAVORITO WHERE EMAIL_CLIENTE = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, email);
             pstmt.executeUpdate();
 
-            instrucaoSQL = "DELETE FROM usuario_alergia WHERE email_cliente = ?";
+            instrucaoSQL = "DELETE FROM USUARIO_ALERGIA WHERE EMAIL_CLIENTE = ?";
             pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, email);
             pstmt.executeUpdate();
 
-            instrucaoSQL = "DELETE FROM avaliacao WHERE email_cliente = ?";
+            instrucaoSQL = "DELETE FROM AVALIACAO WHERE EMAIL_CLIENTE = ?";
             pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, email);
             pstmt.executeUpdate();
 
             // deletando o cliente
-            instrucaoSQL = "DELETE FROM usuario WHERE email = ?";
+            instrucaoSQL = "DELETE FROM CLIENTE WHERE EMAIL = ?";
             pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, email);// setando parâmetro da instrução
-            if (pstmt.executeUpdate() > 0){
-                return true;
-            } else {
-                return false;
-            }
+
+            // retorna o resultado da expresaão
+            return pstmt.executeUpdate() > 0;
         } catch (SQLException sqle) {
             sqle.printStackTrace();
             return false;
@@ -424,7 +422,7 @@ public class ClienteDAO {
         List<Cliente> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM cliente";
+            String instrucaoSQL = "SELECT * FROM CLIENTE";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -449,23 +447,22 @@ public class ClienteDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Cliente> lista = new ArrayList<>();
+        List<Cliente> clientes = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT email FROM cliente";
+            String instrucaoSQL = "SELECT EMAIL FROM CLIENTE";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
             while (rset.next()) {
                 Cliente cliente = new Cliente(rset.getString("email"));
-                lista.add(cliente);
+                clientes.add(cliente);
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando do BD
-            return lista;
         }
+        return clientes;
     }
-
 } // UsuarioDAO

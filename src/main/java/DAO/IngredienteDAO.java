@@ -14,7 +14,7 @@ public class IngredienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "INSERT INTO ingrediente (nome, descricao) VALUES (?, ?)";
+            String instrucaoSQL = "INSERT INTO INGREDIENTE (NOME, DESCRICAO) VALUES (?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando parâmetros na instrução
@@ -40,7 +40,7 @@ public class IngredienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE ingrediente SET nome = ? WHERE id = ?";
+            String instrucaoSQL = "UPDATE INGREDIENTE SET NOME = ? WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando os parâmetros
@@ -62,7 +62,7 @@ public class IngredienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE ingrediente SET descricao = ? WHERE id = ?";
+            String instrucaoSQL = "UPDATE INGREDIENTE SET DESCRICAO = ? WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando os parametros da instrucao
@@ -85,7 +85,7 @@ public class IngredienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE ingrediente SET nome = ?, descricao = ? WHERE id = ?";
+            String instrucaoSQL = "UPDATE INGREDIENTE SET NOME = ?, DESCRICAO = ? WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando os parametros da instrucao
@@ -114,37 +114,37 @@ public class IngredienteDAO {
             System.out.println("Conectado ao banco: " + conn.getCatalog());
 
             // deletando os campos que recebem a pk do ingrediente ou que tem alguma relação com o ingrediente
-            String instrucaoSQL = "DELETE FROM alergia_ingrediente WHERE id_ingrediente = ?";
+            String instrucaoSQL = "DELETE FROM ALERGIA_INGREDIENTE WHERE id_ingrediente = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id);
             pstmt.execute();
 
 
             // selecionando o id da receita para conseguir apagar do produto_receita
-            instrucaoSQL = "SELECT id FROM RECEITA WHERE id_ingrediente = ?";
+            instrucaoSQL = "SELECT ID FROM RECEITA WHERE ID_INGREDIENTE = ?";
             pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id);
             rset = pstmt.executeQuery();
 
             while (rset.next()) {
-                instrucaoSQL = "DELETE FROM produto_receita WHERE id_receita = ?";
+                instrucaoSQL = "DELETE FROM PRODUTO_RECEITA WHERE id_receita = ?";
                 pstmt = conn.prepareStatement(instrucaoSQL);
                 pstmt.setInt(1, rset.getInt("id"));
                 pstmt.execute();
             }
 
-            instrucaoSQL = "DELETE FROM produto_receita WHERE id_ingrediente = ?";
+            instrucaoSQL = "DELETE FROM RECEITA WHERE ID_INGREDIENTE = ?";
             pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id);
             pstmt.execute();
 
-            instrucaoSQL = "DELETE FROM receita WHERE id_ingrediente = ?";
+            instrucaoSQL = "DELETE FROM RECEITA WHERE ID_INGREDIENTE = ?";
             pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id);
             pstmt.execute();
 
             // deletando o ingrediente
-            instrucaoSQL = "DELETE FROM ingrediente WHERE id = ?";
+            instrucaoSQL = "DELETE FROM INGREDIENTE WHERE ID = ?";
             pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id); // setando o parâmetro da instrução
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
@@ -168,7 +168,7 @@ public class IngredienteDAO {
         List<Ingrediente> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ingrediente";
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 

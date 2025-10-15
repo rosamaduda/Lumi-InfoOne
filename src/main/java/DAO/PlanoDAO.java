@@ -16,22 +16,22 @@ public class PlanoDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
         ResultSet rset;
-        List<Plano> lista = new ArrayList<>();
+        List<Plano> planos = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT nome FROM plano";
+            String instrucaoSQL = "SELECT NOME FROM PLANO";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
             while (rset.next()) {
                 Plano plano = new Plano(rset.getString("nome"));
-                lista.add(plano);
+                planos.add(plano);
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando do BD
-            return lista;
+            return planos;
         }
     }
 } // PlanoDAO
