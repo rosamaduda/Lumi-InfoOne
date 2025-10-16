@@ -129,10 +129,10 @@
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b text-right">
                                     <div class="flex space-x-2 justify-end">
-                                        <button
+                                        <a href="editar_industria.jsp"><button
                                             class="p-1 text-blue-600 hover:text-blue-800">
                                             <i data-feather="edit"
-                                                class="w-4 h-4"></i>
+                                                class="w-4 h-4"></i></a>
                                         </button>
                                         <button
                                             class="p-1 text-red-600 hover:text-red-800">
@@ -151,10 +151,10 @@
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b text-right">
                                     <div class="flex space-x-2 justify-end">
-                                        <button
+                                        <a href="editar_industria.jsp"><button
                                             class="p-1 text-blue-600 hover:text-blue-800">
                                             <i data-feather="edit"
-                                                class="w-4 h-4"></i>
+                                                class="w-4 h-4"></i></a>
                                         </button>
                                         <button
                                             class="p-1 text-red-600 hover:text-red-800">
@@ -173,10 +173,10 @@
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b text-right">
                                     <div class="flex space-x-2 justify-end">
-                                        <button
+                                        <a href="editar_industria.jsp"><button
                                             class="p-1 text-blue-600 hover:text-blue-800">
                                             <i data-feather="edit"
-                                                class="w-4 h-4"></i>
+                                                class="w-4 h-4"></i></a>
                                         </button>
                                         <button
                                             class="p-1 text-red-600 hover:text-red-800">
