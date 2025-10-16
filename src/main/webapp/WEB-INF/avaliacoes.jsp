@@ -1,6 +1,6 @@
-<%@ page contentType="text/jsp;charset=UTF-8" language="java" %>
-<!DOCTYPE jsp>
-<jsp lang="pt-BR">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -157,11 +157,11 @@
                                             <i data-feather="edit"
                                                 class="w-4 h-4"></i></a>
                                         </button>
-                                        <button
-                                            class="p-1 text-red-600 hover:text-red-800">
-                                            <i data-feather="trash-2"
-                                                class="w-4 h-4"></i>
-                                        </button>
+                                        <button id="remover"
+                                        class="p-1 text-red-600 hover:text-red-800">
+                                        <i data-feather="trash-2"
+                                            class="w-4 h-4"></i>
+                                    </button>
                                     </div>
                                 </td>
                             </tr>
@@ -178,11 +178,11 @@
                                             <i data-feather="edit"
                                                 class="w-4 h-4"></i></a>
                                         </button>
-                                        <button
-                                            class="p-1 text-red-600 hover:text-red-800">
-                                            <i data-feather="trash-2"
-                                                class="w-4 h-4"></i>
-                                        </button>
+                                        <button id="remover"
+                                        class="p-1 text-red-600 hover:text-red-800">
+                                        <i data-feather="trash-2"
+                                            class="w-4 h-4"></i>
+                                    </button>
                                     </div>
                                 </td>
                             </tr>
@@ -228,9 +228,9 @@
                             </button>
                             <span class="text-sm text-gray-600">Página X de
                                 Y</span>
-                            <button
-                                class="p-1 text-gray-600 hover:text-[#7F3FBF]">
-                                <i data-feather="arrow-right-circle"
+                                <button id="remover"
+                                class="p-1 text-red-600 hover:text-red-800">
+                                <i data-feather="trash-2"
                                     class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -242,34 +242,8 @@
         <script>
         AOS.init({ duration: 800, once: true });
         feather.replace();
-
-        // Menu Lateral
-        const sidebar = document.getElementById('sidebar');
-        const menuButton = document.getElementById('menu-botao');
-        const overlay = document.getElementById('sidebar-overlay');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('opacity-0');
-            overlay.classList.toggle('opacity-50');
-            overlay.classList.toggle('pointer-events-none');
-            
-            // Impede o scroll do body quando o menu está aberto em mobile
-            document.body.classList.toggle('overflow-hidden'); 
-        }
-
-        menuButton.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-
-        // Fecha o menu ao clicar em um link 
-        document.querySelectorAll('#sidebar a').forEach(item => {
-            item.addEventListener('click', () => {
-                if (window.innerWidth < 640) {
-                    toggleSidebar();
-                }
-            });
-        });
-
         </script>
+        <script src="${pageContext.request.contextPath}/js/menu.js"></script>
+        <script src="${pageContext.request.contextPath}/js/remover.js"></script>
     </body>
-</jsp>
+</html>

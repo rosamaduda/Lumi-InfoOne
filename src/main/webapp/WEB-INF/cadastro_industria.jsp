@@ -1,6 +1,6 @@
-<%@ page contentType="text/jsp;charset=UTF-8" language="java" %>
-<!DOCTYPE jsp>
-<jsp lang="pt-BR">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,7 +91,7 @@
             <a href="industria.jsp"><h1 class="text-left"><i data-feather="arrow-left"></i></h1></a>
             <h1 class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[2%]" data-aos="fade-down">Adicionar Indústria</h1>
             <div class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]" data-aos="fade-up" data-aos-delay="100">
-                <form action="#" method="post">
+                <form action="adicionar-industria" method="post">
                     <div class="mb-6">
                         <label for="cnpj" class="block text-gray-700 text-sm font-medium mb-2">CNPJ:</label>
                         <input type="text" id="cnpj" name="cnpj" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent" placeholder="Digite o CNPJ da indústria...">
@@ -107,7 +107,7 @@
                                   class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent resize-none overflow-hidden" 
                                   placeholder="Digite o objetivo da indústria..." 
                                   rows="3" 
-                                  oninput="autoResizeTextarea(this)"></textarea>
+                                  oninput="aumentarTexto(this)"></textarea>
 
                     </div>
                     <div class="text-center">
@@ -124,46 +124,8 @@
     <script>
         AOS.init({ duration: 800, once: true });
         feather.replace();
-
-        function autoResizeTextarea(elemento) {
-    // Reset a altura para recalcular a altura correta (necessário para encolher se o texto for apagado)
-    elemento.style.height = 'auto'; 
-    // Define a altura como a altura de scroll do conteúdo
-    elemento.style.height = (elemento.scrollHeight) + 'px';
-}
-
-// Chame a função uma vez ao carregar a página se houver conteúdo prévio
-document.addEventListener('DOMContentLoaded', () => {
-    const textarea = document.getelementoById('objetivo');
-    if (textarea) {
-        autoResizeTextarea(textarea);
-    }
-});
-
- // Menu Lateral
- const sidebar = document.getelementoById('sidebar');
-        const menuBotao = document.getelementoById('menu-botao');
-        const overlay = document.getelementoById('sidebar-overlay');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('opacity-0');
-            overlay.classList.toggle('opacity-50');
-            overlay.classList.toggle('pointer-events-none');
-        }
-
-        menuBotao.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-
-        // Fecha o menu ao clicar em um link 
-        document.querySelectorAll('#sidebar a').forEach(item => {
-            item.addEventListener('click', () => {
-                // Fecha apenas se a sidebar estiver visível (i.e., em mobile)
-                if (window.innerWidth < 640) { // O breakpoint sm é 640px
-                    toggleSidebar();
-                }
-            });
-        });
     </script>
+     <script src="${pageContext.request.contextPath}/js/menu.js"></script>
+     <script src="${pageContext.request.contextPath}/js/aumentar-texto.js"></script>
 </body>
-</jsp>
+</html>

@@ -1,6 +1,6 @@
-<%@ page contentType="text/jsp;charset=UTF-8" language="java" %>
-<!DOCTYPE jsp>
-<jsp lang="pt-BR">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -149,7 +149,7 @@
                                             <i data-feather="edit"
                                                 class="w-4 h-4"></i></a>
                                         </button>
-                                        <button
+                                        <button id="remover"
                                             class="p-1 text-red-600 hover:text-red-800">
                                             <i data-feather="trash-2"
                                                 class="w-4 h-4"></i>
@@ -175,7 +175,7 @@
                                             <i data-feather="edit"
                                                 class="w-4 h-4"></i></a>
                                         </button>
-                                        <button 
+                                        <button id="remover"
                                             class="p-1 text-red-600 hover:text-red-800">
                                             <i data-feather="trash-2"
                                                 class="w-4 h-4"></i>
@@ -201,7 +201,7 @@
                                             <i data-feather="edit"
                                                 class="w-4 h-4"></i></a>
                                         </button>
-                                        <button
+                                        <button id="remover"
                                             class="p-1 text-red-600 hover:text-red-800">
                                             <i data-feather="trash-2"
                                                 class="w-4 h-4"></i>
@@ -265,32 +265,8 @@
         <script>
     AOS.init({ duration: 800, once: true });
     feather.replace();
-
-   // Menu Lateral
-   const sidebar = document.getElementById('sidebar');
-        const menuBotao = document.getElementById('menu-botao');
-        const overlay = document.getElementById('sidebar-overlay');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('opacity-0');
-            overlay.classList.toggle('opacity-50');
-            overlay.classList.toggle('pointer-events-none');
-        }
-
-        menuBotao.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-
-        // Fecha o menu ao clicar em um link 
-        document.querySelectorAll('#sidebar a').forEach(item => {
-            item.addEventListener('click', () => {
-                // Fecha apenas se a sidebar estiver visível (i.e., em mobile)
-                if (window.innerWidth < 640) { // O breakpoint sm é 640px
-                    toggleSidebar();
-                }
-            });
-        });
-
 </script>
+<script src="${pageContext.request.contextPath}/js/menu.js"></script>
+<script src="${pageContext.request.contextPath}/js/remover.js"></script>
     </body>
-</jsp>
+</html>

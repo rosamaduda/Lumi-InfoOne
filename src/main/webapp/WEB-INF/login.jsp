@@ -27,7 +27,7 @@
                             faça seu login!</h2>
                     </div>
 
-                    <form action="#" method="post" class="space-y-6"> 
+                    <form action="login" method="post" class="space-y-6"> 
                         <div>
                             <input
                                 type="text"

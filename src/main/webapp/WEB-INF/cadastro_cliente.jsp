@@ -49,31 +49,31 @@
 
           <div class="p-4 flex-grow overflow-y-auto">
             <ul class="space-y-2">
-              <li><a href="portal.html"
+              <li><a href="portal.jsp"
                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                     data-feather="home" class="mr-3"></i>Portal
                   ADM</a></li>
-              <li><a href="ingredientes.html"
+              <li><a href="ingredientes.jsp"
                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
                     data-feather="package"
                     class="mr-3"></i>Ingredientes</a></li>
-              <li><a href="alergias.html"
+              <li><a href="alergias.jsp"
                   class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
                     data-feather="alert-triangle"
                     class="mr-3"></i>Alergias</a></li>
-              <li><a href="cliente.html"
+              <li><a href="cliente.jsp"
                   class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
                     data-feather="users"
                     class="mr-3"></i>Cliente</a></li>
-              <li><a href="industria.html"
+              <li><a href="industria.jsp"
                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                     data-feather="tool"
                     class="mr-3"></i>Indústria</a></li>
-              <li><a href="favoritos.html"
+              <li><a href="favoritos.jsp"
                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                     data-feather="heart"
                     class="mr-3"></i>Favoritos</a></li>
-              <li><a href="avaliacoes.html"
+              <li><a href="avaliacoes.jsp"
                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                     data-feather="star"
                     class="mr-3"></i>Avaliações</a></li>
@@ -97,7 +97,7 @@
         <div id="input"
           class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]"
           data-aos="fade-up" data-aos-delay="100">
-          <form action="#" method="post">
+          <form action="adicionar-cliente" method="post">
             <div class="mb-6">
               <label for="cpf"
                 class="block text-gray-700 text-sm font-medium mb-2">CPF:</label>
@@ -217,83 +217,10 @@
     <script>
         AOS.init({ duration: 800, once: true });
         feather.replace();
-
-         // Menu Lateral
-         const sidebar = document.getElementById('sidebar');
-        const menuBotao = document.getElementById('menu-botao');
-        const overlay = document.getElementById('sidebar-overlay');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('opacity-0');
-            overlay.classList.toggle('opacity-50');
-            overlay.classList.toggle('pointer-events-none');
-        }
-
-        menuBotao.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-
-        // Fecha o menu ao clicar em um link 
-        document.querySelectorAll('#sidebar a').forEach(item => {
-            item.addEventListener('click', () => {
-                // Fecha apenas se a sidebar estiver visível (i.e., em mobile)
-                if (window.innerWidth < 640) { // O breakpoint sm é 640px
-                    toggleSidebar();
-                }
-            });
-        });
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-        const container = document.getElementById('telefones-container');
-        const addButton = document.getElementById('add-telefone');
-        let telefoneCount = 0;
-
-        /**
-         * Cria e retorna o elemento html para um novo campo de telefone.
-         * @param {string} initialValue - Valor inicial para o campo.
-         */
-        function createTelefoneField(initialValue = '') {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'flex items-center space-x-2 mb-2';
-            wrapper.id = `telefone-field-${telefoneCount++}`; // ID único
-
-            // Botão de remover
-            const removeButton = document.createElement('button');
-            removeButton.type = 'button';
-            removeButton.className = 'remover-telefone text-red-500 hover:text-red-700 p-1';
-            removeButton.title = 'Remover';
-            removeButton.innerHTML = '<span class="text-xl">⊖</span>';
-
-            removeButton.addEventListener('click', () => {
-                // Remove o wrapper (que contém o botão e o input)
-                wrapper.remove();
-            });
-
-            // Input
-            const inputField = document.createElement('input');
-            inputField.type = 'tel';
-            // Vetor para que o java receba um array de telefones
-            inputField.name = 'telefone[]';
-            inputField.className = 'flex-grow px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent';
-            inputField.placeholder = 'Ex: 11987654321';
-            inputField.value = initialValue; 
-
-            // Monta o wrapper
-            wrapper.appendChild(removeButton);
-            wrapper.appendChild(inputField);
-
-            return wrapper;
-        }
-
-        // Adiciona o telefone
-        addButton.addEventListener('click', () => {
-            const newField = createTelefoneField();
-            container.appendChild(newField);
-        });
-
-
-    });
     </script>
+    <script src="${pageContext.request.contextPath}/js/menu.js"></script>
+    <script src="${pageContext.request.contextPath}/js/telefone.js"></script>
+    
+    
   </body>
 </html>

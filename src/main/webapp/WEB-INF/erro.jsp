@@ -5,6 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lumi - Erro</title>
+        <link rel="icon"
+            href="${pageContext.request.contextPath}/assets/logo-infoone.ico">
         <link rel="stylesheet"
             href="${pageContext.request.contextPath}/style/erro.css">
         <script src="https://cdn.tailwindcss.com"></script>
@@ -24,22 +26,21 @@
             class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 relative overflow-hidden">
             <!-- Conteúdo principal -->
             <div class="text-center mt-12">
-                <!-- X animado -->
+                <!-- X -->
                 <div class="relative w-24 h-24 mx-auto mb-6">
                     <svg class="w-full h-full" viewBox="0 0 100 100">
                         <line x1="20" y1="20" x2="80" y2="80" stroke="#ef4444"
-                            stroke-width="8" class="x-animation" />
+                            stroke-width="8" class="x-animacao" />
                         <line x1="80" y1="20" x2="20" y2="80" stroke="#ef4444"
-                            stroke-width="8" class="x-animation"
-                            style="animation-delay: 0.3s;" />
+                            stroke-width="8" class="x-animacao"
+                            style="animacao-delay: 0.3s;" />
                     </svg>
                 </div>
 
                 <!-- Mensagem de erro -->
                 <h1
-                    class="text-2xl font-bold text-gray-800 mb-2 shake-animation">Ops!
+                    class="text-2xl font-bold text-gray-800 mb-2 shake-animacao">Ops!
                     Algo deu errado</h1>
-                <p class="text-gray-600 mb-6">Erro</p>
 
                 <p class="text-sm text-gray-500 mb-8">
                     <%=request.getAttribute("mensagemErro")%>
@@ -56,22 +57,8 @@
         </div>
 
         <script>
-        feather.replace();
-
-        function voltar(){
-            window.history.back();
-        }
-        
-        // Efeito de shake ao carregar a página
-        document.addEventListener('DOMContentLoaded', function() {
-            const textoErro = document.querySelector('.shake-animation');
-            setTimeout(() => {
-                textoErro.classList.remove('shake-animation');
-                setTimeout(() => {
-                    textoErro.classList.add('shake-animation');
-                }, 50);
-            }, 1000);
-        });
+        feather.replace();  
     </script>
+    <script src="${pageContext.request.contextPath}/js/erro.js"></script>
     </body>
 </html>

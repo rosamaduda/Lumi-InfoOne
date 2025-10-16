@@ -47,31 +47,31 @@
 
             <div class="p-4 flex-grow overflow-y-auto"> 
                 <ul class="space-y-2">
-                    <li><a href="portal.html"
+                    <li><a href="portal.jsp"
                             class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                 data-feather="home" class="mr-3"></i>Portal
                             ADM</a></li>
-                    <li><a href="ingredientes.html"
+                    <li><a href="ingredientes.jsp"
                             class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
                                 data-feather="package"
                                 class="mr-3"></i>Ingredientes</a></li>
-                    <li><a href="alergias.html"
+                    <li><a href="alergias.jsp"
                             class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
                                 data-feather="alert-triangle"
                                 class="mr-3"></i>Alergias</a></li>
-                    <li><a href="cliente.html"
+                    <li><a href="cliente.jsp"
                             class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
                                 data-feather="users"
                                 class="mr-3"></i>Cliente</a></li>
-                    <li><a href="industria.html"
+                    <li><a href="industria.jsp"
                             class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                 data-feather="tool"
                                 class="mr-3"></i>Indústria</a></li>
-                    <li><a href="favoritos.html"
+                    <li><a href="favoritos.jsp"
                             class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                 data-feather="heart"
                                 class="mr-3"></i>Favoritos</a></li>
-                    <li><a href="avaliacoes.html"
+                    <li><a href="avaliacoes.jsp"
                             class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
                                 data-feather="star"
                                 class="mr-3"></i>Avaliações</a></li>
@@ -90,7 +90,7 @@
             <a href="avaliacoes.jsp"><h1 class="text-left"><i data-feather="arrow-left"></i></h1></a>
             <h1 class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[2%]" data-aos="fade-down">Alterar Avaliação</h1>
             <div class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]" data-aos="fade-up" data-aos-delay="100">
-                <form action="#" method="post">
+                <form action="alterar-avaliacao" method="post">
                     <div class="mb-6">
                         <label for="produto"
                                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Produto:</label>
@@ -114,7 +114,7 @@
                                   class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent resize-none overflow-hidden" 
                                   placeholder="Digite a avaliação..." 
                                   rows="3" 
-                                  oninput="autoResizeTextarea(this)"></textarea>
+                                  oninput="aumentarTexto(this)"></textarea>
 
                     </div>
                     <div class="text-center">
@@ -131,46 +131,10 @@
     <script>
         AOS.init({ duration: 800, once: true });
         feather.replace();
-
-        function autoResizeTextarea(elemento) {
-    // Reset a altura para recalcular a altura correta (necessário para encolher se o texto for apagado)
-    elemento.style.height = 'auto'; 
-    // Define a altura como a altura de scroll do conteúdo
-    elemento.style.height = (elemento.scrollHeight) + 'px';
-}
-
-// Chame a função uma vez ao carregar a página se houver conteúdo prévio
-document.addEventListener('DOMContentLoaded', () => {
-    const textarea = document.getelementoById('avaliacao');
-    if (textarea) {
-        autoResizeTextarea(textarea);
-    }
-});
-
- // Menu Lateral
- const sidebar = document.getelementoById('sidebar');
-        const menuBotao = document.getelementoById('menu-botao');
-        const overlay = document.getelementoById('sidebar-overlay');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('opacity-0');
-            overlay.classList.toggle('opacity-50');
-            overlay.classList.toggle('pointer-events-none');
-        }
-
-        menuBotao.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-
-        // Fecha o menu ao clicar em um link 
-        document.querySelectorAll('#sidebar a').forEach(item => {
-            item.addEventListener('click', () => {
-                // Fecha apenas se a sidebar estiver visível (i.e., em mobile)
-                if (window.innerWidth < 640) { // O breakpoint sm é 640px
-                    toggleSidebar();
-                }
-            });
-        });
     </script>
+    <script src="${pageContext.request.contextPath}/js/menu.js"></script>
+    <script src="${pageContext.request.contextPath}/js/aumentar-texto.js"></script>
+
+    
 </body>
 </html>

@@ -3,10 +3,10 @@
     10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
     20%, 40%, 60%, 80% { transform: translateX(10px); }
 }
-.shake-animation {
+.shake-animacao {
     animation: shake 0.5s ease-in-out;
 }
-.x-animation {
+.x-animacao {
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
     animation: draw 1s ease-in-out forwards;

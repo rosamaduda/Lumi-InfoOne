@@ -1,6 +1,6 @@
-<%@ page contentType="text/jsp;charset=UTF-8" language="java" %>
-<!DOCTYPE jsp>
-<jsp lang="pt-BR">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -102,7 +102,7 @@
                 <div
                     class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]"
                     data-aos="fade-up" data-aos-delay="100">
-                    <form action="#" method="post">
+                    <form action="alterar-ingrediente" method="post">
                         <div class="mb-6">
                             <label for="nome"
                                 class="block text-gray-700 text-sm font-medium mb-2">Nome:</label>
@@ -130,39 +130,8 @@
         <script>
         AOS.init({ duration: 800, once: true });
         feather.replace();
-
-         // Menu Lateral
-         const sidebar = document.getElementById('sidebar');
-        const menuBotao = document.getElementById('menu-botao');
-        const overlay = document.getElementById('sidebar-overlay');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('opacity-0');
-            overlay.classList.toggle('opacity-50');
-            overlay.classList.toggle('pointer-events-none');
-        }
-
-        menuBotao.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-
-        // Fecha o menu ao clicar em um link 
-        document.querySelectorAll('#sidebar a').forEach(item => {
-            item.addEventListener('click', () => {
-                // Fecha apenas se a sidebar estiver visível (i.e., em mobile)
-                if (window.innerWidth < 640) { // O breakpoint sm é 640px
-                    toggleSidebar();
-                }
-            });
-        });
-
-        
-        function autoResizeTextarea(elemento) {
-    // Reset a altura para recalcular a altura correta (necessário para encolher se o texto for apagado)
-    elemento.style.height = 'auto'; 
-    // Define a altura como a altura de scroll do conteúdo
-    elemento.style.height = (elemento.scrollHeight) + 'px';
-}
     </script>
+        <script src="${pageContext.request.contextPath}/js/menu.js"></script>
+        <script src="${pageContext.request.contextPath}/js/aumentar-texto.js"></script>
     </body>
-</jsp>
+</html>
