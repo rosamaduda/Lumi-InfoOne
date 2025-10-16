@@ -14,7 +14,7 @@ public class AdmDAO {
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "SELECT senha FROM ADMINISTRADOR WHERE USUARIO = ?";
+            String instrucaoSQL = "SELECT SENHA FROM ADMINISTRADOR WHERE USUARIO = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, usuario); // setando o parâmetro na instrução
             rset = pstmt.executeQuery(); // executando a query no BD
@@ -34,13 +34,13 @@ public class AdmDAO {
         return false; // retornando fora do try-catch, pois dentro dá erro de falta de retorno
     } // validarSenhaAdm()
 
-    public ResultSet buscarAdm() {
+    public ResultSet buscarLogin() {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset = null;
 
         try {
-            String instrucaoSQL = "SELECT * FROM ADMINISTRADOR";
+            String instrucaoSQL = "SELECT LOGIN FROM ADMINISTRADOR";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             rset = pstmt.executeQuery();
         } catch (SQLException sqle) {

@@ -15,7 +15,7 @@ public class IndustriaDAO {
         Connection conn = conexao.conectar(); // conectando o BD
 
         try {
-            String instrucaoSQL = "INSERT INTO industria (cnpj, nome, objetivo, email, senha, nome_plano) VALUES (?, ?, ?, ?, ?, ?)";
+            String instrucaoSQL = "INSERT INTO INDUSTRIA (CNPJ, NOME, OBJETIVO, EMAIL, SENHA, NOME_PLANO) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, industria.getCnpj());
@@ -43,7 +43,7 @@ public class IndustriaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
         try {
-            String instrucaoSQL = "UPDATE industria SET cnpj = ? WHERE id = ?";
+            String instrucaoSQL = "UPDATE INDUSTRIA SET CNPJ = ? WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, cnpj);
@@ -66,7 +66,7 @@ public class IndustriaDAO {
         Connection conn = conexao.conectar(); // conectando o BD
 
         try {
-            String instrucaoSQL = "UPDATE industria SET nome = ? WHERE id = ?";
+            String instrucaoSQL = "UPDATE INDUSTRIA SET NOME = ? WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, nome);
@@ -90,7 +90,7 @@ public class IndustriaDAO {
         Connection conn = conexao.conectar(); // conectando o BD
 
         try {
-            String instrucaoSQL = "UPDATE industria SET objetivo = ? WHERE id = ?";
+            String instrucaoSQL = "UPDATE INDUSTRIA SET OBJETIVO = ? WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, objetivo);
@@ -114,7 +114,7 @@ public class IndustriaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
         try {
-            String instrucaoSQL = "UPDATE industria SET email = ? WHERE id = ?";
+            String instrucaoSQL = "UPDATE INDUSTRIA SET EMAIL = ? WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, email);
@@ -137,7 +137,7 @@ public class IndustriaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE industria SET nome_plano = ? WHERE id = ?";
+            String instrucaoSQL = "UPDATE INDUSTRIA SET NOME_PLANO = ? WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, nomePlano);
@@ -160,7 +160,7 @@ public class IndustriaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE industria SET cnpj = ?, nome = ?, objetivo = ?, email = ?, senha = ?, nome_plano = ? WHERE id = ?";
+            String instrucaoSQL = "UPDATE INDUSTRIA SET CNPJ = ?, NOME = ?, OBJETIVO = ?, EMAIL = ?, SENHA = ?, NOME_PLANO = ? WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, industria.getCnpj());
@@ -191,18 +191,18 @@ public class IndustriaDAO {
 
         try {
             // deletando os campos que recebem a pk da indústria
-            String instrucaoSQL = "DELETE FROM produto WHERE id_industria = ?";
+            String instrucaoSQL = "DELETE FROM PRODUTO WHERE ID_INDUSTRIA = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
 
-            instrucaoSQL = "DELETE FROM telefone_industria WHERE id_industria = ?";
+            instrucaoSQL = "DELETE FROM TELEFONE_INDUSTRIA WHERE ID_INDUSTRIA = ?";
             pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
 
             // deletando a indústria
-            instrucaoSQL = "DELETE FROM industria WHERE id = ?";
+            instrucaoSQL = "DELETE FROM INDUSTRIA WHERE ID = ?";
             pstmt = conn.prepareStatement(instrucaoSQL);
             // setando os parâmetros
             pstmt.setInt(1, id);
@@ -224,10 +224,10 @@ public class IndustriaDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Industria> lista = new ArrayList<>();
+        List<Industria> industrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT i.*, p.nome as nome_plano FROM industria i JOIN plano p ON p.nome = i.nome_plano";
+            String instrucaoSQL = "SELECT I.*, P.NOME as NOME_PLANO FROM INDUSTRIA I JOIN PLANO P ON P.NOME = I.NOME_PLANO";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -235,13 +235,13 @@ public class IndustriaDAO {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
                                                     rset.getString("objetivo"), rset.getString("senha"),
                                                     rset.getString("email"), rset.getString("nome_plano"));
-                lista.add(industria); // adicionando o objeto à lista
+                industrias.add(industria); // adicionando o objeto à lista
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return lista;
+        return industrias;
     }
 } // IndustriaDAO

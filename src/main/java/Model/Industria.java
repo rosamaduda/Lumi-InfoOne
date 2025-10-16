@@ -23,7 +23,6 @@ public class Industria {
     }
 
     // getters e setters
-
     public int getId() {
         return id;
     }
