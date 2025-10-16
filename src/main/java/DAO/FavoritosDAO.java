@@ -1,15 +1,13 @@
 package DAO;
-
+//imports
 import Conexao.Conexao;
 import Model.Favorito;
-import Model.TelefoneIndustria;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FavoritosDAO {
-    public int adicionarFavorito(Favorito fav){
+    public int adicionarFavorito( Favorito fav){
          Conexao conexao =new Conexao();
         Connection conn= conexao.conectar();
         try{

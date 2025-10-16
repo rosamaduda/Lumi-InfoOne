@@ -50,4 +50,28 @@ public class AdmDAO {
             return rset;
         }
     } // buscarAdm()
+
+
+    public String buscarLogin(String senha){
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
+        ResultSet rset = null;
+        String login =null;
+
+        try {
+            String instrucaoSQL = "SELECT LOGIN FROM ADMINISTRADOR WHERE SENHA=?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            rset = pstmt.executeQuery();
+            while (rset.next()){
+                login=rset.getString("login");
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando do Banco de dados
+        }
+        return login;
+
+    }
+
 } // DAO
