@@ -87,6 +87,7 @@
     class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
         <main class="ml-64 flex-1 sm:p-8">
+            <a href="avaliacoes.jsp"><h1 class="text-left"><i data-feather="arrow-left"></i></h1></a>
             <h1 class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[2%]" data-aos="fade-down">Adicionar Avaliação</h1>
             <div class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]" data-aos="fade-up" data-aos-delay="100">
                 <form action="#" method="post">
@@ -106,7 +107,7 @@
                         <input type="datetime-local" id="data_horario" name="data_horario" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
                         
                         <label for="estrelas" class="block text-gray-700 text-sm font-medium mb-2 mt-2">Estrelas:</label>
-                        <input type="number" min="0" max="5" id="estrelas" name="estrelas" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent" placeholder="Ex: 4.5">
+                        <input type="number" step="0.5" min="0" max="5" id="estrelas" name="estrelas" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent" placeholder="Ex: 4.5">
 
                         <label for="avaliacao" class="block text-gray-700 text-sm font-medium mb-2 mt-2">Avaliação:</label>
                         <textarea id="avaliacao" name="avaliacao" 

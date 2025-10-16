@@ -47,8 +47,8 @@
                         </div>
 
                         <button
-                            type="button" 
-                            onclick="window.location.href='portal.jsp'" class="w-[30%] p-[15px] mt-[5%] bg-[#C6F500] hover:bg-lime-500 text-black font-semibold rounded-full transition-all transform hover:scale-105 shadow-md ml-[35%]">
+                            type="submit" 
+                            class="w-[30%] p-[15px] mt-[5%] bg-[#C6F500] hover:bg-lime-500 text-black font-semibold rounded-full transition-all transform hover:scale-105 shadow-md ml-[35%]">
                             Entrar
                         </button>
                     </form>

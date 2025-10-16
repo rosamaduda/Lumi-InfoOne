@@ -1,11 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="pt-BR">
+<%@ page contentType="text/jsp;charset=UTF-8" language="java" %>
+<!DOCTYPE jsp>
+<jsp lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lumi - Adicionar Favorito</title>
-        <link rel="icon" href="${pageContext.request.contextPath}/assets/logo-infoone.ico">
+        <link rel="icon"
+            href="${pageContext.request.contextPath}/assets/logo-infoone.ico">
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -49,36 +50,37 @@
 
                     <div class="p-4 flex-grow overflow-y-auto">
                         <ul class="space-y-2">
-                            <li><a href="portal.html"
+                            <li><a href="portal.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                         data-feather="home"
                                         class="mr-3"></i>Portal
                                     ADM</a></li>
-                            <li><a href="ingredientes.html"
+                            <li><a href="ingredientes.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
                                         data-feather="package"
                                         class="mr-3"></i>Ingredientes</a></li>
-                            <li><a href="alergias.html"
+                            <li><a href="alergias.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
                                         data-feather="alert-triangle"
                                         class="mr-3"></i>Alergias</a></li>
-                            <li><a href="cliente.html"
+                            <li><a href="cliente.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
                                         data-feather="users"
                                         class="mr-3"></i>Cliente</a></li>
-                            <li><a href="industria.html"
+                            <li><a href="industria.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                         data-feather="tool"
                                         class="mr-3"></i>Indústria</a></li>
-                            <li><a href="favoritos.html"
+                            <li><a href="favoritos.jsp"
                                     class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
                                         data-feather="heart"
                                         class="mr-3"></i>Favoritos</a></li>
-                            <li><a href="avaliacoes.html"
+                            <li><a href="avaliacoes.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                         data-feather="star"
                                         class="mr-3"></i>Avaliações</a></li>
-                            <li><a href="${pageContext.request.contextPath}/index.html"
+                            <li><a
+                                    href="${pageContext.request.contextPath}/index.html"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                         data-feather="globe"
                                         class="mr-3"></i>Site</a></li>
@@ -90,9 +92,11 @@
                 class="fixed inset-0 bg-black opacity-0 pointer-events-none z-30 transition-opacity duration-300 sm:hidden">
             </div>
             <main class="sm:ml-64 flex-1 sm:p-8">
+                <a href="favoritos.jsp"><h1 class="text-left"><i
+                            data-feather="arrow-left"></i></h1></a>
                 <h1
                     class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[3%]"
-                    data-aos="fade-down">Adicionar favorito</h1>
+                    data-aos="fade-down">Adicionar Favorito</h1>
                 <div id="input"
                     class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]"
                     data-aos="fade-up" data-aos-delay="100">
@@ -107,7 +111,8 @@
                             </select>
 
                             <label for="e-mail"
-                                class="block text-gray-700 text-sm font-medium mb-2 mt-2">Email do Cliente:</label>
+                                class="block text-gray-700 text-sm font-medium mb-2 mt-2">Email
+                                do Cliente:</label>
                             <input type="email" id="e-mail" name="e-mail"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                                 placeholder="Ex: nome@exemplo.com">
@@ -153,4 +158,4 @@
 
     </script>
         </body>
-    </html>
+    </jsp>

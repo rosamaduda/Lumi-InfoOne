@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumi - Adicionar Cliente</title>
-    <link rel="icon" href="${pageContext.request.contextPath}/assets/logo-infoone.ico">
+    <link rel="icon"
+      href="${pageContext.request.contextPath}/assets/logo-infoone.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -88,6 +89,8 @@
         class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
       <main class="sm:ml-64 flex-1 sm:p-8">
+        <a href="cliente.jsp"><h1 class="text-left"><i
+              data-feather="arrow-left"></i></h1></a>
         <h1
           class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[3%]"
           data-aos="fade-down">Adicionar Cliente</h1>
@@ -115,13 +118,15 @@
                 placeholder="Digite o sobrenome do cliente...">
 
               <label for="peso"
-                class="block text-gray-700 text-sm font-medium mb-2 mt-2">Peso (kg):</label>
+                class="block text-gray-700 text-sm font-medium mb-2 mt-2">Peso
+                (kg):</label>
               <input type="number" step="0.01" min="0" id="peso" name="peso"
                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                 placeholder="Ex: 76">
 
               <label for="altura"
-                class="block text-gray-700 text-sm font-medium mb-2 mt-2">Altura (m):</label>
+                class="block text-gray-700 text-sm font-medium mb-2 mt-2">Altura
+                (m):</label>
               <input type="number" step="0.01" min="0" id="altura" name="altura"
                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                 placeholder="Ex: 1,90">

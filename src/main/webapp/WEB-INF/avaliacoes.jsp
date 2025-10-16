@@ -1,18 +1,19 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="pt-BR">
+<%@ page contentType="text/jsp;charset=UTF-8" language="java" %>
+<!DOCTYPE jsp>
+<jsp lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lumi - Avaliações</title>
-        <link rel="icon" href="${pageContext.request.contextPath}/assets/logo-infoone.ico">
+        <link rel="icon"
+            href="${pageContext.request.contextPath}/assets/logo-infoone.ico">
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     </head>
-    <body class="min-h-screen overflow-x-hidden"> 
+    <body class="min-h-screen overflow-x-hidden">
         <header
             class="bg-[#7F3FBF] text-white fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 shadow-md">
             <div
@@ -27,74 +28,77 @@
                 </button>
             </div>
         </header>
-        
-        <div class="flex pt-16 sm:pt-20 min-h-screen"> 
+
+        <div class="flex pt-16 sm:pt-20 min-h-screen">
 
             <nav id="sidebar"
                 class="fixed left-0 top-16 sm:top-20 h-full w-64 bg-white shadow-lg z-40 transform -translate-x-full sm:translate-x-0 transition-transform duration-300">
-                
-                <div class="flex flex-col h-full"> 
-                    
-                    <div class="p-4 border-b flex-shrink-0"> 
-                        <div class="text-center mb-2 mt-2"> 
+
+                <div class="flex flex-col h-full">
+
+                    <div class="p-4 border-b flex-shrink-0">
+                        <div class="text-center mb-2 mt-2">
                             <div
                                 class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                                <i data-feather="user" class="text-[#7F3FBF]"></i>
+                                <i data-feather="user"
+                                    class="text-[#7F3FBF]"></i>
                             </div>
                             <h2 class="font-bold text-lg">ADM</h2>
                             <p class="text-sm text-gray-600">ID: #ADM001</p>
                         </div>
                     </div>
 
-                    <div class="p-4 flex-grow overflow-y-auto"> 
+                    <div class="p-4 flex-grow overflow-y-auto">
                         <ul class="space-y-2">
-                            <li><a href="portal.html"
+                            <li><a href="portal.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                                        data-feather="home" class="mr-3"></i>Portal
+                                        data-feather="home"
+                                        class="mr-3"></i>Portal
                                     ADM</a></li>
-                            <li><a href="ingredientes.html"
+                            <li><a href="ingredientes.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
                                         data-feather="package"
                                         class="mr-3"></i>Ingredientes</a></li>
-                            <li><a href="alergias.html"
+                            <li><a href="alergias.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
                                         data-feather="alert-triangle"
                                         class="mr-3"></i>Alergias</a></li>
-                            <li><a href="cliente.html"
+                            <li><a href="cliente.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
                                         data-feather="users"
                                         class="mr-3"></i>Cliente</a></li>
-                            <li><a href="industria.html"
+                            <li><a href="industria.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
                                         data-feather="tool"
                                         class="mr-3"></i>Indústria</a></li>
-                            <li><a href="favoritos.html"
+                            <li><a href="favoritos.jsp"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
                                         data-feather="heart"
                                         class="mr-3"></i>Favoritos</a></li>
-                            <li><a href="avaliacoes.html"
+                            <li><a href="avaliacoes.jsp"
                                     class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
                                         data-feather="star"
                                         class="mr-3"></i>Avaliações</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/index.html"
-                                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                                                data-feather="globe"
-                                                class="mr-3"></i>Site</a></li>
+                            <li><a
+                                    href="${pageContext.request.contextPath}/index.html"
+                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
+                                        data-feather="globe"
+                                        class="mr-3"></i>Site</a></li>
                         </ul>
                     </div>
                 </div>
-                
+
             </nav>
 
             <div id="sidebar-overlay"
                 class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
-            <main class="flex-1 p-4 sm:p-8 ml-0 sm:ml-64"> 
+            <main class="flex-1 p-4 sm:p-8 ml-0 sm:ml-64">
 
                 <h1
                     class="text-2xl sm:text-[2.25rem] font-bold text-gray-800 mb-6 sm:mb-8"
                     data-aos="fade-down">Avaliações</h1>
-                
+
                 <div class="mb-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="relative">
                         <i data-feather="search"
@@ -112,6 +116,7 @@
                             <tr class="bg-[#3C9D9B] text-white">
                                 <th class="p-3 text-left">Produto</th>
                                 <th class="p-3 text-left">Email do Cliente</th>
+                                <th class="p-3 text-left">Estrelas</th>
                                 <th class="p-3 text-left">Avaliação</th>
                                 <th class="p-3 text-left">Data e Horário</th>
                                 <th class="p-3 text-right"></th>
@@ -119,6 +124,7 @@
                         </thead>
                         <tbody>
                             <tr class="bg-white">
+                                <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
@@ -143,6 +149,7 @@
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
+                                <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b text-right">
                                     <div class="flex space-x-2 justify-end">
                                         <button
@@ -159,6 +166,7 @@
                                 </td>
                             </tr>
                             <tr class="bg-white">
+                                <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
                                 <td class="p-3 border-b"></td>
@@ -264,4 +272,4 @@
 
         </script>
     </body>
-</html>
+</jsp>
