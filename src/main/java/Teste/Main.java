@@ -1,9 +1,8 @@
 package Teste;
 
-import Conexao.Conexao;
-import DAO.AlergiaDAO;
-import DAO.IngredienteDAO;
-import Model.Alergia;
+import com.example.lumi.Conexao.Conexao;
+import com.example.lumi.DAO.AlergiaDAO;
+import com.example.lumi.Model.Alergia;
 
 public class Main {
     public static void main(String[] args) {
