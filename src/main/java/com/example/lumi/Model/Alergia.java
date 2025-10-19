@@ -14,6 +14,11 @@ public class Alergia {
         this.nome = nome;
         this.descricao = descricao;
     }
+    public Alergia(String alergeno, String nome, String descricao) {
+        this.alergeno = alergeno;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
     public Alergia(String nome) {
         this.nome = nome;
     }

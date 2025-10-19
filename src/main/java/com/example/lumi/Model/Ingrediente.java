@@ -13,6 +13,11 @@ public class Ingrediente {
         this.descricao = descricao;
     }
 
+    public Ingrediente(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
     // getters e setters
     public int getId() {
         return id;

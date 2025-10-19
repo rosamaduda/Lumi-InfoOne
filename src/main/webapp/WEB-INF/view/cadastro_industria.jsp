@@ -32,53 +32,55 @@
             <nav id="sidebar"
                 class="fixed left-0 top-16 sm:top-20 h-full w-64 bg-white shadow-lg z-40 transform -translate-x-full sm:translate-x-0 transition-transform duration-300">
                 
-                <div class="flex flex-col h-full"> 
-                    
-                    <div class="p-4 border-b flex-shrink-0"> 
-                        <div class="text-center mb-2 mt-2"> 
+                <div class="flex flex-col h-full">
+
+                    <div class="p-4 border-b flex-shrink-0">
+                        <div class="text-center mb-2 mt-2">
                             <div
-                                class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                                <i data-feather="user" class="text-[#7F3FBF]"></i>
+                                    class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i data-feather="user"
+                                   class="text-[#7F3FBF]"></i>
                             </div>
                             <h2 class="font-bold text-lg">ADM</h2>
-                            <p class="text-sm text-gray-600">ID: #ADM001</p>
+                            <p class="text-sm text-gray-600">ID: #<%=session.getAttribute("adm")%></p>
                         </div>
                     </div>
 
-                    <div class="p-4 flex-grow overflow-y-auto"> 
+                    <div class="p-4 flex-grow overflow-y-auto">
                         <ul class="space-y-2">
-                            <li><a href="portal.jsp"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                                        data-feather="home" class="mr-3"></i>Portal
-                                    ADM</a></li>
-                            <li><a href="ingredientes.jsp"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
-                                        data-feather="package"
-                                        class="mr-3"></i>Ingredientes</a></li>
-                            <li><a href="alergias.jsp"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
-                                        data-feather="alert-triangle"
-                                        class="mr-3"></i>Alergias</a></li>
-                            <li><a href="cliente.jsp"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                                        data-feather="users"
-                                        class="mr-3"></i>Cliente</a></li>
-                            <li><a href="industria.jsp"
-                                    class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
-                                        data-feather="tool"
-                                        class="mr-3"></i>Indústria</a></li>
-                            <li><a href="favoritos.jsp"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                                        data-feather="heart"
-                                        class="mr-3"></i>Favoritos</a></li>
-                            <li><a href="avaliacoes.jsp"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                                        data-feather="star"
-                                        class="mr-3"></i>Avaliações</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/index.html"
-                                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                                                data-feather="globe"
-                                                class="mr-3"></i>Site</a></li>
+                            <li><a href="portal"
+                                   class="flex items-center p-3 bg-purple-100 rounded-lg text-[cinza-escuro] font-medium"><i
+                                    data-feather="home"
+                                    class="mr-3"></i>Portal
+                                ADM</a></li>
+                            <li><a href="ingredientes"
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro] "><i
+                                    data-feather="package"
+                                    class="mr-3"></i>Ingredientes</a></li>
+                            <li><a href="alergias"
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro] "><i
+                                    data-feather="alert-triangle"
+                                    class="mr-3"></i>Alergias</a></li>
+                            <li><a href="clientes"
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro]"><i
+                                    data-feather="users"
+                                    class="mr-3"></i>Cliente</a></li>
+                            <li><a href="industrias"
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro]"><i
+                                    data-feather="tool"
+                                    class="mr-3"></i>Indústria</a></li>
+                            <li><a href="favoritos"
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro]"><i
+                                    data-feather="heart"
+                                    class="mr-3"></i>Favoritos</a></li>
+                            <li><a href="avaliacoes"
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro]"><i
+                                    data-feather="star"
+                                    class="mr-3"></i>Avaliações</a></li>
+                            <li><a href="site"
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro]"><i
+                                    data-feather="globe"
+                                    class="mr-3"></i>Site</a></li>
                         </ul>
                     </div>
                 </div>
@@ -88,7 +90,7 @@
                 class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
         <main class="sm:ml-64 flex-1 sm:p-8">
-            <a href="industria.jsp"><h1 class="text-left"><i data-feather="arrow-left"></i></h1></a>
+            <a href="industrias"><h1 class="text-left"><i data-feather="arrow-left"></i></h1></a>
             <h1 class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[2%]" data-aos="fade-down">Adicionar Indústria</h1>
             <div class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]" data-aos="fade-up" data-aos-delay="100">
                 <form action="adicionar-industria" method="post">
@@ -114,7 +116,6 @@
                         <button type="submit" class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-lemon-500 transition-colors">
                             Adicionar
                         </button>
-                    </div>
                     </div>
                     
                 </form>
