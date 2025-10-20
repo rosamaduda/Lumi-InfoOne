@@ -8,21 +8,21 @@ AOS.init({
 feather.replace();
 
 // Funcionalidade dos ícones
-document.querySelectorAll('.feature-item').forEach(item => {
+document.querySelectorAll('.funcionalidades-item').forEach(item => {
     item.addEventListener('click', function () {
         // Remove classe active de todos os ícones
-        document.querySelectorAll('.feature-icon').forEach(icon => {
+        document.querySelectorAll('.funcionalidades-icon').forEach(icon => {
             icon.classList.remove('active');
         });
 
         // Adiciona classe active ao ícone clicado
-        this.querySelector('.feature-icon').classList.add('active');
+        this.querySelector('.funcionalidades-icon').classList.add('active');
 
         // Muda a imagem do mock-up conforme a funcionalidade
-        const feature = this.getAttribute('data-feature');
+        const funcionalidades = this.getAttribute('data-func');
         const phoneScreen = document.getElementById('phone-screen');
 
-        switch (feature) {
+        switch (funcionalidades) {
             case 'scanner':
                 phoneScreen.innerHTML = `
                     <img id="scanner-img" 
@@ -42,7 +42,7 @@ document.querySelectorAll('.feature-item').forEach(item => {
                     }, 1000);
                 }, 2000);// troca depois de 2 segundos
                 break;
-            case 'memory':
+            case 'memoria':
                 phoneScreen.innerHTML = '<img src="assets/mockup-memoria.png" alt="Tela do app/Memória" style="transform: scale(2);" class=" mt-[15%] object-cover">';
                 break;
             case 'vagalumi':
@@ -62,15 +62,15 @@ window.addEventListener("scroll", function () {
     }
 });
 
-const menuButton = document.getElementById('menu-button');
+const menuBotao = document.getElementById('menu-botao');
 const navbar = document.getElementById('navbar');
 
-menuButton.addEventListener('click', function () {
+menuBotao.addEventListener('click', function () {
     // Alterna a classe 'active' que ativa o estilo de dropdown no CSS
     navbar.classList.toggle('active');
 });
 
-// Opcional: Adiciona/Remove a classe 'scrolled' no header ao rolar
+// Adiciona/Remove a classe 'scrolled' no header ao rolar
 window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {

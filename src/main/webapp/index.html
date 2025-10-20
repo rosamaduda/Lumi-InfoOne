@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumi - Aponte, descubra e escolha!</title>
-    <link rel="icon" href="/src/main/webapp/assets/logo-infoone.ico">
+    <link rel="icon" href="assets/logo-infoone.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/cores.css">
@@ -22,7 +22,7 @@
         </a>
     </h1>
     
-    <button id="menu-button" class="menu-button">
+    <button id="menu-botao" class="menu-botao">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -109,37 +109,47 @@
             </h2>
             
             <div class="flex flex-row md:flex-row items-center">
-                <div class="funcionalidades-container md:w-[75%] mb-10 md:mb-0 md:pr-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
-                        <div class="flex items-start cursor-pointer feature-item" data-feature="scanner">
-                            <div class="feature-icon p-4 rounded-xl bg-white shadow-md mr-4">
+                <div class="funcionalidades-container md:w-[75%] mb-10 md:mb-0 md:pr-8">
+                    <div class="grid grid-col-span-2 md:grid-col-span-2 gap-[40px]">
+                        <div class="flex items-start cursor-pointer funcionalidades-item" data-func="scanner">
+                            <div class="funcionalidades-icon p-4 mr-4">
                                 <i data-feather="camera" class="w-8 h-8"></i>
                             </div>
                             <div>
-                                <h3 class="font-semibold text-lg mb-1 w-[110%]">Escaneador de produtos</h3>
+                                <h3 class="font-semibold text-lg mb-1 w-[90%]">Escaneador de produtos</h3>
                                 <p class="text-sm text-2xl text-gray-600 w-full">Escaneie o código de barras e receba detalhes confiáveis sobre composição e restrições alimentares.</p>
                             </div>
                         </div>
                         
-                        <div class="flex items-start cursor-pointer feature-item" data-feature="memory">
-                            <div class="feature-icon p-4 rounded-xl bg-white shadow-md mr-4">
+                        <div class="flex items-start cursor-pointer funcionalidades-item" data-func="memoria">
+                            <div class="funcionalidades-icon p-4 mr-4">
                                 <i data-feather="hard-drive" class="w-8 h-8"></i>
                             </div>
                             <div>
                                 <h3 class="font-semibold text-lg mb-1 w-full">Memória</h3>
-                                <p class="text-sm text-gray-600 w-[120%]">Armazena seus produtos pesquisados, tornando as consultas futuras rápidas e práticas.</p>
+                                <p class="text-sm text-gray-600 w-[90%]">Armazena seus produtos pesquisados, tornando as consultas futuras rápidas e práticas.</p>
                             </div>
                         </div>
-                        
-                        <div class="flex items-start cursor-pointer feature-item md:col-span-2 md:justify-center" data-feature="vagalumi">
-                            <div class="feature-icon p-4 rounded-xl bg-white shadow-md mr-4">
-                                <i data-feather="cpu" class="w-8 h-8"></i>
+
+                            <div class="flex items-start cursor-pointer funcionalidades-item" data-func="vagalumi">
+                                <div class="funcionalidades-icon p-4  mr-4">
+                                    <i data-feather="cpu" class="w-8 h-8"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-lg mb-1 w-[110%]">Vagalumi</h3>
+                                    <p class="text-sm text-2xl text-gray-600 w-[90%]">Um chat inteligente que tira dúvidas em tempo real, recomenda produtos de acordo com suas necessidades e ainda auxilia no cálculo de quantidades ideais, oferecendo alternativas seguras.</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-semibold text-lg mb-1 w-full">Vagalumi</h3>
-                                <p class="text-sm text-gray-600 w-full">Um chat inteligente que tira dúvidas em tempo real, recomenda produtos de acordo com suas necessidades e ainda auxilia no cálculo de quantidades ideais, oferecendo alternativas seguras.</p>
+                            
+                            <div class="flex items-start cursor-pointer funcionalidades-item" data-func="industria">
+                                <div class="funcionalidades-icon p-4  mr-4">
+                                    <i data-feather="bar-chart-2" class="w-8 h-8"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-lg mb-1 w-full">Interface para indústria</h3>
+                                    <p class="text-sm text-gray-600 w-[90%]">Armazena seus produtos pesquisados, tornando as consultas futuras rápidas e práticas.</p>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
                 
@@ -163,17 +173,17 @@
             <div class="flex flex-col md:flex-row justify-center gap-12 max-w-6xl mx-auto">
                 <!-- Bloco Esquerdo -->
                 <div class="md:w-1/2 space-y-8" data-aos="fade-right">
-                    <div class="roxo text-white rounded-2xl p-6 organic-shape">
+                    <div class="roxo text-white rounded-2xl p-6 caixa">
                         <h3 class="text-xl font-bold mb-3">Acessibilidade e Inclusão Digital</h3>
                         <p class="w-[90%]">Acessibilidade para idosos e pessoas com deficiência visual.</p>
                     </div>
                     
-                    <div class="roxo text-white rounded-2xl p-6 organic-shape">
+                    <div class="roxo text-white rounded-2xl p-6 caixa">
                         <h3 class="text-xl font-bold mb-3">Clareza e Confiabilidade nas Informações</h3>
                         <p>Informações rápidas, confiáveis e fáceis de entender.</p>
                     </div>
                     
-                    <div class="roxo text-white rounded-2xl p-6 organic-shape">
+                    <div class="roxo text-white rounded-2xl p-6 caixa">
                         <h3 class="text-xl font-bold mb-3">Segurança na Experiência de Compra</h3>
                         <p>Experiência de compra mais segura e inclusiva.</p>
                     </div>
@@ -189,12 +199,12 @@
                 
                 <!-- Bloco Direito -->
                 <div class="md:w-1/2 space-y-8" data-aos="fade-left">
-                    <div class="roxo text-white rounded-2xl p-6 organic-shape">
+                    <div class="roxo text-white rounded-2xl p-6 caixa">
                         <h3 class="text-xl font-bold mb-3">Conexão entre Consumidores e Indústria</h3>
                         <p>Aproximação entre consumidor e indústria por meio de dados e feedbacks.</p>
                     </div>
                     
-                    <div class="roxo text-white rounded-2xl p-6 organic-shape">
+                    <div class="roxo text-white rounded-2xl p-6 caixa">
                         <h3 class="text-xl font-bold mb-3">Gestão de Feedbacks e Inovação Empresarial</h3>
                         <p class="w-[90%]">Apoio às empresas no gerenciamento da satisfação e opinião do cliente, impulsionando inovação e confiança na marca.</p>
                     </div>
@@ -210,7 +220,7 @@
             <p  data-aos="fade-up" class="text-center mt-[-9%] mb-[5%] opacity-75">*Apenas temos planos para as indústrias</p>
             
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class=" border-2 border-purple-600 rounded-2xl p-8 organic-shape-white" data-aos="fade-right">
+                <div class=" border-2 border-purple-600 rounded-2xl p-8 caixa-branca" data-aos="fade-right">
                     <h3 class="text-2xl font-bold mb-4 ml-[2%]">Basique</h3>
                     <p class="mb-2 opacity-90 w-[90%]">Aproveite apenas o básico do que podemos te oferecer.</p>
                     <div class="text-4xl font-bold mb-6 ">R$ 690,00/mês</div>
@@ -227,18 +237,14 @@
                         </div>
                         <div class="flex items-center">
                             <i data-feather="x" class="w-5 h-5 mr-3"></i>
-                            <span></span>
-                        </div>
-                        <div class="flex items-center">
-                            <i data-feather="x" class="w-5 h-5 mr-3"></i>
-                            <span></span>
+                            <span>Calendário Inteligente</span>
                         </div>
                         <p class="mt-2 mb-6">Desconto Anual de 17% </p>
                     </div>
                     
                 </div>
                
-                <div class="roxo text-white rounded-2xl p-8 organic-shape" data-aos="fade-left">
+                <div class="roxo text-white rounded-2xl p-8 caixa" data-aos="fade-left">
                     <h3 class="text-2xl font-bold mb-4">Vue</h3>
                     <p class="mb-2 opacity-90">Aqui você explora o máximo do Lumi.</p>
                     
@@ -259,7 +265,11 @@
                         </div>
                         <div class="flex items-center">
                             <i data-feather="check" class="w-5 h-5 mr-3"></i>
-                            <span></span>
+                            <span>Calendário Inteligente</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check" class="w-5 h-5 mr-3"></i>
+                            <span>Cadastro de produtos ilimitados</span>
                         </div>
                         <p class="mt-2">Taxa de implementação: R$ 1.500,00 </p>
                         <p class="mb-6">Desconto Anual de 17% </p>
@@ -279,7 +289,7 @@
             <div class="overflow-x-auto pb-8">
                 <div class="flex space-x-6 min-w-max px-4">
                     <!-- Card 1 -->
-                    <div class="team-card bg-white rounded-2xl p-6 shadow-xl organic-shape" style="min-width: 220px;" data-aos="fade-right">
+                    <div class="cards bg-white rounded-2xl p-6 shadow-xl caixa" style="min-width: 220px;" data-aos="fade-right">
                         <img src="assets/integrantes/davi_liu.jpg" alt="Membro da equipe" class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
                         <h3 class="text-xl font-bold text-center mb-2">Davi Liu</h3>
                         <p class="text-purple-600 text-center mb-4">Desenvolvedor Back-End</p>
@@ -291,7 +301,7 @@
                     </div>
                     
                     <!-- Card 2 -->
-                    <div class="team-card bg-purple-600 text-white rounded-2xl p-6 shadow-xl organic-shape-white" style="min-width: 220px;" data-aos="fade-up">
+                    <div class="cards bg-purple-600 text-white rounded-2xl p-6 shadow-xl caixa-branca" style="min-width: 220px;" data-aos="fade-up">
                         <img src="assets/integrantes/daniel_zanqueta.jpg" alt="Membro da equipe" class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
                         <h3 class="text-xl font-bold text-center mb-2">Daniel Zanqueta</h3>
                         <p class="text-white opacity-90 text-center mb-4">Dados</p>
@@ -303,7 +313,7 @@
                     </div>
                     
                     <!-- Card 3 -->
-                    <div class="team-card bg-white rounded-2xl p-6 shadow-xl organic-shape" style="min-width: 220px;" data-aos="fade-left">
+                    <div class="cards bg-white rounded-2xl p-6 shadow-xl caixa" style="min-width: 220px;" data-aos="fade-left">
                         <img src="assets/integrantes/enzo_nascimento.jpg" alt="Membro da equipe" class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
                         <h3 class="text-xl font-bold text-center mb-2">Enzo Nascimento</h3>
                         <p class="text-purple-600 text-center mb-4">Dados/Back-End</p>
@@ -315,7 +325,7 @@
                     </div>
 
                      <!-- Card 4 -->
-                    <div class="team-card bg-purple-600 text-white rounded-2xl p-6 shadow-xl organic-shape-white" style="min-width: 220px;" data-aos="fade-up">
+                    <div class="cards bg-purple-600 text-white rounded-2xl p-6 shadow-xl caixa-branca" style="min-width: 220px;" data-aos="fade-up">
                         <img src="assets/integrantes/gabi.jpg" alt="Membro da equipe" class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
                         <h3 class="text-xl font-bold text-center mb-2">Gabriella Reis</h3>
                         <p class="text-white opacity-90 text-center mb-4">Desenvolvedora Back-End</p>
@@ -327,7 +337,7 @@
                     </div>
 
                      <!-- Card 5 -->
-                    <div class="team-card bg-white rounded-2xl p-6 shadow-xl organic-shape" style="min-width: 220px;" data-aos="fade-left">
+                    <div class="cards bg-white rounded-2xl p-6 shadow-xl caixa" style="min-width: 220px;" data-aos="fade-left">
                         <img src="assets/integrantes/iuri_freitas.jpg" alt="Membro da equipe" class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
                         <h3 class="text-xl font-bold text-center mb-2">Iuri Freitas</h3>
                         <p class="text-purple-600 text-center mb-4">Designer UX/UI</p>
@@ -339,7 +349,7 @@
                     </div>
 
                      <!-- Card 6 -->
-                    <div class="team-card bg-purple-600 text-white rounded-2xl p-6 shadow-xl organic-shape-white" style="min-width: 220px;" data-aos="fade-up">
+                    <div class="cards bg-purple-600 text-white rounded-2xl p-6 shadow-xl caixa-branca" style="min-width: 220px;" data-aos="fade-up">
                         <img src="assets/integrantes/duda_rosa.jpg" alt="Membro da equipe" class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
                         <h3 class="text-xl font-bold text-center mb-2">Maria Eduarda</h3>
                         <p class="text-white opacity-90 text-center mb-4">Dados/Back-End</p>
@@ -352,7 +362,7 @@
                     </div>
 
                      <!-- Card 7 -->
-                    <div class="team-card bg-white rounded-2xl p-6 shadow-xl organic-shape" style="min-width: 220px;" data-aos="fade-left">
+                    <div class="cards bg-white rounded-2xl p-6 shadow-xl caixa" style="min-width: 220px;" data-aos="fade-left">
                         <img src="assets/integrantes/pedrosena.jpg" alt="Membro da equipe" class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
                         <h3 class="text-xl font-bold text-center mb-2">Pedro Sena</h3>
                         <p class="text-purple-600 text-center mb-4">Desenvolvedor Front-End/Designer UX/UI</p>
@@ -380,7 +390,7 @@
                         <p>+55 (11) 9874-1188</p>
                         <p>São Paulo, SP</p>
                     </div>
-                    <a href="WEB-INF/login.jsp"><button class="signup"
+                    <a href="WEB-INF/login.jsp"><button class="area-restrita"
                         style="font-size: 18px; margin-right: 2%; margin-top: 5%;">Área
                         Restrita</button></a>
                     
