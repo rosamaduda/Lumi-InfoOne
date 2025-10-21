@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+body {
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fff;
+  background-image: url(/Lumi-InfoOne/src/main/webapp/assets/fundo\ login.png);
+  background-size: cover;
+  color: #333;
+}
+
+/* HEADER */
+header {
+  background: #7F3FBF;
+  padding: 2px 20px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header img {
+  margin-left: 30px;
+}
+
+
+
+.login-form-container {
+  position: relative;
+  z-index: 10;
+}
+
+/* FOOTER */
+
+.site {
+  font-family: 'Poppins', 'sans';
+  background-color: #ffffff;
+  color: #000;
+  width: 20%;
+  padding: 5px 15px;
+  height: 40px;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.65);
+  transition: background 0.5s ease;
+}
+
+.site:hover {
+  background-color: #000000;
+  border: 1px solid white;
+  color: white;
+}
