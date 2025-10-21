@@ -12,8 +12,6 @@ public class Avaliacao {
     private LocalDate dataAvaliacao;
     private String emailCliente;
     private int idProduto;
-    private String nomeProduto;
-
     // construtor
     public Avaliacao(int id, int nota, String avaliacao, LocalDate dataAvaliacao, String emailCliente, int idProduto) {
         this.id = id;

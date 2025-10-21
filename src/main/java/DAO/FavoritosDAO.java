@@ -63,11 +63,11 @@ public class FavoritosDAO {
         List<Favorito> favoritos = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT F.*, P.NOME AS NOME_PRODUTO, I.NOME AS NOME_INDUSTRIA FROM FAVORITO F JOIN PRODUTO P ON F.ID_PRODUTO = P.ID JOIN INDUSTRIA I ON I.ID_PRODUTO = P.ID";
+            String instrucaoSQL = "SELECT F.*, I.NOME AS NOME_INDUSTRIA FROM FAVORITO F";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
             while (rset.next()) {
-                Favorito favorito = new Favorito(rset.getInt("id"), rset.getString("nome_produto"), rset.getString("email_cliente"), rset.getString("nome_industria"));
+                Favorito favorito = new Favorito(rset.getInt("id"), rset.getString("nome_produto"));
                 favoritos.add(favorito); // adicionando à lista que será retornada
             }
         } catch (SQLException e) {

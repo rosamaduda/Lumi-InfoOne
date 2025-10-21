@@ -182,5 +182,38 @@ public class IngredienteDAO {
             conexao.desconectar(conn);
             return lista;
         }
-    } // buscarIngrediente()
+    }
+
+
+    public List<Ingrediente> buscarIngredientePortal() {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Ingrediente> lista = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE LIMIT 3";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a query
+
+            while (rset.next()) {
+                Ingrediente ingrediente = new Ingrediente(rset.getInt("id"), rset.getString("nome"), rset.getString("descricao"));
+                lista.add(ingrediente);
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn);
+            return lista;
+        }
+    }
+
+
+
+
+
+
+
+
+
 } // IngredienteDAO

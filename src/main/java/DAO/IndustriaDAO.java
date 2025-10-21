@@ -23,7 +23,7 @@ public class IndustriaDAO {
             pstmt.setString(3, industria.getObjetivo());
             pstmt.setString(4, industria.getEmail());
             pstmt.setString(5, industria.getSenha());
-            pstmt.setString(6, industria.getNomePlano());
+            pstmt.setString(6,industria.getNomePlano());
             if (pstmt.executeUpdate() > 0) {
                 return true; // realizou a instrução
             } else {
@@ -227,14 +227,13 @@ public class IndustriaDAO {
         List<Industria> industrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT I.*, P.NOME as NOME_PLANO FROM INDUSTRIA I JOIN PLANO P ON P.NOME = I.NOME_PLANO";
+            String instrucaoSQL = "SELECT I.* FROM INDUSTRIA I";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
             while (rset.next()) {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
-                                                    rset.getString("objetivo"), rset.getString("senha"),
-                                                    rset.getString("email"), rset.getString("nome_plano"));
+                                                    rset.getString("objetivo"), rset.getString("senha"));
                 industrias.add(industria); // adicionando o objeto à lista
             }
         } catch (SQLException sqle) {

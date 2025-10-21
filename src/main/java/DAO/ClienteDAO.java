@@ -443,7 +443,35 @@ public class ClienteDAO {
     } // buscarCliente()
 
 
-    public List<Cliente> buscarNomeCliente() {
+    public List<Cliente> buscarClientePortal() {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Cliente> lista = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT * FROM CLIENTE LIMIT 3";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a query
+
+            while (rset.next()) {
+                Cliente usuario = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
+                        rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
+                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getInt("diabetes"), rset.getBoolean("pressao_alta"),
+                        rset.getString("telefone"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"),
+                        rset.getString("endereco_cep"));
+                lista.add(usuario);
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+            return lista;
+        }
+    } // buscarCliente()
+
+
+    public List<Cliente> buscarEmsilCliente() {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;

@@ -71,14 +71,11 @@ public class AlergiaDAO {
 
         try {
             // deletando os campos que recebem a pk
-            String instrucaoSQL = "DELETE FROM CLIENTE_ALERGIA WHERE ID_ALERGIA = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
+
 
             // deletando a alergia
-            instrucaoSQL = "DELETE FROM ALERGIA WHERE ID = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
+            String instrucaoSQL = "DELETE FROM ALERGIA WHERE ID = ?";
+            PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id); // setando parametro na instrução
             if (pstmt.executeUpdate() > 0) { // // executando o comando e verificando o retorno
                 return 1; // conseguiu deletar
@@ -117,6 +114,8 @@ public class AlergiaDAO {
         return lista;
     } // buscarAlergia()
 
+
+
     public List<Alergia> buscarNomeAlergia() {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
@@ -138,6 +137,7 @@ public class AlergiaDAO {
             conexao.desconectar(conn); // desconectando o BD
         }
         return alergias;
-    } // buscarAlergia()
-}
+    } // buscarNomeAlergia()
+    //Limitar por 3 alergias para mostrar no portal
+} // AlergiaDAO
 

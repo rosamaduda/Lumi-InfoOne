@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ClienteAlergiaDAO {
-
     public int inserirClienteAlergia(String email,int id_alergia){
         Conexao conexao=new Conexao();
         Connection conn=conexao.conectar();
@@ -84,11 +83,11 @@ public class ClienteAlergiaDAO {
 
 
 
-    public int DeletarClienteAlergia(int id_alergia){
+    public int deletarClienteAlergia(int id_alergia){
         Conexao conexao=new Conexao();
         Connection conn=conexao.conectar();
         try{
-            String instrucaoSQL="DELETE FROM ALERGIA_CLIENTE WHERE ID_PRODUTO=? ";
+            String instrucaoSQL="DELETE FROM CLIENTE_ALERGIA WHERE ID_PRODUTO=? ";
             PreparedStatement pstm=conn.prepareStatement(instrucaoSQL);
             pstm.setInt(1,id_alergia);
 
@@ -97,27 +96,11 @@ public class ClienteAlergiaDAO {
     }
             else {
         return 0;
-    }
-
-
-}catch (SQLException e){
+    }}catch (SQLException e){
         e.printStackTrace();
         return -1;
         }finally {
         conexao.desconectar(conn);
         }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 }
