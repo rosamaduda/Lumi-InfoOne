@@ -62,7 +62,7 @@ window.addEventListener("scroll", function () {
     }
 });
 
-const menuButton = document.getElementById('menu-button');
+const menuButton = document.getElementById('menu-botao');
 const navbar = document.getElementById('navbar');
 
 menuButton.addEventListener('click', function () {
