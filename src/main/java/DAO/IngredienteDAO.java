@@ -3,6 +3,7 @@ package DAO;
 import Conexao.Conexao;
 import Model.Ingrediente;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -180,8 +181,9 @@ public class IngredienteDAO {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn);
-            return lista;
         }
+        return lista;
+
     }
 
 
@@ -204,8 +206,35 @@ public class IngredienteDAO {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn);
-            return lista;
         }
+        return lista;
+
+    }
+
+
+    public List<Ingrediente> buscarIngredientePorNome(String nome){
+        Conexao conexao=new Conexao();
+        Connection conn= conexao.conectar();
+        ResultSet rset;
+        List<Ingrediente> lista=new ArrayList<>();
+
+        try{
+            String instrucaoSQL="SELECT * FROM INGREDIENTE WHERE NOME LIKE ?";
+            PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1,"%"+nome+"%");
+            rset= pstmt.executeQuery();
+            while (rset.next()){
+                Ingrediente ingrediente=new Ingrediente(rset.getInt("id"),rset.getString("nome"),rset.getString("descricao"));
+                lista.add(ingrediente);
+            }
+
+        }catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
+        finally {
+            conexao.desconectar(conn);
+        }
+        return lista;
     }
 
 

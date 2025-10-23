@@ -2,7 +2,7 @@ package Model;
 
 public class Produto {
     // atributos
-    private int codigoBarras;
+    private long codigoBarras;
     private String nome;
     private String fabricante;
     private String descricao;
@@ -13,7 +13,7 @@ public class Produto {
     // construtor
 
 
-    public Produto(int codigoBarras, String nome, String fabricante, String descricao, double massa, int idIndustria, int idInfoNutri) {
+    public Produto(long codigoBarras, String nome, String fabricante, String descricao, double massa, int idIndustria, int idInfoNutri) {
         this.codigoBarras = codigoBarras;
         this.nome = nome;
         this.fabricante = fabricante;
@@ -26,6 +26,9 @@ public class Produto {
     public Produto(String nome) {
         this.nome = nome;
     }
+
+    //pegar código para buscar favorito
+    public Produto(long codigoBarras){this.codigoBarras=codigoBarras;}
 
     // getters
     public String getNome() {

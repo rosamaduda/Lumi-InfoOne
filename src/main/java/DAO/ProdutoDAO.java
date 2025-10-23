@@ -34,4 +34,31 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+
+
+
+
+    public List<Produto> buscarCodigoProduto(){
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Produto> produtos = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT CODIGO_BARRAS FROM PRODUTO";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // realizando a query
+
+            while (rset.next()) {
+                Produto produto = new Produto(rset.getInt("codigo_barras"));
+                produtos.add(produto);
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return produtos;
+
+    }
 } // ProdutoDAO

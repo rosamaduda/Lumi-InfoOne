@@ -3,15 +3,16 @@ package Model;
 public class Alergia {
     // atributos
     private int id;
-    private String alergeno;
     private String nome;
+    private String alergeno;
+
     private String descricao;
 
     // construtor
-    public Alergia(int id, String alergeno, String nome, String descricao) {
+    public Alergia(int id,  String nome,String alergeno, String descricao) {
         this.id = id;
-        this.alergeno = alergeno;
         this.nome = nome;
+        this.alergeno = alergeno;
         this.descricao = descricao;
     }
     public Alergia(String nome) {
