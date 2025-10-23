@@ -49,32 +49,32 @@
 
                     <div class="p-4 flex-grow overflow-y-auto">
                         <ul class="space-y-2">
-                            <li><a href="portal.jsp"
+                            <li><a href="portal"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                         data-feather="home"
                                         class="mr-3"></i>Portal
                                     ADM</a></li>
-                            <li><a href="ingredientes.jsp"
+                            <li><a href="ingredientes"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
                                         data-feather="package"
                                         class="mr-3"></i>Ingredientes</a></li>
-                            <li><a href="alergias.jsp"
+                            <li><a href="alergias"
                                     class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
                                         data-feather="alert-triangle"
                                         class="mr-3"></i>Alergias</a></li>
-                            <li><a href="cliente.jsp"
+                            <li><a href="cliente"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
                                         data-feather="users"
                                         class="mr-3"></i>Cliente</a></li>
-                            <li><a href="industria.jsp"
+                            <li><a href="industria"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
                                         data-feather="tool"
                                         class="mr-3"></i>Indústria</a></li>
-                            <li><a href="favoritos.jsp"
+                            <li><a href="favoritos"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                         data-feather="heart"
                                         class="mr-3"></i>Favoritos</a></li>
-                            <li><a href="avaliacoes.jsp"
+                            <li><a href="avaliacoes"
                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
                                         data-feather="star"
                                         class="mr-3"></i>Avaliações</a></li>
@@ -97,16 +97,6 @@
                 <h1
                     class="text-2xl sm:text-[2.25rem] font-bold text-gray-800 mb-6 sm:mb-8"
                     data-aos="fade-down">Alergias</h1>
-
-                <div class="mb-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative">
-                        <i data-feather="search"
-                            class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                        <input type="text" placeholder="Buscar alergias..."
-                            class="w-full pl-10 pr-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bg-[#7F3FBF]] focus:border-transparent">
-                    </div>
-                </div>
-
                 <div class="bg-white rounded-lg shadow overflow-hidden"
                     data-aos="fade-up" data-aos-delay="200">
 
@@ -197,35 +187,6 @@
                         <i data-feather="plus" class="mr-2 w-4 h-4"></i>
                         Adicionar
                     </a>
-                    <div
-                        class="w-full sm:w-auto flex flex-col sm:flex-row items-center justify-between sm:justify-end space-y-4 sm:space-y-0 sm:space-x-4">
-                        <div class="flex items-center">
-                            <span class="text-sm text-gray-600 mr-2">Linhas por
-                                página:</span>
-                            <select
-                                class="border border-gray-300 rounded px-2 py-1 text-sm">
-                                <option selected>5</option>
-                                <option>10</option>
-                                <option>25</option>
-                                <option>50</option>
-                                <option>75</option>
-                            </select>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <button
-                                class="p-1 text-gray-600 hover:text-[#7F3FBF]">
-                                <i data-feather="arrow-left-circle"
-                                    class="w-4 h-4"></i>
-                            </button>
-                            <span class="text-sm text-gray-600">Página X de
-                                Y</span>
-                            <button
-                                class="p-1 text-gray-600 hover:text-[#7F3FBF]">
-                                <i data-feather="arrow-right-circle"
-                                    class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </main>
         </div>
