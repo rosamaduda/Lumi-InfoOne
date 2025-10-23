@@ -269,7 +269,7 @@ transition: all 0.3s ease;
 }
 
 #funcionalidades .grid {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 2fr 2fr; 
     gap: 30px;
 }
 #funcionalidades h3 {
@@ -281,10 +281,7 @@ transition: all 0.3s ease;
     grid-column: span 1 / span 1;
 }
 
-
-#funcionalidades .feature-item > div:last-child {
-    width: 80%;
-}}
+}
 
 
        
