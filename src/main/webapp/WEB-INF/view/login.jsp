@@ -23,8 +23,8 @@
     <section class="login">
         <div class="login-form-container w-full max-w-[37.5rem] mx-auto p-8" data-aos="fade-up">
             <div class="text-center mb-8">
-                <h2 class="text-[200%] font-semibold text-[#333333] mb-2">Ei ADM,
-                    faça seu login!</h2>
+                <h2 class="text-[200%] font-semibold text-[#333333] mb-2">Ei, ADM!
+                    Faça seu login!</h2>
             </div>
 
             <form action="login" method="post" class="space-y-6">

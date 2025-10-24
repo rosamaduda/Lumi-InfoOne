@@ -113,9 +113,9 @@
                             <tr class="bg-[#3C9D9B] text-white">
                                 <th class="p-3 text-left">Produto</th>
                                 <th class="p-3 text-left">Email do Cliente</th>
-                                <th class="p-3 text-left">Estrelas</th>
+                                <th class="p-3 text-left">Nota</th>
                                 <th class="p-3 text-left">Avaliação</th>
-                                <th class="p-3 text-left">Data e Horário</th>
+                                <th class="p-3 text-left">Data</th>
                                 <th class="p-3 text-right"></th>
                             </tr>
                         </thead>

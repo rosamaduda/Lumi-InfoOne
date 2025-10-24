@@ -1,4 +1,4 @@
-package com.example.lumi.Servlet;
+package com.example.lumi.Servlet.Alergia;
 
 import com.example.lumi.DAO.AlergiaDAO;
 import com.example.lumi.Model.Alergia;
@@ -11,7 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/cadastro-alergia", "/adicionar-alergia"})
-public class ServletAlergia extends HttpServlet {
+public class ServletAdicionarAlergia extends HttpServlet {
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
 
@@ -20,7 +21,9 @@ public class ServletAlergia extends HttpServlet {
         }
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AlergiaDAO alergiaDAO = new AlergiaDAO();
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
 
         if (caminho.equals("/adicionar-alergia")) {
@@ -29,9 +32,8 @@ public class ServletAlergia extends HttpServlet {
             String alergeno = request.getParameter("alergeno");
             String descricao = request.getParameter("descricao");
 
-            // instanciando o objeto de Alergia e AlergiaDAO
-            Alergia alergia = new Alergia(alergeno, nome, descricao);
-            AlergiaDAO alergiaDAO = new AlergiaDAO();
+            // instanciando o objeto
+            Alergia alergia = new Alergia(nome, alergeno, descricao);
 
             // adicionando a alergia
             alergiaDAO.inserirAlergia(alergia);

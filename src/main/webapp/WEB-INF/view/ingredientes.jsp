@@ -120,7 +120,6 @@
             <table class="w-full hidden sm:table">
                 <thead>
                 <tr class="bg-[#3C9D9B] text-white">
-                    <th class="p-3 text-left">ID</th>
                     <th class="p-3 text-left">Nome</th>
                     <th class="p-3 text-left">Descrição</th>
                     <th class="p-3 text-right"></th>
@@ -132,41 +131,42 @@
                         if (i % 2 == 0) {
                 %>
                 <tr class="bg-white">
-                    <td class="p-3 border-b"><%=ingredientes.get(i).getId()%></td>
                     <td class="p-3 border-b"><%=ingredientes.get(i).getNome()%></td>
                     <td class="p-3 border-b"><%=ingredientes.get(i).getDescricao()%></td>
                     <td class="p-3 border-b text-right">
                         <div class="flex space-x-2 justify-end">
-                            <button
+                            <a
+                                    href="alteracao-ingrediente?idIngrediente=<%=ingredientes.get(i).getId()%>"
                                     class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit"
                                    class="w-4 h-4"></i>
-                            </button>
-                            <button
-                                    class="p-1 text-red-600 hover:text-red-800">
-                                <i data-feather="trash-2"
-                                   class="w-4 h-4"></i>
-                            </button>
+                            </a>
+                            <form action="exclusao-ingrediente" method="post" style="display:inline;">
+                                <input type="hidden" name="idIngrediente" value="<%=ingredientes.get(i).getId()%>">
+                                <button type="submit" class="p-1 text-red-600 hover:text-red-800" style="background:none; border:none;">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
                 <%} else {%>
                 <tr class="bg-[#C5E2E1]">
-                    <td class="p-3 border-b"><%=ingredientes.get(i).getId()%></td>
                     <td class="p-3 border-b"><%=ingredientes.get(i).getNome()%></td>
                     <td class="p-3 border-b"><%=ingredientes.get(i).getDescricao()%></td>
                     <td class="p-3 border-b text-right">
                         <div class="flex space-x-2 justify-end">
-                            <button
+                            <a href="alteracao-ingrediente?idIngrediente=<%=ingredientes.get(i).getId()%>"
                                     class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit"
                                    class="w-4 h-4"></i>
-                            </button>
-                            <button
-                                    class="p-1 text-red-600 hover:text-red-800">
-                                <i data-feather="trash-2"
-                                   class="w-4 h-4"></i>
-                            </button>
+                            </a>
+                            <form action="exclusao-ingrediente" method="post" style="display:inline;">
+                                <input type="hidden" name="idIngrediente" value="<%=ingredientes.get(i).getId()%>">
+                                <button type="submit" class="p-1 text-red-600 hover:text-red-800" style="background:none; border:none;">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>

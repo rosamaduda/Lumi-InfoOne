@@ -101,6 +101,12 @@
           data-aos="fade-up" data-aos-delay="100">
           <form action="adicionar-cliente" method="post">
             <div class="mb-6">
+              <label for="e-mail"
+                     class="block text-gray-700 text-sm font-medium mb-2 mt-2">E-mail:</label>
+              <input type="email" id="e-mail" name="e-mail"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
+                     placeholder="Ex: nome@exemplo.com">
+
               <label for="cpf"
                 class="block text-gray-700 text-sm font-medium mb-2">CPF:</label>
               <input type="text" id="cpf" name="cpf"
@@ -133,26 +139,36 @@
                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                 placeholder="Ex: 1,90">
 
+              <label for="diabetes"
+                     class="block text-gray-700 text-sm font-medium mb-2 mt-2">Tipo de diabetes:</label>
+              <input type="number" step="1" min="0" max="4" id="diabetes" name="diabetes"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
+                      title="0: Não possui diabetes; 1: Tipo 1; 2: Tipo 2; 3: Pré-diabetes; 4: Gestacional">
+
+              <fieldset>
+                <legend class="block text-gray-700 text-sm font-medium mb-2 mt-2">Pressão alta:</legend>
+                <input type="radio" id="sim" name="hipertensao" value="true"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
+
+                <input type="radio" id="nao" name="hipertensao" value="false"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
+              </fieldset>
+
               <label for="data"
                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Data
                 de nascimento:</label>
               <input type="date" id="data" name="data"
                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
 
-              <label for="e-mail"
-                class="block text-gray-700 text-sm font-medium mb-2 mt-2">E-mail:</label>
-              <input type="email" id="e-mail" name="e-mail"
-                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
-                placeholder="Ex: nome@exemplo.com">
 
               <label for="telefones-container"
-                class="block text-gray-700 text-sm font-medium mb-2 mt-2">Telefone:</label>
+                     class="block text-gray-700 text-sm font-medium mb-2 mt-2">Telefone:</label>
               <div id="telefones-container" class="mb-2">
               </div>
               <button type="button" id="add-telefone"
-                class="flex items-center space-x-2 text-[#7F3FBF] hover:text-[#5B2E85] text-sm font-medium w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-3 py-2 rounded-[6px] ">
+                      class="flex items-center space-x-2 text-[#7F3FBF] hover:text-[#5B2E85] text-sm font-medium w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-3 py-2 rounded-[6px] mb-2 ">
                 <span>Adicionar telefone</span>
-              </button>
+                </button>
 
               <label for="senha"
                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Senha:</label>
@@ -207,7 +223,7 @@
                 placeholder="Ex: 01234-567">
             </div>
             <div class="text-center">
-              <button
+              <button type="submit"
                 class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-lemon-500 transition-colors">
                 Adicionar
               </button>
@@ -222,6 +238,7 @@
     </script>
     <script src="${pageContext.request.contextPath}/js/menu.js"></script>
     <script src="${pageContext.request.contextPath}/js/telefone.js"></script>
+
     
     
   </body>

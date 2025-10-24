@@ -41,6 +41,9 @@ public class Cliente {
         this.email = email;
     }
 
+    public Cliente() {
+    }
+
     // getters e setters
     public String getEmail() {
         return email;
@@ -84,5 +87,4 @@ public class Cliente {
     public String getEnderecoCep() {
         return enderecoCep;
     }
-
 } // Cliente

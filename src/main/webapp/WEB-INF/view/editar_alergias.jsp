@@ -52,7 +52,7 @@
                     <div class="p-4 flex-grow overflow-y-auto">
                         <ul class="space-y-2">
                             <li><a href="portal"
-                                   class="flex items-center p-3 bg-purple-100 rounded-lg text-[cinza-escuro] font-medium"><i
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro]"><i
                                     data-feather="home"
                                     class="mr-3"></i>Portal
                                 ADM</a></li>
@@ -69,7 +69,7 @@
                                     data-feather="users"
                                     class="mr-3"></i>Cliente</a></li>
                             <li><a href="industrias"
-                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro]"><i
+                                   class="flex items-center p-3 bg-purple-100 rounded-lg text-[cinza-escuro] font-medium"><i
                                     data-feather="tool"
                                     class="mr-3"></i>Indústria</a></li>
                             <li><a href="favoritos"
@@ -104,24 +104,27 @@
 
                     <form action="alterar-alergia" method="post">
                         <div class="mb-6">
+                            <label for="id"
+                                   class="block text-gray-700 text-sm font-medium mb-2">ID:</label>
+                            <input type="text" id="id" name="id" value="<%=request.getAttribute("idAlergia")%>"
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent" readonly>
+
                             <label for="nome"
                                 class="block text-gray-700 text-sm font-medium mb-2">Nome:</label>
-                            <input type="text" id="nome" name="nome"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
-                                placeholder="Digite o nome da alergia...">
+                            <input type="text" id="nome" name="nome" value="<%=request.getAttribute("nomeAlergia")%>"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
 
                             <label for="alergeno"
                                 class="block text-gray-700 text-sm font-medium mb-2">Alérgeno:</label>
-                            <input type="text" id="alergeno" name="alergeno"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
-                                placeholder="Digite o alérgeno relacionado à alergia...">
+                            <input type="text" id="alergeno" name="alergeno" value="<%=request.getAttribute("alergenoAlergia")%>"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
 
                             <label for="descricao"
                                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Descrição:</label>
-                            <input type="text" id="descricao" name="descricao"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
-                                placeholder="Digite a descrição da alergia...">
-
+                            <textarea id="descricao" name="descricao"
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent resize-none overflow-hidden"
+                                      rows="2"
+                                      oninput="aumentarTexto(this)"><%=request.getAttribute("descricaoAlergia")%></textarea>
                         </div>
                         <div class="text-center">
                             <button type="submit"

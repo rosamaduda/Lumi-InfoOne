@@ -30,7 +30,7 @@ public class PlanoDAO {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando do BD
-            return planos;
         }
+        return planos;
     }
 } // PlanoDAO

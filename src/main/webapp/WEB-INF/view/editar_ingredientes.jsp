@@ -103,18 +103,20 @@
                     data-aos="fade-up" data-aos-delay="100">
                     <form action="alterar-ingrediente" method="post">
                         <div class="mb-6">
+                            <label for="id"
+                                   class="block text-gray-700 text-sm font-medium mb-2">ID:</label>
+                            <input type="text" id="id" name="id" value="<%=request.getAttribute("idIngrediente")%>"
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2" readonly>
                             <label for="nome"
                                 class="block text-gray-700 text-sm font-medium mb-2">Nome:</label>
-                            <input type="text" id="nome" name="nome"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2"
-                                placeholder="Digite o nome do ingrediente...">
+                            <input type="text" id="nome" name="nome" value="<%=request.getAttribute("nomeIngrediente")%>"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
                             <label for="descricao"
                                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Descrição:</label>
                             <textarea id="descricao" name="descricao"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent resize-none overflow-hidden"
-                                placeholder="Digite a descrição..."
-                                rows="2"
-                                oninput="autoResizeTextarea(this)"></textarea>
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent resize-none overflow-hidden"
+                                      rows="2"
+                                      oninput="aumentarTexto(this)"><%=request.getAttribute("descricaoIngrediente")%></textarea>
                         </div>
                         <div class="text-center">
                             <button type="submit"

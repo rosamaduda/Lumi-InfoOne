@@ -34,7 +34,7 @@ public class AlergiaIngredienteDAO {
     }
 
 
-    public int DeletarClienteAlergia(int id_ingrediente,int id_alergia){
+    public int DeletarIngredienteAlergia(int id_ingrediente,int id_alergia){
         Conexao conexao=new Conexao();
         Connection conn=conexao.conectar();
         try{
@@ -58,8 +58,53 @@ public class AlergiaIngredienteDAO {
         }
     }
 
+    public int removerAlergiaIngrediente(int idAlergia){
+        Conexao conexao=new Conexao();
+        Connection conn=conexao.conectar();
+        try{
+            String instrucaoSQL="DELETE FROM ALERGIA_INGREDIENTE WHERE ID_ALERGIA=?";
+            PreparedStatement pstm=conn.prepareStatement(instrucaoSQL);
+            pstm.setInt(1,idAlergia);
+
+            if (pstm.executeUpdate()>0){
+                return 1;
+            }
+            else {
+                return 0;
+            }
 
 
+        }catch (SQLException e){
+            e.printStackTrace();
+            return -1;
+        }finally {
+            conexao.desconectar(conn);
+        }
+    }
+
+    public int removerIngredienteAlergia(int idIngrediente){
+        Conexao conexao=new Conexao();
+        Connection conn=conexao.conectar();
+        try{
+            String instrucaoSQL="DELETE FROM ALERGIA_INGREDIENTE WHERE ID_INGREDIENTE = ?";
+            PreparedStatement pstm=conn.prepareStatement(instrucaoSQL);
+            pstm.setInt(1,idIngrediente);
+
+            if (pstm.executeUpdate()>0){
+                return 1;
+            }
+            else {
+                return 0;
+            }
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return -1;
+        }finally {
+            conexao.desconectar(conn);
+        }
+    }
 
 
 

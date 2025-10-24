@@ -3,14 +3,34 @@ package com.example.lumi.DAO;
 import com.example.lumi.Conexao.Conexao;
 import com.example.lumi.Model.Produto;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoDAO {
+    public int removerProdutoIndustria(int idIndustria) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "DELETE FROM PRODUTO WHERE ID_INDUSTRIA = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, idIndustria); // setando o parâmetro na instrução
+
+            if (pstmt.executeUpdate() > 0) { // executando a instrução e verificando o retorno
+                return 1; // conseguiu realizar a instrução
+            } else {
+                return 0; // não realizou a instrução
+            }
+
+        } catch (SQLException sqle){
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando o banco
+        }
+    }
+
     public List<Produto> buscarNomeProduto() {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD

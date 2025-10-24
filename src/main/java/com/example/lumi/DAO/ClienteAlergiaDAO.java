@@ -88,7 +88,7 @@ public class ClienteAlergiaDAO {
         Conexao conexao=new Conexao();
         Connection conn=conexao.conectar();
         try{
-            String instrucaoSQL="DELETE FROM ALERGIA_CLIENTE WHERE ID_PRODUTO=? ";
+            String instrucaoSQL="DELETE FROM ALERGIA_CLIENTE WHERE ID_ALERGIA=? ";
             PreparedStatement pstm=conn.prepareStatement(instrucaoSQL);
             pstm.setInt(1,id_alergia);
 

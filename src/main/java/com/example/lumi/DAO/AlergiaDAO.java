@@ -41,11 +41,11 @@ public class AlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE INGREDIENTE SET ALERGENO = ?, NOME = ?, DESCRICAO = ? WHERE ID = ?";
+            String instrucaoSQL = "UPDATE ALERGIA SET ALERGENO = ?, NOME = ?, DESCRICAO = ? WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando os parametros da instrucao
-            pstmt.setString(1, alergia.getNome());
+            pstmt.setString(1, alergia.getAlergeno());
             pstmt.setString(2, alergia.getNome());
             pstmt.setString(3, alergia.getDescricao());
             pstmt.setInt(4, alergia.getId());
@@ -70,15 +70,15 @@ public class AlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
         try {
-            // deletando os campos que recebem a pk
-            String instrucaoSQL = "DELETE FROM CLIENTE_ALERGIA WHERE ID_ALERGIA = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
+//            // deletando os campos que recebem a pk
+//            String instrucaoSQL = "DELETE FROM CLIENTE_ALERGIA WHERE ID_ALERGIA = ?";
+//            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+//            pstmt.setInt(1, id);
+//            pstmt.executeUpdate();
 
             // deletando a alergia
-            instrucaoSQL = "DELETE FROM ALERGIA WHERE ID = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
+            String instrucaoSQL = "DELETE FROM ALERGIA WHERE ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id); // setando parametro na instrução
             if (pstmt.executeUpdate() > 0) { // // executando o comando e verificando o retorno
                 return 1; // conseguiu deletar
@@ -116,6 +116,28 @@ public class AlergiaDAO {
         }
         return lista;
     } // buscarAlergia()
+    public Alergia buscarAlergia(Alergia alergia) { // busca por ID
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        Alergia alergia1 = null;
+        ResultSet rset;
+
+        try {
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, alergia.getId()); // setando o parâmetro da instrução
+            rset = pstmt.executeQuery(); // realizando a query
+
+            while (rset.next()) {
+                alergia1 = new Alergia(rset.getInt("id"), rset.getString("nome"), rset.getString("alergeno"), rset.getString("descricao"));
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return alergia1;
+    } // buscarAlergia(Alergia alergia)
 
     public List<Alergia> buscarNomeAlergia() {
         Conexao conexao = new Conexao();
@@ -138,6 +160,6 @@ public class AlergiaDAO {
             conexao.desconectar(conn); // desconectando o BD
         }
         return alergias;
-    } // buscarAlergia()
+    } // buscarNomeAlergia()
 }
 

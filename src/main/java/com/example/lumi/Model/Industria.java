@@ -22,6 +22,22 @@ public class Industria {
         this.nomePlano = nomePlano;
     }
 
+    public Industria(String cnpj, String nome, String objetivo, String email, String nomePlano, String senha) {
+        this.cnpj = cnpj;
+        this.nome = nome;
+        this.objetivo = objetivo;
+        this.email = email;
+        this.nomePlano = nomePlano;
+        this.senha = senha;
+    }
+
+    public Industria() {
+    }
+
+    public Industria(int id) {
+        this.id = id;
+    }
+
     // getters e setters
     public int getId() {
         return id;
@@ -44,4 +60,5 @@ public class Industria {
     public String getNomePlano() {
         return nomePlano;
     }
+
 } // Industria

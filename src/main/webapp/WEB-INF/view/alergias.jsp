@@ -3,7 +3,7 @@
 <%@ page import="java.util.List"%>
 <%
     @SuppressWarnings("unchecked")
-    List <Alergia> listaAlergias = (List<Alergia>) request.getAttribute("alergias-lista");
+    List <Alergia> alergias = (List<Alergia>) request.getAttribute("alergias-lista");
 %>
 
 
@@ -115,7 +115,6 @@
             <table class="w-full hidden sm:table">
                 <thead>
                 <tr class="bg-[#3C9D9B] text-white">
-                    <th class="p-3 text-left">ID</th>
                     <th class="p-3 text-left">Nome</th>
                     <th class="p-3 text-left">Alérgeno</th>
                     <th class="p-3 text-left">Descrição</th>
@@ -123,47 +122,47 @@
                 </tr>
                 </thead>
                 <tbody>
-                <%for (int i = 0; i < listaAlergias.size(); i++){
+                <%for (int i = 0; i < alergias.size(); i++){
                     if (i % 2 == 0) {
                 %>
                 <tr class="bg-white">
-                    <td class="p-3 border-b"><%=listaAlergias.get(i).getId()%></td>
-                    <td class="p-3 border-b"><%=listaAlergias.get(i).getNome()%></td>
-                    <td class="p-3 border-b"><%=listaAlergias.get(i).getAlergeno()%></td>
-                    <td class="p-3 border-b"><%=listaAlergias.get(i).getDescricao()%></td>
+                    <td class="p-3 border-b"><%=alergias.get(i).getNome()%></td>
+                    <td class="p-3 border-b"><%=alergias.get(i).getAlergeno()%></td>
+                    <td class="p-3 border-b"><%=alergias.get(i).getDescricao()%></td>
                     <td class="p-3 border-b text-right">
                         <div class="flex space-x-2 justify-end">
-                            <button
+                            <a href="alteracao-alergia?idAlergia=<%=alergias.get(i).getId()%>"
                                     class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit"
                                    class="w-4 h-4"></i>
-                            </button>
-                            <button
-                                    class="p-1 text-red-600 hover:text-red-800">
-                                <i data-feather="trash-2"
-                                   class="w-4 h-4"></i>
-                            </button>
+                            </a>
+                            <form action="exclusao-alergia" method="post" style="display:inline;">
+                                <input type="hidden" name="idAlergia" value="<%=alergias.get(i).getId()%>">
+                                <button type="submit" class="p-1 text-red-600 hover:text-red-800" style="background:none; border:none;">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
                 <%} else {%>
                 <tr class="bg-[#C5E2E1]">
-                    <td class="p-3 border-b"><%=listaAlergias.get(i).getId()%></td>
-                    <td class="p-3 border-b"><%=listaAlergias.get(i).getNome()%></td>
-                    <td class="p-3 border-b"><%=listaAlergias.get(i).getAlergeno()%></td>
-                    <td class="p-3 border-b"><%=listaAlergias.get(i).getDescricao()%></td>
+                    <td class="p-3 border-b"><%=alergias.get(i).getNome()%></td>
+                    <td class="p-3 border-b"><%=alergias.get(i).getAlergeno()%></td>
+                    <td class="p-3 border-b"><%=alergias.get(i).getDescricao()%></td>
                     <td class="p-3 border-b text-right">
                         <div class="flex space-x-2 justify-end">
-                            <button
+                            <a href="alteracao-alergia?idAlergia=<%=alergias.get(i).getId()%>"
                                     class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit"
                                    class="w-4 h-4"></i>
-                            </button>
-                            <button
-                                    class="p-1 text-red-600 hover:text-red-800">
-                                <i data-feather="trash-2"
-                                   class="w-4 h-4"></i>
-                            </button>
+                            </a>
+                            <form action="exclusao-alergia" method="post" style="display:inline;">
+                                <input type="hidden" name="idAlergia" value="<%=alergias.get(i).getId()%>">
+                                <button type="submit" class="p-1 text-red-600 hover:text-red-800" style="background:none; border:none;">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
@@ -174,13 +173,38 @@
                 </tbody>
             </table>
 
-            <div class="sm:hidden divide-y divide-gray-200">
-                <div class="p-4 bg-white text-center text-gray-500 italic">
-                    Nenhuma alergia cadastrada
-                </div>
+            <!-- MOBILE
+            <% if (alergias.isEmpty()) { %>
+            <div class="p-4 text-center text-gray-500 italic block sm:hidden">
+                Nenhuma alergia cadastrada
             </div>
+            <% } else { %>
+            <div class="block sm:hidden space-y-3 p-3">
+                <% for (int i = 0; i < alergias.size(); i++) { %>
+                <div class="rounded-lg p-3 shadow-sm">
+                    <p class="text-sm font-semibold text-[#333333]">Nome: <%= alergias.get(i).getNome() %></p>
+                    <p class="text-sm font-semibold text-[#333333]">Alérgeno: <%= alergias.get(i).getAlergeno() %></p>
+                    <p class="text-sm font-semibold text-[#333333]">Descrição: <%= alergias.get(i).getDescricao() %></p>
+                    <div class="flex justify-end space-x-2 mt-2">
+                        <a href="alteracao-alergia?idAlergia=<%= alergias.get(i).getId() %>"
+                           class="p-1 text-blue-600 hover:text-blue-800">
+                            <i data-feather="edit" class="w-4 h-4"></i>
+                        </a>
+                        <form action="exclusao-alergia" method="post" style="display:inline;">
+                            <input type="hidden" name="idAlergia" value="<%= alergias.get(i).getId() %>">
+                            <button type="submit"
+                                    class="p-1 text-red-600 hover:text-red-800"
+                                    style="background:none; border:none;">
+                                <i data-feather="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <% }
+                }%>
+            </div> -->
+        </div> 
 
-        </div>
 
         <div
                 class="mt-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">

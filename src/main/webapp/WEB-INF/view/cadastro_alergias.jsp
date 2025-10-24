@@ -84,7 +84,7 @@
                                 class="mr-3"></i>Site</a></li>
                     </ul>
                 </div>
-                </div>
+
             </nav>
 
             <div id="sidebar-overlay"
@@ -94,11 +94,11 @@
                 <a href="alergias"><h1 class="text-left"><i
                             data-feather="arrow-left"></i></h1></a>
                 <h1
-                    class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[2%]"
-                    data-aos="fade-down">Adicionar Alergia</h1>
+                        class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[2%]"
+                        data-aos="fade-down">Adicionar Alergia</h1>
                 <div
-                    class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]"
-                    data-aos="fade-up" data-aos-delay="100">
+                        class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]"
+                        data-aos="fade-up" data-aos-delay="100">
 
                     <form action="adicionar-alergia" method="post">
                         <div class="mb-6">
@@ -108,9 +108,9 @@
                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                                 placeholder="Digite o nome da alergia...">
 
-                            <label for="nome"
+                            <label for="alergeno"
                                 class="block text-gray-700 text-sm font-medium mb-2">Alérgeno:</label>
-                            <input type="text" id="nome" name="nome"
+                            <input type="text" id="alergeno" name="alergeno"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                                 placeholder="Digite o alérgeno relacionado à alergia...">
 

@@ -111,41 +111,9 @@ public class IngredienteDAO {
         ResultSet rset;
 
         try {
-            System.out.println("Conectado ao banco: " + conn.getCatalog());
-
-            // deletando os campos que recebem a pk do ingrediente ou que tem alguma relação com o ingrediente
-            String instrucaoSQL = "DELETE FROM ALERGIA_INGREDIENTE WHERE id_ingrediente = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setInt(1, id);
-            pstmt.execute();
-
-
-            // selecionando o id da receita para conseguir apagar do produto_receita
-            instrucaoSQL = "SELECT ID FROM RECEITA WHERE ID_INGREDIENTE = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setInt(1, id);
-            rset = pstmt.executeQuery();
-
-            while (rset.next()) {
-                instrucaoSQL = "DELETE FROM PRODUTO_RECEITA WHERE id_receita = ?";
-                pstmt = conn.prepareStatement(instrucaoSQL);
-                pstmt.setInt(1, rset.getInt("id"));
-                pstmt.execute();
-            }
-
-            instrucaoSQL = "DELETE FROM RECEITA WHERE ID_INGREDIENTE = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setInt(1, id);
-            pstmt.execute();
-
-            instrucaoSQL = "DELETE FROM RECEITA WHERE ID_INGREDIENTE = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setInt(1, id);
-            pstmt.execute();
-
             // deletando o ingrediente
-            instrucaoSQL = "DELETE FROM INGREDIENTE WHERE ID = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
+            String instrucaoSQL = "DELETE FROM INGREDIENTE WHERE ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id); // setando o parâmetro da instrução
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return 1; // conseguiu executar a instrução
@@ -156,7 +124,7 @@ public class IngredienteDAO {
             sqle.printStackTrace();
             return -1; // caiu no catch
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // desconectou o BD
         }
     } // removerIngrediente()
 
@@ -180,7 +148,28 @@ public class IngredienteDAO {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn);
-            return lista;
         }
+        return lista;
     } // buscarIngrediente()
+    public Ingrediente buscarIngrediente(Ingrediente ingrediente) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+
+        try {
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE WHERE ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, ingrediente.getId()); // setando os parâmetros da instrução
+            rset = pstmt.executeQuery(); // executando a query
+
+            while (rset.next()) {
+                ingrediente = new Ingrediente(rset.getInt("id"), rset.getString("nome"), rset.getString("descricao"));
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn);
+        }
+        return ingrediente;
+    } // buscarIngrediente(Ingrediente ingrediente)
 } // IngredienteDAO

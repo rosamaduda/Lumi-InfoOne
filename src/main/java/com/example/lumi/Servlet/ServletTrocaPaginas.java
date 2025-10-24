@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/portal", "/ingredientes", "/alergias", "/clientes", "/industrias", "/favoritos", "/avaliacoes", "/site"})
+@WebServlet(urlPatterns = {"/portal", "/clientes", "/favoritos", "/avaliacoes", "/site"})
 public class ServletTrocaPaginas extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
@@ -37,21 +37,22 @@ public class ServletTrocaPaginas extends HttpServlet {
             // redirecionando do portal para a página de alergias
             request.getRequestDispatcher("WEB-INF/view/alergias.jsp").forward(request, response);
         } else if (caminho.equals("/clientes")) {
-            // instanciando o objeto da classe x para ter acesso ao método de buscar
-
+            // instanciando o objeto da classe clienteDAO para ter acesso ao método de buscar
+            ClienteDAO clienteDAO = new ClienteDAO();
 
             // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
-
-
+            List<Cliente> listaCLientes = clienteDAO.buscarCliente();
+            request.setAttribute("clientes-lista", listaCLientes);
 
             // redirecionando do portal para a página de cliente
             request.getRequestDispatcher("WEB-INF/view/cliente.jsp").forward(request, response);
         } else if (caminho.equals("/industrias")) {
-            // instanciando o objeto da classe x para ter acesso ao método de buscar
-
+            // instanciando o objeto da classe IndustriaDAO para ter acesso ao método de buscar
+            IndustriaDAO industriaDAO = new IndustriaDAO();
 
             // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
-
+            List<Industria> listaIndustrias = industriaDAO.buscarIndustria();
+            request.setAttribute("industrias-lista", listaIndustrias);
 
             // redirecionando do portal para a página de industria
             request.getRequestDispatcher("WEB-INF/view/industria.jsp").forward(request, response);

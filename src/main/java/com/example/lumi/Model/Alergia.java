@@ -23,7 +23,14 @@ public class Alergia {
         this.nome = nome;
     }
 
-    // getter e setters
+    public Alergia() {
+    }
+
+    public Alergia(int id) {
+        this.id = id;
+    }
+
+    // getter
     public int getId() {
         return id;
     }
@@ -36,4 +43,5 @@ public class Alergia {
     public String getDescricao() {
         return descricao;
     }
+
 } // Alergia

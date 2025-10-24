@@ -105,8 +105,8 @@
                         <label for="email" class="block text-gray-700 text-sm font-medium mb-2 mt-2">Email do Cliente:</label>
                         <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent" placeholder="Ex: nome@exemplo.com.br">
                         
-                        <label for="data_horario" class="block text-gray-700 text-sm font-medium mb-2 mt-2">Data e Horário:</label>
-                        <input type="datetime-local" id="data_horario" name="data_horario" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
+                        <label for="data" class="block text-gray-700 text-sm font-medium mb-2 mt-2">Data:</label>
+                        <input type="date" id="data" name="data" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
                         
                         <label for="estrelas" class="block text-gray-700 text-sm font-medium mb-2 mt-2">Estrelas:</label>
                         <input type="number" step="0.5" min="0" max="5" id="estrelas" name="estrelas" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent" placeholder="Ex: 4.5">

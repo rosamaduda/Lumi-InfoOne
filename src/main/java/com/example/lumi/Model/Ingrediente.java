@@ -18,7 +18,14 @@ public class Ingrediente {
         this.descricao = descricao;
     }
 
-    // getters e setters
+    public Ingrediente() {
+    }
+
+    public Ingrediente(int id) {
+        this.id = id;
+    }
+
+    // getters
     public int getId() {
         return id;
     }
@@ -28,4 +35,5 @@ public class Ingrediente {
     public String getDescricao() {
         return descricao;
     }
+
 } // Ingrediente

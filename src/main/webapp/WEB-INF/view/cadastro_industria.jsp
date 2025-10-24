@@ -1,4 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@page import="com.example.lumi.Model.Plano" %>
+<%
+    @SuppressWarnings("unchecked")
+    List<Plano> planos = (List<Plano>) request.getAttribute("planos-lista");
+%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -111,7 +117,31 @@
                                   rows="3" 
                                   oninput="aumentarTexto(this)"></textarea>
 
-                    </div>
+                        <label for="senha" class="block text-gray-700 text-sm font-medium mb-2 mt-2">Senha:</label>
+                        <input type="text" id="senha" name="senha" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent" placeholder="Digite o e-mail da indústria...">
+
+                        <label for="plano"
+                               class="block text-gray-700 text-sm font-medium mb-2 mt-2">Plano:</label>
+                        <select name="plano" id="plano"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
+                            <%
+                                String planoPadrao = "Basique"; // o plano que vem marcado
+                                for (int i = 0; i < planos.size(); i++) {
+                                    String nomePlano = planos.get(i).getNome();
+                                    String selected = nomePlano.equals(planoPadrao) ? "selected" : "";
+                            %>
+                            <option value="<%= nomePlano %>" <%= selected %>><%= nomePlano %></option>
+                            <% } %>
+                        </select>
+
+                        <label for="telefones-container"
+                               class="block text-gray-700 text-sm font-medium mb-2 mt-2">Telefone:</label>
+                        <div id="telefones-container" class="mb-2">
+                        </div>
+                        <button type="button" id="add-telefone"
+                                class="flex items-center space-x-2 text-[#7F3FBF] hover:text-[#5B2E85] text-sm font-medium w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-3 py-2 rounded-[6px] mb-2 ">
+                            <span>Adicionar telefone</span>
+                        </button>
                     <div class="text-center">
                         <button type="submit" class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-lemon-500 transition-colors">
                             Adicionar
@@ -128,5 +158,6 @@
     </script>
      <script src="${pageContext.request.contextPath}/js/menu.js"></script>
      <script src="${pageContext.request.contextPath}/js/aumentar-texto.js"></script>
+    <script src="${pageContext.request.contextPath}/js/telefone.js"></script>
 </body>
 </html>

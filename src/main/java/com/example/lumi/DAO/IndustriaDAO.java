@@ -2,6 +2,7 @@ package com.example.lumi.DAO;
 
 import com.example.lumi.Conexao.Conexao;
 import com.example.lumi.Model.Industria;
+import com.example.lumi.Model.Ingrediente;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -190,20 +191,9 @@ public class IndustriaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
         try {
-            // deletando os campos que recebem a pk da indústria
-            String instrucaoSQL = "DELETE FROM PRODUTO WHERE ID_INDUSTRIA = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-
-            instrucaoSQL = "DELETE FROM TELEFONE_INDUSTRIA WHERE ID_INDUSTRIA = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-
             // deletando a indústria
-            instrucaoSQL = "DELETE FROM INDUSTRIA WHERE ID = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
+            String instrucaoSQL = "DELETE FROM INDUSTRIA WHERE ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando os parâmetros
             pstmt.setInt(1, id);
             if (pstmt.executeUpdate() > 0) { // executando a instrução
@@ -227,7 +217,7 @@ public class IndustriaDAO {
         List<Industria> industrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT I.*, P.NOME as NOME_PLANO FROM INDUSTRIA I JOIN PLANO P ON P.NOME = I.NOME_PLANO";
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA I";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -243,5 +233,48 @@ public class IndustriaDAO {
             conexao.desconectar(conn); // desconectando o BD
         }
         return industrias;
+    }
+
+    public Industria buscarIndustria(Industria industria) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        Industria industria1 = null;
+
+        try {
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, industria.getId()); // setando os parâmetros da instrução
+            rset = pstmt.executeQuery(); // executando a query
+
+            while (rset.next()) {
+                industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"), rset.getString("objetivo"), rset.getString("email"), rset.getString("senha"), rset.getString("nome_plano"));
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn);
+        }
+        return industria;
+    } // buscarIndustria(Industria industria)
+
+    public int buscarIdIndustria() {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        int id = 0;
+        try {
+            String instrucaoSQL = "SELECT ID FROM INDUSTRIA ORDER BY 1 DESC LIMIT 1";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a query
+            while (rset.next()) {
+                id = rset.getInt("id");
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return id;
     }
 } // IndustriaDAO

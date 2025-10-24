@@ -3,28 +3,46 @@ package com.example.lumi.Model;
 public class TelefoneIndustria {
     // atributos
     private int id;
-    private int telefone;
+    private String telefone;
     private int idIndustria;
 
    // construtor
-   public TelefoneIndustria (int id, int telefone, int idIndustria) {
+   public TelefoneIndustria (int id, String telefone, int idIndustria) {
        this.id = id;
        this.telefone = telefone;
        this.idIndustria = idIndustria;
    }
 
-   // getters e setters
+    public TelefoneIndustria() {
+    }
+
+    public TelefoneIndustria(String telefone) {
+        this.telefone = telefone;
+    }
+
+    // getters e setters
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
     }
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
     public int getIdIndustria() {
         return idIndustria;
     }
 
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setIdIndustria(int idIndustria) {
+        this.idIndustria = idIndustria;
+    }
+
+    public String toString() {
+        return this.telefone;
+    }
 } // TelefoneIndustria

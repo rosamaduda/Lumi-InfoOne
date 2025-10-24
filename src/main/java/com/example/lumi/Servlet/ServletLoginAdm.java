@@ -17,13 +17,13 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/login", "/entrar"})
 public class ServletLoginAdm extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String usuario = request.getParameter("username");
+        String login = request.getParameter("username");
         String senha = request.getParameter("password");
         AdmDAO admDAO = new AdmDAO();
 
         HttpSession session = request.getSession();
-        session.setAttribute("adm", usuario);
-        if (admDAO.validarSenhaAdm(usuario, senha)) {
+        session.setAttribute("adm", login);
+        if (admDAO.validarSenhaAdm(login, senha)) {
             request.getRequestDispatcher("WEB-INF/view/portal.jsp").forward(request, response);
         } else {
             request.setAttribute("mensagemErro", "Não foi possível realizar o login");

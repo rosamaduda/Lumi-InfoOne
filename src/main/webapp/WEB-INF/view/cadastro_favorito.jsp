@@ -105,7 +105,7 @@
                                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Produto:</label>
                             <select name="produto" id="produto"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
-                                <option value selected>Selecione um
+                                <option value selected disabled hidden>Selecione um
                                     produto</option>
                             </select>
 

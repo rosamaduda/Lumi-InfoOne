@@ -1,4 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List"%>
+<%@ page import="com.example.lumi.Model.Industria" %>
+<%
+    @SuppressWarnings("unchecked")
+    List<Industria> industrias = (List<Industria>) request.getAttribute("industrias-lista");
+    List<List> telefones = (List<List>) request.getAttribute("telefones-lista");
+%>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -114,80 +121,89 @@
                             <tr class="bg-[#3C9D9B] text-white">
                                 <th class="p-3 text-left">CNPJ</th>
                                 <th class="p-3 text-left">Nome</th>
-                                <th class="p-3 text-left">Email</th>
                                 <th class="p-3 text-left">Senha</th>
+                                <th class="p-3 text-left">E-mail</th>
                                 <th class="p-3 text-left">Objetivo</th>
                                 <th class="p-3 text-left">Plano</th>
+                                <th class="p-3 text-left">Telefones</th>
                                 <th class="p-3 text-right"></th>
                             </tr>
                         </thead>
                         <tbody>
+                        <%for (int i = 0; i < industrias.size(); i++) {
+                            if (i % 2 == 0) {
+                        %>
                             <tr class="bg-white">
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getCnpj()%></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getNome()%></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getEmail()%></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getSenha()%></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getObjetivo()%></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getNomePlano()%></td>
+                                <td class="p-3 border-b">
+                                    <div class="relative w-full">
+                                        <select class="appearance-none w-full bg-transparent  border-gray-300 rounded-md text-sm font-semibold text-[#333333] cursor-pointer py-2">
+                                            <% for (int j = 0; j < telefones.get(i).size(); j++) { %>
+                                            <option><%= telefones.get(i).get(j) %></option>
+                                            <% } %>
+                                        </select>
+                                        <i data-feather="chevron-down" class="ml-[-4%] pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i></i>
+                                    </div>
+                                </td>
                                 <td class="p-3 border-b text-right">
                                     <div class="flex space-x-2 justify-end">
-                                        <a href="editar_industria.jsp"><button
-                                            class="p-1 text-blue-600 hover:text-blue-800">
+                                        <a href="alteracao-industria?idIndustria=<%=industrias.get(i).getId()%>"
+                                           class="p-1 text-blue-600 hover:text-blue-800">
                                             <i data-feather="edit"
-                                                class="w-4 h-4"></i></a>
-                                        </button>
-                                        <button id="remover"
-                                            class="p-1 text-red-600 hover:text-red-800">
-                                            <i data-feather="trash-2"
-                                                class="w-4 h-4"></i>
-                                        </button>
+                                               class="w-4 h-4"></i>
+                                        </a>
+                                        <form action="exclusao-industria" method="post" style="display:inline;">
+                                            <input type="hidden" name="idIndustria" value="<%=industrias.get(i).getId()%>">
+                                            <button type="submit" class="p-1 text-red-600 hover:text-red-800" style="background:none; border:none;">
+                                                <i data-feather="trash-2" class="w-4 h-4"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
+                        <%} else {%>
                             <tr class="bg-[#C5E2E1]">
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getCnpj()%></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getNome()%></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getEmail()%></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getSenha()%></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getObjetivo()%></td>
+                                <td class="p-3 border-b"><%=industrias.get(i).getNomePlano()%></td>
+                                <td class="p-3 border-b">
+                                    <div class="relative w-full">
+                                        <select class="appearance-none w-full bg-transparent  border-gray-300 rounded-md text-sm font-semibold text-[#333333] cursor-pointer py-2">
+                                            <% for (int j = 0; j < telefones.get(i).size(); j++) { %>
+                                            <option><%= telefones.get(i).get(j) %></option>
+                                            <% } %>
+                                        </select>
+                                        <i data-feather="chevron-down" class="ml-[-4%] pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i></i>
+                                    </div>
+                                </td>
                                 <td class="p-3 border-b text-right">
                                     <div class="flex space-x-2 justify-end">
-                                        <a href="editar_industria.jsp"><button
-                                            class="p-1 text-blue-600 hover:text-blue-800">
+                                        <a href="alteracao-industria?idIndustria=<%=industrias.get(i).getId()%>"
+                                           class="p-1 text-blue-600 hover:text-blue-800">
                                             <i data-feather="edit"
-                                                class="w-4 h-4"></i></a>
-                                        </button>
-                                        <button id="remover"
-                                            class="p-1 text-red-600 hover:text-red-800">
-                                            <i data-feather="trash-2"
-                                                class="w-4 h-4"></i>
-                                        </button>
+                                               class="w-4 h-4"></i>
+                                        </a>
+                                        <form action="exclusao-industria" method="post" style="display:inline;">
+                                            <input type="hidden" name="idIndustria" value="<%=industrias.get(i).getId()%>">
+                                            <button type="submit" class="p-1 text-red-600 hover:text-red-800" style="background:none; border:none;">
+                                                <i data-feather="trash-2" class="w-4 h-4"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="bg-white">
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b"></td>
-                                <td class="p-3 border-b text-right">
-                                    <div class="flex space-x-2 justify-end">
-                                        <a href="editar_industria.jsp"><button
-                                            class="p-1 text-blue-600 hover:text-blue-800">
-                                            <i data-feather="edit"
-                                                class="w-4 h-4"></i></a>
-                                        </button>
-                                        <button id="remover"
-                                            class="p-1 text-red-600 hover:text-red-800">
-                                            <i data-feather="trash-2"
-                                                class="w-4 h-4"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                        <%
+                            }
+                        }
+                        %>
                         </tbody>
                     </table>
 
@@ -203,7 +219,7 @@
                 <div
                     class="mt-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0"
                     data-aos="fade-up" data-aos-delay="300">
-                    <a href="cadastro_industria.jsp"
+                    <a href="cadastro-industria"
                         class="w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-6 py-2 rounded-lg flex items-center justify-center">
                         <i data-feather="plus" class="mr-2 w-4 h-4"></i>
                         Adicionar
