@@ -40,7 +40,7 @@ document.querySelectorAll('.funcionalidades-item').forEach(item => {
                         scannerImg.style.opacity = 1;
 
                     }, 1000);
-                }, 2000);// troca depois de 2 segundos
+                }, 2000);
                 break;
             case 'memoria':
                 phoneScreen.innerHTML = '<img src="assets/mockup-memoria.png" alt="Tela do app/Memória" style="transform: scale(2);" class=" mt-[15%] object-cover">';
@@ -48,6 +48,69 @@ document.querySelectorAll('.funcionalidades-item').forEach(item => {
             case 'vagalumi':
                 phoneScreen.innerHTML = '<img src="assets/mockup-ia.png" alt="Tela do app/Vagalumi" style="transform: scale(2);" class=" mt-[15%] object-cover">';
                 break;
+            case 'industria':
+                phoneScreen.innerHTML = `
+                        <img id="industria-img" 
+                            src="assets/mockup-pi.png" 
+                            alt="Página Inicial - Indústria" 
+                            style="transform: scale(2); transition: opacity 1s ease-in-out;" 
+                            class="mt-[15%] object-cover">
+                    `;
+
+                const industriaImg = document.getElementById('industria-img');
+
+                
+                setTimeout(() => {
+                    industriaImg.style.opacity = 0;
+
+                    setTimeout(() => {
+                        industriaImg.src = "assets/mockup-relatorios.png";
+                        industriaImg.style.opacity = 1;
+
+                        
+                        setTimeout(() => {
+                            industriaImg.style.opacity = 0;
+
+                            setTimeout(() => {
+                                industriaImg.src = "assets/mockup-cronograma.png";
+                                industriaImg.style.opacity = 1;
+
+                               
+                                setTimeout(() => {
+                                    industriaImg.style.opacity = 0;
+
+                                    setTimeout(() => {
+                                        industriaImg.src = "assets/mockup-cp.png";
+                                        industriaImg.style.opacity = 1;
+
+                                        
+                                        setTimeout(() => {
+                                            industriaImg.style.opacity = 0;
+
+                                            setTimeout(() => {
+                                                industriaImg.src = "assets/mockup-cp2.png";
+                                                industriaImg.style.opacity = 1;
+
+                                                ;
+
+                                            }, 1000);
+
+                                        }, 3000);
+
+                                    }, 1000);
+
+                                }, 3000);
+
+                            }, 1000);
+
+                        }, 3000);
+
+                    }, 1000);
+
+                }, 3000);
+                break;
+
+
         }
     });
 });
