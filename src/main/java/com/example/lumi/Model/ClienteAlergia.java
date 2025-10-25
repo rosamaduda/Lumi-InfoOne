@@ -3,14 +3,15 @@ package com.example.lumi.Model;
 public class ClienteAlergia {
     // atributos
     private int id;
+    private int idAlergia;
     private String emailCliente;
-    private String nomeAlergia;
 
     // construtor
-    public ClienteAlergia(int id, String emailCliente, String nomeAlergia) {
+    public ClienteAlergia(int id,  int idAlergia,String emailCliente) {
         this.id = id;
+        this.idAlergia = idAlergia;
         this.emailCliente = emailCliente;
-        this.nomeAlergia = nomeAlergia;
+
     }
 
     // getters e setters
@@ -21,7 +22,7 @@ public class ClienteAlergia {
     public String getEmailCliente() {
         return emailCliente;
     }
-    public String getNomeAlergia() {
-        return nomeAlergia;
+    public int getIdAlergia() {
+        return idAlergia;
     }
 }

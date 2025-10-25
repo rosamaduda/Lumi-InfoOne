@@ -4,22 +4,17 @@ public class Favorito {
     // atributos
     private int id;
     private String emailCliente;
-    private int idProduto;
-    private String nomeProduto;
-    private String nomeIndustria;
-
+    private long codProduto;
     // construtor
-    public Favorito(int id, int idProduto,  String emailCliente) {
+    public Favorito(int id,String emailCliente,int cod_prduto) {
         this.id = id;
-        this.idProduto = idProduto;
         this.emailCliente = emailCliente;
+        this.codProduto = cod_prduto;
     }
 
-    public Favorito(int id, String nomeProduto,  String emailCliente, String nomeIndustria) {
-        this.id = id;
-        this.nomeProduto = nomeProduto;
-        this.emailCliente = emailCliente;
-        this.nomeIndustria = nomeIndustria;
+    public Favorito(int id,String emailCliente){
+        this.id=id;
+        this.emailCliente=emailCliente;
     }
 
     // getters e setters
@@ -27,15 +22,7 @@ public class Favorito {
         return id;
     }
     public String getEmailCliente() {
-        return emailCliente;
+        return this.emailCliente;
     }
-    public int getIdProduto() {
-        return idProduto;
-    }
-    public String getNomeProduto() {
-        return nomeProduto;
-    }
-    public String getNomeIndustria() {
-        return nomeIndustria;
-    }
+    public long getCodProduto() {return this.codProduto;}
 }

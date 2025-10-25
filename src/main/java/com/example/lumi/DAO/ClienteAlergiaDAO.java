@@ -84,13 +84,13 @@ public class ClienteAlergiaDAO {
 
 
 
-    public int DeletarClienteAlergia(int id_alergia){
+    public int deletarClienteAlergia(int idAlergia){
         Conexao conexao=new Conexao();
         Connection conn=conexao.conectar();
         try{
-            String instrucaoSQL="DELETE FROM ALERGIA_CLIENTE WHERE ID_ALERGIA=? ";
+            String instrucaoSQL="DELETE FROM ALERGIA_CLIENTE WHERE ID_PRODUTO=? ";
             PreparedStatement pstm=conn.prepareStatement(instrucaoSQL);
-            pstm.setInt(1,id_alergia);
+            pstm.setInt(1,idAlergia);
 
      if (pstm.executeUpdate()>0){
         return 1;

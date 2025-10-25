@@ -13,10 +13,10 @@ public class FavoritosDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "INSERT INTO FAVORITO (ID_PRODUTO, EMAIL_CLIENTE) VALUES(?, ?)";
+            String instrucaoSQL = "INSERT INTO FAVORITO (COD_PRODUTO, EMAIL_CLIENTE) VALUES(?, ?)";
             PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
             // setando os parâmetros na instrução
-            pstm.setInt(1, favorito.getIdProduto());
+            pstm.setLong(1, favorito.getCodProduto());
             pstm.setString(2, favorito.getEmailCliente());
             if (pstm.executeUpdate() > 0) {
                 return 1; // conseguiu realizar a instrução
@@ -62,11 +62,11 @@ public class FavoritosDAO {
         List<Favorito> favoritos = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT F.*, P.NOME AS NOME_PRODUTO, I.NOME AS NOME_INDUSTRIA FROM FAVORITO F JOIN PRODUTO P ON F.ID_PRODUTO = P.ID JOIN INDUSTRIA I ON I.ID_PRODUTO = P.ID";
+            String instrucaoSQL = "SELECT F.* FAVORITO F";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
             while (rset.next()) {
-                Favorito favorito = new Favorito(rset.getInt("id"), rset.getString("nome_produto"), rset.getString("email_cliente"), rset.getString("nome_industria"));
+                Favorito favorito = new Favorito(rset.getInt("id"), rset.getString("nome_produto"),rset.getInt("cod_produto"));
                 favoritos.add(favorito); // adicionando à lista que será retornada
             }
         } catch (SQLException e) {
@@ -76,4 +76,29 @@ public class FavoritosDAO {
         }
         return favoritos;
     } // buscarFavoritos()
-}
+
+
+    public List<Favorito> buscarFavoritoPorProduto(long cod_produto){
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Favorito> favoritos = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT F.* FROM FAVORITO F WHERE COD_PRODUTO=?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setLong(1,cod_produto);
+            rset = pstmt.executeQuery(); // executando a query
+            while (rset.next()) {
+                Favorito favorito = new Favorito(rset.getInt("id"), rset.getString("nome_produto"));
+                favoritos.add(favorito); // adicionando à lista que será retornada
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return favoritos;
+    }
+
+    }//favoritosDAO

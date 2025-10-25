@@ -38,6 +38,14 @@ public class Industria {
         this.id = id;
     }
 
+    public Industria(int id, String cnpj, String nome, String objetivo, String email) {
+        this.id = id;
+        this.cnpj = cnpj;
+        this.nome = nome;
+        this.objetivo = objetivo;
+        this.email = email;
+    }
+
     // getters e setters
     public int getId() {
         return id;
@@ -60,5 +68,4 @@ public class Industria {
     public String getNomePlano() {
         return nomePlano;
     }
-
 } // Industria

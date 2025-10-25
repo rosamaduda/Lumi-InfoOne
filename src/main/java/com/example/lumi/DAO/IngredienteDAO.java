@@ -111,7 +111,6 @@ public class IngredienteDAO {
         ResultSet rset;
 
         try {
-            // deletando o ingrediente
             String instrucaoSQL = "DELETE FROM INGREDIENTE WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id); // setando o parâmetro da instrução
@@ -172,4 +171,68 @@ public class IngredienteDAO {
         }
         return ingrediente;
     } // buscarIngrediente(Ingrediente ingrediente)
+        }
+        return lista;
+
+    }
+
+
+    public List<Ingrediente> buscarIngredientePortal() {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Ingrediente> lista = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE LIMIT 3";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a query
+
+            while (rset.next()) {
+                Ingrediente ingrediente = new Ingrediente(rset.getInt("id"), rset.getString("nome"), rset.getString("descricao"));
+                lista.add(ingrediente);
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn);
+        }
+        return lista;
+
+    }
+
+
+    public List<Ingrediente> buscarIngredientePorNome(String nome){
+        Conexao conexao=new Conexao();
+        Connection conn= conexao.conectar();
+        ResultSet rset;
+        List<Ingrediente> lista=new ArrayList<>();
+
+        try{
+            String instrucaoSQL="SELECT * FROM INGREDIENTE WHERE NOME LIKE ?";
+            PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1,"%"+nome+"%");
+            rset= pstmt.executeQuery();
+            while (rset.next()){
+                Ingrediente ingrediente=new Ingrediente(rset.getInt("id"),rset.getString("nome"),rset.getString("descricao"));
+                lista.add(ingrediente);
+            }
+
+        }catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
+        finally {
+            conexao.desconectar(conn);
+        }
+        return lista;
+    }
+
+
+
+
+
+
+
+
+
 } // IngredienteDAO

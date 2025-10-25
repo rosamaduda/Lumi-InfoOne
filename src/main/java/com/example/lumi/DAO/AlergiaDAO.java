@@ -70,12 +70,6 @@ public class AlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
         try {
-//            // deletando os campos que recebem a pk
-//            String instrucaoSQL = "DELETE FROM CLIENTE_ALERGIA WHERE ID_ALERGIA = ?";
-//            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-//            pstmt.setInt(1, id);
-//            pstmt.executeUpdate();
-
             // deletando a alergia
             String instrucaoSQL = "DELETE FROM ALERGIA WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
@@ -161,5 +155,58 @@ public class AlergiaDAO {
         }
         return alergias;
     } // buscarNomeAlergia()
-}
+    //Limitar por 3 alergias para mostrar no portal
+
+
+
+
+    public List<Alergia> buscarAlergiaPorNome(String nome){
+        Conexao conexao=new Conexao();
+        Connection conn= conexao.conectar();
+        ResultSet rset;
+        List<Alergia> lista =new ArrayList<>();
+
+        try {
+            String instrucaoSQL="SELECT * FROM ALERGIA WHERE NOME LIKE ?";
+            PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1,"%"+nome+"%");
+            rset= pstmt.executeQuery();
+            while(rset.next()){
+                Alergia alergia=new Alergia(rset.getInt("id"),rset.getString("nome"), rset.getString("alergeno"),rset.getString("descricao"));
+                lista.add(alergia);
+            }
+        }catch (SQLException sqle){
+            sqle.printStackTrace();
+        }finally {
+            conexao.desconectar(conn);
+        }
+        return lista;
+    }
+
+
+
+    public List<Alergia> buscarAlergiaPorAlergeno(String alergeno){
+        Conexao conexao=new Conexao();
+        Connection conn= conexao.conectar();
+        ResultSet rset;
+        List<Alergia> lista =new ArrayList<>();
+
+        try {
+            String instrucaoSQL="SELECT * FROM ALERGIA WHERE ALERGENO LIKE ?";
+            PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1,"%"+alergeno+"%");
+            rset= pstmt.executeQuery();
+            while(rset.next()){
+                Alergia alergia=new Alergia(rset.getInt("id"),rset.getString("nome"), rset.getString("alergeno"),rset.getString("descricao"));
+                lista.add(alergia);
+            }
+        }catch (SQLException sqle){
+            sqle.printStackTrace();
+        }finally {
+            conexao.desconectar(conn);
+        }
+        return lista;
+    }
+
+} // AlergiaDAO
 
