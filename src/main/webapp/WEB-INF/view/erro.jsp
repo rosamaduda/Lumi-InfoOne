@@ -10,9 +10,7 @@
         <link rel="stylesheet"
             href="${pageContext.request.contextPath}/style/erro.css">
         <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://unpkg.com/feather-icons"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     </head>
     <body class="bg-gray-100 min-h-screen flex items-center justify-center">
         <div
