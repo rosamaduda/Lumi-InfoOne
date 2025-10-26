@@ -26,7 +26,7 @@ public class ServletExcluirAlergia extends HttpServlet {
 
         // removendo os campos que possuem o id
         alergiaIngredienteDAO.removerAlergiaIngrediente(idAlergia);
-        clienteAlergiaDAO.DeletarClienteAlergia(idAlergia);
+        clienteAlergiaDAO.deletarClienteAlergia(idAlergia);
         alergiaDAO.removerAlergia(idAlergia);
 
         // recarregando a página

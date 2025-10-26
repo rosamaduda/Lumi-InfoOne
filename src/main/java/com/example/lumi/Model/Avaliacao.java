@@ -22,14 +22,6 @@ public class Avaliacao {
         this.idProduto = idProduto;
     }
 
-    public Avaliacao(int id, int nota, String avaliacao, LocalDate dataAvaliacao, String emailCliente, String nomeProduto) {
-        this.id = id;
-        this.nota=nota;
-        this.avaliacao = avaliacao;
-        this.dataAvaliacao = dataAvaliacao;
-        this.emailCliente = emailCliente;
-        this.nomeProduto = nomeProduto;
-    }
 
     // getters e setters
     public int getNota() {
@@ -49,8 +41,5 @@ public class Avaliacao {
     }
     public int getIdProduto() {
         return idProduto;
-    }
-    public String getNomeProduto() {
-        return nomeProduto;
     }
 }

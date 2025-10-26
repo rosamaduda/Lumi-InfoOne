@@ -13,7 +13,6 @@ public class Plano {
     public Plano(String nome){
         this.nome=nome;
     }
-    public String getNome(){return this.nome;}
 
     public String getDescricao() {
         return descricao;

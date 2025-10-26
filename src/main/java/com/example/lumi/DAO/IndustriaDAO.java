@@ -222,7 +222,7 @@ public class IndustriaDAO {
 
             while (rset.next()) {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
-                        rset.getString("objetivo"), rset.getString("senha"));
+                        rset.getString("objetivo"), rset.getString("email"), rset.getString("senha"), rset.getString("nome_plano"));
                 industrias.add(industria); // adicionando o objeto à lista
             }
         } catch (SQLException sqle) {
@@ -232,7 +232,6 @@ public class IndustriaDAO {
         }
         return industrias;
     }
-
 
     public List<Industria> buscarIndustriaPorNome(String nome){
         Conexao conexao = new Conexao();
@@ -284,11 +283,6 @@ public class IndustriaDAO {
         return industrias;
     }
 
-
-
-
-
-
     public int buscarIdIndustria() {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
@@ -330,24 +324,4 @@ public class IndustriaDAO {
         }
         return industria;
     } // buscarIndustria(Industria industria)
-
-    public int buscarIdIndustria() {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-        ResultSet rset;
-        int id = 0;
-        try {
-            String instrucaoSQL = "SELECT ID FROM INDUSTRIA ORDER BY 1 DESC LIMIT 1";
-            Statement stmt = conn.createStatement();
-            rset = stmt.executeQuery(instrucaoSQL); // executando a query
-            while (rset.next()) {
-                id = rset.getInt("id");
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        } finally {
-            conexao.desconectar(conn); // desconectando o BD
-        }
-        return id;
-    }
 } // IndustriaDAO

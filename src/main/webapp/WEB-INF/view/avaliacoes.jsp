@@ -31,7 +31,7 @@
 
         <div class="flex pt-16 sm:pt-20 min-h-screen">
 
-            <nav id="sidebar"
+            <div id="sidebar"
                 class="fixed left-0 top-16 sm:top-20 h-full w-64 bg-white shadow-lg z-40 transform -translate-x-full sm:translate-x-0 transition-transform duration-300">
 
                 <div class="p-4 border-b flex-shrink-0">
@@ -83,7 +83,7 @@
                                 class="mr-3"></i>Site</a></li>
                     </ul>
                 </div>
-
+            </div>
 
             </nav>
 

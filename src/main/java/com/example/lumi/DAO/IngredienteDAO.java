@@ -171,11 +171,6 @@ public class IngredienteDAO {
         }
         return ingrediente;
     } // buscarIngrediente(Ingrediente ingrediente)
-        }
-        return lista;
-
-    }
-
 
     public List<Ingrediente> buscarIngredientePortal() {
         Conexao conexao = new Conexao();
@@ -226,13 +221,4 @@ public class IngredienteDAO {
         }
         return lista;
     }
-
-
-
-
-
-
-
-
-
 } // IngredienteDAO
