@@ -1,9 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.example.lumi.Model.Ingrediente"%>
+<%@ page import="com.example.lumi.Model.*"%>
 <%@ page import="java.util.List"%>
 <%
     @SuppressWarnings("unchecked")
     List<Ingrediente> listaIngredientes = (List<Ingrediente>) request.getAttribute("ingredientes-lista");
+    List<Alergia> listaAlergias = (List<Alergia>) request.getAttribute("alergias-lista");
+    List<Industria> listaIndustrias = (List<Industria>) request.getAttribute("industrias-lista");
+    List<List> listaTelefones = (List<List>) request.getAttribute("telefones-lista");
 %>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -85,10 +88,9 @@
                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro]"><i
                             data-feather="star"
                             class="mr-3"></i>Avaliações</a></li>
-                    <li><a href="site"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[cinza-escuro]"><i
-                            data-feather="globe"
-                            class="mr-3"></i>Site</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index.html"
+                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-red-500"><i
+                            data-feather="log-out" class="mr-3"></i>Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -116,30 +118,30 @@
                 <table class="w-full hidden sm:table">
                     <thead>
                     <tr class="bg-[#3C9D9B] text-white">
-                        <th class="p-3 text-left">ID</th>
                         <th class="p-3 text-left">Nome</th>
                         <th class="p-3 text-left">Descrição</th>
                     </tr>
                     </thead>
                     <tbody>
-
+                    <% for (int i=0; i < listaIngredientes.size(); i++) { if (i % 2==0) { %>
                     <tr class="bg-white">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
+                        <td class="p-3 border-b">
+                            <%=listaIngredientes.get(i).getNome()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIngredientes.get(i).getDescricao()%>
+                        </td>
                     </tr>
+                    <%} else {%>
                     <tr class="bg-[#C5E2E1]">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
+                        <td class="p-3 border-b">
+                            <%=listaIngredientes.get(i).getNome()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIngredientes.get(i).getDescricao()%>
+                        </td>
                     </tr>
-                    <tr class="bg-white">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                    </tr>
-
-
+                    <% } } %>
                     </tbody>
                 </table>
                 <div class="sm:hidden divide-y divide-gray-200">
@@ -169,21 +171,32 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <%for (int i=0; i < listaAlergias.size(); i++){ if (i % 2==0) { %>
                     <tr class="bg-white">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
+                        <td class="p-3 border-b">
+                            <%=listaAlergias.get(i).getNome()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaAlergias.get(i).getAlergeno()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaAlergias.get(i).getDescricao()%>
+                        </td>
                     </tr>
+                    <%} else {%>
                     <tr class="bg-[#C5E2E1]">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
+                        <td class="p-3 border-b">
+                            <%=listaAlergias.get(i).getNome()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaAlergias.get(i).getAlergeno()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaAlergias.get(i).getDescricao()%>
+                        </td>
                     </tr>
-                    <tr class="bg-white">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                    </tr>
+                    <% }
+                    } %>
                     </tbody>
                 </table>
                 <div class="sm:hidden divide-y divide-gray-200">
@@ -280,36 +293,90 @@
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <table class="w-full hidden sm:table">
                     <thead>
-                    <tr class="bg-[#3C9D9B] text-white">
+                        <tr class="bg-[#3C9D9B] text-white">
                         <th class="p-3 text-left">CNPJ</th>
                         <th class="p-3 text-left">Nome</th>
-                        <th class="p-3 text-left">E-Mail</th>
-                        <th class="p-3 text-left">Telefone</th>
+                        <th class="p-3 text-left">E-mail</th>
+                        <th class="p-3 text-left">Senha</th>
                         <th class="p-3 text-left">Objetivo</th>
-                    </tr>
+                        <th class="p-3 text-left">Plano</th>
+                        <th class="p-3 text-left">Telefones</th>
+                        <tr class="bg-[#3C9D9B] text-white">
                     </thead>
                     <tbody>
+                    <%for (int i=0; i < listaIndustrias.size(); i++) { if (i % 2==0) { %>
                     <tr class="bg-white">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getCnpj()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getNome()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getEmail()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getSenha()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getObjetivo()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getNomePlano()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <div class="relative w-full">
+                                <select
+                                        class="appearance-none w-full bg-transparent  border-gray-300 rounded-md text-sm font-semibold text-[#333333] cursor-pointer py-2">
+                                    <% for (int j=0; j < listaTelefones.get(i).size();
+                                            j++) { %>
+                                    <option>
+                                        <%= listaTelefones.get(i).get(j) %>
+                                    </option>
+                                    <% } %>
+                                </select>
+                                <i data-feather="chevron-down"
+                                   class="ml-[-4%] pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i></i>
+                            </div>
+                        </td>
                     </tr>
+                    <%} else {%>
                     <tr class="bg-[#C5E2E1]">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getCnpj()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getNome()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getEmail()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getSenha()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getObjetivo()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <%=listaIndustrias.get(i).getNomePlano()%>
+                        </td>
+                        <td class="p-3 border-b">
+                            <div class="relative w-full">
+                                <select
+                                        class="appearance-none w-full bg-transparent  border-gray-300 rounded-md text-sm font-semibold text-[#333333] cursor-pointer py-2">
+                                    <% for (int j=0; j <
+                                            listaTelefones.get(i).size(); j++) { %>
+                                    <option>
+                                        <%= listaTelefones.get(i).get(j) %>
+                                    </option>
+                                    <% } %>
+                                </select>
+                                <i data-feather="chevron-down"
+                                   class="ml-[-4%] pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i></i>
+                            </div>
+                        </td>
                     </tr>
-                    <tr class="bg-white">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                    </tr>
+                    <% } } %>
                     </tbody>
                 </table>
                 <div class="sm:hidden divide-y divide-gray-200">

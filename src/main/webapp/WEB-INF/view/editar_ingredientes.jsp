@@ -95,13 +95,12 @@
                     <form action="alterar-ingrediente" method="post">
                         <div class="mb-6">
                             <label for="id" class="block text-gray-700 text-sm font-medium mb-2">ID:</label>
-                            <input type="text" id="id" name="id" value="<%=request.getAttribute(" idIngrediente")%>"
+                            <input type="text" id="id" name="id" value="<%=request.getAttribute("idIngrediente")%>"
                             class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2
                             focus:ring-[#7F3FBF]
                             focus:border-transparent mb-2" readonly>
                             <label for="nome" class="block text-gray-700 text-sm font-medium mb-2">Nome:</label>
-                            <input type="text" id="nome" name="nome" value="<%=request.getAttribute("
-                                nomeIngrediente")%>"
+                            <input type="text" id="nome" name="nome" value="<%=request.getAttribute("nomeIngrediente")%>"
                             class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2
                             focus:ring-[#7F3FBF]
                             focus:border-transparent mb-2">

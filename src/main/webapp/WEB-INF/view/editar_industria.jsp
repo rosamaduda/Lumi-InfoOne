@@ -101,8 +101,7 @@
                                             <div>
                                                 <label for="id"
                                                     class="block text-gray-700 text-sm font-medium mb-2">ID:</label>
-                                                <input type="text" id="id" name="id" value="<%=request.getAttribute("
-                                                    idIndustria")%>"
+                                                <input type="text" id="id" name="id" value="<%=request.getAttribute("idIndustria")%>"
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px]
                                                 focus:ring-2
                                                 focus:ring-[#7F3FBF] focus:border-transparent" readonly>
@@ -110,7 +109,7 @@
                                                 <label for="cnpj"
                                                     class="block text-gray-700 text-sm font-medium mb-2">CNPJ:</label>
                                                 <input type="text" id="cnpj" name="cnpj"
-                                                    value="<%=request.getAttribute(" cnpjIndustria")%>"
+                                                    value="<%=request.getAttribute("cnpjIndustria")%>"
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px]
                                                 focus:ring-2
                                                 focus:ring-[#7F3FBF] focus:border-transparent">
@@ -118,7 +117,7 @@
                                                 <label for="nome"
                                                     class="block text-gray-700 text-sm font-medium mb-2 mt-2">Nome:</label>
                                                 <input type="text" id="nome" name="nome"
-                                                    value="<%=request.getAttribute(" nomeIndustria")%>"
+                                                    value="<%=request.getAttribute("nomeIndustria")%>"
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px]
                                                 focus:ring-2
                                                 focus:ring-[#7F3FBF] focus:border-transparent">
@@ -126,7 +125,7 @@
                                                 <label for="e-mail"
                                                     class="block text-gray-700 text-sm font-medium mb-2 mt-2">E-mail:</label>
                                                 <input type="email" id="e-mail" name="e-mail"
-                                                    value="<%=request.getAttribute(" emailIndustria")%>"
+                                                    value="<%=request.getAttribute("emailIndustria")%>"
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px]
                                                 focus:ring-2
                                                 focus:ring-[#7F3FBF] focus:border-transparent">
@@ -141,7 +140,7 @@
                                                 <label for="senha"
                                                     class="block text-gray-700 text-sm font-medium mb-2 mt-2">Senha:</label>
                                                 <input type="text" id="senha" name="senha"
-                                                    value="<%=request.getAttribute(" senhaIndustria")%>"
+                                                    value="<%=request.getAttribute("senhaIndustria")%>"
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px]
                                                 focus:ring-2
                                                 focus:ring-[#7F3FBF] focus:border-transparent" placeholder="Digite o

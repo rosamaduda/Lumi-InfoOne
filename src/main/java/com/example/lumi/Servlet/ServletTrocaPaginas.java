@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/portal", "/clientes", "/favoritos", "/avaliacoes", "/site"})
+@WebServlet(urlPatterns = {"/clientes", "/favoritos", "/avaliacoes", "/site"})
 public class ServletTrocaPaginas extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário

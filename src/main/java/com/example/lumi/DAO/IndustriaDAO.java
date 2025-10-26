@@ -258,6 +258,31 @@ public class IndustriaDAO {
         return industrias;
     }
 
+    public List<Industria> buscarIndustriaPortal(){
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Industria> industrias = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA I LIMIT 3";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a query
+
+            while (rset.next()) {
+                Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
+                        rset.getString("objetivo"), rset.getString("email"), rset.getString("senha"), rset.getString("nome_plano"));
+                industrias.add(industria); // adicionando o objeto à lista
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return industrias;
+    }
+
+
     public List<Industria> buscarIndustriaPorPlano(String plano){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD

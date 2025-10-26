@@ -4,6 +4,7 @@ package com.example.lumi.DAO;
 
 import com.example.lumi.Conexao.Conexao;
 import com.example.lumi.Model.Alergia;
+import com.example.lumi.Model.Ingrediente;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -156,7 +157,29 @@ public class AlergiaDAO {
         return alergias;
     } // buscarNomeAlergia()
     //Limitar por 3 alergias para mostrar no portal
+    public List<Alergia> buscarAlergiaPortal() {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Alergia> lista = new ArrayList<>();
 
+        try {
+            String instrucaoSQL = "SELECT * FROM ALERGIA LIMIT 3";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a query
+
+            while (rset.next()) {
+                Alergia alergia = new Alergia(rset.getInt("id"), rset.getString("nome"), rset.getString("alergeno"), rset.getString("descricao"));
+                lista.add(alergia);
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn);
+        }
+        return lista;
+
+    }
 
 
 

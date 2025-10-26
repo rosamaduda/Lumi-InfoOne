@@ -132,16 +132,12 @@
                                             <label for="plano"
                                                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Plano:</label>
                                             <select name="plano" id="plano"
-                                                class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
-                                                <% String planoPadrao="Basique" ; // o plano que vem marcado for (int
-                                                    i=0; i < planos.size(); i++) { String
-                                                    nomePlano=planos.get(i).getNome(); String
-                                                    selected=nomePlano.equals(planoPadrao) ? "selected" : "" ; %>
-                                                    <option value="<%= nomePlano %>" <%=selected %>><%= nomePlano %>
-                                                    </option>
-                                                    <% } %>
+                                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2" required>
+                                                <option value selected disabled hidden>Selecione um plano</option>
+                                                <%for (int i = 0; i < planos.size(); i++) {%>
+                                                    <option value="<%=planos.get(i).getNome()%>"><%=planos.get(i).getNome()%></option>
+                                                <%}%>
                                             </select>
-
                                             <label for="telefones-container"
                                                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Telefone:</label>
                                             <div id="telefones-container" class="mb-2">

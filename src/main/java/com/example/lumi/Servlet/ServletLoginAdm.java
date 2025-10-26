@@ -24,7 +24,7 @@ public class ServletLoginAdm extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("adm", login);
         if (admDAO.validarSenhaAdm(login, senha)) {
-            request.getRequestDispatcher("WEB-INF/view/portal.jsp").forward(request, response);
+            response.sendRedirect("portal");
         } else {
             request.setAttribute("mensagemErro", "Não foi possível realizar o login");
             request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
