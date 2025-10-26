@@ -31,7 +31,7 @@
                             stroke-width="8" class="x-animacao" />
                         <line x1="80" y1="20" x2="20" y2="80" stroke="#ef4444"
                             stroke-width="8" class="x-animacao"
-                            style="animacao-delay: 0.3s;" />
+                            style="animation-delay: 0.3s;" />
                     </svg>
                 </div>
 
