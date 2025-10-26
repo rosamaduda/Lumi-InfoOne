@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Cria e retorna o elemento jsp para um novo campo de telefone.
-     * @param {string} initialValue - Valor inicial para o campo.
+     * Cria e retorna o elemento para um novo campo de telefone.
+     * @param {string} initialValue - Valor inicial do campo.
      */
     function criarCampoTelefone(initialValue = '') {
         const wrapper = document.createElement('div');
@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Input
         const campoInput = document.createElement('input');
         campoInput.type = 'tel';
-        // Vetor para que o java receba um array de telefones
         campoInput.name = `telefone-${telefoneCount}`;
         campoInput.className = 'flex-grow px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent';
         campoInput.placeholder = 'Ex: 11987654321';

@@ -166,7 +166,7 @@
                                                                 class="p-1 text-blue-600 hover:text-blue-800">
                                                                 <i data-feather="edit" class="w-4 h-4"></i>
                                                             </a>
-                                                            <form action="exclusao-cliente" method="post"
+                                                            <form class="remover" action="exclusao-cliente" method="post"
                                                                 style="display:inline;">
                                                                 <input type="hidden" name="idClientes"
                                                                     value="<%=clientes.get(i).getEmail()%>">

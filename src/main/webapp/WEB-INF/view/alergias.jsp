@@ -162,7 +162,7 @@
                                                                     class="p-1 text-blue-600 hover:text-blue-800">
                                                                     <i data-feather="edit" class="w-4 h-4"></i>
                                                                 </a>
-                                                                <form action="exclusao-alergia" method="post"
+                                                                <form class="remover" action="exclusao-alergia" method="post"
                                                                     style="display:inline;">
                                                                     <input type="hidden" name="idAlergia"
                                                                         value="<%=alergias.get(i).getId()%>">
@@ -250,33 +250,9 @@
                         <script>
                             AOS.init({ duration: 800, once: true });
                             feather.replace();
-
-                            // Menu Lateral
-                            const sidebar = document.getElementById('sidebar');
-                            const menuBotao = document.getElementById('menu-botao');
-                            const overlay = document.getElementById('sidebar-overlay');
-
-                            function toggleSidebar() {
-                                sidebar.classList.toggle('-translate-x-full');
-                                overlay.classList.toggle('opacity-0');
-                                overlay.classList.toggle('opacity-50');
-                                overlay.classList.toggle('pointer-events-none');
-                            }
-
-                            menuBotao.addEventListener('click', toggleSidebar);
-                            overlay.addEventListener('click', toggleSidebar);
-
-                            // Fecha o menu ao clicar em um link
-                            document.querySelectorAll('#sidebar a').forEach(item => {
-                                item.addEventListener('click', () => {
-                                    // Fecha apenas se a sidebar estiver visível (i.e., em mobile)
-                                    if (window.innerWidth < 640) { // O breakpoint sm é 640px
-                                        toggleSidebar();
-                                    }
-                                });
-                            });
-
                         </script>
+                        <script src="${pageContext.request.contextPath}/js/menu.js"></script>
+                        <script src="${pageContext.request.contextPath}/js/remover.js"></script>
                     </body>
 
                     </html>

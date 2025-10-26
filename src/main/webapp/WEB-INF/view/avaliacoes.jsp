@@ -154,7 +154,7 @@
                                             <i data-feather="edit"
                                                 class="w-4 h-4"></i></a>
                                         </button>
-                                        <button id="remover"
+                                        <button class="remover"
                                         class="p-1 text-red-600 hover:text-red-800">
                                         <i data-feather="trash-2"
                                             class="w-4 h-4"></i>

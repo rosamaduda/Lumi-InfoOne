@@ -194,7 +194,6 @@
       feather.replace();
     </script>
     <script src="${pageContext.request.contextPath}/js/menu.js"></script>
-    <script src="${pageContext.request.contextPath}/js/telefone.js"></script>
     </script>
   </body>
 

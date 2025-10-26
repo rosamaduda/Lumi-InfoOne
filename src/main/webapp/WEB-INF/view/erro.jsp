@@ -15,7 +15,6 @@
             src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     </head>
     <body class="bg-gray-100 min-h-screen flex items-center justify-center">
-        <!-- Logo no canto superior esquerdo -->
         <div
             class="absolute top-4 left-4 rounded-lg flex items-center justify-center">
             <img src="${pageContext.request.contextPath}/assets/Group%2028.png"
@@ -24,7 +23,6 @@
 
         <div
             class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 relative overflow-hidden">
-            <!-- Conteúdo principal -->
             <div class="text-center mt-12">
                 <!-- X -->
                 <div class="relative w-24 h-24 mx-auto mb-6">

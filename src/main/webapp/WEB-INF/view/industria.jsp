@@ -171,7 +171,7 @@
                                                                         style="display:inline;">
                                                                         <input type="hidden" name="idIndustria"
                                                                             value="<%=industrias.get(i).getId()%>">
-                                                                        <button type="submit"
+                                                                        <button type="submit" class="remover"
                                                                             class="p-1 text-red-600 hover:text-red-800"
                                                                             style="background:none; border:none;">
                                                                             <i data-feather="trash-2"
