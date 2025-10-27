@@ -1,4 +1,6 @@
 package com.example.lumi.Servlet.Cliente;
 
-public class ServletExcluirCliente {
+import jakarta.servlet.http.HttpServlet;
+
+public class ServletExcluirCliente extends HttpServlet {
 }

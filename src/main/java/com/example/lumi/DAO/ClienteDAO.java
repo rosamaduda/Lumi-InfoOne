@@ -31,13 +31,13 @@ public class ClienteDAO {
             pstmt.setObject(5, cliente.getDataNascimento());
             pstmt.setString(6, cliente.getSenha());
             pstmt.setDouble(7, cliente.getAltura());
-            pstmt.setDouble(8, cliente.getPeso());
-            pstmt.setInt(9, cliente.getDiabetes());
-            pstmt.setString(10, cliente.getTelefone());
+            pstmt.setString(8, cliente.getTelefone());
+            pstmt.setDouble(9, cliente.getPeso());
+            pstmt.setString(10, cliente.getDiabetes());
             pstmt.setBoolean(11, cliente.isPressaoAlta());
             pstmt.setString(12, cliente.getEnderecoUf());
-            pstmt.setString(13, cliente.getEnderecoCidade());
-            pstmt.setString(14, cliente.getEnderecoCep());
+            pstmt.setString(13, cliente.getEnderecoCep());
+            pstmt.setString(14, cliente.getEnderecoCidade());
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return 1; // conseguiu realizar a instrução
             } else {
@@ -357,7 +357,7 @@ public class ClienteDAO {
             pstmt.setString(5, cliente.getSenha());
             pstmt.setDouble(6, cliente.getAltura());
             pstmt.setDouble(7, cliente.getPeso());
-            pstmt.setInt(8, cliente.getDiabetes());
+            pstmt.setString(8, cliente.getDiabetes());
             pstmt.setString(9, cliente.getTelefone());
             pstmt.setBoolean(10, cliente.isPressaoAlta());
             pstmt.setString(11, cliente.getEnderecoUf());
@@ -429,7 +429,7 @@ public class ClienteDAO {
             while (rset.next()) {
                 Cliente usuario = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
-                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getInt("diabetes"), rset.getBoolean("pressao_alta"),
+                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getString("telefone"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"),
                         rset.getString("endereco_cep"));
                 lista.add(usuario);
@@ -457,7 +457,7 @@ public class ClienteDAO {
             while (rset.next()) {
                 Cliente usuario = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
-                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getInt("diabetes"), rset.getBoolean("pressao_alta"),
+                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getString("telefone"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"),
                         rset.getString("endereco_cep"));
                 lista.add(usuario);
@@ -508,7 +508,7 @@ public class ClienteDAO {
             while(rset.next()){
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
-                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getInt("diabetes"), rset.getBoolean("pressao_alta"),
+                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getString("telefone"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"),
                         rset.getString("endereco_cep"));
                 lista.add(cliente);
@@ -538,7 +538,7 @@ public class ClienteDAO {
             while(rset.next()){
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
-                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getInt("diabetes"), rset.getBoolean("pressao_alta"),
+                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getString("telefone"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"),
                         rset.getString("endereco_cep"));
                 lista.add(cliente);

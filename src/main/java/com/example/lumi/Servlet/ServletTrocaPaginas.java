@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/clientes", "/favoritos", "/avaliacoes", "/site"})
+@WebServlet(urlPatterns = {"/favoritos", "/avaliacoes", "/site"})
 public class ServletTrocaPaginas extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
@@ -56,14 +56,14 @@ public class ServletTrocaPaginas extends HttpServlet {
 
             // redirecionando do portal para a página de industria
             request.getRequestDispatcher("WEB-INF/view/industria.jsp").forward(request, response);
-        } else if (caminho.equals("/favoritos")) {
+        } else if (caminho.equals("/produtos")) {
             // instanciando o objeto da classe x para ter acesso ao método de buscar
 
 
             // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
 
             // redirecionando do portal para a página de favorito
-            request.getRequestDispatcher("WEB-INF/view/favoritos.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/produtos.jsp").forward(request, response);
         } else if (caminho.equals("/avaliacoes")) {
             // instanciando o objeto da classe x para ter acesso ao método de buscar
 

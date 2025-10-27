@@ -64,7 +64,7 @@
                 <div class="space-y-2 text-gray-400 mt-[-2%]">
                     <p>lumibrasil.contato@gmail.com</p>
                     <p>+55 (11) 95367-3814</p>
-                    <p>+55 (11) 9874-1188</p>
+                    <p>+55 (11) 98794-1188</p>
                     <p>São Paulo, SP</p>
                 </div>
                 <a href="site" class="site inline-block mt-5 text-center">Site</a>

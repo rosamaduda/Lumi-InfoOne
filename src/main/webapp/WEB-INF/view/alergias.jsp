@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <%@ page import="com.example.lumi.Model.Alergia" %>
         <%@ page import="java.util.List" %>
-            <% @SuppressWarnings("unchecked") List <Alergia> alergias = (List<Alergia>)
-                    request.getAttribute("alergias-lista");
-                    %>
+            <%
+                @SuppressWarnings("unchecked")
+                List <Alergia> alergias = (List<Alergia>) request.getAttribute("alergias-lista");
+            %>
 
 
                     <!DOCTYPE html>
@@ -67,9 +68,9 @@
                                             <li><a href="industrias"
                                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
                                                         data-feather="tool" class="mr-3"></i>Indústria</a></li>
-                                            <li><a href="favoritos"
+                                            <li><a href="produtos"
                                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
-                                                        data-feather="heart" class="mr-3"></i>Favoritos</a></li>
+                                                        data-feather="tag" class="mr-3"></i>Produtos</a></li>
                                             <li><a href="avaliacoes"
                                                     class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
                                                         data-feather="star" class="mr-3"></i>Avaliações</a></li>

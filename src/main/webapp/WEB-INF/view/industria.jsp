@@ -57,32 +57,37 @@
                                             <div class="p-4 flex-grow overflow-y-auto">
                                                 <ul class="space-y-2">
                                                     <li><a href="portal"
-                                                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                                                                data-feather="home" class="mr-3"></i>Portal
-                                                            ADM</a></li>
+                                                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
+                                                            data-feather="home" class="mr-3"></i>Portal
+                                                        ADM</a></li>
                                                     <li><a href="ingredientes"
-                                                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                                                                data-feather="package" class="mr-3"></i>Ingredientes</a>
-                                                    </li>
+                                                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
+                                                            data-feather="package"
+                                                            class="mr-3"></i>Ingredientes</a></li>
                                                     <li><a href="alergias"
-                                                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                                                                data-feather="alert-triangle"
-                                                                class="mr-3"></i>Alergias</a></li>
+                                                           class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
+                                                            data-feather="alert-triangle"
+                                                            class="mr-3"></i>Alergias</a></li>
                                                     <li><a href="clientes"
-                                                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                                                                data-feather="users" class="mr-3"></i>Cliente</a></li>
+                                                           class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
+                                                            data-feather="users"
+                                                            class="mr-3"></i>Cliente</a></li>
                                                     <li><a href="industrias"
-                                                            class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
-                                                                data-feather="tool" class="mr-3"></i>Indústria</a></li>
-                                                    <li><a href="favoritos"
-                                                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                                                                data-feather="heart" class="mr-3"></i>Favoritos</a></li>
+                                                           class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                                                            data-feather="tool"
+                                                            class="mr-3"></i>Indústria</a></li>
+                                                    <li><a href="produtos"
+                                                           class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
+                                                            data-feather="tag"
+                                                            class="mr-3"></i>Produtos</a></li>
                                                     <li><a href="avaliacoes"
-                                                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
-                                                                data-feather="star" class="mr-3"></i>Avaliações</a></li>
-                                                    <li><a href="${pageContext.request.contextPath}/index.html"
-                                                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-red-500"><i
-                                                                data-feather="log-out" class="mr-3"></i>Sair</a></li>
+                                                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
+                                                            data-feather="star"
+                                                            class="mr-3"></i>Avaliações</a></li>
+                                                    <li><a href="site"
+                                                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-red-500"><i
+                                                            data-feather="log-out"
+                                                            class="mr-3"></i>Sair</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -109,10 +114,9 @@
                                             </div>
                                         </div>
 
-                                        <div class="bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up"
+                                        <div class="bg-white rounded-lg shadow max-h-screen" data-aos="fade-up"
                                             data-aos-delay="200">
-
-                                            <table class="w-full hidden sm:table">
+                                            <table class="w-full hidden sm:table min-w-max">
                                                 <thead>
                                                     <tr class="bg-[#3C9D9B] text-white">
                                                         <th class="p-3 text-left">CNPJ</th>
@@ -171,8 +175,8 @@
                                                                         style="display:inline;">
                                                                         <input type="hidden" name="idIndustria"
                                                                             value="<%=industrias.get(i).getId()%>">
-                                                                        <button type="submit" class="remover"
-                                                                            class="p-1 text-red-600 hover:text-red-800"
+                                                                        <button type="submit"
+                                                                            class=" remover p-1 text-red-600 hover:text-red-800"
                                                                             style="background:none; border:none;">
                                                                             <i data-feather="trash-2"
                                                                                 class="w-4 h-4"></i>
@@ -227,7 +231,7 @@
                                                                             <input type="hidden" name="idIndustria"
                                                                                 value="<%=industrias.get(i).getId()%>">
                                                                             <button type="submit"
-                                                                                class="p-1 text-red-600 hover:text-red-800"
+                                                                                class="remover p-1 text-red-600 hover:text-red-800"
                                                                                 style="background:none; border:none;">
                                                                                 <i data-feather="trash-2"
                                                                                     class="w-4 h-4"></i>
@@ -239,6 +243,7 @@
                                                             <% } } %>
                                                 </tbody>
                                             </table>
+
 
                                             <div class="sm:hidden divide-y divide-gray-200">
                                                 <div class="p-4 bg-white text-center text-gray-500 italic">

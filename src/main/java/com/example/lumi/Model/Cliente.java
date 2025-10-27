@@ -12,7 +12,7 @@ public class Cliente {
     private String senha;
     private double altura;
     private double peso;
-    private int diabetes;
+    private String diabetes;
     private boolean pressaoAlta;
     private String telefone;
     private String enderecoUf;
@@ -20,7 +20,7 @@ public class Cliente {
     private String enderecoCep;
 
     // construtor
-    public Cliente(String email, String cpf, String nome, String nomeSobrenome, LocalDate dataNascimento, String senha, double altura, double peso, int diabetes, boolean pressaoAlta, String telefone, String enderecoUf, String enderecoCidade, String enderecoCep) {
+    public Cliente(String email, String cpf, String nome, String nomeSobrenome, LocalDate dataNascimento, String senha, double altura, double peso, String diabetes, boolean pressaoAlta, String telefone, String enderecoUf, String enderecoCidade, String enderecoCep) {
         this.email = email;
         this.cpf = cpf;
         this.nome = nome;
@@ -69,7 +69,7 @@ public class Cliente {
     public double getPeso() {
         return peso;
     }
-    public int getDiabetes() {
+    public String getDiabetes() {
         return diabetes;
     }
     public boolean isPressaoAlta() {

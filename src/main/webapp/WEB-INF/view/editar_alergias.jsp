@@ -48,30 +48,37 @@
                     <div class="p-4 flex-grow overflow-y-auto">
                         <ul class="space-y-2">
                             <li><a href="portal"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                                        data-feather="home" class="mr-3"></i>Portal
-                                    ADM</a></li>
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
+                                    data-feather="home" class="mr-3"></i>Portal
+                                ADM</a></li>
                             <li><a href="ingredientes"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                                        data-feather="package" class="mr-3"></i>Ingredientes</a></li>
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
+                                    data-feather="package"
+                                    class="mr-3"></i>Ingredientes</a></li>
                             <li><a href="alergias"
-                                    class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
-                                        data-feather="alert-triangle" class="mr-3"></i>Alergias</a></li>
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
+                                    data-feather="alert-triangle"
+                                    class="mr-3"></i>Alergias</a></li>
                             <li><a href="clientes"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                                        data-feather="users" class="mr-3"></i>Cliente</a></li>
+                                   class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
+                                    data-feather="users"
+                                    class="mr-3"></i>Cliente</a></li>
                             <li><a href="industrias"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                                        data-feather="tool" class="mr-3"></i>Indústria</a></li>
-                            <li><a href="favoritos"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
-                                        data-feather="heart" class="mr-3"></i>Favoritos</a></li>
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                                    data-feather="tool"
+                                    class="mr-3"></i>Indústria</a></li>
+                            <li><a href="produtos"
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
+                                    data-feather="tag"
+                                    class="mr-3"></i>Produtos</a></li>
                             <li><a href="avaliacoes"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                                        data-feather="star" class="mr-3"></i>Avaliações</a></li>
-                            <li><a href="${pageContext.request.contextPath}/index.html"
-                                    class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-red-500"><i
-                                        data-feather="log-out" class="mr-3"></i>Sair</a></li>
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
+                                    data-feather="star"
+                                    class="mr-3"></i>Avaliações</a></li>
+                            <li><a href="site"
+                                   class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-red-500"><i
+                                    data-feather="log-out"
+                                    class="mr-3"></i>Sair</a></li>
                         </ul>
                     </div>
                 </div>

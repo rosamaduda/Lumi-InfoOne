@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet (urlPatterns = {"/cadastro-cliente"})
+//@WebServlet (urlPatterns = {"/cadastro-cliente"})
 public class ServletCliente extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
