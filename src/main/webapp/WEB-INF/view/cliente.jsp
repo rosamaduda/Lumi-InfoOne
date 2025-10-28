@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %>
 <%
     @SuppressWarnings("unchecked")
-    List <Cliente> clientes = (List<Cliente>) request.getAttribute("lista-clientes");
+    List <Cliente> clientes = (List<Cliente>) request.getAttribute("clientes-lista");
 %>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -101,38 +101,37 @@
                 class="text-2xl sm:text-[2.25rem] font-bold text-gray-800 mb-6 sm:mb-8" data-aos="fade-down">Cliente</h1>
 
         <!-- Busca com filtros -->
-        <div class="mb-6 relative z-10" data-aos="fade-up">
-            <div>
-                <div class="flex items-center bg-white rounded-full shadow-lg px-5 py-3 w-full">
-                    <!-- Dropdown -->
-                    <div class="relative" id="dropdown">
-                        <button id="filtro-botao"
-                                class="flex items-center bg-[#3C9D9B] text-white text-sm font-semibold rounded-full px-3 py-1.5 focus:outline-none cursor-pointer transition-all">
-                            <span id="filtro-texto">UF</span>
-                            <i class="ml-2 text-white w-4 h-4" data-feather="chevron-down"></i>
-                        </button>
-
-                        <!-- Menu -->
-                        <div id="menu"
-                             class="absolute hidden mt-2 bg-white rounded-lg shadow-lg w-max z-50">
-                            <button class="block text-gray-700 text-sm px-4 py-2 rounded-lg w-full text-left hover:bg-gray-100"
-                                    data-value="uf">UF</button>
-                            <button class="block text-gray-700 text-sm px-4 py-2 rounded-lg w-full text-left hover:bg-gray-100"
-                                    data-value="cidade">Cidade</button>
-                        </div>
-                    </div>
-
-
-                    <!-- Campo de pesquisa -->
-                    <input type="text" id="pesquisa" placeholder="Pesquisar"
-                           class="flex-1 ml-4 bg-transparent text-gray-700 placeholder-gray-400 text-lg focus:outline-none">
-
-                    <button type="submit" class="ml-2">
-                        <i class="text-gray-500 hover:text-[#3C9D9B] cursor-pointer text-2xl" data-feather="search"></i>
+        <form action="filtro-cliente" method="get" class="mb-6 relative z-10" data-aos="fade-up">
+            <div class="flex items-center bg-white rounded-full shadow-lg px-5 py-3 w-full">
+                <!-- Dropdown -->
+                <div class="relative" id="dropdown">
+                    <button id="filtro-botao"
+                            type="button"
+                            class="flex items-center bg-[#3C9D9B] text-white text-sm font-semibold rounded-full px-3 py-1.5 focus:outline-none cursor-pointer transition-all">
+                        <span id="filtro-texto"><%=request.getAttribute("filtro-selecionado") == null ? "Todos" : request.getAttribute("filtro-selecionado")%></span>
+                        <i class="ml-2 text-white w-4 h-4" data-feather="chevron-down"></i>
                     </button>
+
+                    <!-- Menu -->
+                    <div id="menu" class="absolute hidden mt-2 bg-white rounded-lg shadow-lg w-max z-50">
+                        <button type="button" data-value="Todos" class="block text-gray-700 text-sm px-4 py-2 w-full text-left hover:bg-gray-100">Todos</button>
+                        <button type="button" data-value="UF" class="block text-gray-700 text-sm px-4 py-2 w-full text-left hover:bg-gray-100">UF</button>
+                        <button type="button" data-value="Cidade" class="block text-gray-700 text-sm px-4 py-2 w-full text-left hover:bg-gray-100">Cidade</button>
+                    </div>
                 </div>
+
+                <!-- Campo oculto -->
+                <input type="hidden" id="filtro" name="filtro" value="todos">
+
+                <!-- Campo de pesquisa -->
+                <input type="text" id="pesquisa" name="pesquisa" placeholder="Pesquisar" value="<%=request.getAttribute("pesquisa-anterior") == null ? "" : request.getAttribute("pesquisa-anterior")%>"
+                       class="flex-1 ml-4 bg-transparent text-gray-700 placeholder-gray-400 text-lg focus:outline-none">
+
+                <button type="submit" class="ml-2">
+                    <i class="text-gray-500 hover:text-[#3C9D9B] cursor-pointer text-2xl" data-feather="search"></i>
+                </button>
             </div>
-        </div>
+        </form>
 
         <div class="bg-white rounded-lg shadow overflow-hidden"
              data-aos="fade-up" data-aos-delay="200">

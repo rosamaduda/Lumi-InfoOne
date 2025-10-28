@@ -9,17 +9,40 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-@WebServlet(value = "/clientes")
+@WebServlet(urlPatterns = {"/clientes", "/filtro-cliente"})
 public class ServletVisualizarCliente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ClienteDAO clienteDAO = new ClienteDAO();
+        String caminho = request.getServletPath();
+        List<Cliente> clienteLista = new ArrayList<>();
 
-        // buscando as informações do cliente
-        List<Cliente> clienteLista = clienteDAO.buscarCliente();
-        request.setAttribute("lista-clientes", clienteLista);
+        if (caminho.equals("/clientes")) {
+            // buscando as informações do cliente
+            clienteLista = clienteDAO.buscarCliente();
+        } else {
+            String filtro = request.getParameter("filtro");
+            String pesquisa = request.getParameter("pesquisa");
+
+            // setando as informações para aparecerem
+            request.setAttribute("filtro-selecionado", filtro);
+            request.setAttribute("pesquisa-anterior", pesquisa);
+
+            if (filtro.equals("Todos")) {
+                clienteLista = clienteDAO.buscarCliente();
+            } else if (filtro.equals("UF")) {
+                clienteLista = clienteDAO.buscarClientePorUF(pesquisa);
+            } else {
+                clienteLista = clienteDAO.buscarClientePorCidade(pesquisa);
+            }
+        }
+
+        // setando a lista como atributo
+        request.setAttribute("clientes-lista", clienteLista);
 
         // redirecionando para a página de cliente
         request.getRequestDispatcher("WEB-INF/view/cliente.jsp").forward(request, response);

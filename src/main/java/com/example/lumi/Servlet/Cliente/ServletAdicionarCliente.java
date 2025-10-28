@@ -64,8 +64,10 @@ public class ServletAdicionarCliente extends HttpServlet {
             Cliente cliente = new Cliente(email, cpf, nome, sobrenome, dataNascimento, senha, altura, peso, diabetes, pressaoAlta, colesterolAlto, telefone, estado, cidade, cep);
 
             // adicionando o cliente
-            clienteDAO.inserirCliente(cliente);
-
+            if (clienteDAO.inserirCliente(cliente) == -1 || clienteDAO.inserirCliente(cliente) == 0) {
+                request.setAttribute("mensagemErro", "Não foi possível inserir o cliente");
+                request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+            }
 
             // redirecionando para a página do cliente
             response.sendRedirect("clientes");

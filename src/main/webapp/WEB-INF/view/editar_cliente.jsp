@@ -145,7 +145,7 @@
                     <label for="diabetes"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Diabetes:</label>
                     <select class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent" name="diabetes" id="diabetes">
-                        <option disabled hidden selected value=""><%=request.getAttribute("diabetes")%></option>
+                        <option selected value="<%=request.getAttribute("diabetes")%>"><%=request.getAttribute("diabetes")%></option>
                         <option value="Tipo 1">Tipo 1</option>
                         <option value="Tipo 2">Tipo 2</option>
                         <option value="Gestacional">Gestacional</option>
@@ -188,7 +188,7 @@
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Estado:</label>
                     <select name="estado" id="estado"
                             class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
-                        <option disabled hidden selected value=""><%=request.getAttribute("uf")%></option>
+                        <option selected value="<%=request.getAttribute("uf")%>"><%=request.getAttribute("uf")%></option>
                         <option value="AC">AC</option>
                         <option value="AL">AL</option>
                         <option value="AP">AP</option>
