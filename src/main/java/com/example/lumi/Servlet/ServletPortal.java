@@ -27,6 +27,9 @@ public class ServletPortal extends HttpServlet {
         request.setAttribute("alergias-lista", listaAlergias);
 
         // buscando 3 clientes
+        ClienteDAO clienteDAO = new ClienteDAO();
+        List<Cliente> listaClientes = clienteDAO.buscarCliente();
+        request.setAttribute("clientes-lista", listaClientes);
 
         // buscando 3 indústrias
         IndustriaDAO industriaDAO = new IndustriaDAO();

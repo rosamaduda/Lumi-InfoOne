@@ -14,13 +14,14 @@ public class Cliente {
     private double peso;
     private String diabetes;
     private boolean pressaoAlta;
+    private boolean colesterolAlto;
     private String telefone;
     private String enderecoUf;
     private String enderecoCidade;
     private String enderecoCep;
 
     // construtor
-    public Cliente(String email, String cpf, String nome, String nomeSobrenome, LocalDate dataNascimento, String senha, double altura, double peso, String diabetes, boolean pressaoAlta, String telefone, String enderecoUf, String enderecoCidade, String enderecoCep) {
+    public Cliente(String email, String cpf, String nome, String nomeSobrenome, LocalDate dataNascimento, String senha, double altura, double peso, String diabetes, boolean pressaoAlta, boolean colesterolAlto, String telefone, String enderecoUf, String enderecoCidade, String enderecoCep) {
         this.email = email;
         this.cpf = cpf;
         this.nome = nome;
@@ -31,6 +32,7 @@ public class Cliente {
         this.peso = peso;
         this.diabetes = diabetes;
         this.pressaoAlta = pressaoAlta;
+        this.colesterolAlto = colesterolAlto;
         this.telefone = telefone;
         this.enderecoUf = enderecoUf;
         this.enderecoCidade = enderecoCidade;
@@ -75,6 +77,7 @@ public class Cliente {
     public boolean isPressaoAlta() {
         return pressaoAlta;
     }
+    public boolean isColesterolAlto() {return colesterolAlto;}
     public String getTelefone() {
         return telefone;
     }

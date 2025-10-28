@@ -38,6 +38,7 @@ public class ServletAdicionarCliente extends HttpServlet {
             double peso = Double.parseDouble(request.getParameter("peso"));
             double altura = Double.parseDouble(request.getParameter("altura"));
             boolean pressaoAlta = Boolean.parseBoolean(request.getParameter("hta"));
+            boolean colesterolAlto = Boolean.parseBoolean(request.getParameter("colesterol"));
             String diabetes = request.getParameter("diabetes");
             LocalDate dataNascimento = LocalDate.parse(request.getParameter("data"));
             String email = request.getParameter("e-mail");
@@ -60,10 +61,10 @@ public class ServletAdicionarCliente extends HttpServlet {
             }
 
             // instanciando o objeto
-            Cliente cliente = new Cliente(email, cpf, nome, sobrenome, dataNascimento, senha, altura, peso, diabetes, pressaoAlta, telefone, estado, cidade, cep);
+            Cliente cliente = new Cliente(email, cpf, nome, sobrenome, dataNascimento, senha, altura, peso, diabetes, pressaoAlta, colesterolAlto, telefone, estado, cidade, cep);
 
             // adicionando o cliente
-            System.out.println(clienteDAO.inserirCliente(cliente));
+            clienteDAO.inserirCliente(cliente);
 
 
             // redirecionando para a página do cliente

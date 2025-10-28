@@ -54,6 +54,28 @@ public class FavoritosDAO {
         }
     } // deletarFavorito()
 
+    public int deletarFavorito(String emailCliente) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // conectando o BD
+
+        try {
+            String instrucaoSQL = "DELETE FROM FAVORITO WHERE EMAIL_CLIENTE = ? ";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            // setando os parâmetros da instrução
+            pstmt.setString(1, emailCliente);
+            if (pstmt.executeUpdate() > 0) {
+                return 1; // conseguiu realizar a instrução
+            } else {
+                return 0; // não encontrou o registro
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+    } // deletarFavorito()
+
     // SELECT
     public List<Favorito> buscarFavoritos() {
         Conexao conexao = new Conexao();

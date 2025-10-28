@@ -142,10 +142,11 @@
                 <tr class="bg-[#3C9D9B] text-white">
                     <th class="p-3 text-left">CPF</th>
                     <th class="p-3 text-left">Nome Completo</th>
-                    <th class="p-3 text-left">Data_Nascimento</th>
+                    <th class="p-3 text-left">Data de Nascimento</th>
                     <th class="p-3 text-left">Peso</th>
                     <th class="p-3 text-left">Altura</th>
                     <th class=" p-3 text-left">HTA</th>
+                    <th class=" p-3 text-left">Colesterol Alto</th>
                     <th class="p-3 text-left">Diabetes</th>
                     <th class="p-3 text-left">Telefone</th>
                     <th class="p-3 text-left">Email</th>
@@ -165,6 +166,7 @@
                     <td class="p-3 border-b"><%=clientes.get(i).getPeso()%>kg</td>
                     <td class="p-3 border-b"><%=clientes.get(i).getAltura()%>m</td>
                     <td class="p-3 border-b"><%=clientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
+                    <td class="p-3 border-b"><%=clientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getDiabetes()%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getTelefone()%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getEmail()%></td>
@@ -172,16 +174,20 @@
                     <td class="p-3 border-b"><%=clientes.get(i).getEnderecoUf() + ", " + clientes.get(i).getEnderecoCidade() + ", " + clientes.get(i).getEnderecoCep()%></td>
                     <td class="p-3 border-b text-right">
                         <div class="flex space-x-2 justify-end">
-                            <button
-                                    class="p-1 text-blue-600 hover:text-blue-800">
-                                <i data-feather="edit"
-                                   class="w-4 h-4"></i>
-                            </button>
-                            <button
-                                    class="p-1 text-red-600 hover:text-red-800">
-                                <i data-feather="trash-2"
-                                   class="w-4 h-4"></i>
-                            </button>
+                            <a href="alteracao-cliente?emailCliente=<%=clientes.get(i).getEmail()%>"
+                               class="p-1 text-blue-600 hover:text-blue-800">
+                                <i data-feather="edit" class="w-4 h-4"></i>
+                            </a>
+                            <form action="exclusao-cliente" method="post"
+                                  style="display:inline;">
+                                <input type="hidden" name="emailCliente"
+                                       value="<%=clientes.get(i).getEmail()%>">
+                                <button type="submit"
+                                        class="p-1 text-red-600 hover:text-red-800"
+                                        style="background:none; border:none;">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
@@ -193,6 +199,7 @@
                     <td class="p-3 border-b"><%=clientes.get(i).getPeso()%>kg</td>
                     <td class="p-3 border-b"><%=clientes.get(i).getAltura()%>m</td>
                     <td class="p-3 border-b"><%=clientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
+                    <td class="p-3 border-b"><%=clientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getDiabetes()%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getTelefone()%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getEmail()%></td>
@@ -200,14 +207,14 @@
                     <td class="p-3 border-b"><%=clientes.get(i).getEnderecoUf() + ", " + clientes.get(i).getEnderecoCidade() + ", " + clientes.get(i).getEnderecoCep()%></td>
                     <td class="p-3 border-b text-right">
                         <div class="flex space-x-2 justify-end">
-                            <a href="alteracao-cliente?emailCliente=1"
+                            <a href="alteracao-cliente?emailCliente=<%=clientes.get(i).getEmail()%>"
                                class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit" class="w-4 h-4"></i>
                             </a>
                             <form action="exclusao-cliente" method="post"
                                   style="display:inline;">
-                                <input type="hidden" name="idAlergia"
-                                       value="">
+                                <input type="hidden" name="emailCliente"
+                                       value="<%=clientes.get(i).getEmail()%>">
                                 <button type="submit"
                                         class="p-1 text-red-600 hover:text-red-800"
                                         style="background:none; border:none;">

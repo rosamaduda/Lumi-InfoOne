@@ -81,7 +81,28 @@ public class AvaliacaoDAO {
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-    } // removerAlergia()
+    } // removerAvaliacao()
+
+    public int removerAvaliacao(String emailCliente) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexao com o BD
+
+        try {
+            String instrucaoSQL = "DELETE FROM AVALIACAO WHERE EMAIL_CLIENTE = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, emailCliente); // setando parametro na instrução
+            if (pstmt.executeUpdate() > 0) { // // executando o comando e verificando o retorno
+                return 1; // conseguiu deletar
+            } else {
+                return 0; // não encontrou o registro
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+    } // removerAvaliacao()
 
     // SELECT
     public List<Avaliacao> buscarAvaliacao() {

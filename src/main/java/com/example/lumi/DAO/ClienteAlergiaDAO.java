@@ -59,11 +59,11 @@ public class ClienteAlergiaDAO {
 
 
 
-    public int DeletarClienteAlergia(String email){
+    public int deletarClienteAlergia(String email){
         Conexao conexao=new Conexao();
         Connection conn=conexao.conectar();
         try{
-            String instrucaoSQL="DELETE FROM CLIENTE_ALERGIA WHERE EMAIL_CLIENTE= ";
+            String instrucaoSQL="DELETE FROM CLIENTE_ALERGIA WHERE EMAIL_CLIENTE= ?";
             PreparedStatement pstm=conn.prepareStatement(instrucaoSQL);
             pstm.setString(1,email);
             if (pstm.executeUpdate()>0){

@@ -21,7 +21,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco de dados
 
         try {
-            String instrucaoSQL = "INSERT INTO CLIENTE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String instrucaoSQL = "INSERT INTO CLIENTE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, cliente.getEmail());
@@ -38,6 +38,7 @@ public class ClienteDAO {
             pstmt.setString(12, cliente.getEnderecoUf());
             pstmt.setString(13, cliente.getEnderecoCep());
             pstmt.setString(14, cliente.getEnderecoCidade());
+            pstmt.setBoolean(15, cliente.isColesterolAlto());
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return 1; // conseguiu realizar a instrução
             } else {
@@ -347,7 +348,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE CLIENTE SET CPF = ?, NOME = ?, NOME_SOBRENOME = ?, DATA_NASCIMENTO = ?, SENHA = ?, ALTURA = ?, PESO = ?, DIABETES = ?, PRESSAO_ALTA = ?, TELEFONE = ?, ENDERECO_UF = ?, ENDERECO_CIDADE = ?, ENDERECO_CEP = ? WHERE EMAIL = ?";
+            String instrucaoSQL = "UPDATE CLIENTE SET CPF = ?, NOME = ?, NOME_SOBRENOME = ?, DATA_NASCIMENTO = ?, SENHA = ?, ALTURA = ?, PESO = ?, DIABETES = ?, PRESSAO_ALTA = ?, COLESTEROL_ALTO = ?, TELEFONE = ?, ENDERECO_UF = ?, ENDERECO_CIDADE = ?, ENDERECO_CEP = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando parâmetros da instrução
             pstmt.setString(1, cliente.getCpf());
@@ -358,12 +359,13 @@ public class ClienteDAO {
             pstmt.setDouble(6, cliente.getAltura());
             pstmt.setDouble(7, cliente.getPeso());
             pstmt.setString(8, cliente.getDiabetes());
-            pstmt.setString(9, cliente.getTelefone());
-            pstmt.setBoolean(10, cliente.isPressaoAlta());
-            pstmt.setString(11, cliente.getEnderecoUf());
-            pstmt.setString(12, cliente.getEnderecoCidade());
-            pstmt.setString(13, cliente.getEnderecoCep());
-            pstmt.setString(14, cliente.getEmail());
+            pstmt.setBoolean(9, cliente.isPressaoAlta());
+            pstmt.setBoolean(10, cliente.isColesterolAlto());
+            pstmt.setString(11, cliente.getTelefone());
+            pstmt.setString(12, cliente.getEnderecoUf());
+            pstmt.setString(13, cliente.getEnderecoCidade());
+            pstmt.setString(14, cliente.getEnderecoCep());
+            pstmt.setString(15, cliente.getEmail());
             if (pstmt.executeUpdate() > 0) {
                 return 1; // alteração ocorreu com sucesso
             } else {
@@ -383,25 +385,9 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // conectando o BD
 
         try {
-            // deletando os campos que recebem a pk do cliente
-            String instrucaoSQL = "DELETE FROM FAVORITO WHERE EMAIL_CLIENTE = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1, email);
-            pstmt.executeUpdate();
-
-            instrucaoSQL = "DELETE FROM USUARIO_ALERGIA WHERE EMAIL_CLIENTE = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1, email);
-            pstmt.executeUpdate();
-
-            instrucaoSQL = "DELETE FROM AVALIACAO WHERE EMAIL_CLIENTE = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1, email);
-            pstmt.executeUpdate();
-
             // deletando o cliente
-            instrucaoSQL = "DELETE FROM CLIENTE WHERE EMAIL = ?";
-            pstmt = conn.prepareStatement(instrucaoSQL);
+            String instrucaoSQL = "DELETE FROM CLIENTE WHERE EMAIL = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, email);// setando parâmetro da instrução
 
             // retorna o resultado da expresaão
@@ -427,19 +413,46 @@ public class ClienteDAO {
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
             while (rset.next()) {
-                Cliente usuario = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
+                Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
-                        rset.getString("telefone"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"),
-                        rset.getString("endereco_cep"));
-                lista.add(usuario);
+                        rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
+                        rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
+                lista.add(cliente);
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando do BD
-            return lista;
         }
+        return lista;
+    } // buscarCliente()
+
+    public Cliente buscarCliente(String email) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        Cliente cliente = null;
+
+        try {
+            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE EMAIL LIKE ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, email); // setando os parâmetros na instrução
+            rset = pstmt.executeQuery(); // executando a query
+
+            while (rset.next()) {
+                cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
+                        rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
+                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
+                        rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
+                        rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando do BD
+        }
+        return cliente;
     } // buscarCliente()
 
 
@@ -455,19 +468,19 @@ public class ClienteDAO {
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
             while (rset.next()) {
-                Cliente usuario = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
+                Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
-                        rset.getString("telefone"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"),
-                        rset.getString("endereco_cep"));
-                lista.add(usuario);
+                        rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
+                        rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
+                lista.add(cliente);
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando do BD
-            return lista;
         }
+        return lista;
     } // buscarCliente()
 
 
@@ -509,8 +522,8 @@ public class ClienteDAO {
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
-                        rset.getString("telefone"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"),
-                        rset.getString("endereco_cep"));
+                        rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
+                        rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
                 lista.add(cliente);
             }
 
@@ -539,8 +552,8 @@ public class ClienteDAO {
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
-                        rset.getString("telefone"), rset.getString("endereco_uf"), rset.getString("endereco_cidade"),
-                        rset.getString("endereco_cep"));
+                        rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
+                        rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
                 lista.add(cliente);
             }
 

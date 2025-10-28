@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/alteracao-alergia", "/alterar-alergia"})
-public class ServletAlterarAlergia extends HttpServlet {
+public class ServletEditarAlergia extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AlergiaDAO alergiaDAO = new AlergiaDAO();
         String caminho = request.getServletPath(); // recebendo o caminho do usuário

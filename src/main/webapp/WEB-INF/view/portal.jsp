@@ -4,9 +4,14 @@
 <%
     @SuppressWarnings("unchecked")
     List<Ingrediente> listaIngredientes = (List<Ingrediente>) request.getAttribute("ingredientes-lista");
+    @SuppressWarnings("unchecked")
     List<Alergia> listaAlergias = (List<Alergia>) request.getAttribute("alergias-lista");
+    @SuppressWarnings("unchecked")
     List<Industria> listaIndustrias = (List<Industria>) request.getAttribute("industrias-lista");
+    @SuppressWarnings("unchecked")
     List<List> listaTelefones = (List<List>) request.getAttribute("telefones-lista");
+    @SuppressWarnings("unchecked")
+    List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("clientes-lista");
 %>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -221,56 +226,55 @@
                     <thead>
                     <tr class="bg-[#3C9D9B] text-white">
                         <th class="p-3 text-left">CPF</th>
-                        <th class="p-3 text-left">Nome</th>
-                        <th class="p-3 text-left">Sobrenome</th>
-                        <th class="p-3 text-left">Data de
-                            nascimento</th>
+                        <th class="p-3 text-left">Nome Completo</th>
+                        <th class="p-3 text-left">Data de Nascimento</th>
                         <th class="p-3 text-left">Peso</th>
                         <th class="p-3 text-left">Altura</th>
+                        <th class=" p-3 text-left">HTA</th>
+                        <th class=" p-3 text-left">Colesterol Alto</th>
+                        <th class="p-3 text-left">Diabetes</th>
                         <th class="p-3 text-left">Telefone</th>
-                        <th class="p-3 text-left">E-Mail</th>
+                        <th class="p-3 text-left">Email</th>
                         <th class="p-3 text-left">Senha</th>
-                        <th class="p-3 text-left">Endereço (UF,
-                            Cidade e CEP)</th>
+                        <th class="p-3 text-left">Endereço (UF,Cidade,CEP)</th>
+
                     </tr>
                     </thead>
                     <tbody>
+                    <%for (int i = 0; i < listaClientes.size(); i++) {
+                        if (i % 2 != 0) {
+                    %>
                     <tr class="bg-white">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getCpf()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getNome() + " " + listaClientes.get(i).getNomeSobrenome()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getDataNascimento()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getPeso()%>kg</td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getAltura()%>m</td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getDiabetes()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getTelefone()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getEmail()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getSenha()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getEnderecoUf() + ", " + listaClientes.get(i).getEnderecoCidade() + ", " + listaClientes.get(i).getEnderecoCep()%></td>
                     </tr>
+                    <% } else {%>
                     <tr class="bg-[#C5E2E1]">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getCpf()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getNome() + " " + listaClientes.get(i).getNomeSobrenome()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getDataNascimento()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getPeso()%>kg</td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getAltura()%>m</td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getDiabetes()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getTelefone()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getEmail()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getSenha()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getEnderecoUf() + ", " + listaClientes.get(i).getEnderecoCidade() + ", " + listaClientes.get(i).getEnderecoCep()%></td>
                     </tr>
-                    <tr class="bg-white">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                    </tr>
+                    <%}
+                    }%>
                     </tbody>
                 </table>
                 <div class="sm:hidden divide-y divide-gray-200">
