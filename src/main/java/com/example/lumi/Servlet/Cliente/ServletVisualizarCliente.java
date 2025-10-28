@@ -18,20 +18,22 @@ public class ServletVisualizarCliente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ClienteDAO clienteDAO = new ClienteDAO();
-        String caminho = request.getServletPath();
+        String caminho = request.getServletPath(); // recebendo o caminho do usuário
         List<Cliente> clienteLista = new ArrayList<>();
 
         if (caminho.equals("/clientes")) {
             // buscando as informações do cliente
             clienteLista = clienteDAO.buscarCliente();
         } else {
+            // recebendo o valor do filtro e da barra de pesquisa
             String filtro = request.getParameter("filtro");
             String pesquisa = request.getParameter("pesquisa");
 
-            // setando as informações para aparecerem
+            // setando as informações para aparecerem a partir da informação da página
             request.setAttribute("filtro-selecionado", filtro);
             request.setAttribute("pesquisa-anterior", pesquisa);
 
+            // buscando as informações aqui depenendendo do filtro
             if (filtro.equals("Todos")) {
                 clienteLista = clienteDAO.buscarCliente();
             } else if (filtro.equals("UF")) {
