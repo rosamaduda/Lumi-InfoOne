@@ -230,9 +230,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%for (int i = 0; i < listaClientes.size(); i++) {
-                        if (i % 2 == 0) {
-                    %>
                     <tr class="bg-white">
                         <td class="p-3 border-b"></td>
                         <td class="p-3 border-b"></td>
