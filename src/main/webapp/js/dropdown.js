@@ -1,6 +1,7 @@
 const filtroBtn = document.getElementById("filtro-botao");
 const menu = document.getElementById("menu");
 const filtroTexto = document.getElementById("filtro-texto");
+const filtroInput = document.getElementById("filtro");
 
 // Abre/fecha menu
 filtroBtn.addEventListener("click", () => {
@@ -11,6 +12,7 @@ filtroBtn.addEventListener("click", () => {
 menu.querySelectorAll("button").forEach((btn) => {
     btn.addEventListener("click", () => {
         filtroTexto.textContent = btn.textContent;
+        filtroInput.value = btn.getAttribute("data-value"); // <-- aqui define o valor que vai pro servlet
         menu.classList.add("hidden");
     });
 });
