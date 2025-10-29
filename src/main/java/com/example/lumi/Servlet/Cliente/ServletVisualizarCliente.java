@@ -34,7 +34,7 @@ public class ServletVisualizarCliente extends HttpServlet {
             request.setAttribute("filtro-selecionado", filtro);
             request.setAttribute("pesquisa-anterior", pesquisa);
 
-            // buscando as informações aqui depenendendo do filtro
+            // buscando as informações aqui dependendo do filtro
             if (filtro.equals("Todos")) {
                 clienteLista = clienteDAO.buscarCliente();
             } else if (filtro.equals("UF")) {

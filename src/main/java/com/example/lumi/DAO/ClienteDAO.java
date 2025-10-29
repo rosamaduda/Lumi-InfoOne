@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -436,6 +438,8 @@ public class ClienteDAO {
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
+        } catch (DateTimeParseException dtpe) {
+            dtpe.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando do BD
         }
@@ -584,7 +588,7 @@ public class ClienteDAO {
         List<Cliente> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE NOME || ' ' || SOBRENOME LIKE ?";
+            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE NOME || ' ' || NOME_SOBRENOME LIKE ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, "%"+nomeSobrenome+"%"); // setando o parâmetro na instrução
             rset = pstmt.executeQuery(); // executando a instrução

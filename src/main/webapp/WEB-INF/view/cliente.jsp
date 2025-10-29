@@ -162,7 +162,7 @@
                 <tr class="bg-white">
                     <td class="p-3 border-b"><%=clientes.get(i).getCpf()%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getNome() + " " + clientes.get(i).getNomeSobrenome()%></td>
-                    <td class="p-3 border-b"><%=clientes.get(i).getDataNascimento()%></td>
+                    <td class="p-3 border-b"><%=clientes.get(i).getDataNascimento().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getPeso()%>kg</td>
                     <td class="p-3 border-b"><%=clientes.get(i).getAltura()%>m</td>
                     <td class="p-3 border-b"><%=clientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
@@ -195,7 +195,7 @@
                 <tr class="bg-[#C5E2E1]">
                     <td class="p-3 border-b"><%=clientes.get(i).getCpf()%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getNome() + " " + clientes.get(i).getNomeSobrenome()%></td>
-                    <td class="p-3 border-b"><%=clientes.get(i).getDataNascimento()%></td>
+                    <td class="p-3 border-b"><%=clientes.get(i).getDataNascimento().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getPeso()%>kg</td>
                     <td class="p-3 border-b"><%=clientes.get(i).getAltura()%>m</td>
                     <td class="p-3 border-b"><%=clientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
