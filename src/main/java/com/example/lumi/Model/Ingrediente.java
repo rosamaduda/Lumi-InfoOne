@@ -1,0 +1,39 @@
+package com.example.lumi.Model;
+
+public class Ingrediente {
+    // atributos
+    private int id;
+    private String nome;
+    private String descricao;
+
+    // construtor
+    public Ingrediente(int id, String nome, String descricao) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
+    public Ingrediente(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
+    public Ingrediente() {
+    }
+
+    public Ingrediente(int id) {
+        this.id = id;
+    }
+
+    // getters
+    public int getId() {
+        return id;
+    }
+    public String getNome() {
+        return nome;
+    }
+    public String getDescricao() {
+        return descricao;
+    }
+
+} // Ingrediente

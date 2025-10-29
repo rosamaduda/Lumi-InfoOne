@@ -1,6 +1,8 @@
  // Ação de remover
- document.getElementById("remover").addEventListener("click", function() {
-    if (confirm("Tem certeza que deseja remover?")) {
-    const itemId = this.getAttribute('id'); 
-    window.location.href = "removerItem?id=" + itemId;
-}});
+ document.querySelectorAll("remover").forEach(function(form){
+ form.addEventListener("submit",function(e){
+    if (!confirm("Tem certeza que deseja remover?")) {
+    e.preventDefault(); // Cancela a ação de remover se o usuário clicar em 'Cancelar'
+}
+});
+});

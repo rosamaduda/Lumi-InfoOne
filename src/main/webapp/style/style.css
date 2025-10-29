@@ -1,6 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+
+html, body {
+  overflow-x: hidden !important;
+}
+
 body {
 font-family: 'Poppins', sans-serif;
 color: #333333;
@@ -20,9 +24,9 @@ header {
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  padding: 10px 25px; 
+  padding: 6px 20px; 
   z-index: 1000;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 header.scrolled {
@@ -99,7 +103,7 @@ header ul li a:hover {
 }
 
 /* Esconde o menu pra celular */
-.menu-button {
+.menu-botao {
   display: none; 
   background: none;
   border: none;
@@ -107,33 +111,51 @@ header ul li a:hover {
   padding: 10px;
 }
 
+.funcionalidades-header{
+  color: #333333;
+  opacity: 50%;
+}
+.funcionalidades-header.active{
+  color: #7F3FBF;
+  opacity: 100%;
+}
 
-.feature-icon {
-  color: rgba(51, 51, 51, 0.3);
+.funcionalidades-texto{
+  color: #333333;
+  opacity: 50%;
+}
+.funcionalidades-texto.active{
+  color: #333333;
+  opacity: 100%;
+}
+
+.funcionalidades-icon {
+  color: #333333;
+  opacity: 30%;
   transition: all 0.3s ease;
 }
 
-/* Deixa os icones da cor roxa */
-.feature-icon.active {
-  color: #671EB0;
+.funcionalidades-icon.active {
+  color: #7F3FBF;
+  opacity: 100%;
 }
 
 
-.team-card {
+.cards {
   min-width: 280px;
   scroll-snap-align: start;
 }
 
 /* Formas */
-.organic-shape {
+.caixa {
   clip-path: polygon(0 0, 100% 0, 100% 85%, 75% 100%, 0 100%);
 }
 
-.organic-shape-white {
+.caixa-branca {
   clip-path: polygon(0 15%, 25% 0, 100% 0, 100% 100%, 0 100%);
 }
 
-.signup {
+.area-restrita {
   margin-top: 5%;
   font-family: 'Poppins';
   background-color: #ffffff;
@@ -149,7 +171,7 @@ header ul li a:hover {
   transition: background 0.5s ease;
 }
 
-.signup:hover {
+.area-restrita:hover {
   background-color: #000000;
   color: white;
   border: 1px solid white;
@@ -185,7 +207,7 @@ html{
   }
 
 
-  .menu-button {
+  .menu-botao {
       display: block; 
   }
   header nav {
@@ -268,7 +290,7 @@ transition: all 0.3s ease;
 }
 
 #funcionalidades .grid {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 2fr 2fr; 
     gap: 30px;
 }
 #funcionalidades h3 {
@@ -280,10 +302,7 @@ transition: all 0.3s ease;
     grid-column: span 1 / span 1;
 }
 
-
-#funcionalidades .feature-item > div:last-child {
-    width: 80%;
-}}
+}
 
 
        

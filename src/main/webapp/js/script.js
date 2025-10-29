@@ -8,21 +8,29 @@ AOS.init({
 feather.replace();
 
 // Funcionalidade dos ícones
-document.querySelectorAll('.feature-item').forEach(item => {
+document.querySelectorAll('.funcionalidades-item').forEach(item => {
     item.addEventListener('click', function () {
-        // Remove classe active de todos os ícones
-        document.querySelectorAll('.feature-icon').forEach(icon => {
+        // Remove classe active do icone, texto e header das funcionalidades
+        document.querySelectorAll('.funcionalidades-icon').forEach(icon => {
+            icon.classList.remove('active');
+        });
+        document.querySelectorAll('.funcionalidades-header').forEach(icon => {
+            icon.classList.remove('active');
+        });
+        document.querySelectorAll('.funcionalidades-texto').forEach(icon => {
             icon.classList.remove('active');
         });
 
         // Adiciona classe active ao ícone clicado
-        this.querySelector('.feature-icon').classList.add('active');
+        this.querySelector('.funcionalidades-icon').classList.add('active');
+        this.querySelector('.funcionalidades-header').classList.add('active');
+        this.querySelector('.funcionalidades-texto').classList.add('active');
 
         // Muda a imagem do mock-up conforme a funcionalidade
-        const feature = this.getAttribute('data-feature');
+        const funcionalidades = this.getAttribute('data-func');
         const phoneScreen = document.getElementById('phone-screen');
 
-        switch (feature) {
+        switch (funcionalidades) {
             case 'scanner':
                 phoneScreen.innerHTML = `
                     <img id="scanner-img" 
@@ -33,6 +41,7 @@ document.querySelectorAll('.feature-item').forEach(item => {
                 `;
 
                 const scannerImg = document.getElementById('scanner-img');
+                // Informa o tempo para que mude as  telas do scanner
                 setTimeout(() => {
                     scannerImg.style.opacity = 0;
                     setTimeout(() => {
@@ -40,14 +49,77 @@ document.querySelectorAll('.feature-item').forEach(item => {
                         scannerImg.style.opacity = 1;
 
                     }, 1000);
-                }, 2000);// troca depois de 2 segundos
+                }, 2000);
                 break;
-            case 'memory':
+            case 'memoria':
                 phoneScreen.innerHTML = '<img src="assets/mockup-memoria.png" alt="Tela do app/Memória" style="transform: scale(2);" class=" mt-[15%] object-cover">';
                 break;
             case 'vagalumi':
                 phoneScreen.innerHTML = '<img src="assets/mockup-ia.png" alt="Tela do app/Vagalumi" style="transform: scale(2);" class=" mt-[15%] object-cover">';
                 break;
+            case 'industria':
+                phoneScreen.innerHTML = `
+                        <img id="industria-img" 
+                            src="assets/mockup-pi.png" 
+                            alt="Página Inicial - Indústria" 
+                            style="transform: scale(2); transition: opacity 1s ease-in-out;" 
+                            class="mt-[15%] object-cover">
+                    `;
+
+                const industriaImg = document.getElementById('industria-img');
+
+                // Informa o tempo para que mude as  telas da indústria
+                setTimeout(() => {
+                    industriaImg.style.opacity = 0;
+
+                    setTimeout(() => {
+                        industriaImg.src = "assets/mockup-relatorios.png";
+                        industriaImg.style.opacity = 1;
+
+                        
+                        setTimeout(() => {
+                            industriaImg.style.opacity = 0;
+
+                            setTimeout(() => {
+                                industriaImg.src = "assets/mockup-cronograma.png";
+                                industriaImg.style.opacity = 1;
+
+                               
+                                setTimeout(() => {
+                                    industriaImg.style.opacity = 0;
+
+                                    setTimeout(() => {
+                                        industriaImg.src = "assets/mockup-cp.png";
+                                        industriaImg.style.opacity = 1;
+
+                                        
+                                        setTimeout(() => {
+                                            industriaImg.style.opacity = 0;
+
+                                            setTimeout(() => {
+                                                industriaImg.src = "assets/mockup-cp2.png";
+                                                industriaImg.style.opacity = 1;
+
+                                                ;
+
+                                            }, 1000);
+
+                                        }, 3000);
+
+                                    }, 1000);
+
+                                }, 3000);
+
+                            }, 1000);
+
+                        }, 3000);
+
+                    }, 1000);
+
+                }, 3000);
+                break;
+
+
         }
     });
 });
@@ -62,15 +134,15 @@ window.addEventListener("scroll", function () {
     }
 });
 
-const menuButton = document.getElementById('menu-button');
+const menuBotao = document.getElementById('menu-botao');
 const navbar = document.getElementById('navbar');
 
-menuButton.addEventListener('click', function () {
-    // Alterna a classe 'active' que ativa o estilo de dropdown no CSS
+menuBotao.addEventListener('click', function () {
+    // Alterna a classe 'active' que ativa o estilo de dropdown
     navbar.classList.toggle('active');
 });
 
-// Opcional: Adiciona/Remove a classe 'scrolled' no header ao rolar
+// Adiciona/Remove a classe 'scrolled' no header ao rolar
 window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {
@@ -79,4 +151,3 @@ window.addEventListener('scroll', function () {
         header.classList.remove('scrolled');
     }
 });
-

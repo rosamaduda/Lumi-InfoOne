@@ -1,8 +1,8 @@
 const sidebar = document.getElementById('sidebar');
         const menuBotao = document.getElementById('menu-botao');
-        const overlay = document.getElementById('sidebar-overlay');
+        const overlay = document.getElementById('sidebar-overlay'); 
 
-        function toggleSidebar() {
+        function toggleSidebar() { // Aciona a sidebar
             sidebar.classList.toggle('-translate-x-full');
             overlay.classList.toggle('opacity-0');
             overlay.classList.toggle('opacity-50');
