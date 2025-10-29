@@ -143,9 +143,7 @@
                                                     value="<%=request.getAttribute("senhaIndustria")%>"
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px]
                                                 focus:ring-2
-                                                focus:ring-[#7F3FBF] focus:border-transparent" placeholder="Digite o
-                                                e-mail
-                                                da indústria...">
+                                                focus:ring-[#7F3FBF] focus:border-transparent">
 
                                                 <label for="plano"
                                                     class="block text-gray-700 text-sm font-medium mb-2 mt-2">Plano:</label>

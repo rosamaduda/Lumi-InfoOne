@@ -108,6 +108,31 @@ public class TelefoneIndustriaDAO {
         }
     } // alterarTelefone()
 
+    public int alterarTelefone(String telefone, String telefoneVelho){
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE TEL_INDUSTRIA SET TELEFONE = ? WHERE TELEFONE = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
+            // setando os parâmetros da instrução
+            pstmt.setString(1, telefone);
+            pstmt.setString(2, telefoneVelho);
+
+            if (pstmt.executeUpdate() > 0) { // executando a instrução e verificando o retorno
+                return 1; // conseguiu realizar a instrução
+            } else {
+                return 0; // não encontrou o registro
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+    } // alterarTelefone()
+
 
     public List<TelefoneIndustria> buscarTelefone() {
         Conexao conexao = new Conexao();

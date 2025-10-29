@@ -176,14 +176,13 @@
                                                             </td>
                                                             <td class="p-3 border-b">
                                                                 <div class="relative w-full">
-                                                                    <select
+                                                                    <select id="telefone-industria"
                                                                         class="appearance-none w-full bg-transparent  border-gray-300 rounded-md text-sm font-semibold text-[#333333] cursor-pointer py-2">
-                                                                        <% for (int j=0; j < telefones.get(i).size();
-                                                                            j++) { %>
+                                                                        <% for (int j=0; j < telefones.get(i).size(); j++) { %>
                                                                             <option>
                                                                                 <%= telefones.get(i).get(j) %>
                                                                             </option>
-                                                                            <% } %>
+                                                                        <% } %>
                                                                     </select>
                                                                     <i data-feather="chevron-down"
                                                                         class="ml-[-4%] pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i></i>
