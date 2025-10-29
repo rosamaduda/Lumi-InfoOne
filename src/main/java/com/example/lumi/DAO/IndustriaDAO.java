@@ -243,11 +243,11 @@ public class IndustriaDAO {
             String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE NOME LIKE ? ";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+nome+"%");
-            rset = pstmt.executeQuery(instrucaoSQL); // executando a query
+            rset = pstmt.executeQuery(); // executando a query
 
             while (rset.next()) {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
-                        rset.getString("objetivo"), rset.getString("senha"));
+                        rset.getString("objetivo"), rset.getString("email"), rset.getString("senha"), rset.getString("nome_plano"));
                 industrias.add(industria); // adicionando o objeto à lista
             }
         } catch (SQLException sqle) {
@@ -290,10 +290,10 @@ public class IndustriaDAO {
         List<Industria> industrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE PLANO_NOME LIKE ? ";
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE NOME_PLANO LIKE ? ";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+plano+"%");
-            rset = pstmt.executeQuery(instrucaoSQL); // executando a query
+            rset = pstmt.executeQuery(); // executando a query
 
             while (rset.next()) {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),

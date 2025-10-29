@@ -176,7 +176,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%for (int i=0; i < listaAlergias.size(); i++){ if (i % 2==0) { %>
+                    <%for (int i=0; i < listaAlergias.size(); i++){ if (i % 2 == 0) { %>
                     <tr class="bg-white">
                         <td class="p-3 border-b">
                             <%=listaAlergias.get(i).getNome()%>
@@ -242,7 +242,7 @@
                     </thead>
                     <tbody>
                     <%for (int i = 0; i < listaClientes.size(); i++) {
-                        if (i % 2 != 0) {
+                        if (i % 2 == 0) {
                     %>
                     <tr class="bg-white">
                         <td class="p-3 border-b"><%=listaClientes.get(i).getCpf()%></td>
