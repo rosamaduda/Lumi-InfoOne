@@ -317,7 +317,9 @@ public class IndustriaDAO {
             String instrucaoSQL = "SELECT ID FROM INDUSTRIA ORDER BY 1 DESC LIMIT 1";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
-            id = rset.getInt("id");
+            while (rset.next()) {
+                id = rset.getInt("id");
+            }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
