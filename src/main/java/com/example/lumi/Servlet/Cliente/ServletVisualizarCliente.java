@@ -21,6 +21,7 @@ public class ServletVisualizarCliente extends HttpServlet {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
         List<Cliente> clienteLista = new ArrayList<>();
 
+        // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
         if (caminho.equals("/clientes")) {
             // buscando as informações do cliente
             clienteLista = clienteDAO.buscarCliente();

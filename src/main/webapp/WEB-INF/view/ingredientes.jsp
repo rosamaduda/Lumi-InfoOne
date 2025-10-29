@@ -121,7 +121,7 @@
                                         </div>
 
                                         <!-- Campo oculto -->
-                                        <input type="hidden" id="filtro" name="filtro" value="todos">
+                                        <input type="hidden" id="filtro" name="filtro" value="<%= request.getAttribute("filtro-selecionado") == null ? "Todos" : request.getAttribute("filtro-selecionado") %>">
 
                                         <!-- Campo de pesquisa -->
                                         <input type="text" id="pesquisa" name="pesquisa" placeholder="Pesquisar" value="<%=request.getAttribute("pesquisa-anterior") == null ? "" : request.getAttribute("pesquisa-anterior")%>"

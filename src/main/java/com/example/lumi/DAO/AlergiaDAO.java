@@ -101,7 +101,7 @@ public class AlergiaDAO {
             rset = stmt.executeQuery(instrucaoSQL); // realizando a query
 
             while (rset.next()) {
-                Alergia alergia = new Alergia(rset.getInt("id"), rset.getString("alergeno"), rset.getString("nome"), rset.getString("descricao"));
+                Alergia alergia = new Alergia(rset.getInt("id"), rset.getString("nome"), rset.getString("alergeno"), rset.getString("descricao"));
                 lista.add(alergia);
             }
         } catch (SQLException sqle) {
@@ -111,6 +111,7 @@ public class AlergiaDAO {
         }
         return lista;
     } // buscarAlergia()
+
     public Alergia buscarAlergia(Alergia alergia) { // busca por ID
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
@@ -184,19 +185,20 @@ public class AlergiaDAO {
 
 
     public List<Alergia> buscarAlergiaPorNome(String nome){
-        Conexao conexao=new Conexao();
-        Connection conn= conexao.conectar();
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
         List<Alergia> lista =new ArrayList<>();
 
         try {
-            String instrucaoSQL="SELECT * FROM ALERGIA WHERE NOME LIKE ?";
-            PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1,"%"+nome+"%");
-            rset= pstmt.executeQuery();
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE NOME LIKE ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1,"%"+nome+"%"); // setando parmetros da instrução
+            rset = pstmt.executeQuery(); // executando a instrução
+
             while(rset.next()){
-                Alergia alergia=new Alergia(rset.getInt("id"),rset.getString("nome"), rset.getString("alergeno"),rset.getString("descricao"));
-                lista.add(alergia);
+                Alergia alergia = new Alergia(rset.getInt("id"),rset.getString("nome"), rset.getString("alergeno"),rset.getString("descricao"));
+                lista.add(alergia); // adicionando o objeto à lista que setá retornada
             }
         }catch (SQLException sqle){
             sqle.printStackTrace();
@@ -209,24 +211,25 @@ public class AlergiaDAO {
 
 
     public List<Alergia> buscarAlergiaPorAlergeno(String alergeno){
-        Conexao conexao=new Conexao();
-        Connection conn= conexao.conectar();
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
-        List<Alergia> lista =new ArrayList<>();
+        List<Alergia> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL="SELECT * FROM ALERGIA WHERE ALERGENO LIKE ?";
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ALERGENO LIKE ?";
             PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1,"%"+alergeno+"%");
-            rset= pstmt.executeQuery();
-            while(rset.next()){
-                Alergia alergia=new Alergia(rset.getInt("id"),rset.getString("nome"), rset.getString("alergeno"),rset.getString("descricao"));
-                lista.add(alergia);
+            pstmt.setString(1,"%"+alergeno+"%"); // setando os parâmetros na instrução
+            rset= pstmt.executeQuery(); // executando a instrução
+
+            while(rset.next()) {
+                Alergia alergia = new Alergia(rset.getInt("id"),rset.getString("nome"), rset.getString("alergeno"),rset.getString("descricao"));
+                lista.add(alergia); // adicionando o objeto à lista que será retornada
             }
         }catch (SQLException sqle){
             sqle.printStackTrace();
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // desconectando do banco
         }
         return lista;
     }
