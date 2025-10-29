@@ -117,6 +117,7 @@
                         <button type="button" data-value="Todos" class="block text-gray-700 text-sm px-4 py-2 w-full text-left hover:bg-gray-100">Todos</button>
                         <button type="button" data-value="UF" class="block text-gray-700 text-sm px-4 py-2 w-full text-left hover:bg-gray-100">UF</button>
                         <button type="button" data-value="Cidade" class="block text-gray-700 text-sm px-4 py-2 w-full text-left hover:bg-gray-100">Cidade</button>
+                        <button type="button" data-value="Nome" class="block text-gray-700 text-sm px-4 py-2 w-full text-left hover:bg-gray-100">Nome Completo</button>
                     </div>
                 </div>
 

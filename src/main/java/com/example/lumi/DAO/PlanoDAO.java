@@ -14,7 +14,7 @@ import java.util.List;
 public class PlanoDAO {
     public List<Plano> buscarNomePlano() {
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
         List<Plano> planos = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class PlanoDAO {
 
             while (rset.next()) {
                 Plano plano = new Plano(rset.getString("nome"));
-                planos.add(plano);
+                planos.add(plano); // adicionando à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
@@ -33,57 +33,5 @@ public class PlanoDAO {
             conexao.desconectar(conn); // desconectando do BD
         }
         return planos;
-    }
-
-    public static class ProdutoDAO {
-        public List<Produto> buscarNomeProduto() {
-            Conexao conexao = new Conexao();
-            Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-            ResultSet rset;
-            List<Produto> produtos = new ArrayList<>();
-
-            try {
-                String instrucaoSQL = "SELECT NOME FROM PRODUTO";
-                Statement stmt = conn.createStatement();
-                rset = stmt.executeQuery(instrucaoSQL); // realizando a query
-
-                while (rset.next()) {
-                    Produto produto = new Produto(rset.getString("nome"));
-                    produtos.add(produto);
-                }
-            } catch (SQLException sqle) {
-                sqle.printStackTrace();
-            } finally {
-                conexao.desconectar(conn); // desconectando o BD
-            }
-            return produtos;
-        }
-
-
-
-
-        public List<Produto> buscarCodigoProduto(){
-            Conexao conexao = new Conexao();
-            Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-            ResultSet rset;
-            List<Produto> produtos = new ArrayList<>();
-
-            try {
-                String instrucaoSQL = "SELECT CODIGO_BARRAS FROM PRODUTO";
-                Statement stmt = conn.createStatement();
-                rset = stmt.executeQuery(instrucaoSQL); // realizando a query
-
-                while (rset.next()) {
-                    Produto produto = new Produto(rset.getInt("codigo_barras"));
-                    produtos.add(produto);
-                }
-            } catch (SQLException sqle) {
-                sqle.printStackTrace();
-            } finally {
-                conexao.desconectar(conn); // desconectando o BD
-            }
-            return produtos;
-
-        }
-    } // ProdutoDAO
+    } // buscarNomePlano()
 } // PlanoDAO

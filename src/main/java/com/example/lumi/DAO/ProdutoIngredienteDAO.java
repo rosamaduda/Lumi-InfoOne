@@ -12,7 +12,7 @@ public class ProdutoIngredienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "DELETE FROM PRODUTO_INGREDIENTE WHERE ID_ALERGIA = ?";
+            String instrucaoSQL = "DELETE FROM PRODUTO_INGREDIENTE WHERE ID_INGREDIENTE = ?";
             PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
             pstm.setInt(1, idIngrediente); // setando os parâmetros da instrução
 
@@ -27,5 +27,5 @@ public class ProdutoIngredienteDAO {
         } finally {
             conexao.desconectar(conn); // fechando a conexão
         }
-    } // removerProdutoIngrediente(int idAlergia)
+    } // removerProdutoIngrediente(int idIngrediente)
 } // ProdutoIngredienteDAO

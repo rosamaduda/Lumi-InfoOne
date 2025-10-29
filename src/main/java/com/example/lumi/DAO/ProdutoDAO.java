@@ -22,14 +22,13 @@ public class ProdutoDAO {
             } else {
                 return 0; // não realizou a instrução
             }
-
         } catch (SQLException sqle){
             sqle.printStackTrace();
             return -1; // caiu no catch
         } finally {
             conexao.desconectar(conn); // desconectando o banco
         }
-    }
+    } // removerProdutoIndustria(int idIndustria)
 
     public List<Produto> buscarNomeProduto() {
         Conexao conexao = new Conexao();
@@ -44,7 +43,7 @@ public class ProdutoDAO {
 
             while (rset.next()) {
                 Produto produto = new Produto(rset.getString("nome"));
-                produtos.add(produto);
+                produtos.add(produto); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
@@ -52,5 +51,5 @@ public class ProdutoDAO {
             conexao.desconectar(conn); // desconectando o BD
         }
         return produtos;
-    }
+    } // buscarNomeProduto()
 } // ProdutoDAO

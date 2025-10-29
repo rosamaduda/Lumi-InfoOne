@@ -39,8 +39,10 @@ public class ServletVisualizarCliente extends HttpServlet {
                 clienteLista = clienteDAO.buscarCliente();
             } else if (filtro.equals("UF")) {
                 clienteLista = clienteDAO.buscarClientePorUF(pesquisa);
-            } else {
+            } else if (filtro.equals("Cidade")){
                 clienteLista = clienteDAO.buscarClientePorCidade(pesquisa);
+            } else {
+                clienteLista = clienteDAO.buscarClientePorNomeCompleto(pesquisa);
             }
         }
 

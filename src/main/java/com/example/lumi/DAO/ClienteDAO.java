@@ -14,15 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAO {
-
-    // INSERT
+    // INSERIR
     public int inserirCliente(Cliente cliente) {
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o banco de dados
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
             String instrucaoSQL = "INSERT INTO CLIENTE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
             // setando parâmetros da instrução
             pstmt.setString(1, cliente.getEmail());
             pstmt.setString(2, cliente.getCpf());
@@ -39,6 +39,7 @@ public class ClienteDAO {
             pstmt.setString(13, cliente.getEnderecoCep());
             pstmt.setString(14, cliente.getEnderecoCidade());
             pstmt.setBoolean(15, cliente.isColesterolAlto());
+
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return 1; // conseguiu realizar a instrução
             } else {
@@ -52,10 +53,10 @@ public class ClienteDAO {
         }
     } // inserirCliente()
 
-    // UPDATE
+    // ALTERAR
     public int alterarCpfCliente(String email, String cpf) {
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
             String instrucaoSQL = "UPDATE CLIENTE SET CPF = ? WHERE EMAIL = ?";
@@ -72,9 +73,9 @@ public class ClienteDAO {
             sqle.printStackTrace();
             return -1; // algum outro problema aconteceu
         } finally {
-            conexao.desconectar(conn); // desconecta do BD
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
-    } // alterarCpfCliente()
+    } // alterarCpfCliente(String email, String cpf)
 
     public int alterarNomeCliente(String email, String nome) {
         Conexao conexao = new Conexao();
@@ -97,18 +98,20 @@ public class ClienteDAO {
         } finally {
             conexao.desconectar(conn); // desconecta do BD
         }
-    } // alterarNomeCliente()
+    } // alterarNomeCliente(String email, String nome)
 
     public int alterarSobrenomeCliente(String email, String sobrenome) {
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
             String instrucaoSQL = "UPDATE CLIENTE SET NOME_SOBRENOME = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
             // setando parâmetros da instrução
             pstmt.setString(1, sobrenome);
             pstmt.setString(2, email);
+
             if (pstmt.executeUpdate() > 0) {
                 return 1; // alteração ocorreu com sucesso
             } else {
@@ -120,18 +123,20 @@ public class ClienteDAO {
         } finally {
             conexao.desconectar(conn); // desconecta do BD
         }
-    } // alterarSobrenomeCliente()
+    } // alterarSobrenomeCliente(String email, String sobrenome)
 
     public int alterarDataNascimentoCliente(String email, Date dataNascimento) {
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
             String instrucaoSQL = "UPDATE CLIENTE SET DATA_NASCIMENTO = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
             // setando parâmetros da instrução
             pstmt.setDate(1, dataNascimento);
             pstmt.setString(2, email);
+
             if (pstmt.executeUpdate() > 0) {
                 return 1; // alteração ocorreu com sucesso
             } else {
@@ -143,7 +148,7 @@ public class ClienteDAO {
         } finally {
             conexao.desconectar(conn); // desconecta do BD
         }
-    } // alterarDataNascimentoCliente()
+    } // alterarDataNascimentoCliente(String email, Date dataNascimento)
 
     public int alterarSenhaCliente(String email, String senha) {
         Conexao conexao = new Conexao();
@@ -152,8 +157,11 @@ public class ClienteDAO {
         try {
             String instrucaoSQL = "UPDATE CLIENTE SET SENHA = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
+            // setando os parâmetros da instrução
             pstmt.setString(1, senha);
             pstmt.setString(2, email);
+
             if (pstmt.executeUpdate() > 0) {
                 return 1; // alteração ocorreu com sucesso
             } else {
@@ -165,7 +173,7 @@ public class ClienteDAO {
         } finally {
             conexao.desconectar(conn); // desconecta do BD
         }
-    } // alterarSenhaCliente()
+    } // alterarSenhaCliente(String email, String senha)
 
     public int alterarAlturaCliente(String email, double altura) {
         Conexao conexao = new Conexao();
@@ -350,6 +358,7 @@ public class ClienteDAO {
         try {
             String instrucaoSQL = "UPDATE CLIENTE SET CPF = ?, NOME = ?, NOME_SOBRENOME = ?, DATA_NASCIMENTO = ?, SENHA = ?, ALTURA = ?, PESO = ?, DIABETES = ?, PRESSAO_ALTA = ?, COLESTEROL_ALTO = ?, TELEFONE = ?, ENDERECO_UF = ?, ENDERECO_CIDADE = ?, ENDERECO_CEP = ? WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
             // setando parâmetros da instrução
             pstmt.setString(1, cliente.getCpf());
             pstmt.setString(2, cliente.getNome());
@@ -366,7 +375,8 @@ public class ClienteDAO {
             pstmt.setString(13, cliente.getEnderecoCidade());
             pstmt.setString(14, cliente.getEnderecoCep());
             pstmt.setString(15, cliente.getEmail());
-            if (pstmt.executeUpdate() > 0) {
+
+            if (pstmt.executeUpdate() > 0) { // executando a instrução e verificando o retorno
                 return 1; // alteração ocorreu com sucesso
             } else {
                 return 0; // o registro não existe
@@ -380,21 +390,25 @@ public class ClienteDAO {
     } // alterarCliente()
 
     // DELETE
-    public boolean deletarCliente(String email) {
+    public int deletarCliente(String email) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // conectando o BD
 
         try {
-            // deletando o cliente
             String instrucaoSQL = "DELETE FROM CLIENTE WHERE EMAIL = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1, email);// setando parâmetro da instrução
 
-            // retorna o resultado da expresaão
-            return pstmt.executeUpdate() > 0;
+            // setando parâmetro da instrução
+            pstmt.setString(1, email);
+
+            if (pstmt.executeUpdate() > 0) { // executando a instrução e verificando o retorno
+                return 1; // alteração ocorreu com sucesso
+            } else {
+                return 0; // o registro não existe
+            }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
-            return false;
+            return -1; // caiu no catch
         } finally {
             conexao.desconectar(conn); // desconectando do BD
         }
@@ -418,7 +432,7 @@ public class ClienteDAO {
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
-                lista.add(cliente);
+                lista.add(cliente); // adicionando à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
@@ -453,7 +467,7 @@ public class ClienteDAO {
             conexao.desconectar(conn); // desconectando do BD
         }
         return cliente;
-    } // buscarCliente()
+    } // buscarCliente(String email)
 
 
     public List<Cliente> buscarClientePortal() {
@@ -473,7 +487,7 @@ public class ClienteDAO {
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
-                lista.add(cliente);
+                lista.add(cliente); // adicionando à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
@@ -482,7 +496,6 @@ public class ClienteDAO {
         }
         return lista;
     } // buscarCliente()
-
 
     public List<Cliente> buscarEmailCliente() {
         Conexao conexao = new Conexao();
@@ -497,7 +510,7 @@ public class ClienteDAO {
 
             while (rset.next()) {
                 Cliente cliente = new Cliente(rset.getString("email"));
-                clientes.add(cliente);
+                clientes.add(cliente); // adicionando à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
@@ -505,69 +518,89 @@ public class ClienteDAO {
             conexao.desconectar(conn); // desconectando do BD
         }
         return clientes;
-    }
+    } // buscarEmailCliente()
 
-    public List<Cliente> buscarClientePorUF(String uf){
-        Conexao conexao=new Conexao();
-        Connection conn= conexao.conectar();
+    public List<Cliente> buscarClientePorUF(String uf) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar();
         ResultSet rset;
-        List<Cliente> lista=new ArrayList<>();
+        List<Cliente> lista = new ArrayList<>();
 
         try{
-            String instrucaoSQL= "SELECT * FROM CLIENTE WHERE ENDERECO_UF LIKE ?";
-            PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1,uf);
-            rset= pstmt.executeQuery();
+            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE ENDERECO_UF LIKE ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, uf); // setando o parâmetro da instrução
+            rset = pstmt.executeQuery(); // executando ao instrução
+
             while(rset.next()){
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
-                lista.add(cliente);
+                lista.add(cliente); // adicionando à lista que será retornada
             }
-
         }catch (SQLException sqle){
             sqle.printStackTrace();
         }
         finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // desconectando com o banco
         }
         return lista;
-    }
+    } // buscarClientePorUF(String uf)
 
 
-    public List<Cliente> buscarClientePorCidade(String cidade){
-        Conexao conexao=new Conexao();
-        Connection conn= conexao.conectar();
+    public List<Cliente> buscarClientePorCidade(String cidade) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
-        List<Cliente> lista=new ArrayList<>();
+        List<Cliente> lista = new ArrayList<>();
 
-        try{
-            String instrucaoSQL= "SELECT * FROM CLIENTE WHERE ENDERECO_CIDADE LIKE ?";
-            PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1,cidade);
-            rset= pstmt.executeQuery();
+        try {
+            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE ENDERECO_CIDADE LIKE ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, "%"+cidade+"%"); // setando o parâmetro na instrução
+            rset = pstmt.executeQuery(); // executando a instrução
             while(rset.next()){
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
                         rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
-                lista.add(cliente);
+                lista.add(cliente); // adicionando o objeto à lista que será retornada
             }
-
-        }catch (SQLException sqle){
+        } catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally {
-            conexao.desconectar(conn);
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return lista;
-    }
+    } // buscarClientePorCidade(String cidade)
 
+    public List<Cliente> buscarClientePorNomeCompleto(String nomeSobrenome) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
+        ResultSet rset;
+        List<Cliente> lista = new ArrayList<>();
 
-
-
-
-} // UsuarioDAO
+        try {
+            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE NOME || ' ' || SOBRENOME LIKE ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, "%"+nomeSobrenome+"%"); // setando o parâmetro na instrução
+            rset = pstmt.executeQuery(); // executando a instrução
+            while(rset.next()){
+                Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
+                        rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
+                        rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
+                        rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
+                        rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
+                lista.add(cliente); // adicionando o objeto à lista que será retornada
+            }
+        } catch (SQLException sqle){
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
+        }
+        return lista;
+    } // buscarClientePorNomeCompleto(String nomeSobrenome)
+} // ClienteDAO
