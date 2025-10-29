@@ -185,7 +185,7 @@ public class IngredienteDAO {
         List<Ingrediente> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INGREDIENTE LIMIT 3";
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE LIMIT 3 ORDER BY ID DESC";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
