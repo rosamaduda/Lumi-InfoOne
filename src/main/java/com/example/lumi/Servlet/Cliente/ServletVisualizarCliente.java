@@ -21,6 +21,7 @@ public class ServletVisualizarCliente extends HttpServlet {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
         List<Cliente> clienteLista = new ArrayList<>();
 
+        // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
         if (caminho.equals("/clientes")) {
             // buscando as informações do cliente
             clienteLista = clienteDAO.buscarCliente();
@@ -33,13 +34,15 @@ public class ServletVisualizarCliente extends HttpServlet {
             request.setAttribute("filtro-selecionado", filtro);
             request.setAttribute("pesquisa-anterior", pesquisa);
 
-            // buscando as informações aqui depenendendo do filtro
+            // buscando as informações aqui dependendo do filtro
             if (filtro.equals("Todos")) {
                 clienteLista = clienteDAO.buscarCliente();
             } else if (filtro.equals("UF")) {
                 clienteLista = clienteDAO.buscarClientePorUF(pesquisa);
-            } else {
+            } else if (filtro.equals("Cidade")){
                 clienteLista = clienteDAO.buscarClientePorCidade(pesquisa);
+            } else {
+                clienteLista = clienteDAO.buscarClientePorNomeCompleto(pesquisa);
             }
         }
 

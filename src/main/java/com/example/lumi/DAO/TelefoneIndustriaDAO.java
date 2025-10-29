@@ -9,16 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TelefoneIndustriaDAO {
+    // INSERIR
     public int adicionarTelIndustria(TelefoneIndustria tel){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
             String instrucaoSQL = "INSERT INTO TEL_INDUSTRIA (TELEFONE, ID_INDUSTRIA) VALUES(?, ?) ";
-            PreparedStatement pstmt=conn.prepareStatement(instrucaoSQL);
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
             // setando os parâemetros da instrução
             pstmt.setString(1, tel.getTelefone());
             pstmt.setInt(2, tel.getIdIndustria());
+
             if (pstmt.executeUpdate() > 0){ // executando a instrução e verificando o retorno
                 return 1; // realizou a instrução
             } else {
@@ -39,8 +42,10 @@ public class TelefoneIndustriaDAO {
         try {
             String intrucaoSQL = "DELETE FROM TEL_INDUSTRIA WHERE ID = ?";
             PreparedStatement pstmt = conn.prepareStatement(intrucaoSQL);
+
             // setando os parâmetros na instruçãp
-            pstmt.setInt(1,id);
+            pstmt.setInt(1, id);
+
             if (pstmt.executeUpdate() > 0){ // executando a instrução e verificando o retorno
                 return 1; // executou a instrução
             } else {
@@ -61,8 +66,10 @@ public class TelefoneIndustriaDAO {
         try {
             String intrucaoSQL = "DELETE FROM TEL_INDUSTRIA WHERE ID_INDUSTRIA = ?";
             PreparedStatement pstmt = conn.prepareStatement(intrucaoSQL);
+
             // setando os parâmetros na instruçãp
             pstmt.setInt(1,idIndustria);
+
             if (pstmt.executeUpdate() > 0){ // executando a instrução e verificando o retorno
                 return 1; // executou a instrução
             } else {
@@ -81,12 +88,39 @@ public class TelefoneIndustriaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL="UPDATE TEL_INDUSTRIA SET TELEFONE = ? WHERE ID = ?";
-            PreparedStatement pstmt=conn.prepareStatement(instrucaoSQL);
+            String instrucaoSQL = "UPDATE TEL_INDUSTRIA SET TELEFONE = ? WHERE ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
             // setando os parâmetros da instrução
             pstmt.setString(1,tel.getTelefone());
             pstmt.setInt(2,tel.getId());
+
             if (pstmt.executeUpdate() > 0){ // executando a instrução e verificando o retorno
+                return 1; // conseguiu realizar a instrução
+            } else {
+                return 0; // não encontrou o registro
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+    } // alterarTelefone()
+
+    public int alterarTelefone(String telefone, String telefoneVelho){
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+
+        try {
+            String instrucaoSQL = "UPDATE TEL_INDUSTRIA SET TELEFONE = ? WHERE TELEFONE = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
+            // setando os parâmetros da instrução
+            pstmt.setString(1, telefone);
+            pstmt.setString(2, telefoneVelho);
+
+            if (pstmt.executeUpdate() > 0) { // executando a instrução e verificando o retorno
                 return 1; // conseguiu realizar a instrução
             } else {
                 return 0; // não encontrou o registro
@@ -131,8 +165,10 @@ public class TelefoneIndustriaDAO {
         try {
             String instrucaoSQL = "SELECT * FROM TEL_INDUSTRIA WHERE ID_INDUSTRIA = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
             pstmt.setInt(1,idIndustria); // setando o parâmetro na instrução
             rset = pstmt.executeQuery(); // executando a query
+
             while (rset.next()) {
                 TelefoneIndustria telefone = new TelefoneIndustria(rset.getString("telefone"));
                 telefones.add(telefone); // adicionando o objeto à lista que será retornada

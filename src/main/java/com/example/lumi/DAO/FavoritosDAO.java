@@ -26,8 +26,7 @@ public class FavoritosDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando o BD
+        } finally {            conexao.desconectar(conn); // desconectando o BD
         }
     } // inserirFavorito()
 

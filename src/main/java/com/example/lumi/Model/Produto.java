@@ -34,4 +34,28 @@ public class Produto {
     public String getNome() {
         return this.nome;
     }
+
+    public long getCodigoBarras() {
+        return codigoBarras;
+    }
+
+    public String getFabricante() {
+        return fabricante;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public double getMassa() {
+        return massa;
+    }
+
+    public int getIdIndustria() {
+        return idIndustria;
+    }
+
+    public int getIdInfoNutri() {
+        return idInfoNutri;
+    }
 }

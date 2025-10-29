@@ -14,21 +14,58 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(value = "/industrias")
+@WebServlet(urlPatterns = {"/industrias", "/filtro-industria"})
 public class ServletVisualizarIndustria extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // instanciando o objeto da classe IndustriaDAO para ter acesso ao método de buscar
+        String caminho = request.getServletPath(); // recebendo o caminho do usuário
+        // instanciando o objeto da classe IndustriaDAO e TelefoneIndustriaDAO para ter acesso aos métodos de buscar
         IndustriaDAO industriaDAO = new IndustriaDAO();
         TelefoneIndustriaDAO telefoneIndustriaDAO = new TelefoneIndustriaDAO();
-
-        // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
-        List<Industria> listaIndustrias = industriaDAO.buscarIndustria();
+        List<Industria> listaIndustrias = new ArrayList<>();
         List<List> listaTelefones = new ArrayList<>();
 
-        for (int i = 0; i < listaIndustrias.size(); i++) {
-            int idIndustria = listaIndustrias.get(i).getId();
-            listaTelefones.add(telefoneIndustriaDAO.buscarTelefone(idIndustria));
+        if (caminho.equals("/industrias")) {
+            // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
+            listaIndustrias = industriaDAO.buscarIndustria();
+            listaTelefones = new ArrayList<>();
+
+            for (int i = 0; i < listaIndustrias.size(); i++) {
+                int idIndustria = listaIndustrias.get(i).getId();
+                listaTelefones.add(telefoneIndustriaDAO.buscarTelefone(idIndustria));
+            }
+        } else {
+            // recebendo o valor do filtro e da barra de pesquisa
+            String filtro = request.getParameter("filtro");
+            String pesquisa = request.getParameter("pesquisa");
+
+            // setando as informações para aparecerem a partir da informação da página
+            request.setAttribute("filtro-selecionado", filtro);
+            request.setAttribute("pesquisa-anterior", pesquisa);
+
+            // buscando as informações dependendo dos filtros
+            if (filtro.equals("Nome")) {
+                listaIndustrias = industriaDAO.buscarIndustriaPorNome(pesquisa);
+
+                for (int i = 0; i < listaIndustrias.size(); i++) {
+                    int idIndustria = listaIndustrias.get(i).getId();
+                    listaTelefones.add(telefoneIndustriaDAO.buscarTelefone(idIndustria));
+                }
+            } else if (filtro.equals("Plano")) {
+                listaIndustrias = industriaDAO.buscarIndustriaPorPlano(pesquisa);
+
+                for (int i = 0; i < listaIndustrias.size(); i++) {
+                    int idIndustria = listaIndustrias.get(i).getId();
+                    listaTelefones.add(telefoneIndustriaDAO.buscarTelefone(idIndustria));
+                }
+            } else {
+                listaIndustrias = industriaDAO.buscarIndustria();
+
+                for (int i = 0; i < listaIndustrias.size(); i++) {
+                    int idIndustria = listaIndustrias.get(i).getId();
+                    listaTelefones.add(telefoneIndustriaDAO.buscarTelefone(idIndustria));
+                }
+            }
         }
 
         // setando as listas como atributos
