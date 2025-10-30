@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ProdutoIngredienteDAO {
-    public int removerProdutoIngrediente(int idIngrediente){
+    public int deletarProdutoIngrediente(int idIngrediente){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 

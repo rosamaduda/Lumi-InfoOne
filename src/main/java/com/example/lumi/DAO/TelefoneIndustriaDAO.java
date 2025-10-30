@@ -113,7 +113,7 @@ public class TelefoneIndustriaDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<TelefoneIndustria> telefones = new ArrayList<>();
+        List<TelefoneIndustria> listaTelefones = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM TEL_INDUSTRIA ORDER BY ID";
@@ -121,21 +121,21 @@ public class TelefoneIndustriaDAO {
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
             while (rset.next()) {
                 TelefoneIndustria telefone = new TelefoneIndustria(rset.getInt("id"),rset.getString("telefone"),rset.getInt("id_industria"));
-                telefones.add(telefone); // adicionando o objeto à lista que será retornada
+                listaTelefones.add(telefone); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException e){
             e.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return telefones;
+        return listaTelefones;
     } // buscarTelefone()
 
     public List<TelefoneIndustria> buscarTelefone(int idIndustria) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<TelefoneIndustria> telefones = new ArrayList<>();
+        List<TelefoneIndustria> listaTelefones = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM TEL_INDUSTRIA WHERE ID_INDUSTRIA = ?";
@@ -146,14 +146,14 @@ public class TelefoneIndustriaDAO {
 
             while (rset.next()) {
                 TelefoneIndustria telefone = new TelefoneIndustria(rset.getString("telefone"));
-                telefones.add(telefone); // adicionando o objeto à lista que será retornada
+                listaTelefones.add(telefone); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException e){
             e.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return telefones;
+        return listaTelefones;
     } // buscarTelefone()
 } // TelefoneIndustriaDAO
 

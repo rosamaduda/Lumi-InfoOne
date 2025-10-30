@@ -26,7 +26,7 @@ public class ServletExcluirIndustria extends HttpServlet {
         int idIndustria = Integer.parseInt(request.getParameter("idIndustria"));
 
         // removendo os campos que possuem o id
-        produtoDAO.removerProdutoIndustria(idIndustria);
+        produtoDAO.deletarProdutoIndustria(idIndustria);
         telefoneIndustriaDAO.deletarTelIdIndustria(idIndustria);
         industriaDAO.deletarIndustria(idIndustria);
 

@@ -25,7 +25,7 @@ public class ServletEditarCliente extends HttpServlet {
             Cliente cliente = new Cliente(emailCliente);
 
             // buscando as informações a partir do email
-            cliente = clienteDAO.buscarCliente(emailCliente);
+            cliente = clienteDAO.buscarClientePorEmail(emailCliente);
 
             // setando os atributos
             request.setAttribute("email", cliente.getEmail());

@@ -100,7 +100,7 @@ public class InformacaoNutricionalDAO {
         Conexao conexao=new Conexao();
         Connection conn= conexao.conectar();
         ResultSet rset;
-        List<InformacaoNutricional> lista=new ArrayList<>();
+        List<InformacaoNutricional> listaInfoNutri=new ArrayList<>();
         try{
             String instrucaoSQL="SELECT * FROM INFO_NUTRI";
             Statement stmt= conn.createStatement();
@@ -115,7 +115,7 @@ public class InformacaoNutricionalDAO {
                         rset.getDouble("gordura_saturada"),
                         rset.getDouble("gordura_trans"),
                         rset.getDouble("gordura_total"));
-                lista.add(info);
+                listaInfoNutri.add(info);
             }
         }
         catch (SQLException sqle){
@@ -124,7 +124,7 @@ public class InformacaoNutricionalDAO {
         finally{
             conexao.desconectar(conn);
         }
-        return lista;
+        return listaInfoNutri;
 
     }
 
@@ -132,7 +132,6 @@ public class InformacaoNutricionalDAO {
         Conexao conexao=new Conexao();
         Connection conn= conexao.conectar();
         ResultSet rset;
-        List<InformacaoNutricional> lista=new ArrayList<>();
         int id=-1;
         try{
             String instrucaoSQL="SELECT ID FROM INFO_NUTRI  ORDER BY DESC LIMIT 1";

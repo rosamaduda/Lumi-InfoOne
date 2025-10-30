@@ -106,7 +106,7 @@ public class IngredienteDAO {
     } // alterarIngrediente(Ingrediente ingrediente)
 
     // DELETAR
-    public int removerIngrediente(int id) {
+    public int deletarIngrediente(int id) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;

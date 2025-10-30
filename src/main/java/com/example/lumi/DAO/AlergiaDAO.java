@@ -66,7 +66,7 @@ public class AlergiaDAO {
     } // alterarAlergia(Alergia alergia)
 
     // DELETAR
-    public int removerAlergia(int id) {
+    public int deletarAlergia(int id) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
@@ -139,7 +139,7 @@ public class AlergiaDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Alergia> alergias = new ArrayList<>();
+        List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT NOME FROM ALERGIA";
@@ -148,14 +148,14 @@ public class AlergiaDAO {
 
             while (rset.next()) {
                 Alergia alergia = new Alergia(rset.getString("nome"));
-                alergias.add(alergia); // adicionando o objeto à lista que será retornada
+                listaAlergias.add(alergia); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return alergias;
+        return listaAlergias;
     } // buscarNomeAlergia()
 
     // Limitar por 3 alergias para mostrar no portal
@@ -163,7 +163,7 @@ public class AlergiaDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Alergia> lista = new ArrayList<>();
+        List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM ALERGIA LIMIT 3";
@@ -172,14 +172,14 @@ public class AlergiaDAO {
 
             while (rset.next()) {
                 Alergia alergia = new Alergia(rset.getInt("id"), rset.getString("nome"), rset.getString("alergeno"), rset.getString("descricao"));
-                lista.add(alergia); // adicionando o objeto à lista que será retornada
+                listaAlergias.add(alergia); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando com o BD
         }
-        return lista;
+        return listaAlergias;
 
     } // buscarAlergiaPortal()
 
@@ -187,7 +187,7 @@ public class AlergiaDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
-        List<Alergia> lista = new ArrayList<>();
+        List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM ALERGIA WHERE NOME LIKE ?";
@@ -197,21 +197,21 @@ public class AlergiaDAO {
 
             while(rset.next()){
                 Alergia alergia = new Alergia(rset.getInt("id"),rset.getString("nome"), rset.getString("alergeno"),rset.getString("descricao"));
-                lista.add(alergia); // adicionando o objeto à lista que setá retornada
+                listaAlergias.add(alergia); // adicionando o objeto à lista que setá retornada
             }
         }catch (SQLException sqle){
             sqle.printStackTrace();
         }finally {
             conexao.desconectar(conn); // fechando a conexão com o BD
         }
-        return lista;
+        return listaAlergias;
     } // buscarAlergiaPorNome
 
     public List<Alergia> buscarAlergiaPorAlergeno(String alergeno){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
-        List<Alergia> lista = new ArrayList<>();
+        List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ALERGENO LIKE ?";
@@ -221,14 +221,14 @@ public class AlergiaDAO {
 
             while(rset.next()) {
                 Alergia alergia = new Alergia(rset.getInt("id"),rset.getString("nome"), rset.getString("alergeno"),rset.getString("descricao"));
-                lista.add(alergia); // adicionando o objeto à lista que será retornada
+                listaAlergias.add(alergia); // adicionando o objeto à lista que será retornada
             }
         }catch (SQLException sqle){
             sqle.printStackTrace();
         }finally {
             conexao.desconectar(conn); // desconectando do banco
         }
-        return lista;
+        return listaAlergias;
     } // buscarAlergiaPorAlergeno()
 } // AlergiaDAO
 

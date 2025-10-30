@@ -25,9 +25,9 @@ public class ServletExcluirAlergia extends HttpServlet {
         int idAlergia = Integer.parseInt(request.getParameter("idAlergia"));
 
         // removendo os campos que possuem o id
-        alergiaIngredienteDAO.removerAlergiaIngrediente(idAlergia);
+        alergiaIngredienteDAO.deletarAlergiaIngrediente(idAlergia);
         clienteAlergiaDAO.deletarClienteAlergia(idAlergia);
-        alergiaDAO.removerAlergia(idAlergia);
+        alergiaDAO.deletarAlergia(idAlergia);
 
         // recarregando a página
         response.sendRedirect("alergias");

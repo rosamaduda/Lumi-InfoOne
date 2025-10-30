@@ -58,7 +58,7 @@ public class AlergiaIngredienteDAO {
         }
     } // DeletarIngredienteAlergia(int idIngrediente,int idAlergia)
 
-    public int removerAlergiaIngrediente(int idAlergia){
+    public int deletarAlergiaIngrediente(int idAlergia){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
@@ -81,7 +81,7 @@ public class AlergiaIngredienteDAO {
         }
     } // removerAlergiaIngrediente(int idAlergia)
 
-    public int removerIngredienteAlergia(int idIngrediente){
+    public int deletarIngredienteAlergia(int idIngrediente){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
 

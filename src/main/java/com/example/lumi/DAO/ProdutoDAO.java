@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProdutoDAO {
 
-    public int adicionarProduto(Produto produto){
+    public int inserirProduto(Produto produto){
         Conexao conexao=new Conexao();
         Connection conn= conexao.conectar();
         try{
@@ -68,7 +68,7 @@ public class ProdutoDAO {
 
 
 
-    public int removerProduto(int codigoBarras){
+    public int deletarProduto(int codigoBarras){
         Conexao conexao=new Conexao();
         Connection conn= conexao.conectar();
         try{
@@ -89,7 +89,7 @@ public class ProdutoDAO {
             conexao.desconectar(conn);
         }
     }
-    public int removerProdutoIndustria(int idIndustria) {
+    public int deletarProdutoIndustria(int idIndustria) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
@@ -175,7 +175,7 @@ public class ProdutoDAO {
         List<Produto> lista=new ArrayList<>();
         ResultSet rset;
         try{
-            String instrucaoSQL= "SELECT * FROM PRODUTO LIMIT 3";
+            String instrucaoSQL= "SELECT * FROM PRODUTO ORDER BY ID DESC LIMIT 3";
             Statement stmt= conn.createStatement();
             rset=stmt.executeQuery(instrucaoSQL);
             while (rset.next()){

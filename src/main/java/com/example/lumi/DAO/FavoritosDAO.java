@@ -80,7 +80,7 @@ public class FavoritosDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Favorito> favoritos = new ArrayList<>();
+        List<Favorito> listaFavoritos = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT F.* FAVORITO F";
@@ -88,14 +88,14 @@ public class FavoritosDAO {
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
             while (rset.next()) {
                 Favorito favorito = new Favorito(rset.getInt("id"), rset.getString("nome_produto"),rset.getInt("cod_produto"));
-                favoritos.add(favorito); // adicionando à lista que será retornada
+                listaFavoritos.add(favorito); // adicionando à lista que será retornada
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return favoritos;
+        return listaFavoritos;
     } // buscarFavoritos()
 
 
@@ -103,7 +103,7 @@ public class FavoritosDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Favorito> favoritos = new ArrayList<>();
+        List<Favorito> listaFavoritos = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT F.* FROM FAVORITO F WHERE COD_PRODUTO=?";
@@ -112,14 +112,14 @@ public class FavoritosDAO {
             rset = pstmt.executeQuery(); // executando a query
             while (rset.next()) {
                 Favorito favorito = new Favorito(rset.getInt("id"), rset.getString("nome_produto"));
-                favoritos.add(favorito); // adicionando à lista que será retornada
+                listaFavoritos.add(favorito); // adicionando à lista que será retornada
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return favoritos;
+        return listaFavoritos;
     }
 
     }//favoritosDAO

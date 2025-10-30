@@ -217,7 +217,7 @@ public class IndustriaDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Industria> industrias = new ArrayList<>();
+        List<Industria> listaIndustrias = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM INDUSTRIA I";
@@ -227,21 +227,21 @@ public class IndustriaDAO {
             while (rset.next()) {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
                         rset.getString("objetivo"), rset.getString("email"), rset.getString("senha"), rset.getString("nome_plano"));
-                industrias.add(industria); // adicionando o objeto à lista
+                listaIndustrias.add(industria); // adicionando o objeto à lista
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return industrias;
+        return listaIndustrias;
     } // buscarIndustria()
 
     public List<Industria> buscarIndustriaPorNome(String nome) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Industria> industrias = new ArrayList<>();
+        List<Industria> listaIndustrias = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE NOME LIKE ? ";
@@ -252,14 +252,14 @@ public class IndustriaDAO {
             while (rset.next()) {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
                         rset.getString("objetivo"), rset.getString("email"), rset.getString("senha"), rset.getString("nome_plano"));
-                industrias.add(industria); // adicionando o objeto à lista que será retornada
+                listaIndustrias.add(industria); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return industrias;
+        return listaIndustrias;
     } // buscarIndustriaPorNome(String nome)
 
     // Limitar por 3 indústrias para mostrar no portal
@@ -267,7 +267,7 @@ public class IndustriaDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Industria> industrias = new ArrayList<>();
+        List<Industria> listaIndustrias = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM INDUSTRIA I LIMIT 3";
@@ -277,21 +277,21 @@ public class IndustriaDAO {
             while (rset.next()) {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
                         rset.getString("objetivo"), rset.getString("email"), rset.getString("senha"), rset.getString("nome_plano"));
-                industrias.add(industria); // adicionando o objeto à lista
+                listaIndustrias.add(industria); // adicionando o objeto à lista
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return industrias;
+        return listaIndustrias;
     } // buscarIndustriaPortal()
 
     public List<Industria> buscarIndustriaPorPlano(String plano){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Industria> industrias = new ArrayList<>();
+        List<Industria> listaIndustrias = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE NOME_PLANO LIKE ? ";
@@ -302,21 +302,21 @@ public class IndustriaDAO {
             while (rset.next()) {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
                         rset.getString("objetivo"), rset.getString("senha"));
-                industrias.add(industria); // adicionando o objeto à lista que será retornada
+                listaIndustrias.add(industria); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return industrias;
+        return listaIndustrias;
     }
 
     public int buscarIdIndustria() {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        int id = 0;
+        int id = -1;
 
         try {
             String instrucaoSQL = "SELECT ID FROM INDUSTRIA ORDER BY 1 DESC LIMIT 1";
@@ -338,7 +338,6 @@ public class IndustriaDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        Industria industria1 = null;
 
         try {
             String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE ID = ?";

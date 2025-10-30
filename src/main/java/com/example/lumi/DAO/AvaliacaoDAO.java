@@ -62,7 +62,7 @@ public class AvaliacaoDAO {
     } // alterarAvaliacao()
 
     // DELETAR
-    public int removerAvaliacao(int id) {
+    public int deletarAvaliacao(int id) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
@@ -83,7 +83,7 @@ public class AvaliacaoDAO {
         }
     } // removerAvaliacao()
 
-    public int removerAvaliacao(String emailCliente) {
+    public int deletarAvaliacao(String emailCliente) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
@@ -109,7 +109,7 @@ public class AvaliacaoDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Avaliacao> avaliacoes = new ArrayList<>();
+        List<Avaliacao> listaAvaliacoes = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT A.*, C.EMAIL, P.NOME AS NOME_PRODUTO FROM AVALIACAO A JOIN CLIENT C ON A.EMAIL_CLIENTE = C.EMAIL JOIN PRODUTO P ON A.ID_CLIENTE = P.ID";
@@ -118,13 +118,13 @@ public class AvaliacaoDAO {
 
             while (rset.next()) {
                 Avaliacao avaliacao = new Avaliacao(rset.getInt("id"), rset.getInt("NOTA"), rset.getString("AVALIACAO"), rset.getObject("DT_AVALIACAO", LocalDate.class),rset.getString("EMAIL_CLIENTE"),rset.getInt("NOME_PRODUTO"));
-                avaliacoes.add(avaliacao); // adicionando o objeto à lista que será retornada
+                listaAvaliacoes.add(avaliacao); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return avaliacoes;
+        return listaAvaliacoes;
     } // buscarAvaliacao()
 }
