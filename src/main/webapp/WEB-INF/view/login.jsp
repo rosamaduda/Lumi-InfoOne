@@ -8,6 +8,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/assets/logo-infoone.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/login.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/cores.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/carregando.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -47,7 +48,7 @@
                 </div>
 
                 <button
-                        type="submit"
+                        type="submit" onclick="mostrarCarregando()"
                         class="w-[30%] p-[15px] mt-[5%] bg-[#C6F500] hover:bg-lime-500 text-black font-semibold rounded-full transition-all transform hover:scale-105 shadow-md ml-[35%]">
                     Entrar
                 </button>
@@ -88,6 +89,24 @@
         </div>
     </div>
 
+    <div id="tela-carregamento"
+         class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
+        <div class="logo-container absolute top-6 left-6">
+            <img id="logo" src="${pageContext.request.contextPath}/assets/Group 28.png" alt="Logo Lumi" class="w-16 h-16 object-contain">
+        </div>
+
+        <div class="carregando flex flex-col items-center justify-center h-full">
+            <div class="loader">
+                <div class="bolinhas"></div>
+                <div class="bolinhas"></div>
+                <div class="bolinhas"></div>
+                <div class="bolinhas"></div>
+            </div>
+            <h1 class="text-2xl font-medium mt-8 text-gray-700">Entrando...</h1>
+            <p class="text-gray-500 mt-2">Preparando tudo para você...</p>
+        </div>
+    </div>
+
     <script>
         AOS.init({
             duration: 800,
@@ -97,6 +116,7 @@
 
         feather.replace();
     </script>
+    <script src="${pageContext.request.contextPath}/js/mostrarCarregando.js"></script>
 </footer>
 </body>
 </html>

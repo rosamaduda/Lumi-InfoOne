@@ -1,8 +1,44 @@
- // Ação de remover
- document.querySelectorAll("remover").forEach(function(form){
- form.addEventListener("submit",function(e){
-    if (!confirm("Tem certeza que deseja remover?")) {
-    e.preventDefault(); // Cancela a ação de remover se o usuário clicar em 'Cancelar'
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const popupConfirmacao = document.getElementById("popupConfirmacao");
+    const botaoCancelar = popupConfirmacao.querySelector(".botaoCancelar");
+    const botaoConfirmar = popupConfirmacao.querySelector(".botaoConfirmar");
+
+    let formParaExcluir = null;
+
+    // Abre popup de confirmaçãp
+    document.querySelectorAll(".botaoRemover").forEach(botao => {
+        botao.addEventListener("click", (e) => {
+            e.preventDefault();
+            formParaExcluir = botao.closest(".formRemover");
+            popupConfirmacao.classList.remove("hidden");
+            popupConfirmacao.classList.add("flex");
+        });
+    });
+
+    // Cancela
+    botaoCancelar.addEventListener("click", () => {
+        popupConfirmacao.classList.add("hidden");
+        popupConfirmacao.classList.remove("flex");
+        formParaExcluir = null;
+    });
+
+    // Confirma
+    botaoConfirmar.addEventListener("click", () => {
+        if (formParaExcluir) {
+            popupConfirmacao.classList.add("hidden");
+            popupConfirmacao.classList.remove("flex");
+
+            const telaCarregamento = document.getElementById("tela-carregamento");
+            if (telaCarregamento) {
+                telaCarregamento.classList.remove("hidden");
+                telaCarregamento.classList.add("flex");
+            }
+
+            formParaExcluir.submit();
+        }
+    });
 });
-});
+
+
+
+

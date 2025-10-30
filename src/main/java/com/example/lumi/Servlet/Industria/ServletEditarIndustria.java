@@ -2,8 +2,10 @@ package com.example.lumi.Servlet.Industria;
 
 import com.example.lumi.DAO.IndustriaDAO;
 import com.example.lumi.DAO.PlanoDAO;
+import com.example.lumi.DAO.TelefoneIndustriaDAO;
 import com.example.lumi.Model.Industria;
 import com.example.lumi.Model.Plano;
+import com.example.lumi.Model.TelefoneIndustria;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/alteracao-industria", "/alterar-industria"})
@@ -19,6 +22,7 @@ public class ServletEditarIndustria extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String caminho = request.getServletPath();
         IndustriaDAO industriaDAO = new IndustriaDAO();
+        List<TelefoneIndustria> telefonesSalvos = new ArrayList<>();
 
         if (caminho.equals("/alteracao-industria")) {
             PlanoDAO planoDAO = new PlanoDAO();
@@ -27,7 +31,16 @@ public class ServletEditarIndustria extends HttpServlet {
 
             int idIndustria = Integer.parseInt(request.getParameter("idIndustria")); // recebendo o ID do ingrediente que será alterado
             Industria industria = new Industria(idIndustria); // setando o id no model
-            industria = industriaDAO.buscarIndustria(industria); // buscando as informações do id para poder setar como atributos
+            industria = industriaDAO.buscarIndustria(industria);// buscando as informações do id para poder setar como atributos
+
+            TelefoneIndustriaDAO telefoneIndustriaDAO = new TelefoneIndustriaDAO();
+            telefonesSalvos = telefoneIndustriaDAO.buscarTelefone(idIndustria);
+
+            List<String> telefonesNumeros = new ArrayList<>();
+            for (TelefoneIndustria tel : telefonesSalvos) {
+                telefonesNumeros.add(tel.getTelefone());
+            }
+
             // setando os atributos
             request.setAttribute("idIndustria", industria.getId());
             request.setAttribute("cnpjIndustria", industria.getCnpj());
@@ -36,6 +49,7 @@ public class ServletEditarIndustria extends HttpServlet {
             request.setAttribute("objetivoIndustria", industria.getObjetivo());
             request.setAttribute("senhaIndustria", industria.getSenha());
             request.setAttribute("planoIndustria", industria.getNomePlano());
+            request.setAttribute("telefonesIndustria", telefonesNumeros);
 
             request.getRequestDispatcher("WEB-INF/view/editar_industria.jsp").forward(request, response); // redirecionando para a página de editar
         }

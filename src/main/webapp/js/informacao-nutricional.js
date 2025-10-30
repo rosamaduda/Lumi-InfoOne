@@ -17,7 +17,7 @@ botaoVoltar.addEventListener("click", () => {
     etapa2.classList.add("hidden");
 
     etapa1.classList.remove("hidden");
-    botaoProximo.classList.remove("hidden"); //
+    botaoProximo.classList.remove("hidden"); // <<< NOVO: Mostra a div do botão "Próximo" novamente
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });

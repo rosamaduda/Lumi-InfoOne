@@ -58,37 +58,40 @@
             <div class="p-4 flex-grow overflow-y-auto">
                 <ul class="space-y-2">
                     <li><a href="portal"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                            data-feather="home"
-                            class="mr-3"></i>Portal ADM</a></li>
+                            onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                                data-feather="home"
+                                class="mr-3"></i>Portal
+                            ADM</a></li>
                     <li><a href="ingredientes"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                            data-feather="package"
-                            class="mr-3"></i>Ingredientes</a></li>
+                            onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                                data-feather="package"
+                                class="mr-3"></i>Ingredientes</a></li>
                     <li><a href="alergias"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                            data-feather="alert-triangle"
-                            class="mr-3"></i>Alergias</a></li>
+                            onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
+                                data-feather="alert-triangle"
+                                class="mr-3"></i>Alergias</a></li>
                     <li><a href="clientes"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                            data-feather="users"
-                            class="mr-3"></i>Cliente</a></li>
+                            onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
+                                data-feather="users"
+                                class="mr-3"></i>Cliente</a></li>
                     <li><a href="industrias"
-                           class="flex items-center p-3 bg-purple-100 rounded-lg text-[#333333] font-medium"><i
-                            data-feather="tool"
-                            class="mr-3"></i>Indústria</a></li>
+                            onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
+                                data-feather="tool"
+                                class="mr-3"></i>Indústria</a></li>
                     <li><a href="produtos"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                            data-feather="tag"
-                            class="mr-3"></i>Produtos</a></li>
-                    <li><a href="avaliacoes"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                            data-feather="star"
-                            class="mr-3"></i>Avaliações</a></li>
-                    <li><a href="site"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-red-500"><i
-                            data-feather="log-out"
-                            class="mr-3"></i>Sair</a></li>
+                            onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 bg-purple-100 rounded-lg text-[#333333] font-medium"><i
+                                data-feather="tag"
+                                class="mr-3"></i>Produtos</a></li>
+                    <li><a href="site" onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-red-500"><i
+                                data-feather="log-out"
+                                class="mr-3"></i>Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -99,6 +102,8 @@
          class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
     <main class="sm:ml-64 flex-1 sm:p-8">
+        <a href="favoritos" onclick="mostrarRedirecionando()"><h1 class="text-left"><i
+            data-feather="arrow-left"></i></h1></a>
         <h1
                 class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[3%]"
                 data-aos="fade-down">Adicionar Produto</h1>
@@ -235,6 +240,9 @@
 </div>
 
 
+
+
+<!-- Tela de carregamento -->
 
 <div id="tela-carregamento"
      class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">

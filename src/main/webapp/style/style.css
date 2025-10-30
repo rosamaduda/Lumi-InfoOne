@@ -30,9 +30,9 @@ header {
 }
 
 header.scrolled {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   transition: all 0.3s ease;
 }
 
@@ -246,9 +246,9 @@ html{
       
 
 header.scrolled {
-background: rgba(255, 255, 255, 0.7);
-backdrop-filter: blur(10px);          
--webkit-backdrop-filter: blur(10px);  
+background: rgba(255, 255, 255, 0.3);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
 transition: all 0.3s ease;            
 }
           

@@ -1,15 +1,22 @@
-function voltar(){
-    window.history.back(); // Leva o usuário a página anterior
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const botaoVoltar = document.querySelector(".botaoVoltar"); // botão "Voltar"
 
-// Efeito de shake ao carregar a página
-document.addEventListener('DOMContentLoaded', function() {
-    const textoErro = document.querySelector('.shake-animacao');
-    // Define o tempo de animação do X
-    setTimeout(() => {
-        textoErro.classList.remove('shake-animacao');
-        setTimeout(() => {
-            textoErro.classList.add('shake-animacao');
-        }, 50);
-    }, 1000);
+    botaoVoltar.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // Obtém a página anterior real
+        const referrer = document.referrer;
+
+        // Se a página anterior contiver palavras-chave de páginas de cadastro, edição ou negócio
+        const paginasValidas = ["cadastro", "editar", "ingredientes", "alergias", "clientes", "produtos", "industria"];
+        const paginaAnteriorValida = paginasValidas.some(p => referrer.includes(p));
+
+        if (paginaAnteriorValida) {
+            // Vai para a página anterior real
+            window.location.href = referrer;
+        } else {
+            // Se não tiver página válida no histórico, vai para o portal principal
+            window.location.href = "portal";
+        }
+    });
 });
