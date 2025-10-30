@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumi - Carregando </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <link rel="stylesheet" href="style/carregando.css">
+</head>
+<body class="bg-gray-50 h-screen overflow-hidden">
+<div class="tela-carregamento">
+  <div class="logo-container absolute top-6 left-6">
+    <img id="logo" src="assets/Group 28.png" alt="Logo Lumi" class="w-16 h-16 object-contain">
+  </div>
+
+  <div class="carregando flex flex-col items-center justify-center h-full">
+    <div class="loader">
+      <div class="bolinhas"></div>
+      <div class="bolinhas"></div>
+      <div class="bolinhas"></div>
+      <div class="bolinhas"></div>
+    </div>
+    <h1 class="text-2xl font-medium mt-8 text-gray-700">Carregando...</h1>
+    <p class="text-gray-500 mt-2">Só um momento enquanto preparamos tudo</p>
+  </div>
+</div>
+
+<script src="js/carregando.js"></script>
+<script>
+  feather.replace();
+</script>
+</body>
+</html>

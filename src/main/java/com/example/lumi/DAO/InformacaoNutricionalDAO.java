@@ -102,7 +102,7 @@ public class InformacaoNutricionalDAO {
         ResultSet rset;
         List<InformacaoNutricional> listaInfoNutri=new ArrayList<>();
         try{
-            String instrucaoSQL="SELECT * FROM INFO_NUTRI";
+            String instrucaoSQL="SELECT I.* FROM INFO_NUTRI I LEFT JOIN PRODUTO P ON I.ID=P.ID_INFO_NUTRI ";
             Statement stmt= conn.createStatement();
             rset=stmt.executeQuery(instrucaoSQL);
             while (rset.next()){
@@ -128,13 +128,45 @@ public class InformacaoNutricionalDAO {
 
     }
 
+    public InformacaoNutricional buscarInfoNutri(InformacaoNutricional informacaoNutricional) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar();
+        ResultSet rset;
+
+        try {
+            String instrucaoSQL = "SELECT I.* FROM INFO_NUTRI I LEFT JOIN PRODUTO P ON I.ID=P.ID_INFO_NUTRI WHERE ID = ?";
+            PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, informacaoNutricional.getId());
+            rset=pstmt.executeQuery();
+            while (rset.next()){
+                informacaoNutricional = new InformacaoNutricional(rset.getInt("id"),
+                        rset.getDouble("valor_energetico"),
+                        rset.getDouble("proteina"),
+                        rset.getDouble("proteina"),
+                        rset.getDouble("carboidratos"),
+                        rset.getDouble("sodio"),
+                        rset.getDouble("gordura_saturada"),
+                        rset.getDouble("gordura_trans"),
+                        rset.getDouble("gordura_total"));
+            }
+        }
+        catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
+        finally{
+            conexao.desconectar(conn);
+        }
+        return informacaoNutricional;
+
+    }
+
     public int buscarIdInfoNutri(){
         Conexao conexao=new Conexao();
         Connection conn= conexao.conectar();
         ResultSet rset;
         int id=-1;
         try{
-            String instrucaoSQL="SELECT ID FROM INFO_NUTRI  ORDER BY DESC LIMIT 1";
+            String instrucaoSQL="SELECT ID FROM INFO_NUTRI ORDER BY ID DESC LIMIT 1";
             Statement stmt= conn.createStatement();
             rset=stmt.executeQuery(instrucaoSQL);
             while (rset.next()) {

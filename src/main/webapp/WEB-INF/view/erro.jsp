@@ -20,7 +20,7 @@
         </div>
 
         <div
-            class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 relative overflow-hidden">
+            class="max-w-md w-full rounded-2xl shadow-xl p-8 relative overflow-hidden">
             <div class="text-center mt-12">
                 <!-- X -->
                 <div class="relative w-24 h-24 mx-auto mb-6">
@@ -43,7 +43,7 @@
                 </p>
 
                 <!-- Botão para voltar -->
-                <button
+                <button class="botaoVoltar"
                     onclick="voltar()"
                     class="bg-[#7F3FBF] hover:bg-[#6A33A1] text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center mx-auto">
                     <i data-feather="home" class="mr-2 w-4 h-4"></i>

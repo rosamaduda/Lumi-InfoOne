@@ -16,7 +16,6 @@ import java.io.IOException;
 public class ServletExcluirCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ClienteDAO clienteDAO = new ClienteDAO();
-        String caminho = request.getServletPath(); // recebendo o caminho do usuário
 
         // instanciando os objetos de tabelas que recebem a FK do cliente
         AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAO();
