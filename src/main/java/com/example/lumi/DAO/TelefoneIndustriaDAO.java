@@ -1,12 +1,15 @@
 package com.example.lumi.DAO;
 
-import com.example.lumi.Conexao.Conexao;
-import com.example.lumi.Model.TelefoneIndustria;
-import org.w3c.dom.ls.LSException;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.lumi.Conexao.Conexao;
+import com.example.lumi.Model.TelefoneIndustria;
 
 public class TelefoneIndustriaDAO {
     // INSERIR
@@ -180,6 +183,33 @@ public class TelefoneIndustriaDAO {
         }
         return telefones;
     } // buscarTelefone()
+
+    public List<TelefoneIndustria> buscarTelPorIndustria(int idIndustria) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar();
+        ResultSet rset;
+        List<TelefoneIndustria> telefones = new ArrayList<>();
+    
+        try {
+            String instrucaoSQL = "SELECT TELEFONE FROM TEL_INDUSTRIA WHERE ID_INDUSTRIA = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, idIndustria);
+            rset = pstmt.executeQuery();
+    
+            while (rset.next()) {
+                TelefoneIndustria telefoneObjeto = new TelefoneIndustria();
+                telefoneObjeto.setTelefone(rset.getString("TELEFONE"));
+                telefones.add(telefoneObjeto);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conexao.desconectar(conn);
+        }
+    
+        return telefones;
+    }// buscarTelefone()
+    
 } // TelefoneIndustriaDAO
 
 

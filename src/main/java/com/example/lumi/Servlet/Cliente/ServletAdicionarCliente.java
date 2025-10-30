@@ -1,16 +1,17 @@
 package com.example.lumi.Servlet.Cliente;
 
 
+import java.io.IOException;
+import java.time.LocalDate;
+
 import com.example.lumi.DAO.ClienteDAO;
 import com.example.lumi.Model.Cliente;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.time.LocalDate;
 
 @WebServlet(urlPatterns = {"/cadastro-cliente", "/adicionar-cliente"})
 public class ServletAdicionarCliente extends HttpServlet {

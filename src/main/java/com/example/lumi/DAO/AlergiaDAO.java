@@ -2,13 +2,16 @@ package com.example.lumi.DAO;
 
 
 
-import com.example.lumi.Conexao.Conexao;
-import com.example.lumi.Model.Alergia;
-import com.example.lumi.Model.Ingrediente;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.lumi.Conexao.Conexao;
+import com.example.lumi.Model.Alergia;
 
 public class AlergiaDAO {
     // INSERIR
@@ -230,5 +233,7 @@ public class AlergiaDAO {
         }
         return lista;
     } // buscarAlergiaPorAlergeno()
+    
+
 } // AlergiaDAO
 
