@@ -113,7 +113,7 @@ public class TelefoneIndustriaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE TEL_INDUSTRIA SET TELEFONE = ? WHERE TELEFONE = ?";
+            String instrucaoSQL = "UPDATE TEL_INDUSTRIA SET TELEFONE = ? WHERE TELEFONE = ?"; // atualizando o telefone a partir do antigo
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando os parâmetros da instrução
@@ -131,7 +131,7 @@ public class TelefoneIndustriaDAO {
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-    } // alterarTelefone()
+    } // alterarTelefone(String telefone, String telefoneVelho)
 
 
     public List<TelefoneIndustria> buscarTelefone() {
@@ -141,7 +141,7 @@ public class TelefoneIndustriaDAO {
         List<TelefoneIndustria> telefones = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM TEL_INDUSTRIA ORDER BY ID";
+            String instrucaoSQL = "SELECT * FROM TEL_INDUSTRIA ORDER BY ID"; // buscando os telefones e ordenando pelo telefone
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
             while (rset.next()) {
@@ -163,7 +163,7 @@ public class TelefoneIndustriaDAO {
         List<TelefoneIndustria> telefones = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM TEL_INDUSTRIA WHERE ID_INDUSTRIA = ?";
+            String instrucaoSQL = "SELECT * FROM TEL_INDUSTRIA WHERE ID_INDUSTRIA = ?"; // buscando o telefone a partir do id da industria fornecido
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             pstmt.setInt(1,idIndustria); // setando o parâmetro na instrução
@@ -180,6 +180,31 @@ public class TelefoneIndustriaDAO {
         }
         return telefones;
     } // buscarTelefone()
+
+    public List<TelefoneIndustria> buscarTelefone(String telefone) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<TelefoneIndustria> telefones = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT ID_INDUSTRIA FROM TEL_INDUSTRIA WHERE TELEEFONE = ?"; // buscando o id da industria a partir do telefone
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+
+            pstmt.setString(1,telefone); // setando o parâmetro na instrução
+            rset = pstmt.executeQuery(); // executando a query
+
+            while (rset.next()) {
+                TelefoneIndustria telefoneObjeto = new TelefoneIndustria(rset.getString("telefone"));
+                telefones.add(telefoneObjeto); // adicionando o objeto à lista que será retornada
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return telefones;
+    } // buscarTelefone(String telefone)
 } // TelefoneIndustriaDAO
 
 

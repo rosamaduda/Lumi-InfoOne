@@ -18,7 +18,7 @@ public class ServletAdicionarCliente extends HttpServlet {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
 
         if (caminho.equals("/cadastro-cliente")) {
-            request.getRequestDispatcher("WEB-INF/view/cadastro_cliente.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/cadastro_cliente.jsp").forward(request, response); // redirecionando para a página de cadastro do cliente
         }
     }
 

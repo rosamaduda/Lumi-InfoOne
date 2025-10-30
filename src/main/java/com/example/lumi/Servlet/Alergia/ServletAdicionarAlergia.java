@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/cadastro-alergia", "/adicionar-alergia"})
 public class ServletAdicionarAlergia extends HttpServlet {
-    @Override
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
 
@@ -21,7 +21,6 @@ public class ServletAdicionarAlergia extends HttpServlet {
         }
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AlergiaDAO alergiaDAO = new AlergiaDAO();
         String caminho = request.getServletPath(); // recebendo o caminho do usuário

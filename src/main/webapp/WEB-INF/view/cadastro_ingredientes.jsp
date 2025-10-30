@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="com.example.lumi.Model.Alergia" %>
+<%@ page import="java.util.List"%>
+<%
+    @SuppressWarnings("unchecked") List<Alergia> planos = (List<Alergia>) request.getAttribute("alergias-lista");
+%>
     <!DOCTYPE html>
     <html lang="pt-BR">
 

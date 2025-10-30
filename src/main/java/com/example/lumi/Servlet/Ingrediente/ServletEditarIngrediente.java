@@ -12,7 +12,6 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/alteracao-ingrediente", "/alterar-ingrediente"})
 public class ServletEditarIngrediente extends HttpServlet {
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IngredienteDAO ingredienteDAO = new IngredienteDAO();
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
@@ -36,7 +35,6 @@ public class ServletEditarIngrediente extends HttpServlet {
         }
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IngredienteDAO ingredienteDAO = new IngredienteDAO();
         String caminho = request.getServletPath(); // recebendo o caminho do usuário

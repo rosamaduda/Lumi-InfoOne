@@ -66,7 +66,7 @@ public class ServletPortal extends HttpServlet {
             listaNomeIndustria.add(industria);
         }
 
-        // setando a lista como atributo
+        // setando as listas como atributo
         request.setAttribute("produtos-lista", listaProdutos);
         request.setAttribute("nomeIndustria-lista", listaNomeIndustria);
         request.setAttribute("infoNutri-lista", listaInfoNutri);

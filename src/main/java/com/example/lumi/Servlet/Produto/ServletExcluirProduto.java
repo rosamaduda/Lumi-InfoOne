@@ -1,7 +1,7 @@
 package com.example.lumi.Servlet.Produto;
 
-import com.example.lumi.DAO.InformacaoNutricionalDAO;
-import com.example.lumi.DAO.ProdutoDAO;
+import com.example.lumi.DAO.*;
+import com.example.lumi.Model.Favorito;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,15 +15,21 @@ public class ServletExcluirProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         InformacaoNutricionalDAO informacaoNutricionalDAO = new InformacaoNutricionalDAO();
+        AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAO();
+        FavoritosDAO favoritosDAO = new FavoritosDAO();
+        ProdutoIngredienteDAO produtoIngredienteDAO = new ProdutoIngredienteDAO();
 
         // recebendo o código do produto que será excluido
-        long codigoBarras = Long.parseLong(request.getParameter("codigoProduto"));
+        String codigoBarras = request.getParameter("codigoProduto");
 
         // recebendo o id da info. nutricional do produto
         int idInfoNutri = produtoDAO.buscarIdInfoNutri(codigoBarras);
 
-        // excluindo a info. nutricional
+        // excluindo tabelas que recebem FK do produto
         informacaoNutricionalDAO.deletarInfoNutri(idInfoNutri);
+        avaliacaoDAO.removerAvaliacaoPorCodigo(codigoBarras);
+        favoritosDAO.deletarFavoritoPorCodigo(codigoBarras);
+        produtoIngredienteDAO.removerProdutoIngrediente(codigoBarras);
 
         // excluindo o produto
         produtoDAO.removerProduto(codigoBarras);

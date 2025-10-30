@@ -11,11 +11,9 @@ public class ClienteAlergia {
         this.id = id;
         this.idAlergia = idAlergia;
         this.emailCliente = emailCliente;
-
     }
 
-    // getters e setters
-
+    // getters
     public int getId() {
         return id;
     }
@@ -25,4 +23,4 @@ public class ClienteAlergia {
     public int getIdAlergia() {
         return idAlergia;
     }
-}
+} // ClienteAlergia

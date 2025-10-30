@@ -17,7 +17,7 @@ public class AlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "INSERT INTO ALERGIA (ALERGENO, NOME, DESCRICAO) VALUES(?, ?, ?)";
+            String instrucaoSQL = "INSERT INTO ALERGIA (ALERGENO, NOME, DESCRICAO) VALUES(?, ?, ?)"; // inserindo as informações da alergia
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando os parâmetros da instrução
             pstmt.setString(1, alergia.getAlergeno());
@@ -42,7 +42,7 @@ public class AlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE ALERGIA SET ALERGENO = ?, NOME = ?, DESCRICAO = ? WHERE ID = ?";
+            String instrucaoSQL = "UPDATE ALERGIA SET ALERGENO = ?, NOME = ?, DESCRICAO = ? WHERE ID = ?"; // alterando a alergia
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando os parametros da instrucao
@@ -72,7 +72,7 @@ public class AlergiaDAO {
 
         try {
             // deletando a alergia
-            String instrucaoSQL = "DELETE FROM ALERGIA WHERE ID = ?";
+            String instrucaoSQL = "DELETE FROM ALERGIA WHERE ID = ?"; // apagando a alergia pelo id
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id); // setando parametro na instrução
 
@@ -97,7 +97,7 @@ public class AlergiaDAO {
         List<Alergia> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA";
+            String instrucaoSQL = "SELECT * FROM ALERGIA"; // buscando todas as informações da alergia
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // realizando a query
 
@@ -119,7 +119,7 @@ public class AlergiaDAO {
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ID = ?";
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ID = ?"; // buscando a alergia pelo ID
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, alergia.getId()); // setando o parâmetro da instrução
             rset = pstmt.executeQuery(); // realizando a query
@@ -142,7 +142,7 @@ public class AlergiaDAO {
         List<Alergia> alergias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT NOME FROM ALERGIA";
+            String instrucaoSQL = "SELECT NOME FROM ALERGIA"; // buscando o nome da alergia
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // realizando a query
 
@@ -166,7 +166,7 @@ public class AlergiaDAO {
         List<Alergia> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA ORDER BY ID DESC LIMIT 3";
+            String instrucaoSQL = "SELECT * FROM ALERGIA ORDER BY ID DESC LIMIT 3"; // buscando as últimas 3 alergias inseridas
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -190,9 +190,9 @@ public class AlergiaDAO {
         List<Alergia> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE NOME LIKE ?";
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE NOME LIKE ?"; // buscando a alergia pelo nome
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1,"%"+nome+"%"); // setando parmetros da instrução
+            pstmt.setString(1,"%"+nome+"%"); // setando parâmetros da instrução
             rset = pstmt.executeQuery(); // executando a instrução
 
             while(rset.next()){
@@ -214,7 +214,7 @@ public class AlergiaDAO {
         List<Alergia> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ALERGENO LIKE ?";
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ALERGENO LIKE ?"; // buscando a alergia pelo alergeno
             PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+alergeno+"%"); // setando os parâmetros na instrução
             rset= pstmt.executeQuery(); // executando a instrução

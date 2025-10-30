@@ -11,15 +11,23 @@ public class Industria {
     private String nomePlano;
 
     // construtor
+    public Industria() {
+    }
 
-    public Industria(int id, String cnpj, String nome, String objetivo, String email, String senha, String nomePlano) {
+    public Industria(int id) {
+        this.id = id;
+    }
+
+    public Industria(String nome) {
+        this.nome = nome;
+    }
+
+    public Industria(int id, String cnpj, String nome, String objetivo, String email) {
         this.id = id;
         this.cnpj = cnpj;
         this.nome = nome;
         this.objetivo = objetivo;
         this.email = email;
-        this.senha = senha;
-        this.nomePlano = nomePlano;
     }
 
     public Industria(String cnpj, String nome, String objetivo, String email, String nomePlano, String senha) {
@@ -31,26 +39,17 @@ public class Industria {
         this.senha = senha;
     }
 
-    public Industria() {
-    }
-
-    public Industria(String nome) {
-        this.nome = nome;
-    }
-
-    public Industria(int id) {
-        this.id = id;
-    }
-
-    public Industria(int id, String cnpj, String nome, String objetivo, String email) {
+    public Industria(int id, String cnpj, String nome, String objetivo, String email, String senha, String nomePlano) {
         this.id = id;
         this.cnpj = cnpj;
         this.nome = nome;
         this.objetivo = objetivo;
         this.email = email;
+        this.senha = senha;
+        this.nomePlano = nomePlano;
     }
 
-    // getters e setters
+    // getters
     public int getId() {
         return id;
     }

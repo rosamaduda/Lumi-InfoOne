@@ -1,6 +1,7 @@
 package com.example.lumi.Model;
 
 public class InformacaoNutricional {
+    // atributos
     private int id;
     private double valorEnergetico;
     private double proteina;
@@ -11,6 +12,20 @@ public class InformacaoNutricional {
     private double gorduraTrans;
     private double gordurasTotais;
 
+    // construtores
+    public InformacaoNutricional(int id) {
+        this.id = id;
+    }
+    public InformacaoNutricional(double valorEnergetico, double proteina, double fibras, double carboidratos, double sodio, double gorduraSaturada, double gorduraTrans, double gordurasTotais) {
+        this.valorEnergetico = valorEnergetico;
+        this.proteina = proteina;
+        this.fibras = fibras;
+        this.carboidratos = carboidratos;
+        this.sodio = sodio;
+        this.gorduraSaturada = gorduraSaturada;
+        this.gorduraTrans = gorduraTrans;
+        this.gordurasTotais = gordurasTotais;
+    }
     public InformacaoNutricional(int id, double valorEnergetico, double proteina, double fibras, double carboidratos, double sodio, double gorduraSaturada, double gorduraTrans, double gordurasTotais) {
         this.id = id;
         this.valorEnergetico = valorEnergetico;
@@ -23,54 +38,32 @@ public class InformacaoNutricional {
         this.gordurasTotais = gordurasTotais;
     }
 
-    public InformacaoNutricional(double valorEnergetico, double proteina, double fibras, double carboidratos, double sodio, double gorduraSaturada, double gorduraTrans, double gordurasTotais) {
-        this.valorEnergetico = valorEnergetico;
-        this.proteina = proteina;
-        this.fibras = fibras;
-        this.carboidratos = carboidratos;
-        this.sodio = sodio;
-        this.gorduraSaturada = gorduraSaturada;
-        this.gorduraTrans = gorduraTrans;
-        this.gordurasTotais = gordurasTotais;
-    }
-
-    public InformacaoNutricional(int id) {
-        this.id = id;
-    }
-
+    // getters
     public int getId() {
         return id;
     }
-
     public double getValorEnergetico() {
         return valorEnergetico;
     }
-
     public double getProteina() {
         return proteina;
     }
-
     public double getFibras() {
         return fibras;
     }
-
     public double getCarboidratos() {
         return carboidratos;
     }
-
     public double getSodio() {
         return sodio;
     }
-
     public double getGorduraSaturada() {
         return gorduraSaturada;
     }
-
     public double getGorduraTrans() {
         return gorduraTrans;
     }
-
     public double getGordurasTotais() {
         return gordurasTotais;
     }
-}
+} // InformacaoNutricional

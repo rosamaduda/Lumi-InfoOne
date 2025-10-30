@@ -20,11 +20,12 @@ import java.util.List;
 public class ServletEditarIndustria extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String caminho = request.getServletPath();
+        String caminho = request.getServletPath(); // recebendo o caminho do usuário
         IndustriaDAO industriaDAO = new IndustriaDAO();
         List<TelefoneIndustria> telefonesSalvos = new ArrayList<>();
 
         if (caminho.equals("/alteracao-industria")) {
+            // buscando os nomes dos planos
             PlanoDAO planoDAO = new PlanoDAO();
             List<Plano> listaPlanos = planoDAO.buscarNomePlano();
             request.setAttribute("planos-lista", listaPlanos);
@@ -33,6 +34,7 @@ public class ServletEditarIndustria extends HttpServlet {
             Industria industria = new Industria(idIndustria); // setando o id no model
             industria = industriaDAO.buscarIndustria(industria);// buscando as informações do id para poder setar como atributos
 
+            // buscando os telefones
             TelefoneIndustriaDAO telefoneIndustriaDAO = new TelefoneIndustriaDAO();
             telefonesSalvos = telefoneIndustriaDAO.buscarTelefone(idIndustria);
 
@@ -56,7 +58,7 @@ public class ServletEditarIndustria extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String caminho = request.getServletPath();
+        String caminho = request.getServletPath(); // recebendo o caminho do usuário
         IndustriaDAO industriaDAO = new IndustriaDAO();
 
         if (caminho.equals("/alterar-industria")) {
@@ -87,5 +89,4 @@ public class ServletEditarIndustria extends HttpServlet {
             response.sendRedirect("industrias");
         }
     }
-
 }

@@ -65,7 +65,7 @@ public class ServletAdicionarIndustria extends HttpServlet {
 
             // recebendo os telefones da indústria
             String telefone;
-            ArrayList<String> telefones = new ArrayList<>();
+            List<String> telefones = new ArrayList<>();
             for (int i = 1; i < 1000; i++) {
                 if (request.getParameter("telefone-"+i) != null) {
                     telefone = request.getParameter("telefone-"+i).replaceAll("[^0-9]","").trim();
@@ -75,10 +75,9 @@ public class ServletAdicionarIndustria extends HttpServlet {
                 telefones.add(telefone);
             }
 
+            // adicionando os telefones
             for (int i = 0; i < telefones.size(); i++) {
-                TelefoneIndustria telefoneIndustria = new TelefoneIndustria();
-                telefoneIndustria.setIdIndustria(idIndustria);
-                telefoneIndustria.setTelefone(telefones.get(i));
+                TelefoneIndustria telefoneIndustria = new TelefoneIndustria(telefones.get(i), idIndustria);
                 telefoneIndustriaDAO.adicionarTelIndustria(telefoneIndustria);
             }
 

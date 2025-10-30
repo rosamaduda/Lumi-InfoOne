@@ -32,6 +32,7 @@ public class ServletVisualizarAlergia extends HttpServlet {
             request.setAttribute("filtro-selecionado", filtro);
             request.setAttribute("pesquisa-anterior", pesquisa);
 
+            // buscando as informações dependendo do filtro
             if (filtro.equals("Todos")) {
                 listaAlergias = alergiaDAO.buscarAlergia();
             } else if (filtro.equals("Nome")) {

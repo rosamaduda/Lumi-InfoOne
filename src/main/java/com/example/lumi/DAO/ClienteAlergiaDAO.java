@@ -13,7 +13,7 @@ public class ClienteAlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
-            String instrucaoSQL = "INSERT INTO CLIENTE_ALERGIA (EMAIL_CLIENTE,ID_PRODUTO) VALUES (?,?)";
+            String instrucaoSQL = "INSERT INTO CLIENTE_ALERGIA (EMAIL_CLIENTE, ID_ALERGIA) VALUES (?,?)"; // inserindo o id da alergia e o email do cliente para criar o relacionamento
             PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
 
             // setando os parâmetros da isntrução
@@ -62,13 +62,13 @@ public class ClienteAlergiaDAO {
 
     public int deletarClienteAlergia(String email){
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
-            String instrucaoSQL = "DELETE FROM CLIENTE_ALERGIA WHERE EMAIL_CLIENTE= ?";
+            String instrucaoSQL = "DELETE FROM CLIENTE_ALERGIA WHERE EMAIL_CLIENTE = ?"; // deletando o relacionamento a partir do email do cliente para nao dar problema na hora de deletar o cliente
             PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
 
-            pstm.setString(1,email); // setando o parâmetro da instrução
+            pstm.setString(1, email); // setando o parâmetro da instrução
 
             if (pstm.executeUpdate() > 0) { // executando a instrução e verificando o retorno
                 return 1; // realizou a instrução
@@ -88,7 +88,7 @@ public class ClienteAlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
-            String instrucaoSQL = "DELETE FROM ALERGIA_CLIENTE WHERE ID_PRODUTO=? ";
+            String instrucaoSQL = "DELETE FROM ALERGIA_CLIENTE WHERE ID_ALERGIA=? ";// deletando o relacionamento a partir do id da alergia para nao dar problema na hora de deletar a alergia
             PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
 
             pstm.setInt(1, idAlergia); // setando o parâmetro da instrução
