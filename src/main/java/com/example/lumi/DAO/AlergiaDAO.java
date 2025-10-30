@@ -166,7 +166,7 @@ public class AlergiaDAO {
         List<Alergia> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA LIMIT 3";
+            String instrucaoSQL = "SELECT * FROM ALERGIA ORDER BY ID DESC LIMIT 3";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 

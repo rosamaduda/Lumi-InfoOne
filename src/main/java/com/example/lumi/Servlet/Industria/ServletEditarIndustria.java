@@ -67,7 +67,7 @@ public class ServletEditarIndustria extends HttpServlet {
             Industria industria = new Industria(id, cnpj, nome, objetivo, email, senha, plano);
 
             // fazendo a alteração
-            System.out.print(industriaDAO.alterarIndustria(industria));
+            industriaDAO.alterarIndustria(industria);
 
             // redirecionando para a página de industrias
             response.sendRedirect("industrias");

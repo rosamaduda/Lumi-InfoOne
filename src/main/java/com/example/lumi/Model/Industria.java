@@ -34,6 +34,10 @@ public class Industria {
     public Industria() {
     }
 
+    public Industria(String nome) {
+        this.nome = nome;
+    }
+
     public Industria(int id) {
         this.id = id;
     }

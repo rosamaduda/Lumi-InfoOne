@@ -2,7 +2,6 @@ package com.example.lumi.DAO;
 
 import com.example.lumi.Conexao.Conexao;
 import com.example.lumi.Model.Industria;
-import com.example.lumi.Model.Ingrediente;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -237,6 +236,29 @@ public class IndustriaDAO {
         return industrias;
     } // buscarIndustria()
 
+    public List<Industria> buscarNomeIndustria() {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Industria> industrias = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT NOME FROM INDUSTRIA I";
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a query
+
+            while (rset.next()) {
+                Industria industria = new Industria(rset.getString("nome"));
+                industrias.add(industria); // adicionando o objeto à lista
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return industrias;
+    } // buscarNomeIndustria()
+
     public List<Industria> buscarIndustriaPorNome(String nome) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
@@ -270,7 +292,7 @@ public class IndustriaDAO {
         List<Industria> industrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INDUSTRIA I LIMIT 3";
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA I ORDER BY ID DESC LIMIT 3";
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -355,5 +377,53 @@ public class IndustriaDAO {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return industria;
-    } // buscarIndustria(Industria industria)
+    } // buscarNomeIndustria(Industria industria)
+
+
+    public Industria buscarNomeIndustria(int id) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        Industria industria = null;
+
+        try {
+            String instrucaoSQL = "SELECT NOME FROM INDUSTRIA WHERE ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, id); // setando os parâmetros da instrução
+            rset = pstmt.executeQuery(); // executando a query
+
+            while (rset.next()) {
+                industria = new Industria(rset.getString("nome"));
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
+        }
+        return industria;
+    } // buscarNomeIndustria(int id)
+
+    public int buscarIdIndustria(String nome) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        int idIndustria = -1;
+        ResultSet rset;
+
+        try {
+            String instrucaoSQL = "SELECT ID FROM INDUSTRIA WHERE NOME LIKE ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, "%"+nome+"%"); // setando os parâmetros da instrução
+            rset = pstmt.executeQuery(); // executando a query
+
+            while (rset.next()) {
+                idIndustria = rset.getInt("id");
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
+        }
+        return idIndustria;
+    } // buscarIdIndustria(String nome)
+
 } // IndustriaDAO

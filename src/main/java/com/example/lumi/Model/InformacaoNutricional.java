@@ -23,6 +23,20 @@ public class InformacaoNutricional {
         this.gordurasTotais = gordurasTotais;
     }
 
+    public InformacaoNutricional(double valorEnergetico, double proteina, double fibras, double carboidratos, double sodio, double gorduraSaturada, double gorduraTrans, double gordurasTotais) {
+        this.valorEnergetico = valorEnergetico;
+        this.proteina = proteina;
+        this.fibras = fibras;
+        this.carboidratos = carboidratos;
+        this.sodio = sodio;
+        this.gorduraSaturada = gorduraSaturada;
+        this.gorduraTrans = gorduraTrans;
+        this.gordurasTotais = gordurasTotais;
+    }
+
+    public InformacaoNutricional(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;

@@ -24,11 +24,15 @@ public class ServletPortal extends HttpServlet {
         // buscando 3 alergias
         AlergiaDAO alergiaDAO = new AlergiaDAO();
         List<Alergia> listaAlergias = alergiaDAO.buscarAlergiaPortal();
+
+        // setando a lista como atributo
         request.setAttribute("alergias-lista", listaAlergias);
 
         // buscando 3 clientes
         ClienteDAO clienteDAO = new ClienteDAO();
         List<Cliente> listaClientes = clienteDAO.buscarCliente();
+
+        // setando a lista como atributo
         request.setAttribute("clientes-lista", listaClientes);
 
         // buscando 3 indústrias
@@ -42,8 +46,30 @@ public class ServletPortal extends HttpServlet {
             int idIndustria = listaIndustrias.get(i).getId();
             listaTelefones.add(telefoneIndustriaDAO.buscarTelefone(idIndustria));
         }
+
+        // setando as listas como atributo
         request.setAttribute("industrias-lista", listaIndustrias);
         request.setAttribute("telefones-lista", listaTelefones);
+
+        // buscando 3 produtos
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        InformacaoNutricionalDAO informacaoNutricionalDAO = new InformacaoNutricionalDAO();
+
+        List<Produto> listaProdutos = new ArrayList<>();
+        List<Industria> listaNomeIndustria = new ArrayList<>();
+        List<InformacaoNutricional> listaInfoNutri = new ArrayList<>();
+
+        listaProdutos = produtoDAO.buscarProdutoPortal();
+        listaInfoNutri = informacaoNutricionalDAO.buscarInfoNutri();
+        for (int i = 0; i < listaProdutos.size(); i++) {
+            Industria industria = industriaDAO.buscarNomeIndustria(listaProdutos.get(i).getIdIndustria());
+            listaNomeIndustria.add(industria);
+        }
+
+        // setando a lista como atributo
+        request.setAttribute("produtos-lista", listaProdutos);
+        request.setAttribute("nomeIndustria-lista", listaNomeIndustria);
+        request.setAttribute("infoNutri-lista", listaInfoNutri);
 
         // redirecionando o usuário para a página do portal
         request.getRequestDispatcher("WEB-INF/view/portal.jsp").forward(request, response);

@@ -12,6 +12,13 @@
     List<List> listaTelefones = (List<List>) request.getAttribute("telefones-lista");
     @SuppressWarnings("unchecked")
     List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("clientes-lista");
+    @SuppressWarnings("unchecked")
+    List <Produto> listaProdutos = (List<Produto>) request.getAttribute("produtos-lista");
+    @SuppressWarnings("unchecked")
+    List <Industria> listaNomeIndustria = (List<Industria>) request.getAttribute("nomeIndustria-lista");
+    @SuppressWarnings("unchecked")
+    List <InformacaoNutricional> listaInfoNutri = (List <InformacaoNutricional>) request.getAttribute("infoNutri-lista");
+
 %>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -404,23 +411,58 @@
                 <table class="w-full hidden sm:table">
                     <thead>
                     <tr class="bg-[#3C9D9B] text-white">
-                        <th class="p-3 text-left">Produto</th>
-                        <th class="p-3 text-left">Email do Cliente</th>
+                        <th class="p-3 text-left">Código de Barras</th>
+                        <th class="p-3 text-left">Nome</th>
+                        <th class="p-3 text-left">Indústria</th>
+                        <th class="p-3 text-left">Fabricante</th>
+                        <th class="p-3 text-left">Descrição</th>
+                        <th class="p-3 text-left">Massa</th>
+                        <th class="p-3 text-left">Informação Nutricional</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <%for (int i = 0; i < listaProdutos.size(); i++) {
+                        if (i % 2 == 0) {
+                    %>
                     <tr class="bg-white">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
+                        <td class="p-3 border-b"><%=listaProdutos.get(i).getCodigoBarras()%></td>
+                        <td class="p-3 border-b"><%=listaProdutos.get(i).getNome()%></td>
+                        <td class="p-3 border-b"><%=listaNomeIndustria.get(i).getNome()%></td>
+                        <td class="p-3 border-b"><%=listaProdutos.get(i).getFabricante()%></td>
+                        <td class="p-3 border-b max-w-[20%] whitespace-normal break-words align-top"><%=listaProdutos.get(i).getDescricao()%></td>
+                        <td class="p-3 border-b"><%=listaProdutos.get(i).getMassa()%></td>
+                        <td class="p-3 border-b">
+                            <strong>Carboidratos: </strong><%=listaInfoNutri.get(i).getCarboidratos()%>,
+                            <strong>Fibras: </strong><%=listaInfoNutri.get(i).getFibras()%>,<br>
+                            <strong>Gorduras Saturadas: </strong><%=listaInfoNutri.get(i).getGorduraSaturada()%>,
+                            <strong>Gorduras Trans: </strong><%=listaInfoNutri.get(i).getGorduraTrans()%>,<br>
+                            <strong>Gorduras Totais: </strong><%=listaInfoNutri.get(i).getGordurasTotais()%>,
+                            <strong>Proteína: </strong><%=listaInfoNutri.get(i).getProteina()%>,<br>
+                            <strong>Sódio: </strong><%=listaInfoNutri.get(i).getSodio()%>,
+                            <strong>Kcal: </strong><%=listaInfoNutri.get(i).getValorEnergetico()%>,<br>
+                        </td>
                     </tr>
+                    <%} else {%>
                     <tr class="bg-[#C5E2E1]">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
+                        <td class="p-3 border-b"><%=listaProdutos.get(i).getCodigoBarras()%></td>
+                        <td class="p-3 border-b"><%=listaProdutos.get(i).getNome()%></td>
+                        <td class="p-3 border-b"><%=listaNomeIndustria.get(i).getNome()%></td>
+                        <td class="p-3 border-b"><%=listaProdutos.get(i).getFabricante()%></td>
+                        <td class="p-3 border-b max-w-[20%] whitespace-normal break-words align-top"><%=listaProdutos.get(i).getDescricao()%></td>
+                        <td class="p-3 border-b"><%=listaProdutos.get(i).getMassa()%></td>
+                        <td class="p-3 border-b">
+                            <strong>Carboidratos: </strong><%=listaInfoNutri.get(i).getCarboidratos()%>,
+                            <strong>Fibras: </strong><%=listaInfoNutri.get(i).getFibras()%>,<br>
+                            <strong>Gorduras Saturadas: </strong><%=listaInfoNutri.get(i).getGorduraSaturada()%>,
+                            <strong>Gorduras Trans: </strong><%=listaInfoNutri.get(i).getGorduraTrans()%>,<br>
+                            <strong>Gorduras Totais: </strong><%=listaInfoNutri.get(i).getGordurasTotais()%>,
+                            <strong>Proteína: </strong><%=listaInfoNutri.get(i).getProteina()%>,<br>
+                            <strong>Sódio: </strong><%=listaInfoNutri.get(i).getSodio()%>,
+                            <strong>Kcal: </strong><%=listaInfoNutri.get(i).getValorEnergetico()%>,<br>
+                        </td>
                     </tr>
-                    <tr class="bg-white">
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b"></td>
-                    </tr>
+                    <%}
+                    }%>
                     </tbody>
                 </table>
                 <div class="sm:hidden divide-y divide-gray-200">
