@@ -13,6 +13,10 @@ public class ClienteAlergia {
         this.emailCliente = emailCliente;
 
     }
+    
+    public ClienteAlergia(int idAlergia) {
+        this.idAlergia = idAlergia;
+    }
 
     // getters e setters
 

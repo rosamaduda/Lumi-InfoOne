@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
         campoSelect.appendChild(optionPadrao);
 
         // Preenche opções a partir do array injetado (opcoesAlergias)
-        if (typeof opcoesAlergias !== 'undefined' && Array.isArray(opcoesAlergias)) {
-            opcoesAlergias.forEach(alergia => {
+        if (typeof alergiasOp !== 'undefined' && Array.isArray(alergiasOp)) {
+            alergiasOp.forEach(alergia => {
                 const option = document.createElement('option');
                 option.value = alergia;
                 option.textContent = alergia; 

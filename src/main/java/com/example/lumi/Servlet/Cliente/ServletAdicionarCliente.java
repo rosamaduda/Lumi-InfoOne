@@ -3,8 +3,13 @@ package com.example.lumi.Servlet.Cliente;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.example.lumi.DAO.AlergiaDAO;
+import com.example.lumi.DAO.ClienteAlergiaDAO;
 import com.example.lumi.DAO.ClienteDAO;
+import com.example.lumi.Model.Alergia;
 import com.example.lumi.Model.Cliente;
 
 import jakarta.servlet.ServletException;
@@ -19,6 +24,10 @@ public class ServletAdicionarCliente extends HttpServlet {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
 
         if (caminho.equals("/cadastro-cliente")) {
+            // Faz uma lista de alergias
+            AlergiaDAO alergiaDAO = new AlergiaDAO();
+            List<Alergia> alergiasOp = alergiaDAO.buscarAlergia();
+            request.setAttribute("alergias-lista", alergiasOp);
             request.getRequestDispatcher("WEB-INF/view/cadastro_cliente.jsp").forward(request, response);
         }
     }
@@ -69,6 +78,26 @@ public class ServletAdicionarCliente extends HttpServlet {
             if (retornoInsercao == -1 || retornoInsercao == 0) {
                 request.setAttribute("mensagemErro", "Não foi possível inserir o cliente");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+            }
+          
+            // Pega as alergias escolhidas do formulário
+            List<Integer> idAlergias = new ArrayList<>();
+            for (int i = 0; i < 1000; i++){
+                String idAlergiaStr = request.getParameter("alergia-" + i);
+                if (idAlergiaStr != null && !idAlergiaStr.isEmpty()){
+                    idAlergias.add(Integer.parseInt(idAlergiaStr));
+                } else{
+                    break;
+                }
+            }
+
+            // Adicionando relação
+            if (!idAlergias.isEmpty()){
+                ClienteAlergiaDAO clienteAlergiaDAO = new ClienteAlergiaDAO();
+                for (int i = 0; i < idAlergias.size(); i++){
+                    int idAlergia = idAlergias.get(i);
+                    clienteAlergiaDAO.inserirClienteAlergia(email, idAlergia);
+                }
             }
 
             // redirecionando para a página do cliente

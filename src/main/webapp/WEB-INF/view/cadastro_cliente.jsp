@@ -205,8 +205,8 @@
                             class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
                         <option disabled hidden selected value>Selecione um
                             estado</option>
-                        <option value="ac">Acre</option>
-                        <option value="al">Alagoas</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
                         <option value="ap">Amapá</option>
                         <option value="am">Amazonas</option>
                         <option value="ba">Bahia</option>
@@ -268,8 +268,20 @@
 <script>
     AOS.init({ duration: 800, once: true });
     feather.replace();
+
+    const alergiasOp = [ <% 
+            if (listaAlergias != null) {
+                for (int i = 0; i < listaAlergias.size(); i++) {
+                    Alergia alergia = listaAlergias.get(i);
+                    String separador = (i < listaAlergias.size() - 1) ? "," : "";
+        %>
+                    "<%= alergia.getNome() %>"<%= separador %>
+        <% 
+                }
+            }
+        %>
+        ];
 </script>
-<script src="${pageContext.request.contextPath}/js/telefone.js"></script>
 <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 <script src="${pageContext.request.contextPath}/js/carregandoAdicionar.js"></script>
 <script src="${pageContext.request.contextPath}/js/alergias.js"></script>

@@ -157,6 +157,19 @@
         <script>
             AOS.init({ duration: 800, once: true });
             feather.replace();
+
+            const alergiasOp = [ <% 
+            if (listaAlergias != null) {
+                for (int i = 0; i < listaAlergias.size(); i++) {
+                    Alergia alergia = listaAlergias.get(i);
+                    String separador = (i < listaAlergias.size() - 1) ? "," : "";
+        %>
+                    "<%= alergia.getNome() %>"<%= separador %>
+        <% 
+                }
+            }
+        %>
+        ];
         </script>
         <script src="${pageContext.request.contextPath}/js/menu.js"></script>
         <script src="${pageContext.request.contextPath}/js/aumentar-texto.js"></script>
