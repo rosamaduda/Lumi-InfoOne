@@ -34,7 +34,7 @@ public class ServletAdicionarIngrediente extends HttpServlet {
         IngredienteDAO ingredienteDAO = new IngredienteDAO();
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
 
-        if (caminho.equals("/alterar-ingrediente")) {
+        if (caminho.equals("/adicionar-ingrediente")) {
             // recebendo os parâmetros do form
             int id = Integer.parseInt(request.getParameter("id"));
             String nome = request.getParameter("nome");
@@ -55,7 +55,11 @@ public class ServletAdicionarIngrediente extends HttpServlet {
             Ingrediente ingrediente = new Ingrediente(id, nome, descricao);
 
             // alterando o ingrediente
-            ingredienteDAO.alterarIngrediente(ingrediente);
+            int retornoInsercao = ingredienteDAO.inserirIngrediente(ingrediente);
+            if (retornoInsercao == 0 || retornoInsercao == -1) {
+                request.setAttribute("mensagemErro", "Não foi possível inserir o ingrediente");
+                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+            }
 
             // redirecionando para a página de ingrediente novamente
             response.sendRedirect("ingredientes");

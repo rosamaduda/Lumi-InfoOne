@@ -30,24 +30,6 @@ public class AdmDAO {
         } finally {
             conexao.desconectar(conn); // desconectando do BD
         }
-
         return false; // retornando fora do try-catch, pois dentro dá erro de falta de retorno
     } // validarSenhaAdm()
-
-    public ResultSet buscarLogin() {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
-        ResultSet rset = null;
-
-        try {
-            String instrucaoSQL = "SELECT LOGIN FROM ADMINISTRADOR";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            rset = pstmt.executeQuery();
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        } finally {
-            conexao.desconectar(conn); // desconectando do BD
-            return rset;
-        }
-    } // buscarAdm()
 } // DAO

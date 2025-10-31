@@ -158,6 +158,30 @@ public class AlergiaDAO {
         return alergias;
     } // buscarNomeAlergia()
 
+    public List<Alergia> buscarNomeAlergia(int id) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Alergia> alergias = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT NOME FROM ALERGIA WHERE ID = ?"; // buscando o nome da alergia a partir do ID
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, id); // setando o parâmetro da instrução
+            rset = pstmt.executeQuery(); // realizando a query
+
+            while (rset.next()) {
+                Alergia alergia = new Alergia(rset.getString("nome"));
+                alergias.add(alergia); // adicionando o objeto à lista que será retornada
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return alergias;
+    } // buscarNomeAlergia(int id)
+
     // Limitar por 3 alergias para mostrar no portal
     public List<Alergia> buscarAlergiaPortal() {
         Conexao conexao = new Conexao();

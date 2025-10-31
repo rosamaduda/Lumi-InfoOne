@@ -91,7 +91,11 @@ public class ServletEditarCliente extends HttpServlet {
             Cliente cliente = new Cliente(email, cpf, nome, sobrenome, dataNascimento, senha, altura, peso, diabetes, pressaoAlta, colesterolAlto, telefone, estado, cidade, cep);
 
             // alterando o cliente
-            clienteDAO.alterarCliente(cliente);
+            int retornoAlteracao = clienteDAO.alterarCliente(cliente);
+            if (retornoAlteracao == 0 || retornoAlteracao == -1) {
+                request.setAttribute("mensagemErro", "Não foi possível alterar o cliente");
+                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+            }
 
             // redirecionando para a página de cliente
             response.sendRedirect("clientes");

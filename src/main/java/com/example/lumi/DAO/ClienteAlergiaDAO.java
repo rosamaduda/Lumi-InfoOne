@@ -1,10 +1,15 @@
 package com.example.lumi.DAO;
 
 import com.example.lumi.Conexao.Conexao;
+import com.example.lumi.Model.Alergia;
+import com.example.lumi.Model.ClienteAlergia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteAlergiaDAO {
     // INSERIR
@@ -88,7 +93,7 @@ public class ClienteAlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
-            String instrucaoSQL = "DELETE FROM ALERGIA_CLIENTE WHERE ID_ALERGIA=? ";// deletando o relacionamento a partir do id da alergia para nao dar problema na hora de deletar a alergia
+            String instrucaoSQL = "DELETE FROM ALERGIA_CLIENTE WHERE ID_ALERGIA=? "; // deletando o relacionamento a partir do id da alergia para nao dar problema na hora de deletar a alergia
             PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
 
             pstm.setInt(1, idAlergia); // setando o parâmetro da instrução
@@ -106,7 +111,30 @@ public class ClienteAlergiaDAO {
         }
     } // deletarClienteAlergia(int idAlergia)
 
+    // BUSCAR
+    public List<ClienteAlergia> buscaClienteAlergia(String emailCliente) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<ClienteAlergia> alergias = new ArrayList<>();
 
+        try {
+            String instrucaoSQL = "SELECT ID_ALERGIA FROM CLIENTE_ALERGIA WHERE EMAIL_CLIENTE = ?"; // buscando o nome da alergia a partir do ID
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, emailCliente); // setando o parâmetro da instrução
+            rset = pstmt.executeQuery(); // realizando a query
+
+            while (rset.next()) {
+                ClienteAlergia clienteAlergia = new ClienteAlergia(rset.getInt("id_alergia"));
+                alergias.add(clienteAlergia); // adicionando o objeto à lista que será retornada
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return alergias;
+    } // buscaClienteAlergia(String emailCliente)
 
 
 

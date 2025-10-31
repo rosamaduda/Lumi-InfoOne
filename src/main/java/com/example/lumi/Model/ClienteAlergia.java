@@ -6,7 +6,10 @@ public class ClienteAlergia {
     private int idAlergia;
     private String emailCliente;
 
-    // construtor
+    // construtores
+    public ClienteAlergia(int idAlergia) {
+        this.idAlergia = idAlergia;
+    }
     public ClienteAlergia(int id,  int idAlergia,String emailCliente) {
         this.id = id;
         this.idAlergia = idAlergia;

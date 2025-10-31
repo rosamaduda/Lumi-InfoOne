@@ -25,7 +25,7 @@ public class ServletVisualizarIndustria extends HttpServlet {
         List<List> listaTelefones = new ArrayList<>();
 
         if (caminho.equals("/industrias")) {
-            // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
+            // buscando as informações aqui para quando entrar na página as informações já estiverem carregadas
             listaIndustrias = industriaDAO.buscarIndustria();
             listaTelefones = new ArrayList<>();
 

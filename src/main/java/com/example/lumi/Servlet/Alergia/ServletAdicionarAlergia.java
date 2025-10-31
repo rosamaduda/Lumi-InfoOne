@@ -35,7 +35,11 @@ public class ServletAdicionarAlergia extends HttpServlet {
             Alergia alergia = new Alergia(nome, alergeno, descricao);
 
             // adicionando a alergia
-            alergiaDAO.inserirAlergia(alergia);
+            int retornoInsercao = alergiaDAO.inserirAlergia(alergia);
+            if (retornoInsercao == 0 || retornoInsercao == -1) {
+                request.setAttribute("mensagemErro", "Não foi possível inserir a alergia");
+                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+            }
 
             // redirecionando para a página de alergia novamente
             response.sendRedirect("alergias");

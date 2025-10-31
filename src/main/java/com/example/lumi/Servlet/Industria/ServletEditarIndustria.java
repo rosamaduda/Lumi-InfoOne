@@ -83,7 +83,11 @@ public class ServletEditarIndustria extends HttpServlet {
             Industria industria = new Industria(id, cnpj, nome, objetivo, email, senha, plano);
 
             // fazendo a alteração
-            industriaDAO.alterarIndustria(industria);
+            int retornoAlteracao = industriaDAO.alterarIndustria(industria);
+            if (retornoAlteracao == 0 || retornoAlteracao == -1) {
+                request.setAttribute("mensagemErro", "Não foi possível alterar a indústria");
+                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+            }
 
             // redirecionando para a página de industrias
             response.sendRedirect("industrias");

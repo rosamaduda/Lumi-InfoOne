@@ -49,7 +49,11 @@ public class ServletEditarIngrediente extends HttpServlet {
             Ingrediente ingrediente = new Ingrediente(id, nome, descricao);
 
             // alterando o ingrediente
-            ingredienteDAO.alterarIngrediente(ingrediente);
+            int retornoAlteracao = ingredienteDAO.alterarIngrediente(ingrediente);
+            if (retornoAlteracao == 0 || retornoAlteracao == -1) {
+                request.setAttribute("mensagemErro", "Não foi possível alterar o ingrediente");
+                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+            }
 
             // redirecionando para a página de ingrediente novamente
             response.sendRedirect("ingredientes");
