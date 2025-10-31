@@ -116,7 +116,7 @@
 
         feather.replace();
     </script>
-    <script src="${pageContext.request.contextPath}/js/mostrarCarregando.js"></script>
+    <script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
 </footer>
 </body>
 </html>

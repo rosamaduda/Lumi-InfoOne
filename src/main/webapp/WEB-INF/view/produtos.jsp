@@ -445,8 +445,7 @@
         </script>
         <script
             src="${pageContext.request.contextPath}/js/dropdown.js"></script>
-        <script
-            src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+        <script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
         <script src="${pageContext.request.contextPath}/js/remover.js"></script>
         <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 

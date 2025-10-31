@@ -107,7 +107,7 @@
                 <div
                         class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]"
                         data-aos="fade-up" data-aos-delay="100">
-                    <form action="alterar-produto" method="post">
+                    <form class="formAE" action="alterar-produto" method="post">
 
                         <div id="etapa1" class="mb-6">
                             <label for="codigo-barras"
@@ -231,10 +231,10 @@
                                         class="bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-gray-300 transition-colors">
                                     < Voltar
                                 </button>
-                                <button type="submit" id="botaoAdicionar"
-                                        class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-lemon-500 transition-colors">
-                                    Salvar
-                                </button>
+                                <button type="submit" id="btn-adicionar"
+                                class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-[#B4DF00] transition-colors">
+                            <span id="btn-texto">Salvar</span>
+                            </button>
                             </div>
                         </div>
                     </form>
@@ -242,22 +242,7 @@
     </main>
 </div>
 
-<div id="tela-carregamento"
-     class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
-    <div class="logo-container absolute top-6 left-6">
-        <img id="logo" src="${pageContext.request.contextPath}/assets/Group 28.png" alt="Logo Lumi" class="w-16 h-16 object-contain">
-    </div>
 
-    <div class="carregando flex flex-col items-center justify-center h-full">
-        <div class="loader">
-            <div class="bolinhas"></div>
-            <div class="bolinhas"></div>
-            <div class="bolinhas"></div>
-            <div class="bolinhas"></div>
-        </div>
-        <p class="text-gray-500 mt-2">Organizando tudo por aqui, rapidinho...</p>
-    </div>
-</div>
 
     <script>
         AOS.init({ duration: 800, once: true });
@@ -265,7 +250,7 @@
     </script>
     <script src="${pageContext.request.contextPath}/js/menu.js"></script>
     <script src="${pageContext.request.contextPath}/js/carregandoAdicionar.js"></script>
-    <script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+    <script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
     <script src="${pageContext.request.contextPath}/js/informacao-nutricional.js"></script>
         </body>
     </html>

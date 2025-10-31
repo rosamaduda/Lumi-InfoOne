@@ -88,7 +88,7 @@
 
         <div class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]"
              data-aos="fade-up" data-aos-delay="100">
-            <form action="alterar-industria" method="post">
+            <form class="formAE" action="alterar-industria" method="post">
                 <div>
                     <label for="id" class="hidden block text-gray-700 text-sm font-medium mb-2">ID:</label>
                     <input type="text" id="id" name="id"
@@ -117,7 +117,7 @@
                               rows="3" oninput="aumentarTexto(this)"><%=request.getAttribute("objetivoIndustria")%></textarea>
 
                     <label for="senha" class="block text-gray-700 text-sm font-medium mb-2 mt-2">Senha:</label>
-                    <input type="text" id="senha" name="senha"
+                    <input type="text" id="senha" name="senha" pattern="^[^ ]{8,20}$"
                            value="<%=request.getAttribute("senhaIndustria")%>"
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
 
@@ -163,33 +163,14 @@
                 </div>
 
                 <div class="text-center">
-                    <button type="submit"
-                            class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-lemon-500 transition-colors">
-                        Adicionar
-                    </button>
+                    <button type="submit" id="btn-adicionar"
+                    class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-[#B4DF00] transition-colors">
+                <span id="btn-texto">Salvar</span>
+                </button>
                 </div>
             </form>
         </div>
     </main>
-</div>
-
-<!-- Tela de carregamento -->
-<div id="tela-carregamento"
-     class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
-    <div class="logo-container absolute top-6 left-6">
-        <img id="logo" src="${pageContext.request.contextPath}/assets/Group 28.png" alt="Logo Lumi"
-             class="w-16 h-16 object-contain">
-    </div>
-    <div class="carregando flex flex-col items-center justify-center h-full">
-        <div class="loader">
-            <div class="bolinhas"></div>
-            <div class="bolinhas"></div>
-            <div class="bolinhas"></div>
-            <div class="bolinhas"></div>
-        </div>
-        <h1 class="text-2xl font-medium mt-8 text-gray-700">Alterando...</h1>
-        <p class="text-gray-500 mt-2">Organizando tudo por aqui, rapidinho...</p>
-    </div>
 </div>
 
 <script>
@@ -200,6 +181,6 @@
 <script src="${pageContext.request.contextPath}/js/aumentar-texto.js"></script>
 <script src="${pageContext.request.contextPath}/js/alterarTelefone.js"></script>
 <script src="${pageContext.request.contextPath}/js/carregandoAdicionar.js"></script>
-<script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+<script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
 </body>
 </html>

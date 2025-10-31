@@ -9,7 +9,7 @@
     @SuppressWarnings("unchecked")
     List<Industria> listaIndustrias = (List<Industria>) request.getAttribute("industrias-lista");
     @SuppressWarnings("unchecked")
-    List<List> listaTelefones = (List<List>) request.getAttribute("telefones-lista");
+    List<List<TelefoneIndustria>> listaTelefones = (List<List<TelefoneIndustria>>) request.getAttribute("telefones-lista");
     @SuppressWarnings("unchecked")
     List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("clientes-lista");
     @SuppressWarnings("unchecked")
@@ -364,7 +364,7 @@
                                     <% for (int j=0; j < listaTelefones.get(i).size();
                                             j++) { %>
                                     <option>
-                                        <%= listaTelefones.get(i).get(j) %>
+                                        <%= listaTelefones.get(i).get(j).getTelefone() %>
                                     </option>
                                     <% } %>
                                 </select>
@@ -404,7 +404,7 @@
                                     <% for (int j=0; j <
                                             listaTelefones.get(i).size(); j++) { %>
                                     <option>
-                                        <%= listaTelefones.get(i).get(j) %>
+                                        <%= listaTelefones.get(i).get(j).getTelefone() %>
                                     </option>
                                     <% } %>
                                 </select>
@@ -525,6 +525,6 @@
 
 </script>
 <script src="${pageContext.request.contextPath}/js/menu.js"></script>
-<script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+<script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
 </body>
 </html>

@@ -340,7 +340,6 @@
                                 cpf = cpf.replaceFirst("([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})", "$1.$2.$3-$4");
                             %>
                             <%= cpf %>
-                            %>
                                             </span>
                         </p>
                         <p
@@ -560,7 +559,7 @@
     feather.replace();
 </script>
 <script src="${pageContext.request.contextPath}/js/dropdown.js"></script>
-<script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+<script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
 <script src="${pageContext.request.contextPath}/js/remover.js"></script>
 <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 
