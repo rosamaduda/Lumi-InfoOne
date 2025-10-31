@@ -72,7 +72,7 @@ public class ProdutoDAO {
     } // alterarProduto(Produto produto)
 
     // DELETAR
-    public int removerProduto(String codigoBarras) {
+    public int deletarProduto(String codigoBarras) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
@@ -94,7 +94,7 @@ public class ProdutoDAO {
         }
     } // removerProduto(long codigoBarras)
 
-    public int removerProdutoIndustria(int idIndustria) {
+    public int deletarProdutoIndustria(int idIndustria) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
