@@ -16,7 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/industrias", "/filtro-industria"})
 public class ServletVisualizarIndustria extends HttpServlet {
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
         // instanciando o objeto da classe IndustriaDAO e TelefoneIndustriaDAO para ter acesso aos métodos de buscar

@@ -6,43 +6,30 @@ public class TelefoneIndustria {
     private String telefone;
     private int idIndustria;
 
-   // construtor
+   // construtores
+   public TelefoneIndustria() {}
+
+    public TelefoneIndustria(String telefone) {
+        this.telefone = telefone;
+    }
+    public TelefoneIndustria(String telefone, int idIndustria) {
+       this.telefone = telefone;
+       this.idIndustria = idIndustria;
+    }
    public TelefoneIndustria (int id, String telefone, int idIndustria) {
        this.id = id;
        this.telefone = telefone;
        this.idIndustria = idIndustria;
    }
 
-    public TelefoneIndustria() {
-    }
-
-    public TelefoneIndustria(String telefone) {
-        this.telefone = telefone;
-    }
-
-    // getters e setters
+    // getters
     public int getId() {
         return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
     public String getTelefone() {
         return telefone;
     }
     public int getIdIndustria() {
         return idIndustria;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public void setIdIndustria(int idIndustria) {
-        this.idIndustria = idIndustria;
-    }
-
-    public String toString() {
-        return this.telefone;
     }
 } // TelefoneIndustria

@@ -14,7 +14,6 @@ import java.io.IOException;
 
 @WebServlet(value = "/exclusao-ingrediente")
 public class ServletExcluirIngrediente extends HttpServlet {
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IngredienteDAO ingredienteDAO = new IngredienteDAO();
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
@@ -34,5 +33,4 @@ public class ServletExcluirIngrediente extends HttpServlet {
         // recarregando a página
         response.sendRedirect("ingredientes");
     }
-
 }

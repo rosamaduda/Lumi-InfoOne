@@ -19,7 +19,7 @@ public class PlanoDAO {
         List<Plano> planos = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT NOME FROM PLANO";
+            String instrucaoSQL = "SELECT NOME FROM PLANO"; // buscando os nomes dos planos
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 

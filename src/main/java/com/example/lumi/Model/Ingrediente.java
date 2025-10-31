@@ -6,23 +6,19 @@ public class Ingrediente {
     private String nome;
     private String descricao;
 
-    // construtor
-    public Ingrediente(int id, String nome, String descricao) {
+    // construtores
+    public Ingrediente() {}
+    public Ingrediente(int id) {
         this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
     }
-
     public Ingrediente(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }
-
-    public Ingrediente() {
-    }
-
-    public Ingrediente(int id) {
+    public Ingrediente(int id, String nome, String descricao) {
         this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
     }
 
     // getters
@@ -35,5 +31,4 @@ public class Ingrediente {
     public String getDescricao() {
         return descricao;
     }
-
 } // Ingrediente

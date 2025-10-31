@@ -63,7 +63,7 @@ public class AlergiaIngredienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
-            String instrucaoSQL = "DELETE FROM ALERGIA_INGREDIENTE WHERE ID_ALERGIA=?";
+            String instrucaoSQL = "DELETE FROM ALERGIA_INGREDIENTE WHERE ID_ALERGIA=?"; // deletando o relacionaento a partir do id da alergia para nao dar problema na hora de remover a alergia
             PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
 
             pstm.setInt(1, idAlergia); // setando o parâmetro na instrução
@@ -86,7 +86,7 @@ public class AlergiaIngredienteDAO {
         Connection conn = conexao.conectar();
 
         try {
-            String instrucaoSQL = "DELETE FROM ALERGIA_INGREDIENTE WHERE ID_INGREDIENTE = ?";
+            String instrucaoSQL = "DELETE FROM ALERGIA_INGREDIENTE WHERE ID_INGREDIENTE = ?"; // deletando o relacionaento a partir do id do ingrediente para nao dar problema de remover o ingrediente
             PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
 
             pstm.setInt(1, idIngrediente); // setando o parâmetro na instrução

@@ -14,7 +14,7 @@ public class IngredienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "INSERT INTO INGREDIENTE (NOME, DESCRICAO) VALUES (?, ?)";
+            String instrucaoSQL = "INSERT INTO INGREDIENTE (NOME, DESCRICAO) VALUES (?, ?)"; // inserindo o ingrediente
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando parâmetros na instrução
@@ -35,58 +35,12 @@ public class IngredienteDAO {
     } // inserirIngrediente()
 
     // ALTERAR
-    public int alterarNomeIngrediente(int id, String nome) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE INGREDIENTE SET NOME = ? WHERE ID = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-
-            // setando os parâmetros
-            pstmt.setString(1, nome);
-            pstmt.setInt(2, id);
-
-            if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
-                return 1; // conseguiu realizar a alteração
-            } else {
-                return 0; // não encontrou o registro
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        }
-    } // alterarDescricaoIngrediente()
-
-    public int alterarDescricaoIngrediente(int id, String descricao) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE INGREDIENTE SET DESCRICAO = ? WHERE ID = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-
-            // setando os parametros da instrucao
-            pstmt.setString(1, descricao);
-            pstmt.setInt(2, id);
-
-            if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
-                return 1; // conseguiu realizar a alteração
-            } else {
-                return 0; // não encontrou o registro
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        }
-    } // alterarDescricaoIngrediente()
-
     public int alterarIngrediente(Ingrediente ingrediente) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE INGREDIENTE SET NOME = ?, DESCRICAO = ? WHERE ID = ?";
+            String instrucaoSQL = "UPDATE INGREDIENTE SET NOME = ?, DESCRICAO = ? WHERE ID = ?"; // alterando o ingrediente
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando os parametros da instrucao
@@ -112,7 +66,7 @@ public class IngredienteDAO {
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "DELETE FROM INGREDIENTE WHERE ID = ?";
+            String instrucaoSQL = "DELETE FROM INGREDIENTE WHERE ID = ?"; // deletando o ingrediente a partir do ID
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando o parâmetro da instrução
@@ -139,7 +93,7 @@ public class IngredienteDAO {
         List<Ingrediente> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INGREDIENTE";
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE"; // buscando todos os ingredientes
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -160,7 +114,7 @@ public class IngredienteDAO {
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "SELECT * FROM INGREDIENTE WHERE ID = ?";
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE WHERE ID = ?"; // buscando todos os ingredientes a partir do ID
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             pstmt.setInt(1, ingrediente.getId()); // setando os parâmetros da instrução
@@ -185,7 +139,7 @@ public class IngredienteDAO {
         List<Ingrediente> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INGREDIENTE ORDER BY ID DESC LIMIT 3";
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE ORDER BY ID DESC LIMIT 3"; // buscando os últimos 3 registros de ingrediente
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -208,7 +162,7 @@ public class IngredienteDAO {
         List<Ingrediente> lista = new ArrayList<>();
 
         try{
-            String instrucaoSQL = "SELECT * FROM INGREDIENTE WHERE NOME LIKE ?";
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE WHERE NOME LIKE ?"; // buscando o ingrediente pelo nome
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, "%"+nome+"%"); // setando o parâmetro da instrução
             rset = pstmt.executeQuery(); // executando a instrução

@@ -14,7 +14,6 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/ingredientes", "/filtro-ingrediente"})
 public class ServletVisualizarIngrediente extends HttpServlet {
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IngredienteDAO ingredienteDAO = new IngredienteDAO(); // instanciando o objeto da classe IngredienteDAO para ter acesso ao método de buscar
         String caminho = request.getServletPath(); // recebendo o caminho do usuário

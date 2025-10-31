@@ -14,7 +14,7 @@ public class AdmDAO {
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "SELECT SENHA FROM ADMINISTRADOR WHERE LOGIN = ?";
+            String instrucaoSQL = "SELECT SENHA FROM ADMINISTRADOR WHERE LOGIN = ?"; // buscando a senha do administrador equivalente ao login fornecido
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, login); // setando o parâmetro na instrução
             rset = pstmt.executeQuery(); // executando a query no BD

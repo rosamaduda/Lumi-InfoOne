@@ -21,11 +21,12 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ServletEditarIndustria extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String caminho = request.getServletPath();
+        String caminho = request.getServletPath(); // recebendo o caminho do usuário
         IndustriaDAO industriaDAO = new IndustriaDAO();
       
 
         if (caminho.equals("/alteracao-industria")) {
+            // buscando os nomes dos planos
             PlanoDAO planoDAO = new PlanoDAO();
             List<Plano> listaPlanos = planoDAO.buscarNomePlano();
             request.setAttribute("planos-lista", listaPlanos);
@@ -34,9 +35,15 @@ public class ServletEditarIndustria extends HttpServlet {
             Industria industria = new Industria(idIndustria); // setando o id no model
             industria = industriaDAO.buscarIndustria(industria);// buscando as informações do id para poder setar como atributos
 
+<<<<<<< HEAD
             TelefoneIndustriaDAO telefoneDAO = new TelefoneIndustriaDAO();
             List<TelefoneIndustria> telefonesSalvos = telefoneDAO.buscarTelPorIndustria(idIndustria);
             
+=======
+            // buscando os telefones
+            TelefoneIndustriaDAO telefoneIndustriaDAO = new TelefoneIndustriaDAO();
+            telefonesSalvos = telefoneIndustriaDAO.buscarTelefone(idIndustria);
+>>>>>>> bd9944fed420d778f0dfe78e5f8811384e25d523
 
             List<String> numeroTelefones = new ArrayList<>();
             for (int i = 0; i < telefonesSalvos.size(); i++) {
@@ -57,7 +64,7 @@ public class ServletEditarIndustria extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String caminho = request.getServletPath();
+        String caminho = request.getServletPath(); // recebendo o caminho do usuário
         IndustriaDAO industriaDAO = new IndustriaDAO();
 
         if (caminho.equals("/alterar-industria")) {
@@ -98,5 +105,4 @@ public class ServletEditarIndustria extends HttpServlet {
             response.sendRedirect("industrias");
         }
     }
-
 }

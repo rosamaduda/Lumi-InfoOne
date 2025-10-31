@@ -26,6 +26,7 @@ public class ServletExcluirCliente extends HttpServlet {
         String emailCliente = request.getParameter("emailCliente");
         avaliacaoDAO.removerAvaliacao(emailCliente);
         clienteAlergiaDAO.deletarClienteAlergia(emailCliente);
+        favoritosDAO.deletarFavorito(emailCliente);
 
         // deletando o cliente
         clienteDAO.deletarCliente(emailCliente);
