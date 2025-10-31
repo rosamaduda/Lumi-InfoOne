@@ -79,6 +79,26 @@ public class ServletAdicionarCliente extends HttpServlet {
                 request.setAttribute("mensagemErro", "Não foi possível inserir o cliente");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
             }
+          
+            // Pega as alergias escolhidas do formulário
+            List<Integer> idAlergias = new ArrayList<>();
+            for (int i = 0; i < 1000; i++){
+                String idAlergiaStr = request.getParameter("alergia-" + i);
+                if (idAlergiaStr != null && !idAlergiaStr.isEmpty()){
+                    idAlergias.add(Integer.parseInt(idAlergiaStr));
+                } else{
+                    break;
+                }
+            }
+
+            // Adicionando relação
+            if (!idAlergias.isEmpty()){
+                ClienteAlergiaDAO clienteAlergiaDAO = new ClienteAlergiaDAO();
+                for (int i = 0; i < idAlergias.size(); i++){
+                    int idAlergia = idAlergias.get(i);
+                    clienteAlergiaDAO.inserirClienteAlergia(email, idAlergia);
+                }
+            }
 
             // Pega as alergias escolhidas do formulário
             List<Integer> idAlergias = new ArrayList<>();

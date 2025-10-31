@@ -93,7 +93,7 @@ public class ClienteAlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
-            String instrucaoSQL = "DELETE FROM ALERGIA_CLIENTE WHERE ID_ALERGIA=? "; // deletando o relacionamento a partir do id da alergia para nao dar problema na hora de deletar a alergia
+            String instrucaoSQL = "DELETE FROM ALERGIA_CLIENTE WHERE ID_ALERGIA=? ";// deletando o relacionamento a partir do id da alergia para nao dar problema na hora de deletar a alergia
             PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
 
             pstm.setInt(1, idAlergia); // setando o parâmetro da instrução
@@ -136,7 +136,31 @@ public class ClienteAlergiaDAO {
         return alergias;
     } // buscaClienteAlergia(String emailCliente)
 
+    public List<String> buscarAlergiasPorEmail(String emailCliente) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar();
+        ResultSet rset;
+        List<String> nomesAlergias = new ArrayList<>();
 
+        try {
+            String sql = "SELECT A.NOME " +
+                    "FROM CLIENTE_ALERGIA CA " +
+                    "JOIN ALERGIA A ON CA.ID_ALERGIA = A.ID " +
+                    "WHERE CA.EMAIL_CLIENTE = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, emailCliente);
+            rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+                nomesAlergias.add(rset.getString("NOME"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conexao.desconectar(conn);
+        }
+        return nomesAlergias;
+    } // buscaClienteAlergia(String emailCliente)
 
 
 

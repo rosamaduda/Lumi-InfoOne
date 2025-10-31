@@ -167,23 +167,16 @@ List<Industria> industrias = (List<Industria>)
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% if (industrias.isEmpty()) { %>
-                                            <tr class="bg-white">
-                                                <td colspan="8"
-                                                    class="p-3 text-center text-gray-400 italic">
-                                                    Nenhuma indústria
-                                                    cadastrada.
-                                                </td>
-                                            </tr>
-                                            <% } else { %>
                                             <% for (int i = 0; i <
                                             industrias.size(); i++) { %>
                                             <tr
                                                 class="<%= (i % 2 == 0) ? "bg-white"
                                                 : "bg-[#C5E2E1]" %>">
-                                                <td class="p-3 border-b"><%=
-                                                    industrias.get(i).getCnpj()
-                                                    %></td>
+                                                <td class="p-3 border-b max-w-full whitespace-nowrap"><%
+                                                    String cnpj = industrias.get(i).getCnpj();
+                                                    cnpj = cnpj.replaceFirst("([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{4})([0-9]{2})", "$1.$2.$3/$4-$5");
+                                                    %>
+                                                    <%= cnpj %></td>
                                                 <td class="p-3 border-b"><%=
                                                     industrias.get(i).getNome()
                                                     %></td>
@@ -204,7 +197,7 @@ List<Industria> industrias = (List<Industria>)
                                                 <td>
                                                     <div
                                                         class="relative w-full">
-                                                        <select
+                                                        <select id="dropdown-telefone"
                                                             class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 truncate">
                                                             <% if
                                                             (telefones.get(i) !=
@@ -213,7 +206,7 @@ List<Industria> industrias = (List<Industria>)
                                                             <
                                                             telefones.get(i).size();
                                                             j++) { %>
-                                                            <option><%=
+                                                            <option value="<%=i%>" id="telefoneSelecionado-<%=i%>"><%=
                                                                 telefones.get(i).get(j)
                                                                 %></option>
                                                             <% } %>
@@ -252,7 +245,6 @@ List<Industria> industrias = (List<Industria>)
                                                 </td>
                                             </tr>
                                             <% } %>
-                                            <% } %>
                                         </tbody>
                                     </table>
 
@@ -280,9 +272,11 @@ List<Industria> industrias = (List<Industria>)
                                                         class="font-bold text-gray-700">CNPJ:</span>
                                                     <span
                                                         class="font text-gray-800">
-                                                        <%=
-                                                        industrias.get(i).getCnpj()
+                                                        <%
+                                                        String cnpj = industrias.get(i).getCnpj();
+                                                        cnpj = cnpj.replaceFirst("([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{4})([0-9]{2})", "$1.$2.$3/$4-$5");
                                                         %>
+                                                    <%= cnpj %>
                                                     </span>
                                                 </p>
                                                 <p
@@ -467,8 +461,8 @@ List<Industria> industrias = (List<Industria>)
                         <script src="${pageContext.request.contextPath}/js/dropdown.js"></script>
                         <script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
                         <script src="${pageContext.request.contextPath}/js/remover.js"></script>
+                        <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 
 
                     </body>
                 </html>
-

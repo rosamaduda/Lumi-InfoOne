@@ -102,7 +102,7 @@
          class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
     <main class="sm:ml-64 flex-1 sm:p-8">
-        <a href="favoritos" onclick="mostrarRedirecionando()"><h1 class="text-left"><i
+        <a href="produtos" onclick="mostrarRedirecionando()"><h1 class="text-left"><i
             data-feather="arrow-left"></i></h1></a>
         <h1
                 class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[3%]"

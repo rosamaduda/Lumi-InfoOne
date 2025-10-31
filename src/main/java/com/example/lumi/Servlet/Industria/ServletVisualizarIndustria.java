@@ -1,18 +1,18 @@
 package com.example.lumi.Servlet.Industria;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.lumi.DAO.IndustriaDAO;
 import com.example.lumi.DAO.TelefoneIndustriaDAO;
 import com.example.lumi.Model.Industria;
-import com.example.lumi.Model.TelefoneIndustria;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(urlPatterns = {"/industrias", "/filtro-industria"})
 public class ServletVisualizarIndustria extends HttpServlet {
@@ -31,7 +31,7 @@ public class ServletVisualizarIndustria extends HttpServlet {
 
             for (int i = 0; i < listaIndustrias.size(); i++) {
                 int idIndustria = listaIndustrias.get(i).getId();
-                listaTelefones.add(telefoneIndustriaDAO.buscarTelefone(idIndustria));
+                listaTelefones.add(telefoneIndustriaDAO.buscarTelPorIndustria(idIndustria));
             }
         } else {
             // recebendo o valor do filtro e da barra de pesquisa

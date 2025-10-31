@@ -106,12 +106,12 @@
             <form action="adicionar-alergia" method="post">
                 <div class="mb-6">
                     <label for="nome" class="block text-gray-700 text-sm font-medium mb-2">Nome:</label>
-                    <input type="text" id="nome" name="nome"
+                    <input type="text" id="nome" name="nome" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Digite o nome da alergia...">
 
                     <label for="alergeno" class="block text-gray-700 text-sm font-medium mb-2">Alérgeno:</label>
-                    <input type="text" id="alergeno" name="alergeno"
+                    <input type="text" id="alergeno" name="alergeno" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Digite o alérgeno relacionado à alergia...">
 

@@ -105,7 +105,7 @@
 
                     <form action="alterar-alergia" method="post">
                         <div class="mb-6">
-                            <label for="id" class="block text-gray-700 text-sm font-medium mb-2">ID:</label>
+                            <label for="id" class="hidden block text-gray-700 text-sm font-medium mb-2">ID:</label>
                             <input type="text" id="id" name="id" value="<%=request.getAttribute("idAlergia")%>"
                             class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2
                             focus:ring-[#7F3FBF]

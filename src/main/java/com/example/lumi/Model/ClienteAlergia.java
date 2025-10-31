@@ -7,13 +7,14 @@ public class ClienteAlergia {
     private String emailCliente;
 
     // construtores
-    public ClienteAlergia(int idAlergia) {
-        this.idAlergia = idAlergia;
-    }
     public ClienteAlergia(int id,  int idAlergia,String emailCliente) {
         this.id = id;
         this.idAlergia = idAlergia;
         this.emailCliente = emailCliente;
+    }
+    
+    public ClienteAlergia(int idAlergia) {
+        this.idAlergia = idAlergia;
     }
 
     // getters
