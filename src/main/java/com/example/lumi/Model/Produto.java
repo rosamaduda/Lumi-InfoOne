@@ -2,7 +2,7 @@ package com.example.lumi.Model;
 
 public class Produto {
     // atributos
-    private long codigoBarras;
+    private String codigoBarras;
     private String nome;
     private String fabricante;
     private String descricao;
@@ -13,7 +13,7 @@ public class Produto {
     // construtor
 
 
-    public Produto(long codigoBarras, String nome, String fabricante, String descricao, double massa, int idIndustria, int idInfoNutri) {
+    public Produto(String codigoBarras, String nome, String fabricante, String descricao, double massa, int idIndustria, int idInfoNutri) {
         this.codigoBarras = codigoBarras;
         this.nome = nome;
         this.fabricante = fabricante;
@@ -23,19 +23,15 @@ public class Produto {
         this.idInfoNutri = idInfoNutri;
     }
 
-    public Produto(String nome) {
-        this.nome = nome;
-    }
 
-    //pegar código para buscar favorito
-    public Produto(long codigoBarras){this.codigoBarras=codigoBarras;}
+    public Produto(String codigoBarras){this.codigoBarras=codigoBarras;}
 
     // getters
     public String getNome() {
         return this.nome;
     }
 
-    public long getCodigoBarras() {
+    public String getCodigoBarras() {
         return codigoBarras;
     }
 

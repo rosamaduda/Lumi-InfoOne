@@ -31,7 +31,7 @@ public class ServletEditarProduto extends HttpServlet {
             List<Industria> listaIndustrias = industriaDAO.buscarNomeIndustria();
 
             // recebendo o codigo de barras do produto que será alterado
-            long codigoBarras = Long.parseLong(request.getParameter("codigoProduto"));
+            String codigoBarras = request.getParameter("codigoProduto");
 
             // setando o código de barras no model
             Produto produto = new Produto(codigoBarras);
@@ -108,7 +108,7 @@ public class ServletEditarProduto extends HttpServlet {
             }
 
             // recebendo os parâmetros do produto
-            long codigoBarras = Long.parseLong(request.getParameter("codigo-barras"));
+            String codigoBarras = request.getParameter("codigo-barras");
             String nome = request.getParameter("nome");
             String fabricante = request.getParameter("fabricante");
             String nomeIndustria = request.getParameter("industria");

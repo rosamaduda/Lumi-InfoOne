@@ -17,7 +17,7 @@ public class ServletExcluirProduto extends HttpServlet {
         InformacaoNutricionalDAO informacaoNutricionalDAO = new InformacaoNutricionalDAO();
 
         // recebendo o código do produto que será excluido
-        long codigoBarras = Long.parseLong(request.getParameter("codigoProduto"));
+        String codigoBarras = request.getParameter("codigoProduto");
 
         // recebendo o id da info. nutricional do produto
         int idInfoNutri = produtoDAO.buscarIdInfoNutri(codigoBarras);
@@ -26,7 +26,7 @@ public class ServletExcluirProduto extends HttpServlet {
         informacaoNutricionalDAO.deletarInfoNutri(idInfoNutri);
 
         // excluindo o produto
-        produtoDAO.removerProduto(codigoBarras);
+        produtoDAO.deletarProduto(codigoBarras);
 
         // redirecionando para a página de produto
         response.sendRedirect("produtos");

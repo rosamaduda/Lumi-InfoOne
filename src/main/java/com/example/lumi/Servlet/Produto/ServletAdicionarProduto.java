@@ -65,7 +65,7 @@ public class ServletAdicionarProduto extends HttpServlet {
             int idInfoNutri = informacaoNutricionalDAO.buscarIdInfoNutri();
 
             // recebendo os parâmetros do produto
-            long codigoBarras = Long.parseLong(request.getParameter("codigo-barras"));
+            String codigoBarras = request.getParameter("codigo-barras");
             String nome = request.getParameter("nome");
             String fabricante = request.getParameter("fabricante");
             String nomeIndustria = request.getParameter("industria");
