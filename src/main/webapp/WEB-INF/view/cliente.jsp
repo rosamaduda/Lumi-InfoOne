@@ -6,6 +6,7 @@
     @SuppressWarnings("unchecked")
     List<Cliente> clientes = (List<Cliente>)
             request.getAttribute("clientes-lista");
+    @SuppressWarnings("unchecked")
     List<List> alergias = (List<List>)
             request.getAttribute("alergias-lista");
 %>
@@ -178,10 +179,10 @@
                 <tr class="bg-white">
                     <td class="p-3 border-b max-w-full whitespace-nowrap">
                         <%
-                        String cpf = clientes.get(i).getCpf();
-                        cpf = cpf.replaceFirst("([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})", "$1.$2.$3-$4");
-                    %>
-                    <%= cpf %>
+                            String cpf = clientes.get(i).getCpf();
+                            cpf = cpf.replaceFirst("([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})", "$1.$2.$3-$4");
+                        %>
+                        <%= cpf %>
                     </td>
                     <td class="p-3 border-b">
                         <%=clientes.get(i).getNome()%>
@@ -196,24 +197,33 @@
                     <td class="p-3 border-b"><%=clientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getDiabetes()%></td>
                     <td class="p-3 border-b">
-                    <% for (int j = 0; j < alergias.get(i).size(); j++) { %>
-                        <%= alergias.get(i).get(j) %><br>
-                    <% } %></td>
-                    <td class="p-3 border-b max-w-full whitespace-nowrap">
-                        <%
+                        <div
+                                class="relative w-full">
+                            <select id="dropdown-alergias-<%=i%>" class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 truncate">
+                                <% for (int j = 0; j < alergias.get(i).size(); j++) { %>
+                                <option value="<%=j%>"><%= alergias.get(i).get(j) %></option>
+                                <% } %>
+                            </select>
+                            <i
+                                    data-feather="chevron-down"
+                                    class="pointer-events-none absolute right-1 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i>
+                        </div>
+                    </td>
+                    <td class="p-3 border-b max-w-full whitespace-nowrap"><%
                         String telefone = clientes.get(i).getTelefone();
                         telefone = telefone.replaceFirst("([0-9]{2})([0-9]{5})([0-9]{4})", "($1) $2-$3");
                     %>
-                    <%= telefone %></td>
+                        <%= telefone %>
+                    </td>
                     <td class="p-3 border-b"><%=clientes.get(i).getEmail()%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getSenha()%></td>
-                    <td class="p-3 border-b max-w-[80%]"><%=clientes.get(i).getEnderecoUf() + ", " + clientes.get(i).getEnderecoCidade() + ", " + clientes.get(i).getEnderecoCep()%></td>
+                    <td class="p-3 border-b"><%=clientes.get(i).getEnderecoUf() + ", " + clientes.get(i).getEnderecoCidade() + ", " + clientes.get(i).getEnderecoCep()%></td>
                     <td class="p-3 border-b text-right">
                         <div
                                 class="flex space-x-2 justify-end">
                             <a onclick="mostrarRedirecionando()"
-                                    href="alteracao-ingrediente?idCliente=<%=clientes.get(i).getEmail()%>"
-                                    class="p-1 text-blue-600 hover:text-blue-800">
+                               href="alteracao-cliente?idCliente=<%=clientes.get(i).getEmail()%>"
+                               class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit"
                                    class="w-4 h-4"></i>
                             </a>

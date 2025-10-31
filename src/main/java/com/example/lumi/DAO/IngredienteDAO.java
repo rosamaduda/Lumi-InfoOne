@@ -155,6 +155,28 @@ public class IngredienteDAO {
         return lista;
     } // buscarIngredientePortal()
 
+    public int buscarIdIngrediente() {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        int id = 0;
+
+        try {
+            String instrucaoSQL = "SELECT ID FROM INGREDIENTE ORDER BY 1 DESC LIMIT 1"; // buscando o ID do último ingrediente inserido
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a query
+
+            while (rset.next()) {
+                id = rset.getInt("id");
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return id;
+    } // buscarIdIndustria()
+
     public List<Ingrediente> buscarIngredientePorNome(String nome) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();

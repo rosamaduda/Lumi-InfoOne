@@ -16,25 +16,24 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/clientes", "/filtro-cliente"})
 public class ServletVisualizarCliente extends HttpServlet {
-    @Override
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        // Instanciando os objetos
         ClienteDAO clienteDAO = new ClienteDAO();
         ClienteAlergiaDAO clienteAlergiaDAO = new ClienteAlergiaDAO();
 
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
-        List<Cliente> clienteLista = new ArrayList<>();
-        List<List> alergiasLista = new ArrayList<>();  
+        List<Cliente> listaClientes = new ArrayList<>();
+        List<List> listaAlergias = new ArrayList<>();
 
         // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
         if (caminho.equals("/clientes")) {
             // buscando as informações do cliente
-            clienteLista = clienteDAO.buscarCliente();
+            listaClientes = clienteDAO.buscarCliente();
             
-            for (int i = 0; i < clienteLista.size(); i++){
-                String emailCliente = clienteLista.get(i).getEmail();
-                alergiasLista.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
-    
+            for (int i = 0; i < listaClientes.size(); i++){
+                String emailCliente = listaClientes.get(i).getEmail();
+                listaAlergias.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
             }
     
         } else {
@@ -48,43 +47,39 @@ public class ServletVisualizarCliente extends HttpServlet {
 
             // buscando as informações aqui dependendo do filtro
             if (filtro.equals("Todos")) {
-                clienteLista = clienteDAO.buscarCliente();
+                listaClientes = clienteDAO.buscarCliente();
 
-                for (int i = 0; i < clienteLista.size(); i++){
-                    String emailCliente = clienteLista.get(i).getEmail();
-                    alergiasLista.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
-        
+                for (int i = 0; i < listaClientes.size(); i++){
+                    String emailCliente = listaClientes.get(i).getEmail();
+                    listaAlergias.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
                 }
             } else if (filtro.equals("UF")) {
-                clienteLista = clienteDAO.buscarClientePorUF(pesquisa);
+                listaClientes = clienteDAO.buscarClientePorUF(pesquisa);
 
-                for (int i = 0; i < clienteLista.size(); i++){
-                    String emailCliente = clienteLista.get(i).getEmail();
-                    alergiasLista.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
-        
+                for (int i = 0; i < listaClientes.size(); i++){
+                    String emailCliente = listaClientes.get(i).getEmail();
+                    listaAlergias.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
                 }        
             } else if (filtro.equals("Cidade")){
-                clienteLista = clienteDAO.buscarClientePorCidade(pesquisa);
+                listaClientes = clienteDAO.buscarClientePorCidade(pesquisa);
 
-                for (int i = 0; i < clienteLista.size(); i++){
-                    String emailCliente = clienteLista.get(i).getEmail();
-                    alergiasLista.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
-        
+                for (int i = 0; i < listaClientes.size(); i++){
+                    String emailCliente = listaClientes.get(i).getEmail();
+                    listaAlergias.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
                 }        
             } else {
-                clienteLista = clienteDAO.buscarClientePorNomeCompleto(pesquisa);
+                listaClientes = clienteDAO.buscarClientePorNomeCompleto(pesquisa);
 
-                for (int i = 0; i < clienteLista.size(); i++){
-                    String emailCliente = clienteLista.get(i).getEmail();
-                    alergiasLista.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
-        
+                for (int i = 0; i < listaClientes.size(); i++){
+                    String emailCliente = listaClientes.get(i).getEmail();
+                    listaAlergias.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
                 }        
             }
         }
 
         // setando a lista como atributo
-        request.setAttribute("clientes-lista", clienteLista);
-        request.setAttribute("alergias-lista", alergiasLista);
+        request.setAttribute("clientes-lista", listaClientes);
+        request.setAttribute("alergias-lista", listaAlergias);
 
         // redirecionando para a página de cliente
         request.getRequestDispatcher("WEB-INF/view/cliente.jsp").forward(request, response);

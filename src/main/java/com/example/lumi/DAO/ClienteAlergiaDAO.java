@@ -138,28 +138,25 @@ public class ClienteAlergiaDAO {
 
     public List<String> buscarAlergiasPorEmail(String emailCliente) {
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
-        List<String> nomesAlergias = new ArrayList<>();
+        List<String> listaAlergias = new ArrayList<>();
 
         try {
-            String sql = "SELECT A.NOME " +
-                    "FROM CLIENTE_ALERGIA CA " +
-                    "JOIN ALERGIA A ON CA.ID_ALERGIA = A.ID " +
-                    "WHERE CA.EMAIL_CLIENTE = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, emailCliente);
-            rset = pstmt.executeQuery();
+            String instrucaoSQL = "SELECT A.NOME FROM CLIENTE_ALERGIA CA JOIN ALERGIA A ON CA.ID_ALERGIA = A.ID WHERE CA.EMAIL_CLIENTE = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, emailCliente); // setando os parâmetros da instrução
+            rset = pstmt.executeQuery(); // executando a instrucao
 
             while (rset.next()) {
-                nomesAlergias.add(rset.getString("NOME"));
+                listaAlergias.add(rset.getString("nome"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
-        return nomesAlergias;
+        return listaAlergias;
     } // buscaClienteAlergia(String emailCliente)
 
 

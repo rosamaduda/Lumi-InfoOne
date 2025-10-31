@@ -197,8 +197,7 @@ public class TelefoneIndustriaDAO {
             rset = pstmt.executeQuery();
     
             while (rset.next()) {
-                TelefoneIndustria telefoneObjeto = new TelefoneIndustria();
-                telefoneObjeto.setTelefone(rset.getString("TELEFONE"));
+                TelefoneIndustria telefoneObjeto = new TelefoneIndustria(rset.getString("telefone"));
                 telefones.add(telefoneObjeto);
             }
         } catch (SQLException e) {

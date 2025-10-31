@@ -35,15 +35,13 @@ public class ServletEditarIndustria extends HttpServlet {
             Industria industria = new Industria(idIndustria); // setando o id no model
             industria = industriaDAO.buscarIndustria(industria);// buscando as informações do id para poder setar como atributos
 
-<<<<<<< HEAD
             TelefoneIndustriaDAO telefoneDAO = new TelefoneIndustriaDAO();
             List<TelefoneIndustria> telefonesSalvos = telefoneDAO.buscarTelPorIndustria(idIndustria);
             
-=======
             // buscando os telefones
             TelefoneIndustriaDAO telefoneIndustriaDAO = new TelefoneIndustriaDAO();
             telefonesSalvos = telefoneIndustriaDAO.buscarTelefone(idIndustria);
->>>>>>> bd9944fed420d778f0dfe78e5f8811384e25d523
+
 
             List<String> numeroTelefones = new ArrayList<>();
             for (int i = 0; i < telefonesSalvos.size(); i++) {

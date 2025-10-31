@@ -2,7 +2,7 @@
 <%@page import="com.example.lumi.Model.Alergia" %>
 <%@ page import="java.util.List"%>
 <%
-    @SuppressWarnings("unchecked") List<Alergia> planos = (List<Alergia>) request.getAttribute("alergias-lista");
+    @SuppressWarnings("unchecked") List<Alergia> listaAlergias = (List<Alergia>) request.getAttribute("alergias-lista");
 %>
     <!DOCTYPE html>
     <html lang="pt-BR">

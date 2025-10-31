@@ -4,7 +4,10 @@ import com.example.lumi.Conexao.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlergiaIngredienteDAO {
     // INSERIR
@@ -103,4 +106,27 @@ public class AlergiaIngredienteDAO {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
     } // removerIngredienteAlergia(int idIngrediente)
+
+    public List<String> buscarAlergiasPorIngrediente(int idIngrediente) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
+        ResultSet rset;
+        List<String> listaAlergias = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT A.NOME FROM ALERGIA_INGREDIENTE AI JOIN ALERGIA A ON AI.ID_ALERGIA = A.ID WHERE AI.ID_INGREDIENTE = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, idIngrediente); // setando os parâmetros da instrução
+            rset = pstmt.executeQuery(); // executando a instrucao
+
+            while (rset.next()) {
+                listaAlergias.add(rset.getString("nome"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
+        }
+        return listaAlergias;
+    } // buscaClienteAlergia(String emailCliente)
 } // AlergiaIngredienteDAO
