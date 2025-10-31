@@ -124,7 +124,7 @@ public class ClienteDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Cliente> lista = new ArrayList<>();
+        List<Cliente> listaClientes = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM CLIENTE"; // buscando tudo do cliente
@@ -137,7 +137,7 @@ public class ClienteDAO {
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
-                lista.add(cliente); // adicionando à lista que será retornada
+                listaClientes.add(cliente); // adicionando à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
@@ -146,10 +146,10 @@ public class ClienteDAO {
         } finally {
             conexao.desconectar(conn); // desconectando do BD
         }
-        return lista;
+        return listaClientes;
     } // buscarCliente()
 
-    public Cliente buscarCliente(String email) {
+    public Cliente buscarClientePorEmail(String email) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
@@ -181,7 +181,7 @@ public class ClienteDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Cliente> lista = new ArrayList<>();
+        List<Cliente> listaCliente = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM CLIENTE LIMIT 3";
@@ -194,21 +194,21 @@ public class ClienteDAO {
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
-                lista.add(cliente); // adicionando à lista que será retornada
+                listaCliente.add(cliente); // adicionando à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando do BD
         }
-        return lista;
+        return listaCliente;
     } // buscarCliente()
 
     public List<Cliente> buscarEmailCliente() {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Cliente> clientes = new ArrayList<>();
+        List<Cliente> listaClientes = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT EMAIL FROM CLIENTE";
@@ -217,21 +217,21 @@ public class ClienteDAO {
 
             while (rset.next()) {
                 Cliente cliente = new Cliente(rset.getString("email"));
-                clientes.add(cliente); // adicionando à lista que será retornada
+                listaClientes.add(cliente); // adicionando à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando do BD
         }
-        return clientes;
+        return listaClientes;
     } // buscarEmailCliente()
 
     public List<Cliente> buscarClientePorUF(String uf) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
         ResultSet rset;
-        List<Cliente> lista = new ArrayList<>();
+        List<Cliente> listaClientes = new ArrayList<>();
 
         try{
             String instrucaoSQL = "SELECT * FROM CLIENTE WHERE ENDERECO_UF LIKE ?"; // buscando o cliente pela UF
@@ -245,7 +245,7 @@ public class ClienteDAO {
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
-                lista.add(cliente); // adicionando à lista que será retornada
+                listaClientes.add(cliente); // adicionando à lista que será retornada
             }
         }catch (SQLException sqle){
             sqle.printStackTrace();
@@ -253,7 +253,7 @@ public class ClienteDAO {
         finally {
             conexao.desconectar(conn); // desconectando com o banco
         }
-        return lista;
+        return listaClientes;
     } // buscarClientePorUF(String uf)
 
 
@@ -261,7 +261,7 @@ public class ClienteDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
-        List<Cliente> lista = new ArrayList<>();
+        List<Cliente> listaClientes = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM CLIENTE WHERE ENDERECO_CIDADE LIKE ?"; // buscando o cliente pela cidade
@@ -274,21 +274,21 @@ public class ClienteDAO {
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
-                lista.add(cliente); // adicionando o objeto à lista que será retornada
+                listaClientes.add(cliente); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle){
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
-        return lista;
+        return listaClientes;
     } // buscarClientePorCidade(String cidade)
 
     public List<Cliente> buscarClientePorNomeCompleto(String nomeSobrenome) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
-        List<Cliente> lista = new ArrayList<>();
+        List<Cliente> listaClientes = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM CLIENTE WHERE NOME || ' ' || NOME_SOBRENOME LIKE ?"; // buscando o cliente pelo nome completo
@@ -301,13 +301,13 @@ public class ClienteDAO {
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
-                lista.add(cliente); // adicionando o objeto à lista que será retornada
+                listaClientes.add(cliente); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle){
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
-        return lista;
+        return listaClientes;
     } // buscarClientePorNomeCompleto(String nomeSobrenome)
 } // ClienteDAO

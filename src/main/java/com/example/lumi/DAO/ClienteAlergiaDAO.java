@@ -39,7 +39,7 @@ public class ClienteAlergiaDAO {
     }  // inserirClienteAlergia(String email, int idAlergia)
 
     // DELETAR
-    public int DeletarClienteAlergia(String email,int id_alergia){
+    public int deletarClienteAlergia(String email,int id_alergia){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão como banco
 

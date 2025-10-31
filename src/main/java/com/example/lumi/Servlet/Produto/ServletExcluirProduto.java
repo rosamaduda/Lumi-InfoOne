@@ -29,10 +29,10 @@ public class ServletExcluirProduto extends HttpServlet {
         informacaoNutricionalDAO.deletarInfoNutri(idInfoNutri);
         avaliacaoDAO.removerAvaliacaoPorCodigo(codigoBarras);
         favoritosDAO.deletarFavoritoPorCodigo(codigoBarras);
-        produtoIngredienteDAO.removerProdutoIngrediente(codigoBarras);
+        produtoIngredienteDAO.deletarProdutoIngrediente(codigoBarras);
 
         // excluindo o produto
-        produtoDAO.removerProduto(codigoBarras);
+        produtoDAO.deletarProduto(codigoBarras);
 
         // redirecionando para a página de produto
         response.sendRedirect("produtos");
