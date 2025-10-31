@@ -1,22 +1,21 @@
 package com.example.lumi.Servlet.Industria;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.lumi.DAO.IndustriaDAO;
 import com.example.lumi.DAO.TelefoneIndustriaDAO;
 import com.example.lumi.Model.Industria;
-import com.example.lumi.Model.TelefoneIndustria;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 @WebServlet(urlPatterns = {"/industrias", "/filtro-industria"})
 public class ServletVisualizarIndustria extends HttpServlet {
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
         // instanciando o objeto da classe IndustriaDAO e TelefoneIndustriaDAO para ter acesso aos métodos de buscar
@@ -26,13 +25,13 @@ public class ServletVisualizarIndustria extends HttpServlet {
         List<List> listaTelefones = new ArrayList<>();
 
         if (caminho.equals("/industrias")) {
-            // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
+            // buscando as informações aqui para quando entrar na página as informações já estiverem carregadas
             listaIndustrias = industriaDAO.buscarIndustria();
             listaTelefones = new ArrayList<>();
 
             for (int i = 0; i < listaIndustrias.size(); i++) {
                 int idIndustria = listaIndustrias.get(i).getId();
-                listaTelefones.add(telefoneIndustriaDAO.buscarTelefone(idIndustria));
+                listaTelefones.add(telefoneIndustriaDAO.buscarTelPorIndustria(idIndustria));
             }
         } else {
             // recebendo o valor do filtro e da barra de pesquisa

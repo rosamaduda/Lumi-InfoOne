@@ -12,7 +12,6 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/alteracao-ingrediente", "/alterar-ingrediente"})
 public class ServletEditarIngrediente extends HttpServlet {
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IngredienteDAO ingredienteDAO = new IngredienteDAO();
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
@@ -36,7 +35,6 @@ public class ServletEditarIngrediente extends HttpServlet {
         }
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IngredienteDAO ingredienteDAO = new IngredienteDAO();
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
@@ -51,7 +49,11 @@ public class ServletEditarIngrediente extends HttpServlet {
             Ingrediente ingrediente = new Ingrediente(id, nome, descricao);
 
             // alterando o ingrediente
-            ingredienteDAO.alterarIngrediente(ingrediente);
+            int retornoAlteracao = ingredienteDAO.alterarIngrediente(ingrediente);
+            if (retornoAlteracao == 0 || retornoAlteracao == -1) {
+                request.setAttribute("mensagemErro", "Não foi possível alterar o ingrediente");
+                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+            }
 
             // redirecionando para a página de ingrediente novamente
             response.sendRedirect("ingredientes");

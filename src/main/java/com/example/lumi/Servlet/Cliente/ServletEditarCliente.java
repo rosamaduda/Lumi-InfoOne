@@ -80,7 +80,7 @@ public class ServletEditarCliente extends HttpServlet {
             }
             String senha = request.getParameter("senha");
             String cidade = request.getParameter("cidade");
-            String estado = request.getParameter("estado");
+            String estado = request.getParameter("estado").toUpperCase();
             String cep = request.getParameter("cep");
             if (!cep.matches("^[0-9]{5}-?[0-9]{3}$")) {
                 request.setAttribute("mensagemErro", "CEP inválido");
@@ -91,7 +91,11 @@ public class ServletEditarCliente extends HttpServlet {
             Cliente cliente = new Cliente(email, cpf, nome, sobrenome, dataNascimento, senha, altura, peso, diabetes, pressaoAlta, colesterolAlto, telefone, estado, cidade, cep);
 
             // alterando o cliente
-            clienteDAO.alterarCliente(cliente);
+            int retornoAlteracao = clienteDAO.alterarCliente(cliente);
+            if (retornoAlteracao == 0 || retornoAlteracao == -1) {
+                request.setAttribute("mensagemErro", "Não foi possível alterar o cliente");
+                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+            }
 
             // redirecionando para a página de cliente
             response.sendRedirect("clientes");

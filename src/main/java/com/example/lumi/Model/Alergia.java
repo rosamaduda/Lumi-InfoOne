@@ -5,33 +5,30 @@ public class Alergia {
     private int id;
     private String nome;
     private String alergeno;
-
     private String descricao;
 
-    // construtor
-    public Alergia(int id,  String nome,String alergeno, String descricao) {
-        this.id = id;
+    // construtores
+    public Alergia() {
+    }
+    public Alergia(String nome) {
         this.nome = nome;
-        this.alergeno = alergeno;
-        this.descricao = descricao;
+    }
+    public Alergia(int id) {
+        this.id = id;
     }
     public Alergia(String alergeno, String nome, String descricao) {
         this.alergeno = alergeno;
         this.nome = nome;
         this.descricao = descricao;
     }
-    public Alergia(String nome) {
-        this.nome = nome;
-    }
-
-    public Alergia() {
-    }
-
-    public Alergia(int id) {
+    public Alergia(int id,  String nome,String alergeno, String descricao) {
         this.id = id;
+        this.nome = nome;
+        this.alergeno = alergeno;
+        this.descricao = descricao;
     }
 
-    // getter
+    // getters
     public int getId() {
         return id;
     }
@@ -44,5 +41,4 @@ public class Alergia {
     public String getDescricao() {
         return descricao;
     }
-
 } // Alergia

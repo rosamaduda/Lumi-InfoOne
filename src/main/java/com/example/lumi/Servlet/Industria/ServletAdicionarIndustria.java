@@ -58,28 +58,41 @@ public class ServletAdicionarIndustria extends HttpServlet {
             Industria industria = new Industria(cnpj, nome, objetivo, email, plano, senha);
 
             // inserindo o objeto
-            industriaDAO.inserirIndustria(industria);
+            int retornoInsercao = industriaDAO.inserirIndustria(industria);
+            if (retornoInsercao == 0 || retornoInsercao == -1) {
+                request.setAttribute("mensagemErro", "Não foi possível inserir a indústria");
+                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+            }
 
             // buscando o ID da última indústria adicionada
             int idIndustria = industriaDAO.buscarIdIndustria();
 
             // recebendo os telefones da indústria
             String telefone;
-            ArrayList<String> telefones = new ArrayList<>();
+            List<String> telefones = new ArrayList<>();
             for (int i = 1; i < 1000; i++) {
-                if (request.getParameter("telefone-"+i) != null) {
-                    telefone = request.getParameter("telefone-"+i).replaceAll("[^0-9]","").trim();
+                telefone = request.getParameter("telefone-"+i);
+                if (telefone != null) {
+                    if (!telefone.matches("^\\(?[0-9]{2}\\)? ?[0-9]?[0-9]{4}-?[0-9]{4}$")) {
+                        request.setAttribute("mensagemErro", "Telefone inválido");
+                        request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                    } else {
+                        telefone = request.getParameter("telefone-"+i).replaceAll("[^0-9]","").trim();
+                    }
                 } else {
                     break;
                 }
                 telefones.add(telefone);
             }
 
+            // adicionando os telefones
             for (int i = 0; i < telefones.size(); i++) {
-                TelefoneIndustria telefoneIndustria = new TelefoneIndustria();
-                telefoneIndustria.setIdIndustria(idIndustria);
-                telefoneIndustria.setTelefone(telefones.get(i));
-                telefoneIndustriaDAO.adicionarTelIndustria(telefoneIndustria);
+                TelefoneIndustria telefoneIndustria = new TelefoneIndustria(telefones.get(i), idIndustria);
+                retornoInsercao = telefoneIndustriaDAO.adicionarTelIndustria(telefoneIndustria);
+                if (retornoInsercao == 0 || retornoInsercao == -1) {
+                    request.setAttribute("mensagemErro", "Não foi possível inserir o telefone da indústria");
+                    request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+                }
             }
 
             // redirecionando para a página da industria

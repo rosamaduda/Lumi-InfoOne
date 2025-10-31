@@ -51,7 +51,11 @@ public class ServletEditarAlergia extends HttpServlet {
             Alergia alergia = new Alergia(id, nome, alergeno, descricao);
 
             // alterando a alergia
-            alergiaDAO.alterarAlergia(alergia);
+            int retornoAlteracao = alergiaDAO.alterarAlergia(alergia);
+            if (retornoAlteracao == 0 || retornoAlteracao == -1) {
+                request.setAttribute("mensagemErro", "Não foi possível alterar a alergia");
+                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+            }
 
             // redirecionando para a página de alergia novamente
             response.sendRedirect("alergias");

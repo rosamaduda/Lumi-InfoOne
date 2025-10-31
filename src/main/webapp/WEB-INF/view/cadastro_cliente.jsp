@@ -1,7 +1,14 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.lumi.Model.Alergia" %>
+<%
+    @SuppressWarnings("unchecked")
+    List <Alergia> listaAlergias = (List<Alergia>) request.getAttribute("alergias-lista");
+%>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head> <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumi - Adicionar Cliente</title>
     <link rel="icon" href="/src/main/webapp/assets/logo-infoone.ico">
     <link rel="stylesheet"
@@ -80,7 +87,7 @@
                 </ul>
             </div>
 
-       
+
         </div>
     </nav>
     <div id="sidebar-overlay"
@@ -98,40 +105,40 @@
                 <div class="mb-6">
                     <label for="cpf"
                            class="block text-gray-700 text-sm font-medium mb-2">CPF:</label>
-                    <input type="text" id="cpf" name="cpf"
+                    <input type="text" id="cpf" name="cpf" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Ex: 432.654.789-01">
 
                     <label for="nome"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Nome:</label>
-                    <input type="text" id="nome" name="nome"
+                    <input type="text" id="nome" name="nome" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Digite o nome do cliente...">
 
                     <label for="sobrenome"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Sobrenome:</label>
-                    <input type="text" id="sobrenome" name="sobrenome"
+                    <input type="text" id="sobrenome" name="sobrenome" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Digite o sobrenome do cliente...">
 
                     <label for="peso"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Peso
                         (kg):</label>
-                    <input type="number" step="0.01" min="0" id="peso" name="peso"
+                    <input type="number" step="0.01" min="0" id="peso" name="peso" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Ex: 76">
 
                     <label for="altura"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Altura
                         (m):</label>
-                    <input type="number" step="0.01" min="0" id="altura" name="altura"
+                    <input type="number" step="0.01" min="0" id="altura" name="altura" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Ex: 1,90">
 
                     <label for="hta"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Pressão
                         Alta:</label>
-                    <select
+                    <select required
                             class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                             name="hta" id="hta">
                         <option disabled hidden selected value>Selecione uma
@@ -142,7 +149,7 @@
 
                     <label for="diabetes"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Diabetes:</label>
-                    <select
+                    <select required
                             class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                             name="diabetes" id="diabetes">
                         <option disabled hidden selected value>Selecione uma
@@ -165,89 +172,83 @@
                     <label for="data"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Data
                         de nascimento:</label>
-                    <input type="date" id="data" name="data"
+                    <input type="date" id="data" name="data" required min="1940-01-01"
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
 
                     <label for="e-mail"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">E-mail:</label>
-                    <input type="email" id="e-mail" name="e-mail"
+                    <input type="email" id="e-mail" name="e-mail" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Ex: nome@exemplo.com">
 
                     <label for="telefone"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Telefone:</label>
-                    <input type="email" id="telefone" name="telefone"
-                           class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
+                    <input type="text" id="telefone" name="telefone" required class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Ex: 11946789823">
 
 
                     <label for="senha"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Senha:</label>
-                    <input type="text" id="senha" name="senha"
+                    <input type="text" id="senha" name="senha" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Digite a senha do cliente...">
 
                     <label for="cidade"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Cidade:</label>
-                    <input type="text" id="cidade" name="cidade"
+                    <input type="text" id="cidade" name="cidade" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Ex: Águas de Lindóia">
 
                     <label for="estado"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Estado:</label>
-                    <select name="estado" id="estado"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"">
-                    <option disabled hidden selected value>Selecione um
-                        estado</option>
-                    <option value="ac">Acre</option>
-                    <option value="al">Alagoas</option>
-                    <option value="ap">Amapá</option>
-                    <option value="am">Amazonas</option>
-                    <option value="ba">Bahia</option>
-                    <option value="ce">Ceará</option>
-                    <option value="df">Distrito Federal</option>
-                    <option value="es">Espírito Santo</option>
-                    <option value="go">Goiás</option>
-                    <option value="ma">Maranhão</option>
-                    <option value="mt">Mato Grosso</option>
-                    <option value="ms">Mato Grosso do Sul</option>
-                    <option value="mg">Minas Gerais</option>
-                    <option value="pa">Pará</option>
-                    <option value="pb">Paraíba</option>
-                    <option value="pr">Paraná</option>
-                    <option value="pe">Pernambuco</option>
-                    <option value="pi">Piauí</option>
-                    <option value="rj">Rio de Janeiro</option>
-                    <option value="rn">Rio Grande do Norte</option>
-                    <option value="rs">Rio Grande do Sul</option>
-                    <option value="ro">Rondônia</option>
-                    <option value="rr">Roraima</option>
-                    <option value="sc">Santa Catarina</option>
-                    <option value="sp">São Paulo</option>
-                    <option value="se">Sergipe</option>
-                    <option value="to">Tocantins</option>
+                    <select name="estado" id="estado" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
+                        <option disabled hidden selected value>Selecione um
+                            estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="ap">Amapá</option>
+                        <option value="am">Amazonas</option>
+                        <option value="ba">Bahia</option>
+                        <option value="ce">Ceará</option>
+                        <option value="df">Distrito Federal</option>
+                        <option value="es">Espírito Santo</option>
+                        <option value="go">Goiás</option>
+                        <option value="ma">Maranhão</option>
+                        <option value="mt">Mato Grosso</option>
+                        <option value="ms">Mato Grosso do Sul</option>
+                        <option value="mg">Minas Gerais</option>
+                        <option value="pa">Pará</option>
+                        <option value="pb">Paraíba</option>
+                        <option value="pr">Paraná</option>
+                        <option value="pe">Pernambuco</option>
+                        <option value="pi">Piauí</option>
+                        <option value="rj">Rio de Janeiro</option>
+                        <option value="rn">Rio Grande do Norte</option>
+                        <option value="rs">Rio Grande do Sul</option>
+                        <option value="ro">Rondônia</option>
+                        <option value="rr">Roraima</option>
+                        <option value="sc">Santa Catarina</option>
+                        <option value="sp">São Paulo</option>
+                        <option value="se">Sergipe</option>
+                        <option value="to">Tocantins</option>
                     </select>
 
                     <label for="cep"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">CEP:</label>
-                    <input type="text" id="cep" name="cep"
+                    <input type="text" id="cep" name="cep" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
                            placeholder="Ex: 01234-567">
-                <div class="text-center">
-                    <button type="submit"
-                            class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-lemon-500 transition-colors">
-                        Adicionar
-                    </button>
-                </div>
+                </div> <div class="text-center">
+                <button type="submit"
+                        class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-lemon-500 transition-colors">
+                    Adicionar
+                </button>
+            </div>
             </form>
-        </div>
-    </main>
-</div>
-
-<!-- Tela de carregamento -->
-
-<div id="tela-carregamento"
-     class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
+        </div> </main>
+</div> <div id="tela-carregamento"
+            class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
     <div class="logo-container absolute top-6 left-6">
         <img id="logo" src="${pageContext.request.contextPath}/assets/Group 28.png" alt="Logo Lumi" class="w-16 h-16 object-contain">
     </div>
@@ -267,8 +268,20 @@
 <script>
     AOS.init({ duration: 800, once: true });
     feather.replace();
+
+    const alergiasOp = [ <% 
+            if (listaAlergias != null) {
+                for (int i = 0; i < listaAlergias.size(); i++) {
+                    Alergia alergia = listaAlergias.get(i);
+                    String separador = (i < listaAlergias.size() - 1) ? "," : "";
+        %>
+                    "<%= alergia.getNome() %>"<%= separador %>
+        <% 
+                }
+            }
+        %>
+        ];
 </script>
-<script src="${pageContext.request.contextPath}/js/telefone.js"></script>
 <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 <script src="${pageContext.request.contextPath}/js/carregandoAdicionar.js"></script>
 <script src="${pageContext.request.contextPath}/js/alergias.js"></script>

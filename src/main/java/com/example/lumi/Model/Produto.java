@@ -10,9 +10,8 @@ public class Produto {
     private int idIndustria;
     private int idInfoNutri;
 
-    // construtor
-
-
+    // construtores
+    public Produto(String codigoBarras){this.codigoBarras = codigoBarras;}
     public Produto(String codigoBarras, String nome, String fabricante, String descricao, double massa, int idIndustria, int idInfoNutri) {
         this.codigoBarras = codigoBarras;
         this.nome = nome;
@@ -23,35 +22,26 @@ public class Produto {
         this.idInfoNutri = idInfoNutri;
     }
 
-
-    public Produto(String codigoBarras){this.codigoBarras=codigoBarras;}
-
     // getters
     public String getNome() {
         return this.nome;
     }
-
     public String getCodigoBarras() {
         return codigoBarras;
     }
-
     public String getFabricante() {
         return fabricante;
     }
-
     public String getDescricao() {
         return descricao;
     }
-
     public double getMassa() {
         return massa;
     }
-
     public int getIdIndustria() {
         return idIndustria;
     }
-
     public int getIdInfoNutri() {
         return idInfoNutri;
     }
-}
+} // Produto

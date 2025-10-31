@@ -88,7 +88,7 @@ public class AvaliacaoDAO {
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
         try {
-            String instrucaoSQL = "DELETE FROM AVALIACAO WHERE EMAIL_CLIENTE = ?";
+            String instrucaoSQL = "DELETE FROM AVALIACAO WHERE EMAIL_CLIENTE = ?"; // deletando a avaliaçõa a partir do email do cliente para nao dar problema na hora de remover o cliente
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, emailCliente); // setando parametro na instrução
             if (pstmt.executeUpdate() > 0) { // // executando o comando e verificando o retorno
@@ -103,6 +103,27 @@ public class AvaliacaoDAO {
             conexao.desconectar(conn); // desconectando o BD
         }
     } // removerAvaliacao()
+
+    public int removerAvaliacaoPorCodigo(String codigoBarras) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexao com o BD
+
+        try {
+            String instrucaoSQL = "DELETE FROM AVALIACAO WHERE COD_BARRAS_PRODUTO = ?"; // deletando a avaliaçõa a partir do email do cliente para nao dar problema na hora de remover o cliente
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, codigoBarras); // setando parametro na instrução
+            if (pstmt.executeUpdate() > 0) { // // executando o comando e verificando o retorno
+                return 1; // conseguiu deletar
+            } else {
+                return 0; // não encontrou o registro
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+    } // removerAvaliacaoPorCodigo(String codigoBarras)
 
     // SELECT
     public List<Avaliacao> buscarAvaliacao() {

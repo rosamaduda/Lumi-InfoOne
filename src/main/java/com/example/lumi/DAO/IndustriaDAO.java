@@ -15,7 +15,7 @@ public class IndustriaDAO {
         Connection conn = conexao.conectar(); // conectando o BD
 
         try {
-            String instrucaoSQL = "INSERT INTO INDUSTRIA (CNPJ, NOME, OBJETIVO, EMAIL, SENHA, NOME_PLANO) VALUES (?, ?, ?, ?, ?, ?)";
+            String instrucaoSQL = "INSERT INTO INDUSTRIA (CNPJ, NOME, OBJETIVO, EMAIL, SENHA, NOME_PLANO) VALUES (?, ?, ?, ?, ?, ?)"; // inserindo o registro da indústria
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando parâmetros da instrução
@@ -40,129 +40,12 @@ public class IndustriaDAO {
     } // inserirIndustria()
 
     // ALTERAR
-    public int alterarCnpjIndustria(int id, String cnpj) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexao com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE INDUSTRIA SET CNPJ = ? WHERE ID = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setString(1, cnpj);
-            pstmt.setInt(2, id);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // algum outro problema aconteceu
-        } finally {
-            conexao.desconectar(conn); // desconecta do BD
-        }
-    } // alterarCnpjIndustria()
-
-    public int alterarNomeIndustria(int id, String nome) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // conectando o BD
-
-        try {
-            String instrucaoSQL = "UPDATE INDUSTRIA SET NOME = ? WHERE ID = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setString(1, nome);
-            pstmt.setInt(2, id);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // algum outro problema aconteceu
-        } finally {
-            conexao.desconectar(conn); // desconecta do BD
-        }
-    } // alterarNomeIndustria()
-
-
-    public int alterarObjetivoIndustria(int id, String objetivo) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // conectando o BD
-
-        try {
-            String instrucaoSQL = "UPDATE INDUSTRIA SET OBJETIVO = ? WHERE ID = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setString(1, objetivo);
-            pstmt.setInt(2, id);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // algum outro problema aconteceu
-        } finally {
-            conexao.desconectar(conn); // desconecta do BD
-        }
-    } // alterarDescricaoIndustria()
-
-
-    public int alterarEmailIndustria(int id, String email) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexao com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE INDUSTRIA SET EMAIL = ? WHERE ID = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setString(1, email);
-            pstmt.setInt(2, id);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // algum outro problema aconteceu
-        } finally {
-            conexao.desconectar(conn); // desconecta do BD
-        }
-    } // alterarEmailIndustria()
-
-    public int alterarPlanoIndustria(int id, String nomePlano) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-
-        try {
-            String instrucaoSQL = "UPDATE INDUSTRIA SET NOME_PLANO = ? WHERE ID = ?";
-            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            // setando parâmetros da instrução
-            pstmt.setString(1, nomePlano);
-            pstmt.setInt(2, id);
-            if (pstmt.executeUpdate() > 0) {
-                return 1; // alteração ocorreu com sucesso
-            } else {
-                return 0; // o registro não existe
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando do BD
-        }
-    } // alterarPlanoIndustria()
-
     public int alterarIndustria(Industria industria) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE INDUSTRIA SET CNPJ = ?, NOME = ?, OBJETIVO = ?, EMAIL = ?, SENHA = ?, NOME_PLANO = ? WHERE ID = ?";
+            String instrucaoSQL = "UPDATE INDUSTRIA SET CNPJ = ?, NOME = ?, OBJETIVO = ?, EMAIL = ?, SENHA = ?, NOME_PLANO = ? WHERE ID = ?"; // alterando a indústria pelo ID
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando parâmetros da instrução
@@ -193,7 +76,7 @@ public class IndustriaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexao com o BD
 
         try {
-            String instrucaoSQL = "DELETE FROM INDUSTRIA WHERE ID = ?";
+            String instrucaoSQL = "DELETE FROM INDUSTRIA WHERE ID = ?"; // deletando a indústria pelo ID
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando os parâmetros
@@ -219,7 +102,7 @@ public class IndustriaDAO {
         List<Industria> listaIndustrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INDUSTRIA I";
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA I"; // buscando todas as indústrias
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -243,7 +126,7 @@ public class IndustriaDAO {
         List<Industria> industrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT NOME FROM INDUSTRIA I";
+            String instrucaoSQL = "SELECT NOME FROM INDUSTRIA"; // buscando o nome da insdústria
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -266,7 +149,7 @@ public class IndustriaDAO {
         List<Industria> listaIndustrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE NOME LIKE ? ";
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE NOME LIKE ? "; // buscando a indústria pelo nome
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+nome+"%"); // setando o parâmetro na instrução
             rset = pstmt.executeQuery(); // executando a query
@@ -292,7 +175,7 @@ public class IndustriaDAO {
         List<Industria> listaIndustrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INDUSTRIA I ORDER BY ID DESC LIMIT 3";
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA I ORDER BY ID DESC LIMIT 3"; // buscando os últimos 3 registros
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -316,7 +199,7 @@ public class IndustriaDAO {
         List<Industria> listaIndustrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE NOME_PLANO LIKE ? ";
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE NOME_PLANO LIKE ? "; // buscando a indústria pelo nome do plano
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+plano+"%"); // setando o parâmetro da instrução
             rset = pstmt.executeQuery(); // executando a query
@@ -341,7 +224,7 @@ public class IndustriaDAO {
         int id = -1;
 
         try {
-            String instrucaoSQL = "SELECT ID FROM INDUSTRIA ORDER BY 1 DESC LIMIT 1";
+            String instrucaoSQL = "SELECT ID FROM INDUSTRIA ORDER BY 1 DESC LIMIT 1"; // buscando o ID da última indústria inserida
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -362,7 +245,7 @@ public class IndustriaDAO {
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE ID = ?";
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE ID = ?"; // buscando a indústria pelo ID
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, industria.getId()); // setando os parâmetros da instrução
             rset = pstmt.executeQuery(); // executando a query
@@ -386,7 +269,7 @@ public class IndustriaDAO {
         Industria industria = null;
 
         try {
-            String instrucaoSQL = "SELECT NOME FROM INDUSTRIA WHERE ID = ?";
+            String instrucaoSQL = "SELECT NOME FROM INDUSTRIA WHERE ID = ?"; // buscando o nome da indústria pelo ID
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id); // setando os parâmetros da instrução
             rset = pstmt.executeQuery(); // executando a query
@@ -409,7 +292,7 @@ public class IndustriaDAO {
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "SELECT ID FROM INDUSTRIA WHERE NOME LIKE ?";
+            String instrucaoSQL = "SELECT ID FROM INDUSTRIA WHERE NOME LIKE ?"; // busca o id da indústria pelo nome
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, "%"+nome+"%"); // setando os parâmetros da instrução
             rset = pstmt.executeQuery(); // executando a query

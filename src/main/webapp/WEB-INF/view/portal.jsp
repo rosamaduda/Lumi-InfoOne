@@ -73,33 +73,33 @@
 
             <div class="p-4 flex-grow overflow-y-auto">
                 <ul class="space-y-2">
-                    <li><a href="portal" onclick="mostrarCarregando()"
+                    <li><a href="portal" onclick="mostrarRedirecionando()"
                            class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
                             data-feather="home" class="mr-3"></i>Portal
                         ADM</a></li>
-                    <li><a href="ingredientes" onclick="mostrarCarregando()"
+                    <li><a href="ingredientes" onclick="mostrarRedirecionando()"
                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
-                            data-feather="package" onclick="mostrarCarregando()"
+                            data-feather="package" onclick="mostrarRedirecionando()"
                             class="mr-3"></i>Ingredientes</a></li>
-                    <li><a href="alergias" onclick="mostrarCarregando()"
+                    <li><a href="alergias" onclick="mostrarRedirecionando()"
                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
                             data-feather="alert-triangle"
                             class="mr-3"></i>Alergias</a></li>
                     <li><a href="clientes"
                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                            data-feather="users" onclick="mostrarCarregando()"
+                            data-feather="users" onclick="mostrarRedirecionando()"
                             class="mr-3"></i>Cliente</a></li>
                     <li><a href="industrias"
                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                            data-feather="tool" onclick="mostrarCarregando()"
+                            data-feather="tool" onclick="mostrarRedirecionando()"
                             class="mr-3"></i>Indústria</a></li>
                     <li><a href="produtos"
                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
-                            data-feather="tag" onclick="mostrarCarregando()"
+                            data-feather="tag" onclick="mostrarRedirecionando()"
                             class="mr-3"></i>Produtos</a></li>
                     <li><a href="site"
                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-red-500"><i
-                            data-feather="log-out" onclick="mostrarCarregando()"
+                            data-feather="log-out" onclick="mostrarRedirecionando()"
                             class="mr-3"></i>Sair</a></li>
                 </ul>
             </div>
@@ -120,7 +120,7 @@
             <div class="flex justify-between items-center mb-4">
                 <h2
                         class="text-xl font-semibold text-[cinza-escuro]">Ingredientes</h2>
-                <a href="ingredientes" onclick="mostrarCarregando()"
+                <a href="ingredientes" onclick="mostrarRedirecionandoo()"
                    class="text-[#3C9D9B] hover:underline">Ver tabela
                     completa →</a>
             </div>
@@ -133,7 +133,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (int i=0; i < listaIngredientes.size(); i++) { if (i % 2==0) { %>
+                    <%
+                        for (int i = 0; i < listaIngredientes.size(); i++) {
+                            if (i % 2 == 0) { %>
                     <tr class="bg-white">
                         <td class="p-3 border-b">
                             <%=listaIngredientes.get(i).getNome()%>
@@ -166,7 +168,7 @@
             <div class="flex justify-between items-center mb-4 mt-[4%]">
                 <h2
                         class="text-xl font-semibold text-[cinza-escuro]">Alergias</h2>
-                <a href="alergias" onclick="mostrarCarregando()"
+                <a href="alergias" onclick="mostrarRedirecionando"
                    class="text-[#3C9D9B] hover:underline">Ver tabela
                     completa →</a>
             </div>
@@ -180,7 +182,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%for (int i=0; i < listaAlergias.size(); i++){ if (i % 2 == 0) { %>
+                    <%
+                        for (int i = 0; i < listaAlergias.size(); i++) {
+                            if (i % 2 == 0) { %>
                     <tr class="bg-white">
                         <td class="p-3 border-b">
                             <%=listaAlergias.get(i).getNome()%>
@@ -220,7 +224,7 @@
             <div class="flex justify-between items-center mb-4 mt-[4%]">
                 <h2
                         class="text-xl font-semibold text-[cinza-escuro]">Cliente</h2>
-                <a href="clientes" onclick="mostrarCarregando()"
+                <a href="clientes" onclick="mostrarRedirecionando()"
                    class="text-[#3C9D9B] hover:underline">Ver tabela
                     completa →</a>
             </div>
@@ -243,34 +247,52 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%for (int i = 0; i < listaClientes.size(); i++) {
-                        if (i % 2 == 0) {
-                    %>
+                        <%
+                        for (int i = 0; i < listaClientes.size(); i++) {
+                            if (i % 2 == 0) { %>
                     <tr class="bg-white">
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getCpf()%></td>
+                        <td class="p-3 border-b max-w-full whitespace-nowrap"> <%
+                            String cpf = listaClientes.get(i).getCpf();
+                            cpf = cpf.replaceFirst("([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})", "$1.$2.$3-$4");
+                        %>
+                        <%= cpf %>
+                        </td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getNome() + " " + listaClientes.get(i).getNomeSobrenome()%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getDataNascimento()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getDataNascimento().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getPeso()%>kg</td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getAltura()%>m</td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getDiabetes()%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getTelefone()%></td>
+                        <td class="p-3 border-b max-w-full whitespace-nowrap"><%
+                            String telefone = listaClientes.get(i).getTelefone();
+                            telefone = telefone.replaceFirst("([0-9]{2})([0-9]{5})([0-9]{4})", "($1) $2-$3");
+                        %>
+                        <%= telefone %></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getEmail()%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getSenha()%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getEnderecoUf() + ", " + listaClientes.get(i).getEnderecoCidade() + ", " + listaClientes.get(i).getEnderecoCep()%></td>
                     </tr>
                     <% } else {%>
                     <tr class="bg-[#C5E2E1]">
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getCpf()%></td>
+                        <td class="p-3 border-b max-w-full whitespace-nowrap">  <%
+                            String cpf = listaClientes.get(i).getCpf();
+                            cpf = cpf.replaceFirst("([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})", "$1.$2.$3-$4");
+                        %>
+                        <%= cpf %>
+                        </td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getNome() + " " + listaClientes.get(i).getNomeSobrenome()%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getDataNascimento()%></td>
+                        <td class="p-3 border-b"><%=listaClientes.get(i).getDataNascimento().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getPeso()%>kg</td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getAltura()%>m</td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getDiabetes()%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getTelefone()%></td>
+                        <td class="p-3 border-b max-w-full whitespace-nowrap"><%
+                            String telefone = listaClientes.get(i).getTelefone();
+                            telefone = telefone.replaceFirst("([0-9]{2})([0-9]{5})([0-9]{4})", "($1) $2-$3");
+                        %>
+                        <%= telefone %></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getEmail()%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getSenha()%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getEnderecoUf() + ", " + listaClientes.get(i).getEnderecoCidade() + ", " + listaClientes.get(i).getEnderecoCep()%></td>
@@ -287,11 +309,11 @@
             </div>
         </section>
 
-        <section data-aos="fade-up" data-aos-delay="200">
+        <section>
             <div class="flex justify-between items-center mb-4 mt-[4%]">
                 <h2
                         class="text-xl font-semibold text-[cinza-escuro]">Indústria</h2>
-                <a href="industrias" onclick="mostrarCarregando()"
+                <a href="industrias" onclick="mostrarRedirecionando()"
                    class="text-[#3C9D9B] hover:underline">Ver tabela
                     completa →</a>
             </div>
@@ -309,10 +331,16 @@
                         <tr class="bg-[#3C9D9B] text-white">
                     </thead>
                     <tbody>
-                    <%for (int i=0; i < listaIndustrias.size(); i++) { if (i % 2==0) { %>
+                    <%
+                        for (int i = 0; i < listaIndustrias.size(); i++) {
+                            if (i % 2 == 0) { %>
                     <tr class="bg-white">
-                        <td class="p-3 border-b">
-                            <%=listaIndustrias.get(i).getCnpj()%>
+                        <td class="p-3 border-b max-w-full whitespace-nowrap">
+                            <%
+                                  String cnpj = listaIndustrias.get(i).getCnpj();
+                                     cnpj = cnpj.replaceFirst("([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{4})([0-9]{2})", "$1.$2.$3/$4-$5");
+                             %>
+                            <%= cnpj %>
                         </td>
                         <td class="p-3 border-b">
                             <%=listaIndustrias.get(i).getNome()%>
@@ -348,7 +376,11 @@
                     <%} else {%>
                     <tr class="bg-[#C5E2E1]">
                         <td class="p-3 border-b">
-                            <%=listaIndustrias.get(i).getCnpj()%>
+                            <%
+                            String cnpj = listaIndustrias.get(i).getCnpj();
+                               cnpj = cnpj.replaceFirst("([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{4})([0-9]{2})", "$1.$2.$3/$4-$5");
+                       %>
+                      <%= cnpj %>
                         </td>
                         <td class="p-3 border-b">
                             <%=listaIndustrias.get(i).getNome()%>
@@ -392,11 +424,11 @@
             </div>
         </section>
 
-        <section data-aos="fade-up" data-aos-delay="200">
+        <section>
             <div class="flex justify-between items-center mb-4 mt-[4%]">
                 <h2
                         class="text-xl font-semibold text-[cinza-escuro]">Produtos</h2>
-                <a href="produtos" onclick="mostrarCarregando()"
+                <a href="produtos" onclick="mostrarRedirecionando()"
                    class="text-[#3C9D9B] hover:underline">Ver tabela
                     completa →</a>
             </div>
@@ -414,9 +446,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%for (int i = 0; i < listaProdutos.size(); i++) {
-                        if (i % 2 == 0) {
-                    %>
+                    <%
+                        for (int i = 0; i < listaProdutos.size(); i++) {
+                            if (i % 2 == 0) { %>
                     <tr class="bg-white">
                         <td class="p-3 border-b"><%=listaProdutos.get(i).getCodigoBarras()%></td>
                         <td class="p-3 border-b"><%=listaProdutos.get(i).getNome()%></td>
@@ -469,7 +501,7 @@
     </main>
 </div>
 
-<div id="tela-carregamento"
+<div id="tela-redirecionamento"
      class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
     <div class="logo-container absolute top-6 left-6">
         <img id="logo" src="${pageContext.request.contextPath}/assets/Group 28.png" alt="Logo Lumi" class="w-16 h-16 object-contain">
@@ -493,6 +525,6 @@
 
 </script>
 <script src="${pageContext.request.contextPath}/js/menu.js"></script>
-<script src="${pageContext.request.contextPath}/js/mostrarCarregando.js"></script>
+<script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
 </body>
 </html>

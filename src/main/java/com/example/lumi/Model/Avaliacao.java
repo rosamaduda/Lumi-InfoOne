@@ -12,6 +12,7 @@ public class Avaliacao {
     private LocalDate dataAvaliacao;
     private String emailCliente;
     private int idProduto;
+
     // construtor
     public Avaliacao(int id, int nota, String avaliacao, LocalDate dataAvaliacao, String emailCliente, int idProduto) {
         this.id = id;
@@ -21,7 +22,6 @@ public class Avaliacao {
         this.emailCliente = emailCliente;
         this.idProduto = idProduto;
     }
-
 
     // getters e setters
     public int getNota() {

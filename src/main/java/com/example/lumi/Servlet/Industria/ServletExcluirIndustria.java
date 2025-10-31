@@ -14,7 +14,6 @@ import java.io.IOException;
 
 @WebServlet(value = "/exclusao-industria")
 public class ServletExcluirIndustria extends HttpServlet {
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IndustriaDAO industriaDAO = new IndustriaDAO();
 

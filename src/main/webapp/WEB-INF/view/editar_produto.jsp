@@ -99,7 +99,7 @@
                 class="fixed inset-0 bg-black opacity-0 pointer-events-none z-30 transition-opacity duration-300 sm:hidden">
             </div>
             <main class="sm:ml-64 flex-1 sm:p-8">
-                <a href="favoritos" onclick="mostrarRedirecionando()"><h1 class="text-left"><i
+                <a href="produtos" onclick="mostrarRedirecionando()"><h1 class="text-left"><i
                             data-feather="arrow-left"></i></h1></a>
                 <h1
                         class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[3%]"
@@ -165,7 +165,7 @@
                                 Nutricional</h2>
 
                             <label for="idInfoNutri"
-                                   class="block text-gray-700 text-sm font-medium mb-2">ID:</label>
+                                   class="hidden block text-gray-700 text-sm font-medium mb-2">ID:</label>
                             <input type="text" id="idInfoNutri" name="idInfoNutri" value="<%=request.getAttribute("idInfoNutri")%>"
                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px]
                                                 focus:ring-2
@@ -266,5 +266,6 @@
     <script src="${pageContext.request.contextPath}/js/menu.js"></script>
     <script src="${pageContext.request.contextPath}/js/carregandoAdicionar.js"></script>
     <script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+    <script src="${pageContext.request.contextPath}/js/informacao-nutricional.js"></script>
         </body>
     </html>

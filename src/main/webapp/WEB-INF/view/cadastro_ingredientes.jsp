@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="com.example.lumi.Model.Alergia" %>
+<%@ page import="java.util.List"%>
+<%
+    @SuppressWarnings("unchecked") List<Alergia> listaAlergias = (List<Alergia>) request.getAttribute("alergias-lista");
+%>
     <!DOCTYPE html>
     <html lang="pt-BR">
 
@@ -106,12 +111,12 @@
                     <form action="adicionar-ingrediente" method="post">
                         <div class="mb-6">
                             <label for="nome" class="block text-gray-700 text-sm font-medium mb-2">Nome:</label>
-                            <input type="text" id="nome" name="nome"
+                            <input type="text" id="nome" name="nome" required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2"
                                 placeholder="Digite o nome do ingrediente...">
                             <label for="descricao"
                                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Descrição:</label>
-                            <textarea id="descricao" name="descricao"
+                            <textarea id="descricao" name="descricao" required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent resize-none overflow-hidden"
                                 placeholder="Digite a descrição..." rows="2" oninput="aumentarTexto(this)"></textarea>
                         </div>
@@ -157,6 +162,19 @@
         <script>
             AOS.init({ duration: 800, once: true });
             feather.replace();
+
+            const alergiasOp = [ <% 
+            if (listaAlergias != null) {
+                for (int i = 0; i < listaAlergias.size(); i++) {
+                    Alergia alergia = listaAlergias.get(i);
+                    String separador = (i < listaAlergias.size() - 1) ? "," : "";
+        %>
+                    "<%= alergia.getNome() %>"<%= separador %>
+        <% 
+                }
+            }
+        %>
+        ];
         </script>
         <script src="${pageContext.request.contextPath}/js/menu.js"></script>
         <script src="${pageContext.request.contextPath}/js/aumentar-texto.js"></script>

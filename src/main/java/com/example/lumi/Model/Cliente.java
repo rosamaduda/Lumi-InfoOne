@@ -20,7 +20,11 @@ public class Cliente {
     private String enderecoCidade;
     private String enderecoCep;
 
-    // construtor
+    // construtores
+    public Cliente() {}
+    public Cliente(String email) {
+        this.email = email;
+    }
     public Cliente(String email, String cpf, String nome, String nomeSobrenome, LocalDate dataNascimento, String senha, double altura, double peso, String diabetes, boolean pressaoAlta, boolean colesterolAlto, String telefone, String enderecoUf, String enderecoCidade, String enderecoCep) {
         this.email = email;
         this.cpf = cpf;
@@ -37,13 +41,6 @@ public class Cliente {
         this.enderecoUf = enderecoUf;
         this.enderecoCidade = enderecoCidade;
         this.enderecoCep = enderecoCep;
-    }
-
-    public Cliente(String email) {
-        this.email = email;
-    }
-
-    public Cliente() {
     }
 
     // getters e setters

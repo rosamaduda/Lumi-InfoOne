@@ -1,18 +1,19 @@
 package com.example.lumi.Servlet.Alergia;
 
+import java.io.IOException;
+
 import com.example.lumi.DAO.AlergiaDAO;
 import com.example.lumi.Model.Alergia;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-
 @WebServlet(urlPatterns = {"/cadastro-alergia", "/adicionar-alergia"})
 public class ServletAdicionarAlergia extends HttpServlet {
-    @Override
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
 
@@ -21,7 +22,6 @@ public class ServletAdicionarAlergia extends HttpServlet {
         }
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AlergiaDAO alergiaDAO = new AlergiaDAO();
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
@@ -36,7 +36,11 @@ public class ServletAdicionarAlergia extends HttpServlet {
             Alergia alergia = new Alergia(nome, alergeno, descricao);
 
             // adicionando a alergia
-            alergiaDAO.inserirAlergia(alergia);
+            int retornoInsercao = alergiaDAO.inserirAlergia(alergia);
+            if (retornoInsercao == 0 || retornoInsercao == -1) {
+                request.setAttribute("mensagemErro", "Não foi possível inserir a alergia");
+                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+            }
 
             // redirecionando para a página de alergia novamente
             response.sendRedirect("alergias");

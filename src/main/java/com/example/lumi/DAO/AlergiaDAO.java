@@ -2,13 +2,16 @@ package com.example.lumi.DAO;
 
 
 
-import com.example.lumi.Conexao.Conexao;
-import com.example.lumi.Model.Alergia;
-import com.example.lumi.Model.Ingrediente;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.lumi.Conexao.Conexao;
+import com.example.lumi.Model.Alergia;
 
 public class AlergiaDAO {
     // INSERIR
@@ -17,7 +20,7 @@ public class AlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "INSERT INTO ALERGIA (ALERGENO, NOME, DESCRICAO) VALUES(?, ?, ?)";
+            String instrucaoSQL = "INSERT INTO ALERGIA (ALERGENO, NOME, DESCRICAO) VALUES(?, ?, ?)"; // inserindo as informações da alergia
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             // setando os parâmetros da instrução
             pstmt.setString(1, alergia.getAlergeno());
@@ -42,7 +45,7 @@ public class AlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE ALERGIA SET ALERGENO = ?, NOME = ?, DESCRICAO = ? WHERE ID = ?";
+            String instrucaoSQL = "UPDATE ALERGIA SET ALERGENO = ?, NOME = ?, DESCRICAO = ? WHERE ID = ?"; // alterando a alergia
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando os parametros da instrucao
@@ -72,7 +75,7 @@ public class AlergiaDAO {
 
         try {
             // deletando a alergia
-            String instrucaoSQL = "DELETE FROM ALERGIA WHERE ID = ?";
+            String instrucaoSQL = "DELETE FROM ALERGIA WHERE ID = ?"; // apagando a alergia pelo id
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, id); // setando parametro na instrução
 
@@ -97,7 +100,7 @@ public class AlergiaDAO {
         List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA";
+            String instrucaoSQL = "SELECT * FROM ALERGIA"; // buscando todas as informações da alergia
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // realizando a query
 
@@ -119,7 +122,7 @@ public class AlergiaDAO {
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ID = ?";
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ID = ?"; // buscando a alergia pelo ID
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, alergia.getId()); // setando o parâmetro da instrução
             rset = pstmt.executeQuery(); // realizando a query
@@ -142,7 +145,7 @@ public class AlergiaDAO {
         List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT NOME FROM ALERGIA";
+            String instrucaoSQL = "SELECT NOME FROM ALERGIA"; // buscando o nome da alergia
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // realizando a query
 
@@ -158,6 +161,54 @@ public class AlergiaDAO {
         return listaAlergias;
     } // buscarNomeAlergia()
 
+    public List<Alergia> buscarNomeAlergia(int id) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Alergia> alergias = new ArrayList<>();
+
+        try {
+            String instrucaoSQL = "SELECT NOME FROM ALERGIA WHERE ID = ?"; // buscando o nome da alergia a partir do ID
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, id); // setando o parâmetro da instrução
+            rset = pstmt.executeQuery(); // realizando a query
+
+            while (rset.next()) {
+                Alergia alergia = new Alergia(rset.getString("nome"));
+                alergias.add(alergia); // adicionando o objeto à lista que será retornada
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return alergias;
+    } // buscarNomeAlergia(int id)
+
+    public int buscarIdAlergia(String nome) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
+        ResultSet rset;
+        List<Alergia> alergias = new ArrayList<>();
+        int id = -1;
+
+        try {
+            String instrucaoSQL = "SELECT ID FROM ALERGIA WHERE NOME LIKE ?"; // buscando o ID da alergia a partir do nome
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setString(1, "%"+nome+"%"); // setando o parâmetro da instrução
+            rset = pstmt.executeQuery(); // realizando a query
+
+            while (rset.next()) {
+                id = rset.getInt("id");
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            conexao.desconectar(conn); // desconectando o BD
+        }
+        return id;
+    } // buscarNomeAlergia(int id)
+
     // Limitar por 3 alergias para mostrar no portal
     public List<Alergia> buscarAlergiaPortal() {
         Conexao conexao = new Conexao();
@@ -166,7 +217,7 @@ public class AlergiaDAO {
         List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA ORDER BY ID DESC LIMIT 3";
+            String instrucaoSQL = "SELECT * FROM ALERGIA ORDER BY ID DESC LIMIT 3"; // buscando as últimas 3 alergias inseridas
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -190,9 +241,9 @@ public class AlergiaDAO {
         List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE NOME LIKE ?";
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE NOME LIKE ?"; // buscando a alergia pelo nome
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1,"%"+nome+"%"); // setando parmetros da instrução
+            pstmt.setString(1,"%"+nome+"%"); // setando parâmetros da instrução
             rset = pstmt.executeQuery(); // executando a instrução
 
             while(rset.next()){
@@ -214,7 +265,7 @@ public class AlergiaDAO {
         List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ALERGENO LIKE ?";
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ALERGENO LIKE ?"; // buscando a alergia pelo alergeno
             PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+alergeno+"%"); // setando os parâmetros na instrução
             rset= pstmt.executeQuery(); // executando a instrução
@@ -230,5 +281,7 @@ public class AlergiaDAO {
         }
         return listaAlergias;
     } // buscarAlergiaPorAlergeno()
+    
+
 } // AlergiaDAO
 

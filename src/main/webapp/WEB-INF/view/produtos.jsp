@@ -190,20 +190,22 @@
                     </td>
                     <td class="p-3 border-b text-right">
                         <div class="flex space-x-2 justify-end">
-                            <a href="alteracao-produto?codigoProduto=<%=listaProdutos.get(i).getCodigoBarras()%>"
+                            <a href="alteracao-produto?codigoProduto=<%=listaProdutos.get(i).getCodigoBarras()%>" onclick="mostrarRedirecionando()"
                                class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit" class="w-4 h-4"></i>
                             </a>
-                            <form action="exclusao-produto" method="post"
-                                  style="display:inline;">
-                                <input type="hidden" name="codigoProduto"
-                                       value="<%=listaProdutos.get(i).getCodigoBarras()%>">
-                                <button type="submit"
-                                        class="p-1 text-red-600 hover:text-red-800"
-                                        style="background:none; border:none;">
-                                    <i data-feather="trash-2" class="w-4 h-4"></i>
-                                </button>
-                            </form>
+                            <form action="exclusao-produto"
+                            method="post"
+                            class="formRemover"
+                            style="display:inline;">
+                          <input type="hidden"
+                                 name="CBProdutos"
+                                 value="<%=listaProdutos.get(i).getCodigoBarras()%>">
+                          <button type="button"
+                                  class="botaoRemover p-1 text-red-600 hover:text-red-800"
+                                  style="background:none; border:none;">
+                              <i data-feather="trash-2" class="w-4 h-4"></i>
+                          </but
                         </div>
                     </td>
                 </tr>
@@ -227,20 +229,22 @@
                     </td>
                     <td class="p-3 border-b text-right">
                         <div class="flex space-x-2 justify-end">
-                            <a href="alteracao-produto?codigoProduto=<%=listaProdutos.get(i).getCodigoBarras()%>"
+                            <a href="alteracao-produto?codigoProduto=<%=listaProdutos.get(i).getCodigoBarras()%>" onclick="mostrarRedirecionando()"
                                class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit" class="w-4 h-4"></i>
                             </a>
-                            <form action="exclusao-produto" method="post"
-                                  style="display:inline;">
-                                <input type="hidden" name="codigoProduto"
-                                       value="<%=listaProdutos.get(i).getCodigoBarras()%>">
-                                <button type="submit"
-                                        class="p-1 text-red-600 hover:text-red-800"
-                                        style="background:none; border:none;">
-                                    <i data-feather="trash-2" class="w-4 h-4"></i>
-                                </button>
-                            </form>
+                            <form action="exclusao-produto"
+                        method="post"
+                        class="formRemover"
+                        style="display:inline;">
+                      <input type="hidden"
+                             name="CBProdutos"
+                             value="<%=listaProdutos.get(i).getCodigoBarras()%>">
+                      <button type="button"
+                              class="botaoRemover p-1 text-red-600 hover:text-red-800"
+                              style="background:none; border:none;">
+                          <i data-feather="trash-2" class="w-4 h-4"></i>
+                      </but
                         </div>
                     </td>
                 </tr>
@@ -322,25 +326,24 @@
                     <div
                             class="flex justify-end space-x-3 mt-3">
                         <a
-                                href="alteracao-produto?codigoProduto=<%= listaProdutos.get(i).getCodigoBarras()%>"
+                                href="alteracao-produto?codigoProduto=<%= listaProdutos.get(i).getCodigoBarras()%>" onclick="mostrarRedirecionando()"
                                 class="p-1.5 text-blue-600 hover:text-blue-800 transition-colors duration-200">
                             <i data-feather="edit"
                                class="w-4 h-4"></i>
                         </a>
                         <form action="exclusao-produto"
-                              method="post"
-                              onsubmit="return confirmarExclusao()"
-                              class="inline">
-                            <input type="hidden"
-                                   name="codigoProduto"
-                                   value="<%= listaProdutos.get(i).getCodigoBarras() %>">
-                            <button type="submit"
-                                    class="p-1.5 text-red-600 hover:text-red-800 transition-colors duration-200"
-                                    style=" border:none;">
-                                <i data-feather="trash-2"
-                                   class="w-4 h-4"></i>
-                            </button>
-                        </form>
+                        method="post"
+                        class="formRemover"
+                        style="display:inline;">
+                      <input type="hidden"
+                             name="CBProdutos"
+                             value="<%=listaProdutos.get(i).getCodigoBarras()%>">
+                      <button type="button"
+                              class="botaoRemover p-1 text-red-600 hover:text-red-800"
+                              style="background:none; border:none;">
+                          <i data-feather="trash-2" class="w-4 h-4"></i>
+                      </button>
+                  </form>
                     </div>
                 </div>
                 <% } %>
@@ -445,6 +448,7 @@
         <script
             src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
         <script src="${pageContext.request.contextPath}/js/remover.js"></script>
+        <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 
     </body>
 </html>

@@ -30,7 +30,7 @@ public class ServletPortal extends HttpServlet {
 
         // buscando 3 clientes
         ClienteDAO clienteDAO = new ClienteDAO();
-        List<Cliente> listaClientes = clienteDAO.buscarCliente();
+        List<Cliente> listaClientes = clienteDAO.buscarClientePortal();
 
         // setando a lista como atributo
         request.setAttribute("clientes-lista", listaClientes);
@@ -66,7 +66,7 @@ public class ServletPortal extends HttpServlet {
             listaNomeIndustria.add(industria);
         }
 
-        // setando a lista como atributo
+        // setando as listas como atributo
         request.setAttribute("produtos-lista", listaProdutos);
         request.setAttribute("nomeIndustria-lista", listaNomeIndustria);
         request.setAttribute("infoNutri-lista", listaInfoNutri);
