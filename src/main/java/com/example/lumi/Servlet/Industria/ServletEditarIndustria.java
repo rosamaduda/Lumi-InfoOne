@@ -88,7 +88,7 @@ public class ServletEditarIndustria extends HttpServlet {
                 if (key.startsWith("telefone-")) {
                     String tel = request.getParameter(key).replaceAll("[^0-9]", "");
                     if (!tel.isEmpty()) {
-                        telefoneDAO.adicionarTelIndustria(new TelefoneIndustria(0, tel, id));
+                        telefoneDAO.inserirTelIndustria(new TelefoneIndustria(0, tel, id));
                     }
                 }
             });

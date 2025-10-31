@@ -88,7 +88,7 @@ public class ServletAdicionarIndustria extends HttpServlet {
             // adicionando os telefones
             for (int i = 0; i < telefones.size(); i++) {
                 TelefoneIndustria telefoneIndustria = new TelefoneIndustria(telefones.get(i), idIndustria);
-                retornoInsercao = telefoneIndustriaDAO.adicionarTelIndustria(telefoneIndustria);
+                retornoInsercao = telefoneIndustriaDAO.inserirTelIndustria(telefoneIndustria);
                 if (retornoInsercao == 0 || retornoInsercao == -1) {
                     request.setAttribute("mensagemErro", "Não foi possível inserir o telefone da indústria");
                     request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
