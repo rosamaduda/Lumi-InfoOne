@@ -311,7 +311,7 @@ public class ProdutoDAO {
             pstmt.setString(1,"%"+fabricante+"%");
             rset=pstmt.executeQuery();
             while (rset.next()){
-                Produto produto=new Produto(rset.getLong("codigo_barras"),
+                Produto produto=new Produto(rset.getString("codigo_barras"),
                         rset.getString("nome"),
                         rset.getString("fabricante"),
                         rset.getString("descricao"),

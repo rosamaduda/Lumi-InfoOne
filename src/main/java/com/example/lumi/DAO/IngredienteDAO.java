@@ -90,7 +90,7 @@ public class IngredienteDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Ingrediente> lista = new ArrayList<>();
+        List<Ingrediente> listaIngredientes = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM INGREDIENTE"; // buscando todos os ingredientes
@@ -99,14 +99,14 @@ public class IngredienteDAO {
 
             while (rset.next()) {
                 Ingrediente ingrediente = new Ingrediente(rset.getInt("id"), rset.getString("nome"), rset.getString("descricao"));
-                lista.add(ingrediente); // adicionando à lista que será retornada
+                listaIngredientes.add(ingrediente); // adicionando à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
-        return lista;
+        return listaIngredientes;
     } // buscarIngrediente()
     public Ingrediente buscarIngrediente(Ingrediente ingrediente) {
         Conexao conexao = new Conexao();
@@ -136,7 +136,7 @@ public class IngredienteDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<Ingrediente> lista = new ArrayList<>();
+        List<Ingrediente> listaIngredientes = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT * FROM INGREDIENTE ORDER BY ID DESC LIMIT 3"; // buscando os últimos 3 registros de ingrediente
@@ -145,14 +145,14 @@ public class IngredienteDAO {
 
             while (rset.next()) {
                 Ingrediente ingrediente = new Ingrediente(rset.getInt("id"), rset.getString("nome"), rset.getString("descricao"));
-                lista.add(ingrediente); // adicionando o objeto à lista que será retornada
+                listaIngredientes.add(ingrediente); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
-        return lista;
+        return listaIngredientes;
     } // buscarIngredientePortal()
 
     public int buscarIdIngrediente() {
@@ -181,7 +181,7 @@ public class IngredienteDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
         ResultSet rset;
-        List<Ingrediente> lista = new ArrayList<>();
+        List<Ingrediente> listaIngredientes = new ArrayList<>();
 
         try{
             String instrucaoSQL = "SELECT * FROM INGREDIENTE WHERE NOME LIKE ?"; // buscando o ingrediente pelo nome
@@ -191,13 +191,13 @@ public class IngredienteDAO {
 
             while (rset.next()) {
                 Ingrediente ingrediente = new Ingrediente(rset.getInt("id"),rset.getString("nome"),rset.getString("descricao"));
-                lista.add(ingrediente); // adicionando o objeto à lista que será retornada
+                listaIngredientes.add(ingrediente); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle){
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
-        return lista;
+        return listaIngredientes;
     } // buscarIngredientePorNome(String nome)
 } // IngredienteDAO

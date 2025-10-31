@@ -37,7 +37,7 @@ public class AlergiaIngredienteDAO {
     } // inserirAlergiaIngrediente(int idIngrediente, int idAlergia)
 
     // REMOVER
-    public int DeletarIngredienteAlergia(int idIngrediente,int idAlergia) {
+    public int deletarIngredienteAlergia(int idIngrediente,int idAlergia) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
         try{

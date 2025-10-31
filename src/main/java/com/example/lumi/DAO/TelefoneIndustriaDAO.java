@@ -13,7 +13,7 @@ import com.example.lumi.Model.TelefoneIndustria;
 
 public class TelefoneIndustriaDAO {
     // INSERIR
-    public int adicionarTelIndustria(TelefoneIndustria tel){
+    public int inserirTelIndustria(TelefoneIndustria tel){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
@@ -38,53 +38,6 @@ public class TelefoneIndustriaDAO {
         }
     } // adicionarTelIndustria()
 
-    public int deletarTelIndustria(int id){
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão no BD
-
-        try {
-            String intrucaoSQL = "DELETE FROM TEL_INDUSTRIA WHERE ID = ?";
-            PreparedStatement pstmt = conn.prepareStatement(intrucaoSQL);
-
-            // setando os parâmetros na instruçãp
-            pstmt.setInt(1, id);
-
-            if (pstmt.executeUpdate() > 0){ // executando a instrução e verificando o retorno
-                return 1; // executou a instrução
-            } else {
-                return 0; // não encontrou o registro
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando com o BD
-        }
-    } // deletarTelIndustria()
-
-    public int deletarTelIdIndustria(int idIndustria){
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão no BD
-
-        try {
-            String intrucaoSQL = "DELETE FROM TEL_INDUSTRIA WHERE ID_INDUSTRIA = ?";
-            PreparedStatement pstmt = conn.prepareStatement(intrucaoSQL);
-
-            // setando os parâmetros na instruçãp
-            pstmt.setInt(1,idIndustria);
-
-            if (pstmt.executeUpdate() > 0){ // executando a instrução e verificando o retorno
-                return 1; // executou a instrução
-            } else {
-                return 0; // não encontrou o registro
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // desconectando com o BD
-        }
-    } // deletarTelIndustria()
 
     public int alterarTelefone(TelefoneIndustria tel){
         Conexao conexao = new Conexao();
@@ -135,6 +88,54 @@ public class TelefoneIndustriaDAO {
             conexao.desconectar(conn); // desconectando o BD
         }
     } // alterarTelefone(String telefone, String telefoneVelho)
+
+    public int deletarTelIndustria(int id){
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão no BD
+
+        try {
+            String intrucaoSQL = "DELETE FROM TEL_INDUSTRIA WHERE ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(intrucaoSQL);
+
+            // setando os parâmetros na instruçãp
+            pstmt.setInt(1, id);
+
+            if (pstmt.executeUpdate() > 0){ // executando a instrução e verificando o retorno
+                return 1; // executou a instrução
+            } else {
+                return 0; // não encontrou o registro
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando com o BD
+        }
+    } // deletarTelIndustria()
+
+    public int deletarTelIdIndustria(int idIndustria){
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão no BD
+
+        try {
+            String intrucaoSQL = "DELETE FROM TEL_INDUSTRIA WHERE ID_INDUSTRIA = ?";
+            PreparedStatement pstmt = conn.prepareStatement(intrucaoSQL);
+
+            // setando os parâmetros na instruçãp
+            pstmt.setInt(1,idIndustria);
+
+            if (pstmt.executeUpdate() > 0){ // executando a instrução e verificando o retorno
+                return 1; // executou a instrução
+            } else {
+                return 0; // não encontrou o registro
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+            return -1; // caiu no catch
+        } finally {
+            conexao.desconectar(conn); // desconectando com o BD
+        }
+    } // deletarTelIndustria()
 
 
     public List<TelefoneIndustria> buscarTelefone() {
@@ -188,7 +189,7 @@ public class TelefoneIndustriaDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
         ResultSet rset;
-        List<TelefoneIndustria> telefones = new ArrayList<>();
+        List<TelefoneIndustria> listaTelefones = new ArrayList<>();
     
         try {
             String instrucaoSQL = "SELECT TELEFONE FROM TEL_INDUSTRIA WHERE ID_INDUSTRIA = ?";
@@ -198,7 +199,7 @@ public class TelefoneIndustriaDAO {
     
             while (rset.next()) {
                 TelefoneIndustria telefoneObjeto = new TelefoneIndustria(rset.getString("telefone"));
-                telefones.add(telefoneObjeto);
+                listaTelefones.add(telefoneObjeto);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -206,7 +207,7 @@ public class TelefoneIndustriaDAO {
             conexao.desconectar(conn);
         }
     
-        return telefones;
+        return listaTelefones;
     }// buscarTelefone()
     
 
@@ -214,7 +215,7 @@ public class TelefoneIndustriaDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
         ResultSet rset;
-        List<TelefoneIndustria> telefones = new ArrayList<>();
+        List<TelefoneIndustria> listaTelefones = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT ID_INDUSTRIA FROM TEL_INDUSTRIA WHERE TELEEFONE = ?"; // buscando o id da industria a partir do telefone
@@ -225,14 +226,14 @@ public class TelefoneIndustriaDAO {
 
             while (rset.next()) {
                 TelefoneIndustria telefoneObjeto = new TelefoneIndustria(rset.getString("telefone"));
-                telefones.add(telefoneObjeto); // adicionando o objeto à lista que será retornada
+                listaTelefones.add(telefoneObjeto); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException e){
             e.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-        return telefones;
+        return listaTelefones;
     } // buscarTelefone(String telefone)
 } // TelefoneIndustriaDAO
 

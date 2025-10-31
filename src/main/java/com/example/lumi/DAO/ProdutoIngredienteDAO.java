@@ -29,7 +29,7 @@ public class ProdutoIngredienteDAO {
         }
     } // removerProdutoIngrediente(int idIngrediente)
 
-    public int removerProdutoIngrediente(String codigoBarras){
+    public int deletarProdutoIngrediente(String codigoBarras){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
