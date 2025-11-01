@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let formParaExcluir = null;
 
-    // Abre popup de confirmaçãp
+    // abre popup de confirmação
     document.querySelectorAll(".botaoRemover").forEach(botao => {
         botao.addEventListener("click", (e) => {
             e.preventDefault();
@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Cancela
+    // cancela
     botaoCancelar.addEventListener("click", () => {
         popupConfirmacao.classList.add("hidden");
         popupConfirmacao.classList.remove("flex");
         formParaExcluir = null;
     });
 
-    // Confirma
+    // confirma
     botaoConfirmar.addEventListener("click", () => {
         if (formParaExcluir) {
             popupConfirmacao.classList.add("hidden");

@@ -1,15 +1,14 @@
 package com.example.lumi.DAO;
 
-import com.example.lumi.Conexao.Conexao;
-import com.example.lumi.Model.Alergia;
-import com.example.lumi.Model.ClienteAlergia;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.lumi.Conexao.Conexao;
+import com.example.lumi.Model.ClienteAlergia;
 
 public class ClienteAlergiaDAO {
     // INSERIR
@@ -157,7 +156,7 @@ public class ClienteAlergiaDAO {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return listaAlergias;
-    } // buscaClienteAlergia(String emailCliente)
+    } // buscaAlergiasporEmail(String emailCliente)
 
 
 

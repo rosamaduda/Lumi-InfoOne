@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     formsExclusao.forEach(form => {
         form.addEventListener("submit", () => {
-            // Aqui só chega se o usuário confirmou
+            // aqui só chega se o usuário confirmou
             telaCarregamento.classList.remove("hidden");
             telaCarregamento.classList.add("flex");
         });

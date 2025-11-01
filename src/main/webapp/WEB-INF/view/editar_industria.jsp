@@ -2,7 +2,7 @@
 <%@ page import="com.example.lumi.Model.Industria" %>
 <%@ page import="com.example.lumi.Model.Plano" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
+
 <%
     @SuppressWarnings("unchecked")
     List<Plano> planos = (List<Plano>) request.getAttribute("planos-lista");

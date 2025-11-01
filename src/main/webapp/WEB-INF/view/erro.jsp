@@ -43,9 +43,9 @@
                 </p>
 
                 <!-- Botão para voltar -->
-                <button class="botaoVoltar"
+                <button 
                     onclick="voltar()"
-                    class="bg-[#7F3FBF] hover:bg-[#6A33A1] text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center mx-auto">
+                    class="botaoVoltar bg-[#7F3FBF] hover:bg-[#6A33A1] text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center mx-auto">
                     <i data-feather="home" class="mr-2 w-4 h-4"></i>
                     Voltar para página anterior
                 </button>

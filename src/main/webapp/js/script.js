@@ -1,16 +1,16 @@
-// Inicializa AOS
+// inicializa AOS
 AOS.init({
     duration: 1000,
     once: true
 });
 
-// Inicializa Feather Icons
+// inicializa Feather Icons
 feather.replace();
 
-// Funcionalidade dos ícones
+// funcionalidade dos ícones
 document.querySelectorAll('.funcionalidades-item').forEach(item => {
     item.addEventListener('click', function () {
-        // Remove classe active do icone, texto e header das funcionalidades
+        // remove classe active do icone, texto e header das funcionalidades
         document.querySelectorAll('.funcionalidades-icon').forEach(icon => {
             icon.classList.remove('active');
         });
@@ -21,12 +21,12 @@ document.querySelectorAll('.funcionalidades-item').forEach(item => {
             icon.classList.remove('active');
         });
 
-        // Adiciona classe active ao ícone clicado
+        // adiciona classe active ao ícone clicado
         this.querySelector('.funcionalidades-icon').classList.add('active');
         this.querySelector('.funcionalidades-header').classList.add('active');
         this.querySelector('.funcionalidades-texto').classList.add('active');
 
-        // Muda a imagem do mock-up conforme a funcionalidade
+        // muda a imagem do mock-up conforme a funcionalidade
         const funcionalidades = this.getAttribute('data-func');
         const phoneScreen = document.getElementById('phone-screen');
 
@@ -41,7 +41,7 @@ document.querySelectorAll('.funcionalidades-item').forEach(item => {
                 `;
 
                 const scannerImg = document.getElementById('scanner-img');
-                // Informa o tempo para que mude as  telas do scanner
+                // informa o tempo para que mude as  telas do scanner
                 setTimeout(() => {
                     scannerImg.style.opacity = 0;
                     setTimeout(() => {
@@ -68,7 +68,7 @@ document.querySelectorAll('.funcionalidades-item').forEach(item => {
 
                 const industriaImg = document.getElementById('industria-img');
 
-                // Informa o tempo para que mude as  telas da indústria
+                // informa o tempo para que mude as  telas da indústria
                 setTimeout(() => {
                     industriaImg.style.opacity = 0;
 
@@ -104,19 +104,19 @@ document.querySelectorAll('.funcionalidades-item').forEach(item => {
 
                                             }, 1000);
 
-                                        }, 3000);
+                                        }, 1000);
 
-                                    }, 1000);
+                                    }, 2000);
 
-                                }, 3000);
+                                }, 1000);
 
-                            }, 1000);
+                            }, 2000);
 
-                        }, 3000);
+                        }, 2000);
 
                     }, 1000);
 
-                }, 3000);
+                }, 2000);
                 break;
 
 
@@ -124,7 +124,7 @@ document.querySelectorAll('.funcionalidades-item').forEach(item => {
     });
 });
 
-// Faz o blur do header ao scrollar o mouse
+// faz o blur do header ao scrollar o mouse
 window.addEventListener("scroll", function () {
     const header = document.querySelector("header");
     if (window.scrollY > 10) {
@@ -138,11 +138,11 @@ const menuBotao = document.getElementById('menu-botao');
 const navbar = document.getElementById('navbar');
 
 menuBotao.addEventListener('click', function () {
-    // Alterna a classe 'active' que ativa o estilo de dropdown
+    // alterna a classe 'active' que ativa o estilo de dropdown
     navbar.classList.toggle('active');
 });
 
-// Adiciona/Remove a classe 'scrolled' no header ao rolar
+// adiciona/remove a classe 'scrolled' no header ao rolar
 window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {

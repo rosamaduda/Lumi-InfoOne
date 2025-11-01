@@ -3,24 +3,26 @@ package com.example.lumi.Model;
 public class AlergiaIngrediente {
     // atributos
     private int id;
+    private int idAlergia;
     private String nomeAlergia;
-    private String nomeIngrediente;
 
     // construtor
-    public AlergiaIngrediente(int id, String nomeAlergia, String nomeIngrediente) {
+    public AlergiaIngrediente(int id, int idAlergia, String nomeAlergia) {
         this.id = id;
+        this.idAlergia = idAlergia;
         this.nomeAlergia = nomeAlergia;
-        this.nomeIngrediente = nomeIngrediente;
     }
+
+
 
     // getters e setters
     public int getId() {
         return id;
     }
+    public int getIdAlergia() {
+        return idAlergia;
+    }
     public String getNomeAlergia() {
         return nomeAlergia;
-    }
-    public String getNomeIngrediente() {
-        return nomeIngrediente;
     }
 }

@@ -3,12 +3,12 @@ const menu = document.getElementById("menu");
 const filtroTexto = document.getElementById("filtro-texto");
 const filtroInput = document.getElementById("filtro");
 
-// Abre/fecha menu
+// abre/fecha menu
 filtroBtn.addEventListener("click", () => {
     menu.classList.toggle("hidden");
 });
 
-// Seleciona opção
+// seleciona opção
 menu.querySelectorAll("button").forEach((btn) => {
     btn.addEventListener("click", () => {
         filtroTexto.textContent = btn.textContent;
@@ -17,7 +17,7 @@ menu.querySelectorAll("button").forEach((btn) => {
     });
 });
 
-// Fecha menu clicando fora
+// fecha menu clicando fora
 document.addEventListener("click", (e) => {
     if (!filtroBtn.contains(e.target) && !menu.contains(e.target)) {
         menu.classList.add("hidden");

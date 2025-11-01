@@ -222,7 +222,7 @@
                         <div
                                 class="flex space-x-2 justify-end">
                             <a onclick="mostrarRedirecionando()"
-                               href="alteracao-cliente?idCliente=<%=clientes.get(i).getEmail()%>"
+                               href="alteracao-cliente?emailCliente=<%=clientes.get(i).getEmail()%>"
                                class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit"
                                    class="w-4 h-4"></i>
@@ -252,7 +252,7 @@
                     %>
                     <%= cpf %>
                     </td>
-                    <td class="p-3 border-b">
+                    <td class="p-3 border-b max-w-full whitespace-nowrap">
                         <%=clientes.get(i).getNome()%>
                     </td>
                     <td
@@ -376,7 +376,7 @@
                     <p
                             class="text-sm text-[#333333]">
                                             <span
-                                                    class="font-bold text-gray-700]">Tem pressão alta?</span>
+                                                    class="font-bold text-gray-700]">Pressão alta?</span>
                         <span class="font text-gray-800">
                                                 <%=
                                                 clientes.get(i).isPressaoAlta() ? "Sim" : "Não"%>
@@ -396,21 +396,35 @@
                     <p
                             class="text-sm text-[#333333]">
                                             <span
-                                                    class="font-bold text-gray-700">Diabetes? </span>
+                                                    class="font-bold text-gray-700">Diabetes: </span>
                         <span class="font text-gray-800">
                                                 <%=
                                                 clientes.get(i).getDiabetes()
                                                 %>
                                             </span>
                     </p>
-                    <p
-                            class="text-sm text-[#333333]">
-                                            <span
-                                                    class="font-bold text-gray-700">Alergias:</span>
-                        <span class="font text-gray-800">
-
-                                            </span>
-                    </p>
+                    <div class="pt-2 mb-1">
+                        <span
+                            class="font-bold text-gray-700 text-sm block mb-1">Alergias:</span>
+                        <% if (alergias.get(i) !=
+                        null &&
+                        !alergias.get(i).isEmpty())
+                        { %>
+                        <% for (int j = 0; j <
+                        alergias.get(i).size();
+                        j++) { %>
+                        <span
+                            class="text-sm text-gray-800 block">-
+                            <%=
+                            alergias.get(i).get(j)
+                            %></span>
+                        <% } %>
+                        <% } else { %>
+                        <span
+                            class="text-sm text-gray-500 italic block">Nenhuma
+                            alergia.</span>
+                        <% } %>
+                    </div>
                     <p
                             class="text-sm text-[#333333]">
                                             <span
@@ -447,7 +461,7 @@
                     <div
                             class="flex justify-end space-x-3 mt-3">
                         <a onclick="mostrarRedirecionando()"
-                                href="alteracao-cliente?idCliente=<%= clientes.get(i).getEmail() %>"
+                                href="alteracao-cliente?emailCliente=<%= clientes.get(i).getEmail() %>"
                                 class="p-1.5 text-blue-600 hover:text-blue-800 transition-colors duration-200">
                             <i data-feather="edit"
                                class="w-4 h-4"></i>
@@ -470,8 +484,8 @@
                 <% } %>
                 <% } %>
             </div>
-
         </div>
+
         <div
                 class="mt-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <a href="cadastro-cliente" onclick="mostrarRedirecionando()"
@@ -526,7 +540,7 @@
     </div>
 </div>
 
-<!-- Popup de Confirmação -->
+
 <div id="popupConfirmacao"
      class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm items-center justify-center z-50">
     <div class="bg-white rounded-2xl shadow-xl p-6 w-90 text-center animate-fadeIn">
@@ -566,6 +580,3 @@
 
 </body>
 </html>
-
-
-

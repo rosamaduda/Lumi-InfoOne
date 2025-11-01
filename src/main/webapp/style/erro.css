@@ -1,31 +1,31 @@
-/* Animação de shake horizontal */
+/* Animação de shake */
    @keyframes shake {
     0%, 100% { 
-        transform: translateX(0); /* Começa e termina na posição original */ 
+        transform: translateX(0); 
     }
     10%, 30%, 50%, 70%, 90% { 
-        transform: translateX(-10px); /* Move para a esquerda */ 
+        transform: translateX(-10px); 
     }
     20%, 40%, 60%, 80% { 
-        transform: translateX(10px); /* Move para a direita */ 
+        transform: translateX(10px); 
     }
 }
 
-/* Aplica a animação shake a elementos com essa classe */
+/* aplica a animação a elementos com essa classe */
 .shake-animacao {
-    animation: shake 0.5s ease-in-out; /* Duração 0.5s, aceleração suave */
+    animation: shake 0.5s ease-in-out; 
 }
 
-/* Animação de "desenhar" linha SVG */
+/* animação de "desenhar" linha SVG */
 .x-animacao {
-    stroke-dasharray: 100;       /* Comprimento total do traço */
-    stroke-dashoffset: 100;      /* Começa "escondido" */
-    animation: desenhar 1s ease-in-out forwards; /* Animação de desenhar, mantém estado final */
+    stroke-dasharray: 100;       
+    stroke-dashoffset: 100;      
+    animation: desenhar 1s ease-in-out forwards; /* animação de desenhar, mantém estado final */
 }
 
-/* Define a animação desenhar para revelar o traço SVG */
+/* define a animação desenhar para revelar o traço SVG */
 @keyframes desenhar {
     to { 
-        stroke-dashoffset: 0; /* Termina mostrando todo o traço */
+        stroke-dashoffset: 0; /* termina mostrando todo o traço */
     }
 }

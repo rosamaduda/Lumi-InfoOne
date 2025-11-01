@@ -427,7 +427,7 @@ List<Industria> industrias = (List<Industria>)
                             </div>
                         </div>
 
-                        <!-- Popup de Confirmação -->
+
                         <div id="popupConfirmacao"
                              class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm items-center justify-center z-50">
                             <div class="bg-white rounded-2xl shadow-xl p-6 w-90 text-center animate-fadeIn">
