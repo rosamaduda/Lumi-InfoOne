@@ -126,40 +126,39 @@
                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent resize-none overflow-hidden"
                                 rows="2"
                                 oninput="aumentarTexto(this)"><%=request.getAttribute("descricaoIngrediente")%></textarea>
-                            <label for="alergias-container"
-                                   class="block text-gray-700 text-sm font-medium mb-2 mt-2">Alergias relacionadas:</label>
-                                   <div id="alergias-container" class="flex flex-col">
-                                    <div id="alergias-container" class="flex flex-col">
-                                        <%
-                     List<String> alergiasDoIngrediente = (List<String>) request.getAttribute("alergiasLista");
-                     List<String> todasAlergias = (List<String>) request.getAttribute("todas-alergias");
-                     
-                     if (alergiasDoIngrediente != null) {
-                         for (int i = 0; i < alergiasDoIngrediente.size(); i++) {
-                             String alergiaSelecionada = alergiasDoIngrediente.get(i);
-                     %>
-                     <div data-alergia-wrapper class="flex items-start space-x-2 mb-2" id="alergia-wrapper-<%=i+1%>">
-                         <button type="button" class="text-red-500 hover:text-red-700 p-2 mt-2 btn-remover-alergia">
-                             <i data-feather="minus" class="w-5 h-5"></i>
+                                <label for="alergias-container"
+                                class="block text-gray-700 text-sm font-medium mb-2 mt-2">Alergias:</label>
+                                <div id="alergias-container" class="flex flex-col">
+                                 <%
+                                 List<String> alergiasDoIngrediente = (List<String>) request.getAttribute("alergiasLista");
+                                 List<String> todasAlergias = (List<String>) request.getAttribute("todas-alergias");
+                                 
+                                 if (alergiasDoIngrediente != null) {
+                                     for (int i = 0; i < alergiasDoIngrediente.size(); i++) {
+                                         String alergiaSelecionada = alergiasDoIngrediente.get(i);
+                                 %>
+                                 <div data-alergia-wrapper class="flex items-start space-x-2 mb-2" id="alergia-wrapper-<%=i+1%>">
+                                     <button type="button" class="text-red-500 hover:text-red-700 p-2 mt-2 btn-remover-alergia">
+                                         <i data-feather="minus" class="w-5 h-5"></i>
+                                     </button>
+                                     <select name="alergia-<%=i+1%>" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
+                                         <option value="" disabled hidden>Selecione uma alergia</option>
+                                         <% for (int j = 0; j < todasAlergias.size(); j++) { 
+                                               String nomeAlergia = todasAlergias.get(j);
+                                        %>
+                                             <option value="<%=nomeAlergia%>" <%=nomeAlergia.equals(alergiaSelecionada) ? "selected" : ""%>><%=nomeAlergia%></option>
+                                         <% } %>
+                                     </select>
+                                 </div>
+                                 <%
+                                     }
+                                 }
+                                 %>
+                                 </div>
+                         <button type="button" id="add-alergia"
+                                 class="flex items-center space-x-2 text-[#7F3FBF] hover:text-[#5B2E85] text-sm font-medium w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-3 py-2 rounded-[6px] ">
+                           <span>Adicionar alergia</span>
                          </button>
-                         <select name="alergia-<%=i+1%>" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
-                             <option value="" disabled hidden>Selecione uma alergia</option>
-                             <% for (int j = 0; j < todasAlergias.size(); j++) { 
-                                   String nomeAlergia = todasAlergias.get(j);
-                            %>
-                                 <option value="<%=nomeAlergia%>" <%=nomeAlergia.equals(alergiaSelecionada) ? "selected" : ""%>><%=nomeAlergia%></option>
-                             <% } %>
-                         </select>
-                     </div>
-                     <%
-                         }
-                     }
-                     %>
-                     </div>
-             <button type="button" id="add-alergia"
-                     class="flex items-center space-x-2 text-[#7F3FBF] hover:text-[#5B2E85] text-sm font-medium w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-3 py-2 rounded-[6px] ">
-               <span>Adicionar alergia</span>
-             </button>
                         </div>
                         <div class="text-center">
                             <button type="submit" id="btn-adicionar"

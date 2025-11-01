@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
---
+
     function removerCampo(event) {
         const wrapper = event.currentTarget.closest('div[data-alergia-wrapper]');
         if (wrapper) {
