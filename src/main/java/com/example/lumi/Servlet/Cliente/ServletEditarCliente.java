@@ -54,7 +54,7 @@ public class ServletEditarCliente extends HttpServlet {
             }
 
             // setando atributos
-            request.setAttribute("e-mail", cliente.getEmail());
+            request.setAttribute("email", cliente.getEmail());
             request.setAttribute("cpf", cliente.getCpf());
             request.setAttribute("nome", cliente.getNome());
             request.setAttribute("sobrenome", cliente.getNomeSobrenome());

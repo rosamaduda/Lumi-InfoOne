@@ -184,7 +184,7 @@
                         %>
                         <%= cpf %>
                     </td>
-                    <td class="p-3 border-b">
+                    <td class="p-3 border-b max-w-full whitespace-nowrap">
                         <%=clientes.get(i).getNome()%>
                     </td>
                     <td
@@ -290,7 +290,7 @@
                         <div
                                 class="flex space-x-2 justify-end">
                             <a onclick="mostrarRedirecionando()"
-                                    href="alteracao-cliente?idCliente=<%=clientes.get(i).getEmail()%>"
+                                    href="alteracao-cliente?emailCliente=<%=clientes.get(i).getEmail()%>"
                                     class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit"
                                    class="w-4 h-4"></i>

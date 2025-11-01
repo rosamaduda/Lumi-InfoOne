@@ -67,7 +67,7 @@
                           data-feather="alert-triangle"
                           class="mr-3"></i>Alergias</a></li>
                   <li><a href="clientes"  onclick="mostrarRedirecionando()"
-                         class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                         class="flex items-center p-3 bg-purple-100 rounded-lg text-[#333333] font-medium"><i
                           data-feather="users"
                           class="mr-3"></i>Cliente</a></li>
                   <li><a href="industrias" onclick="mostrarRedirecionando()"
@@ -75,7 +75,7 @@
                           data-feather="tool"
                           class="mr-3"></i>Indústria</a></li>
                   <li><a href="produtos" onclick="mostrarRedirecionando()"
-                         class="flex items-center p-3 bg-purple-100 rounded-lg text-[#333333] font-medium"><i
+                         class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
                           data-feather="tag"
                           class="mr-3"></i>Produtos</a></li>
                   <li><a href="site" onclick="mostrarRedirecionando()"
@@ -90,6 +90,8 @@
          class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
     <main class="sm:ml-64 flex-1 sm:p-8">
+        <a href="produtos" onclick="mostrarRedirecionando()"><h1 class="text-left sm:mt-3"><i
+                data-feather="arrow-left"></i></h1></a>
         <h1
                 class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[3%]"
                 data-aos="fade-down">Alterar Cliente</h1>
@@ -267,6 +269,25 @@
         </div>
     </main>
 </div>
+
+<div id="tela-redirecionamento"
+     class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
+    <div class="logo-container absolute top-6 left-6">
+        <img id="logo" src="${pageContext.request.contextPath}/assets/Group 28.png" alt="Logo Lumi" class="w-16 h-16 object-contain">
+    </div>
+
+    <div class="carregando flex flex-col items-center justify-center h-full">
+        <div class="loader">
+            <div class="bolinhas"></div>
+            <div class="bolinhas"></div>
+            <div class="bolinhas"></div>
+            <div class="bolinhas"></div>
+        </div>
+        <h1 class="text-2xl font-medium mt-8 text-gray-700">Redirecionando...</h1>
+        <p class="text-gray-500 mt-2">Só um instante...</p>
+    </div>
+</div>
+
 <script>
   AOS.init({ duration: 800, once: true });
   feather.replace();
@@ -277,7 +298,6 @@
   <% } %>
 </script>
 <script src="${pageContext.request.contextPath}/js/menu.js"></script>
-<script src="${pageContext.request.contextPath}/js/carregandoAdicionar.js"></script>
 <script src="${pageContext.request.contextPath}/js/alterarAlergia.js"></script>
 <script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
 </body>

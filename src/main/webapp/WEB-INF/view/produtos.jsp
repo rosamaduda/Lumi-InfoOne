@@ -172,7 +172,7 @@
                     if (i % 2 == 0) {
                 %>
                 <tr class="bg-white">
-                    <td class="p-3 border-b"><%=listaProdutos.get(i).getCodigoBarras()%></td>
+                    <td class="p-3 border-b max-w-full whitespace-nowrap"><%=listaProdutos.get(i).getCodigoBarras()%></td>
                     <td class="p-3 border-b"><%=listaProdutos.get(i).getNome()%></td>
                     <td class="p-3 border-b"><%=listaIndustrias.get(i).getNome()%></td>
                     <td class="p-3 border-b"><%=listaProdutos.get(i).getFabricante()%></td>
@@ -211,7 +211,7 @@
                 </tr>
                 <%} else {%>
                 <tr class="bg-[#C5E2E1]">
-                    <td class="p-3 border-b"><%=listaProdutos.get(i).getCodigoBarras()%></td>
+                    <td class="p-3 border-b max-w-full whitespace-nowrap"><%=listaProdutos.get(i).getCodigoBarras()%></td>
                     <td class="p-3 border-b"><%=listaProdutos.get(i).getNome()%></td>
                     <td class="p-3 border-b"><%=listaIndustrias.get(i).getNome()%></td>
                     <td class="p-3 border-b"><%=listaProdutos.get(i).getFabricante()%></td>
@@ -296,10 +296,10 @@
                                     </span>
                         </p>
                         <p
-                                class="text-sm text-[#333333] max-w-[20%] whitespace-normal break-words break-all">
+                                class="text-sm text-[#333333]">
                                     <span
                                             class="font-bold text-gray-700">Descrição:</span>
-                            <span class="font text-gray-800">
+                            <span class="font text-gray-800 max-w-[20%] whitespace-normal break-words break-all">
                                         <%=
                                         listaProdutos.get(i).getDescricao()
                                         %>

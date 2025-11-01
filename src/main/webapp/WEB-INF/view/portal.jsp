@@ -74,7 +74,7 @@
             <div class="p-4 flex-grow overflow-y-auto">
                 <ul class="space-y-2">
                     <li><a href="portal" onclick="mostrarRedirecionando()"
-                            class="flex items-center p-3 purple-100 rounded-lg text-[#333333] font-medium"><i
+                            class="flex items-center p-3 bg-purple-100 rounded-lg text-[#333333] font-medium"><i
                                 data-feather="home" class="mr-3"></i>Portal
                             ADM</a></li>
                     <li><a href="ingredientes" onclick="mostrarRedirecionando()"
@@ -264,6 +264,7 @@
                         <td class="p-3 border-b"><%=listaClientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getDiabetes()%></td>
+                        <td class="p-3 border-b"></td>
                         <td class="p-3 border-b max-w-full whitespace-nowrap"><%
                             String telefone = listaClientes.get(i).getTelefone();
                             telefone = telefone.replaceFirst("([0-9]{2})([0-9]{5})([0-9]{4})", "($1) $2-$3");

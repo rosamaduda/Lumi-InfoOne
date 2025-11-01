@@ -205,7 +205,7 @@
                                                         <div class="bg-[#FCFCFC] rounded-xl p-4 shadow-md border border-[#B8D9D8]">
                                                             <p class="font-bold text-[#333333]"><%= ingredientes.get(i).getNome() %></p>
                                                             <p class="text-sm text-[#333333]">
-                                                                <span class="font-bold text-gray-700">Descrição:</span>
+                                                                <span class="font-bold text-gray-700 max-w-full whitespace-nowrap">Descrição:</span>
                                                                 <span class="font text-gray-800 max-w-[50%] whitespace-normal break-words break-all">
                                                                     <%= ingredientes.get(i).getDescricao() %>
                                                                 </span>
