@@ -43,7 +43,7 @@ public class ServletEditarIngrediente extends HttpServlet {
                 List<Alergia> alergiasDoIngrediente = alergiaDAO.buscarNomeAlergia(listaIdAlergias.get(i).getIdAlergia());
                 if (alergiasDoIngrediente != null && !alergiasDoIngrediente.isEmpty()) {
                     for (int j = 0; j < alergiasDoIngrediente.size(); j++) {
-                        listaAlergias.add(alergiasDoIngrediente.get(j).getNome());
+                        listaAlergias.add(alergiasDoIngrediente.get(j).getNome()); 
                     }
                 }
             }
@@ -79,6 +79,7 @@ public class ServletEditarIngrediente extends HttpServlet {
             // deleta alergias antigas e inserir novas
             AlergiaIngredienteDAO alergiaIngredienteDAO = new AlergiaIngredienteDAO();
             alergiaIngredienteDAO.deletarIngredienteAlergia(id);
+
 
             request.getParameterMap().forEach((key, value) -> {
                 if (key.startsWith("alergia-")) {
