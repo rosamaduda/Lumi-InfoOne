@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @WebServlet(urlPatterns = {"/ingredientes", "/filtro-ingrediente"})
 public class ServletVisualizarIngrediente extends HttpServlet {
@@ -41,11 +42,24 @@ public class ServletVisualizarIngrediente extends HttpServlet {
             request.setAttribute("filtro-selecionado", filtro);
             request.setAttribute("pesquisa-anterior", pesquisa);
 
+            // transformando a string para todas as letras minúsculas
+            pesquisa = pesquisa.toLowerCase();
+
             // buscando as informações aqui depenendendo do filtro
             if (filtro.equals("Nome")) {
                 listaIngredientes = ingredienteDAO.buscarIngredientePorNome(pesquisa);
+
+                for (int i = 0; i < listaIngredientes.size(); i++) {
+                    int idIngrediente = listaIngredientes.get(i).getId();
+                    listaAlergias.add(alergiaIngredienteDAO.buscarAlergiasPorIngrediente(idIngrediente));
+                }
             } else {
                 listaIngredientes = ingredienteDAO.buscarIngrediente();
+
+                for (int i = 0; i < listaIngredientes.size(); i++) {
+                    int idIngrediente = listaIngredientes.get(i).getId();
+                    listaAlergias.add(alergiaIngredienteDAO.buscarAlergiasPorIngrediente(idIngrediente));
+                }
             }
         }
 

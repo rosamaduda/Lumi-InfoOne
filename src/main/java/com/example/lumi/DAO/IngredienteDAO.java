@@ -93,7 +93,7 @@ public class IngredienteDAO {
         List<Ingrediente> listaIngredientes = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INGREDIENTE"; // buscando todos os ingredientes
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE ORDER BY ID"; // buscando todos os ingredientes
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a query
 
@@ -184,7 +184,7 @@ public class IngredienteDAO {
         List<Ingrediente> listaIngredientes = new ArrayList<>();
 
         try{
-            String instrucaoSQL = "SELECT * FROM INGREDIENTE WHERE NOME LIKE ?"; // buscando o ingrediente pelo nome
+            String instrucaoSQL = "SELECT * FROM INGREDIENTE WHERE LOWER(NOME) LIKE ? ORDER BY ID"; // buscando o ingrediente pelo nome
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, "%"+nome+"%"); // setando o parâmetro da instrução
             rset = pstmt.executeQuery(); // executando a instrução

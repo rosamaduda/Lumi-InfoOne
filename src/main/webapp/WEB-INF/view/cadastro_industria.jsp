@@ -107,7 +107,7 @@
                                     data-aos="fade-down">Adicionar Indústria</h1>
                                 <div class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]"
                                     data-aos="fade-up" data-aos-delay="100">
-                                    <form class="formAE" action="alteracao-industria" method="post">
+                                    <form class="formAE" action="adicionar-industria" method="post">
                                         <div class="mb-6">
                                             <label for="cnpj"
                                                 class="block text-gray-700 text-sm font-medium mb-2">CNPJ:</label>

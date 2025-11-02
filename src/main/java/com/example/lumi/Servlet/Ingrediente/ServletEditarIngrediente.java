@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.lumi.DAO.AlergiaDAO;
 import com.example.lumi.DAO.AlergiaIngredienteDAO;
+import com.example.lumi.DAO.ClienteAlergiaDAO;
 import com.example.lumi.DAO.IngredienteDAO;
 import com.example.lumi.Model.Alergia;
 import com.example.lumi.Model.AlergiaIngrediente;
@@ -42,7 +43,7 @@ public class ServletEditarIngrediente extends HttpServlet {
                 List<Alergia> alergiasDoIngrediente = alergiaDAO.buscarNomeAlergia(listaIdAlergias.get(i).getIdAlergia());
                 if (alergiasDoIngrediente != null && !alergiasDoIngrediente.isEmpty()) {
                     for (int j = 0; j < alergiasDoIngrediente.size(); j++) {
-                        listaAlergias.add(alergiasDoIngrediente.get(j).getNome()); 
+                        listaAlergias.add(alergiasDoIngrediente.get(j).getNome());
                     }
                 }
             }
@@ -74,6 +75,21 @@ public class ServletEditarIngrediente extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             String nome = request.getParameter("nome");
             String descricao = request.getParameter("descricao");
+
+            // deleta alergias antigas e inserir novas
+            AlergiaIngredienteDAO alergiaIngredienteDAO = new AlergiaIngredienteDAO();
+            alergiaIngredienteDAO.deletarIngredienteAlergia(id);
+
+            request.getParameterMap().forEach((key, value) -> {
+                if (key.startsWith("alergia-")) {
+                    String alergiaNome = request.getParameter(key).trim();
+                    if (!alergiaNome.isEmpty()) {
+                        AlergiaDAO alergiaDAO = new AlergiaDAO();
+                        int idAlergia = alergiaDAO.buscarIdAlergia(alergiaNome);
+                        alergiaIngredienteDAO.inserirAlergiaIngrediente(id, idAlergia);
+                    }
+                }
+            });
 
             // instanciando o objeto
             Ingrediente ingrediente = new Ingrediente(id, nome, descricao);

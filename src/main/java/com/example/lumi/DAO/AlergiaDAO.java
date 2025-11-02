@@ -100,7 +100,7 @@ public class AlergiaDAO {
         List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA"; // buscando todas as informações da alergia
+            String instrucaoSQL = "SELECT * FROM ALERGIA ORDER BY ID"; // buscando todas as informações da alergia
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // realizando a query
 
@@ -241,7 +241,7 @@ public class AlergiaDAO {
         List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE NOME LIKE ?"; // buscando a alergia pelo nome
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE LOWER(NOME) LIKE ? ORDER BY ID"; // buscando a alergia pelo nome
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+nome+"%"); // setando parâmetros da instrução
             rset = pstmt.executeQuery(); // executando a instrução
@@ -265,7 +265,7 @@ public class AlergiaDAO {
         List<Alergia> listaAlergias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE ALERGENO LIKE ?"; // buscando a alergia pelo alergeno
+            String instrucaoSQL = "SELECT * FROM ALERGIA WHERE LOWER(ALERGENO) LIKE ? ORDER BY ID"; // buscando a alergia pelo alergeno
             PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+alergeno+"%"); // setando os parâmetros na instrução
             rset= pstmt.executeQuery(); // executando a instrução

@@ -185,7 +185,7 @@
                         <%= cpf %>
                     </td>
                     <td class="p-3 border-b max-w-full whitespace-nowrap">
-                        <%=clientes.get(i).getNome()%>
+                        <%=clientes.get(i).getNome() + " " + clientes.get(i).getNomeSobrenome()%>
                     </td>
                     <td
                             class="p-3 border-b">

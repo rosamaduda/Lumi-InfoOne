@@ -55,8 +55,8 @@ public class ProdutoDAO {
            pstmt.setString(2,produto.getFabricante());
            pstmt.setString(3,produto.getDescricao());
            pstmt.setDouble(4,produto.getMassa());
-           pstmt.setString(5,produto.getCodigoBarras());
-           pstmt.setInt(6, produto.getIdIndustria());
+           pstmt.setInt(5,produto.getIdIndustria());
+           pstmt.setString(6, produto.getCodigoBarras());
 
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return 1; // conseguiu realizar a instrução

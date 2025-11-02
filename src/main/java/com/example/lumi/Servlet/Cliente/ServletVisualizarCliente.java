@@ -45,6 +45,9 @@ public class ServletVisualizarCliente extends HttpServlet {
             request.setAttribute("filtro-selecionado", filtro);
             request.setAttribute("pesquisa-anterior", pesquisa);
 
+            // transformando a string para todas as letras minúsculas
+            pesquisa = pesquisa.toLowerCase();
+
             // buscando as informações aqui dependendo do filtro
             if (filtro.equals("Todos")) {
                 listaClientes = clienteDAO.buscarCliente();

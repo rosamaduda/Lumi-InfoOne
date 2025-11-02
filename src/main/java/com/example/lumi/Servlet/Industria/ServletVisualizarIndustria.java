@@ -42,6 +42,9 @@ public class ServletVisualizarIndustria extends HttpServlet {
             request.setAttribute("filtro-selecionado", filtro);
             request.setAttribute("pesquisa-anterior", pesquisa);
 
+            // transformando a string para todas as letras minúsculas
+            pesquisa = pesquisa.toLowerCase();
+
             // buscando as informações dependendo dos filtros
             if (filtro.equals("Nome")) {
                 listaIndustrias = industriaDAO.buscarIndustriaPorNome(pesquisa);

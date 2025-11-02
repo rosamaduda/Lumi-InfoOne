@@ -149,7 +149,7 @@ public class IndustriaDAO {
         List<Industria> listaIndustrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE NOME LIKE ? "; // buscando a indústria pelo nome
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE LOWER(NOME) LIKE ? "; // buscando a indústria pelo nome
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+nome+"%"); // setando o parâmetro na instrução
             rset = pstmt.executeQuery(); // executando a query
@@ -199,14 +199,14 @@ public class IndustriaDAO {
         List<Industria> listaIndustrias = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE NOME_PLANO LIKE ? "; // buscando a indústria pelo nome do plano
+            String instrucaoSQL = "SELECT * FROM INDUSTRIA WHERE LOWER(NOME_PLANO) LIKE ? ORDER BY ID"; // buscando a indústria pelo nome do plano
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+plano+"%"); // setando o parâmetro da instrução
             rset = pstmt.executeQuery(); // executando a query
 
             while (rset.next()) {
                 Industria industria = new Industria(rset.getInt("id"), rset.getString("cnpj"), rset.getString("nome"),
-                        rset.getString("objetivo"), rset.getString("senha"));
+                        rset.getString("objetivo"), rset.getString("email"), rset.getString("senha"), rset.getString("nome_plano"));
                 listaIndustrias.add(industria); // adicionando o objeto à lista que será retornada
             }
         } catch (SQLException sqle) {

@@ -82,11 +82,18 @@ public class ServletVisualizarProduto extends HttpServlet {
                     listaNomeIndustria.add(industria);
                 }
             } else {
-                listaProdutos = produtoDAO.buscarProdutoPorMassa(Double.parseDouble(pesquisa));
-                listaInfoNutri = informacaoNutricionalDAO.buscarInfoNutri();
-                for (int i = 0; i < listaProdutos.size(); i++) {
-                    industria = industriaDAO.buscarNomeIndustria(listaProdutos.get(i).getIdIndustria());
-                    listaNomeIndustria.add(industria);
+                pesquisa = pesquisa.replace(",", ".");
+                // tratando exceção para caso a pessoa insira um número inválido
+                try {
+                    listaProdutos = produtoDAO.buscarProdutoPorMassa(Double.parseDouble(pesquisa));
+                    listaInfoNutri = informacaoNutricionalDAO.buscarInfoNutri();
+                    for (int i = 0; i < listaProdutos.size(); i++) {
+                        industria = industriaDAO.buscarNomeIndustria(listaProdutos.get(i).getIdIndustria());
+                        listaNomeIndustria.add(industria);
+                    }
+                } catch (NumberFormatException nfe) {
+                    request.setAttribute("mensagemErro", "Formato de pesquisa inválido");
+                    request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
                 }
             }
         }

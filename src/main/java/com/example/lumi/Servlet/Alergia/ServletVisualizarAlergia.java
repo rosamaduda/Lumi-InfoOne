@@ -32,6 +32,9 @@ public class ServletVisualizarAlergia extends HttpServlet {
             request.setAttribute("filtro-selecionado", filtro);
             request.setAttribute("pesquisa-anterior", pesquisa);
 
+            // transformando a string para todas as letras minúsculas
+            pesquisa = pesquisa.toLowerCase();
+
             // buscando as informações dependendo do filtro
             if (filtro.equals("Todos")) {
                 listaAlergias = alergiaDAO.buscarAlergia();

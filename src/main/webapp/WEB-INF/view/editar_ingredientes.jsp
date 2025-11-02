@@ -112,7 +112,7 @@
                         <div class="mb-6">
                             <label for="id" class="hidden block text-gray-700 text-sm font-medium mb-2">ID:</label>
                             <input type="text" id="id" name="id" value="<%=request.getAttribute("idIngrediente")%>"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2
+                            class="hidden w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2
                             focus:ring-[#7F3FBF]
                             focus:border-transparent mb-2" readonly>
                             <label for="nome" class="block text-gray-700 text-sm font-medium mb-2">Nome:</label>

@@ -40,7 +40,7 @@ public class ServletAdicionarIndustria extends HttpServlet {
         if (caminho.equals("/adicionar-industria")) {
             // recebendo parâmetros para fazer a inserção
             String email = request.getParameter("e-mail").trim();
-            if (!email.matches("^[A-Za-z0-9]{1,}@[A-Za-z0-9]{1,}\\.[a-z]+")) {
+            if (!email.matches("^[A-Za-z0-9]{1,}@[A-Za-z0-9]{1,}\\.[A-Za-z]+")) {
                 request.setAttribute("mensagemErro", "E-mail inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
             }
@@ -61,7 +61,7 @@ public class ServletAdicionarIndustria extends HttpServlet {
             int retornoInsercao = industriaDAO.inserirIndustria(industria);
             if (retornoInsercao == 0 || retornoInsercao == -1) {
                 request.setAttribute("mensagemErro", "Não foi possível inserir a indústria");
-                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
             }
 
             // buscando o ID da última indústria adicionada
@@ -91,7 +91,7 @@ public class ServletAdicionarIndustria extends HttpServlet {
                 retornoInsercao = telefoneIndustriaDAO.inserirTelIndustria(telefoneIndustria);
                 if (retornoInsercao == 0 || retornoInsercao == -1) {
                     request.setAttribute("mensagemErro", "Não foi possível inserir o telefone da indústria");
-                    request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+                    request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
                 }
             }
 
