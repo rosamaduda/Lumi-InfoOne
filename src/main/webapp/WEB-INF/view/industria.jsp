@@ -198,7 +198,7 @@ List<Industria> industrias = (List<Industria>)
                                                     <div
                                                         class="relative w-full">
                                                         <select id="dropdown-telefone"
-                                                            class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 truncate">
+                                                            class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 pr-8 truncate">
                                                             <% if
                                                             (telefones.get(i) !=
                                                             null) { %>
@@ -214,7 +214,7 @@ List<Industria> industrias = (List<Industria>)
                                                         </select>
                                                         <i
                                                             data-feather="chevron-down"
-                                                            class="pointer-events-none absolute right-1 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i>
+                                                            class="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i>
                                                     </div>
                                                 </td>
                                                 <td

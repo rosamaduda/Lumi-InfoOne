@@ -421,7 +421,7 @@
                         <td class="p-3 border-b">
                             <div class="relative w-full">
                                 <select
-                                        class="appearance-none w-full bg-transparent  border-gray-300 rounded-md text-sm font-semibold text-[#333333] cursor-pointer py-2">
+                                        class="appearance-none w-full bg-transparent  border-gray-300 rounded-md text-sm font-semibold text-[#333333] cursor-pointer py-2 pl-2 pr-8 truncate">
                                     <% for (int j=0; j < listaTelefones.get(i).size();
                                             j++) { %>
                                     <option>
@@ -430,7 +430,7 @@
                                     <% } %>
                                 </select>
                                 <i data-feather="chevron-down"
-                                   class="ml-[-4%] pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i></i>
+                                   class="ml-[-4%] pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i></i>
                             </div>
                         </td>
                     </tr>
@@ -461,7 +461,7 @@
                         <td class="p-3 border-b">
                             <div class="relative w-full">
                                 <select
-                                        class="appearance-none w-full bg-transparent  border-gray-300 rounded-md text-sm font-semibold text-[#333333] cursor-pointer py-2">
+                                        class="appearance-none w-full bg-transparent  border-gray-300 rounded-md text-sm font-semibold text-[#333333] cursor-pointer py-2 pl-2 pr-8 truncate">
                                     <% for (int j=0; j <
                                             listaTelefones.get(i).size(); j++) { %>
                                     <option>
@@ -470,7 +470,7 @@
                                     <% } %>
                                 </select>
                                 <i data-feather="chevron-down"
-                                   class="ml-[-4%] pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i></i>
+                                   class="ml-[-4%] pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i></i>
                             </div>
                         </td>
                     </tr>
