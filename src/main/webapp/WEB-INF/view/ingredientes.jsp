@@ -99,241 +99,170 @@
                                             class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300">
                                         </div>
 
+                                        <main class="flex-1 p-4 sm:p-8 sm:ml-64 h-full flex flex-col overflow-x-hidden overflow-y-auto">
 
-                                        <main
-                                            class="flex-1 p-4 sm:p-8 sm:ml-64 h-full flex flex-col overflow-x-hidden overflow-y-auto">
-
-                                            <h1 class="text-2xl sm:text-[2.25rem] font-bold text-gray-800 mb-6 sm:mb-8"
-                                                data-aos="fade-down">Ingredientes</h1>
-
-
-                                            <form action="filtro-ingrediente" method="get" class="mb-6 relative z-10"
-                                                data-aos="fade-up">
-                                                <div
-                                                    class="flex items-center bg-white rounded-full shadow-lg px-5 py-3 w-full">
+                                            <h1 class="text-2xl sm:text-[2.25rem] font-bold text-gray-800 mb-6 sm:mb-8" data-aos="fade-down">
+                                                Ingredientes
+                                            </h1>
+                                        
+                                            <!-- Formulário de filtro e pesquisa -->
+                                            <form action="filtro-ingrediente" method="get" class="mb-6 relative z-10" data-aos="fade-up">
+                                                <div class="flex items-center bg-white rounded-full shadow-lg px-5 py-3 w-full">
                                                     <!-- Dropdown -->
                                                     <div class="relative" id="dropdown">
                                                         <button id="filtro-botao" type="button"
                                                             class="flex items-center bg-[#3C9D9B] text-white text-sm font-semibold rounded-full px-3 py-1.5 focus:outline-none cursor-pointer transition-all">
-                                                            <span
-                                                                id="filtro-texto"><%=request.getAttribute("filtro-selecionado")==null
-                                                                    ? "Todos" :
-                                                                    request.getAttribute("filtro-selecionado")%></span>
-                                                            <i class="ml-2 text-white w-4 h-4"
-                                                                data-feather="chevron-down"></i>
+                                                            <span id="filtro-texto">
+                                                                <%=request.getAttribute("filtro-selecionado") == null ? "Todos" : request.getAttribute("filtro-selecionado") %>
+                                                            </span>
+                                                            <i class="ml-2 text-white w-4 h-4" data-feather="chevron-down"></i>
                                                         </button>
-
+                                        
                                                         <!-- Menu -->
-                                                        <div id="menu"
-                                                            class="absolute hidden mt-2 bg-white rounded-lg shadow-lg w-max z-50">
+                                                        <div id="menu" class="absolute hidden mt-2 bg-white rounded-lg shadow-lg w-max z-50">
                                                             <button type="button" data-value="Todos"
                                                                 class="block text-gray-700 text-sm px-4 py-2 w-full text-left hover:bg-gray-100">Todos</button>
                                                             <button type="button" data-value="Nome"
                                                                 class="block text-gray-700 text-sm px-4 py-2 w-full text-left hover:bg-gray-100">Nome</button>
                                                         </div>
                                                     </div>
-
+                                        
                                                     <!-- Campo oculto -->
                                                     <input type="hidden" id="filtro" name="filtro"
-                                                        value="<%= request.getAttribute(" filtro-selecionado")==null
-                                                        ? "Todos" : request.getAttribute("filtro-selecionado") %>">
-
+                                                        value="<%= request.getAttribute("filtro-selecionado") == null ? "Todos" : request.getAttribute("filtro-selecionado") %>">
+                                        
                                                     <!-- Campo de pesquisa -->
                                                     <input type="text" id="pesquisa" name="pesquisa"
-                                                        placeholder="Pesquisar" value="<%=request.getAttribute("pesquisa-anterior")==null ? "" :
-                                                        request.getAttribute("pesquisa-anterior")%>"
-                                                    class="flex-1 ml-4 bg-transparent text-gray-700 placeholder-gray-400
-                                                    text-lg focus:outline-none">
-
+                                                        placeholder="Pesquisar"
+                                                        value="<%=request.getAttribute("pesquisa-anterior") == null ? "" : request.getAttribute("pesquisa-anterior") %>"
+                                                        class="flex-1 ml-4 bg-transparent text-gray-700 placeholder-gray-400 text-lg focus:outline-none">
+                                        
                                                     <button type="submit" class="ml-2">
-                                                        <i class="text-gray-500 hover:text-[#3C9D9B] cursor-pointer text-2xl"
-                                                            data-feather="search"></i>
+                                                        <i class="text-gray-500 hover:text-[#3C9D9B] cursor-pointer text-2xl" data-feather="search"></i>
                                                     </button>
                                                 </div>
                                             </form>
-
-
-
+                                        
+                                            <!-- Tabela de Ingredientes -->
                                             <div class="bg-white rounded-lg shadow overflow-x-auto overflow-y-auto w-full flex-1 max-h-full"
                                                 data-aos="fade-up" data-aos-delay="200">
-
-                                                <table
-                                                    class="hidden sm:table table-auto text-left align-top min-w-full">
+                                                <table class="hidden sm:table table-auto text-left align-top min-w-full">
                                                     <thead>
                                                         <tr class="bg-[#3C9D9B] text-white">
                                                             <th class="p-3 text-left">Nome</th>
                                                             <th class="p-3 text-left">Descrição</th>
-                                                            <th class="p-3 text-left">Alergias</th>
+                                                            <th class="p-3 text-left">Alergênicos</th>
                                                             <th class="p-3 text-right"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <%for (int i=0; i < ingredientes.size(); i++){ if (i % 2==0) {
-                                                            %>
-                                                            <tr class="bg-white">
-                                                                <td class="p-3 border-b">
-                                                                    <%=ingredientes.get(i).getNome()%>
-                                                                </td>
-                                                                <td class="p-3 border-b">
-                                                                    <%=ingredientes.get(i).getDescricao()%>
-                                                                </td>
-                                                                <td class="p-3 border-b">
-                                                                    <div class="relative w-full">
-                                                                        <select id="dropdown-alergias-<%=i%>"
-                                                                            class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 truncate">
-                                                                            <% for (int j=0; j < alergias.get(i).size();
-                                                                                j++) { %>
-                                                                                <option value="<%=j%>">
-                                                                                    <%= alergias.get(i).get(j) %>
-                                                                                </option>
-                                                                                <% } %>
-                                                                        </select>
-                                                                        <i data-feather="chevron-down"
-                                                                            class="pointer-events-none absolute right-1 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="p-3 border-b text-right">
-                                                                    <div class="flex space-x-2 justify-end">
-                                                                        <a onclick="mostrarRedirecionando()"
-                                                                            href="alteracao-ingrediente?idIngrediente=<%=ingredientes.get(i).getId()%>"
-                                                                            class="p-1 text-blue-600 hover:text-blue-800">
-                                                                            <i data-feather="edit" class="w-4 h-4"></i>
-                                                                        </a>
-                                                                        <form action="exclusao-ingrediente"
-                                                                            method="post" class="formRemover"
-                                                                            style="display:inline;">
-                                                                            <input type="hidden" name="idIngrediente"
-                                                                                value="<%=ingredientes.get(i).getId()%>">
-                                                                            <button type="button"
-                                                                                class="botaoRemover p-1 text-red-600 hover:text-red-800"
-                                                                                style="background:none; border:none;">
-                                                                                <i data-feather="trash-2"
-                                                                                    class="w-4 h-4"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <%} else {%>
-                                                                <tr class="bg-[#C5E2E1]">
-                                                                    <td class="p-3 border-b">
-                                                                        <%=ingredientes.get(i).getNome()%>
-                                                                    </td>
-                                                                    <td class="p-3 border-b">
-                                                                        <%=ingredientes.get(i).getDescricao()%>
-                                                                    </td>
-                                                                    <td class="p-3 border-b">
-                                                                        <div class="relative w-full">
-                                                                            <select id="dropdown-alergias-<%=i%>"
-                                                                                class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 truncate">
-                                                                                <% for (int j=0; j <
-                                                                                    alergias.get(i).size(); j++) { %>
-                                                                                    <option value="<%=j%>">
-                                                                                        <%= alergias.get(i).get(j) %>
-                                                                                    </option>
-                                                                                    <% } %>
-                                                                            </select>
-                                                                            <i data-feather="chevron-down"
-                                                                                class="pointer-events-none absolute right-1 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="p-3 border-b text-right">
-                                                                        <div class="flex space-x-2 justify-end">
-                                                                            <a onclick="mostrarRedirecionando()"
-                                                                                href="alteracao-ingrediente?idIngrediente=<%=ingredientes.get(i).getId()%>"
-                                                                                class="p-1 text-blue-600 hover:text-blue-800">
-                                                                                <i data-feather="edit"
-                                                                                    class="w-4 h-4"></i>
-                                                                            </a>
-                                                                            <form action="exclusao-ingrediente"
-                                                                                method="post" class="formRemover"
-                                                                                style="display:inline;">
-                                                                                <input type="hidden"
-                                                                                    name="idIngrediente"
-                                                                                    value="<%=ingredientes.get(i).getId()%>">
-                                                                                <button type="button"
-                                                                                    class="botaoRemover p-1 text-red-600 hover:text-red-800"
-                                                                                    style="background:none; border:none;">
-                                                                                    <i data-feather="trash-2"
-                                                                                        class="w-4 h-4"></i>
-                                                                                </button>
-                                                                            </form>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-
-                                                                <% } } %>
+                                                        <% for (int i=0; i < ingredientes.size(); i++) { 
+                                                               String rowColor = (i % 2 == 0) ? "bg-white" : "bg-[#C5E2E1]"; %>
+                                                        <tr class="<%= rowColor %>">
+                                                            <td class="p-3 border-b"><%= ingredientes.get(i).getNome() %></td>
+                                                            <td class="p-3 border-b"><%= ingredientes.get(i).getDescricao() %></td>
+                                                            <td class="p-3 border-b">
+                                                                <div class="relative w-full">
+                                                                    <select id="dropdown-alergias-<%=i%>"
+                                                                        class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 truncate">
+                                                                        <% for (int j=0; j < alergias.get(i).size(); j++) { %>
+                                                                        <option value="<%=j%>"><%= alergias.get(i).get(j) %></option>
+                                                                        <% } %>
+                                                                    </select>
+                                                                    <i data-feather="chevron-down"
+                                                                        class="pointer-events-none absolute right-1 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-3 border-b text-right">
+                                                                <div class="flex space-x-2 justify-end">
+                                                                    <a onclick="mostrarRedirecionando()"
+                                                                        href="alteracao-ingrediente?idIngrediente=<%=ingredientes.get(i).getId()%>"
+                                                                        class="p-1 text-blue-600 hover:text-blue-800">
+                                                                        <i data-feather="edit" class="w-4 h-4"></i>
+                                                                    </a>
+                                                                    <form action="exclusao-ingrediente" method="post" class="formRemover" style="display:inline;">
+                                                                        <input type="hidden" name="idIngrediente" value="<%=ingredientes.get(i).getId()%>">
+                                                                        <button type="button" class="botaoRemover p-1 text-red-600 hover:text-red-800"
+                                                                            style="background:none; border:none;">
+                                                                            <i data-feather="trash-2" class="w-4 h-4"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <% } %>
                                                     </tbody>
                                                 </table>
-
-                                                <div
-                                                    class="block sm:hidden space-y-3 p-3 max-h-[70vh] overflow-y-auto overflow-x-auto">
+                                        
+                                                <!-- Lista mobile -->
+                                                <div class="block sm:hidden space-y-3 p-3 max-h-[70vh] overflow-y-auto overflow-x-auto">
                                                     <% if (ingredientes.isEmpty()) { %>
                                                         <div class="p-4 text-center text-gray-500 italic">
                                                             Nenhum ingrediente cadastrado
                                                         </div>
-                                                        <% } else { %>
-                                                            <% for (int i=0; i < ingredientes.size(); i++) { %>
-                                                                <div
-                                                                    class="bg-[#FCFCFC] rounded-xl p-4 shadow-md border border-[#B8D9D8]">
-                                                                    <div class="space-y-1">
-                                                                        <p class="font-bold text-[#333333]">
-                                                                            <%= ingredientes.get(i).getNome() %>
-                                                                        </p>
-                                                                        <p class="text-sm text-[#333333]">
-                                                                            <span
-                                                                                class="font-bold text-gray-700">Descrição:</span>
-                                                                            <span
-                                                                                class="font text-gray-800 max-w-[50%] whitespace-normal break-words break-all">
-                                                                                <%= ingredientes.get(i).getDescricao()
-                                                                                    %>
-                                                                            </span>
-                                                                        </p>
-                                                                        <p class="text-sm text-[#333333]">
-                                                                            <span
-                                                                                class="font-bold text-gray-700">Alergênicos:</span>
-                                                                            <span class="font text-gray-800">
-                                                                            </span>
-                                                                        </p>
-                                                                        <div class="flex justify-end space-x-3 mt-3">
-                                                                            <a onclick="mostrarRedirecionando()"
-                                                                                href="alteracao-ingrediente?idIngrediente=<%=ingredientes.get(i).getId() %>"
-                                                                                class="p-1.5 text-blue-600 hover:text-blue-800 transition-colors duration-200">
-                                                                                <i data-feather="edit"
-                                                                                    class="w-4 h-4"></i>
-                                                                            </a>
-                                                                            <form action="exclusao-ingrediente"
-                                                                                method="post" class="formRemover"
-                                                                                style="display:inline;">
-                                                                                <input type="hidden"
-                                                                                    name="idIngrediente"
-                                                                                    value="<%=ingredientes.get(i).getId()%>">
-                                                                                <button type="button"
-                                                                                    class="botaoRemover p-1 text-red-600 hover:text-red-800"
-                                                                                    style="background:none; border:none;">
-                                                                                    <i data-feather="trash-2"
-                                                                                        class="w-4 h-4"></i>
-                                                                                </button>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                    <% } %>
-                                                                        <% } %>
-                                                                </div>
-
+                                                    <% } else { %>
+                                                        <% for (int i=0; i < ingredientes.size(); i++) { %>
+                                                        <div class="bg-[#FCFCFC] rounded-xl p-4 shadow-md border border-[#B8D9D8]">
+                                                            <p class="font-bold text-[#333333]"><%= ingredientes.get(i).getNome() %></p>
+                                                            <p class="text-sm text-[#333333]">
+                                                                <span class="font-bold text-gray-700 max-w-full whitespace-nowrap">Descrição:</span>
+                                                                <span class="font text-gray-800 max-w-[50%] whitespace-normal break-words break-all">
+                                                                    <%= ingredientes.get(i).getDescricao() %>
+                                                                </span>
+                                                            </p>
+                                                            <div class="pt-2 mb-1">
+                                                                <span
+                                                                    class="font-bold text-gray-700 text-sm block mb-1">Alergênicos:</span>
+                                                                <% if (alergias.get(i) !=
+                                                                null &&
+                                                                !alergias.get(i).isEmpty())
+                                                                { %>
+                                                                <% for (int j = 0; j <
+                                                                alergias.get(i).size();
+                                                                j++) { %>
+                                                                <span
+                                                                    class="text-sm text-gray-800 block">-
+                                                                    <%=
+                                                                    alergias.get(i).get(j)
+                                                                    %></span>
+                                                                <% } %>
+                                                                <% } else { %>
+                                                                <span
+                                                                    class="text-sm text-gray-500 italic block">Nenhum
+                                                                    alergênico.</span>
+                                                                <% } %>
+                                                            </div>
+                                                            <div class="flex justify-end space-x-3 mt-3">
+                                                                <a onclick="mostrarRedirecionando()"
+                                                                    href="alteracao-ingrediente?idIngrediente=<%=ingredientes.get(i).getId() %>"
+                                                                    class="p-1.5 text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                                                                    <i data-feather="edit" class="w-4 h-4"></i>
+                                                                </a>
+                                                                <form action="exclusao-ingrediente" method="post" class="formRemover" style="display:inline;">
+                                                                    <input type="hidden" name="idIngrediente" value="<%=ingredientes.get(i).getId()%>">
+                                                                    <button type="button" class="botaoRemover p-1 text-red-600 hover:text-red-800" style="background:none; border:none;">
+                                                                        <i data-feather="trash-2" class="w-4 h-4"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <% } %>
+                                                    <% } %>
                                                 </div>
                                             </div>
-                                            <div
-                                                class="mt-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+                                    
+                                            <div class="mt-6 flex justify-start">
                                                 <a href="cadastro-ingrediente" onclick="mostrarRedirecionando()"
-                                                    class="w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-6 py-2 rounded-lg flex items-center justify-center">
+                                                   class="border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-6 py-2 rounded-lg flex items-center justify-center">
                                                     <i data-feather="plus" class="mr-2 w-4 h-4"></i>
                                                     Adicionar
                                                 </a>
                                             </div>
-
+                                        
                                         </main>
+                                        
                                     </div>
+
 
                                     <div id="tela-carregamento"
                                         class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
@@ -374,7 +303,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Popup de Confirmação -->
+                   
                                     <div id="popupConfirmacao"
                                         class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm items-center justify-center z-50">
                                         <div class="bg-white rounded-2xl shadow-xl p-6 w-90 text-center animate-fadeIn">
@@ -405,8 +334,7 @@
                                         feather.replace();
                                     </script>
                                     <script src="${pageContext.request.contextPath}/js/dropdown.js"></script>
-                                    <script
-                                        src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+                                    <script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
                                     <script src="${pageContext.request.contextPath}/js/remover.js"></script>
                                     <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 

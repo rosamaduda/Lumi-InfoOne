@@ -1,19 +1,17 @@
 package com.example.lumi.DAO;
 
-import com.example.lumi.Conexao.Conexao;
-import com.example.lumi.Model.Cliente;
-
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.lumi.Conexao.Conexao;
+import com.example.lumi.Model.Cliente;
 
 public class ClienteDAO {
     // INSERIR
@@ -157,7 +155,7 @@ public class ClienteDAO {
         Cliente cliente = null;
 
         try {
-            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE EMAIL LIKE ?"; // buscando o cliente pelo email
+            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE EMAIL = ?"; // buscando o cliente pelo email
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, email); // setando os parâmetros na instrução
             rset = pstmt.executeQuery(); // executando a query

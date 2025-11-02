@@ -2,7 +2,6 @@ package com.example.lumi.DAO;
 
 import com.example.lumi.Conexao.Conexao;
 import com.example.lumi.Model.Plano;
-import com.example.lumi.Model.Produto;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,7 +15,7 @@ public class PlanoDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
-        List<Plano> planos = new ArrayList<>();
+        List<Plano> listaPlanos = new ArrayList<>();
 
         try {
             String instrucaoSQL = "SELECT NOME FROM PLANO"; // buscando os nomes dos planos
@@ -25,13 +24,13 @@ public class PlanoDAO {
 
             while (rset.next()) {
                 Plano plano = new Plano(rset.getString("nome"));
-                planos.add(plano); // adicionando à lista que será retornada
+                listaPlanos.add(plano); // adicionando à lista que será retornada
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // desconectando do BD
         }
-        return planos;
+        return listaPlanos;
     } // buscarNomePlano()
 } // PlanoDAO

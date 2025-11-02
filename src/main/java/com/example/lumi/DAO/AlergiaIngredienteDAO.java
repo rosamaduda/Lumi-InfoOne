@@ -1,13 +1,14 @@
 package com.example.lumi.DAO;
 
-import com.example.lumi.Conexao.Conexao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.lumi.Conexao.Conexao;
+import com.example.lumi.Model.AlergiaIngrediente;
 
 public class AlergiaIngredienteDAO {
     // INSERIR
@@ -37,7 +38,7 @@ public class AlergiaIngredienteDAO {
     } // inserirAlergiaIngrediente(int idIngrediente, int idAlergia)
 
     // REMOVER
-    public int DeletarIngredienteAlergia(int idIngrediente,int idAlergia) {
+    public int deletarIngredienteAlergia(int idIngrediente,int idAlergia) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
         try{
@@ -61,7 +62,7 @@ public class AlergiaIngredienteDAO {
         }
     } // DeletarIngredienteAlergia(int idIngrediente,int idAlergia)
 
-    public int removerAlergiaIngrediente(int idAlergia){
+    public int deletarAlergiaIngrediente(int idAlergia){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
@@ -84,7 +85,7 @@ public class AlergiaIngredienteDAO {
         }
     } // removerAlergiaIngrediente(int idAlergia)
 
-    public int removerIngredienteAlergia(int idIngrediente){
+    public int deletarIngredienteAlergia(int idIngrediente){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
 
@@ -129,4 +130,40 @@ public class AlergiaIngredienteDAO {
         }
         return listaAlergias;
     } // buscaClienteAlergia(String emailCliente)
+
+    public List<AlergiaIngrediente> buscarAlergiaIngrediente(int idIngrediente) {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar();
+        ResultSet rset;
+        List<AlergiaIngrediente> listaAlergias = new ArrayList<>();
+    
+        try {
+            String instrucaoSQL = 
+                "SELECT AI.ID_INGREDIENTE, AI.ID_ALERGIA, A.NOME " +
+                "FROM ALERGIA_INGREDIENTE AI " +
+                "JOIN ALERGIA A ON AI.ID_ALERGIA = A.ID " +
+                "WHERE AI.ID_INGREDIENTE = ?";
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
+            pstmt.setInt(1, idIngrediente);
+            rset = pstmt.executeQuery();
+    
+            while (rset.next()) {
+                int idIng = rset.getInt("ID_INGREDIENTE");
+                int idAlergia = rset.getInt("ID_ALERGIA");
+                String nome = rset.getString("NOME");
+    
+                AlergiaIngrediente a = new AlergiaIngrediente(idIng, idAlergia, nome);
+                listaAlergias.add(a);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conexao.desconectar(conn);
+        }
+        return listaAlergias;
+    } // buscarAlergiaIngrediente (int idIngrediente)
+    
+
+
+    
 } // AlergiaIngredienteDAO

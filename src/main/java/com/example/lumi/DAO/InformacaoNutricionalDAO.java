@@ -26,7 +26,6 @@ public class InformacaoNutricionalDAO {
             pstmt.setDouble(6,info.getGorduraSaturada());
             pstmt.setDouble(7,info.getGorduraTrans());
             pstmt.setDouble(8,info.getGordurasTotais());
-
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return 1; // conseguiu realizar a instrução
             } else {
@@ -60,7 +59,6 @@ public class InformacaoNutricionalDAO {
             pstmt.setDouble(7,info.getGorduraTrans());
             pstmt.setDouble(8,info.getGordurasTotais());
             pstmt.setInt(9,info.getId());
-
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return 1; // conseguiu realizar a instrução
             } else {
@@ -72,9 +70,9 @@ public class InformacaoNutricionalDAO {
         } finally {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
-    } // alterarInfoNutri(InformacaoNutricional info)
+    }
 
-    // DELETAR
+
     public int deletarInfoNutri(int id){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
@@ -102,8 +100,7 @@ public class InformacaoNutricionalDAO {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
         ResultSet rset;
-        List<InformacaoNutricional> lista = new ArrayList<>();
-
+        List<InformacaoNutricional> listaInfoNutri=new ArrayList<>();
         try{
             String instrucaoSQL = "SELECT I.* FROM INFO_NUTRI I LEFT JOIN PRODUTO P ON I.ID = P.ID_INFO_NUTRI "; // buscando as informações da info. nutricional e usando o join para ficar na mesma ordem do produto
             Statement stmt = conn.createStatement();
@@ -118,15 +115,18 @@ public class InformacaoNutricionalDAO {
                         rset.getDouble("gordura_saturada"),
                         rset.getDouble("gordura_trans"),
                         rset.getDouble("gordura_total"));
-                lista.add(informacaoNutricional); // adicionando à lista que será retornada
+                listaInfoNutri.add(informacaoNutricional);
             }
-        } catch (SQLException sqle){
-            sqle.printStackTrace();
-        } finally{
-            conexao.desconectar(conn); // fechando a conexão com o banco
         }
-        return lista;
-    } // buscarInfoNutri()
+        catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
+        finally{
+            conexao.desconectar(conn);
+        }
+        return listaInfoNutri;
+
+    }
 
     public InformacaoNutricional buscarInfoNutri(InformacaoNutricional informacaoNutricional) {
         Conexao conexao = new Conexao();
@@ -150,34 +150,48 @@ public class InformacaoNutricionalDAO {
                         rset.getDouble("gordura_trans"),
                         rset.getDouble("gordura_total"));
             }
-        } catch (SQLException sqle){
+        }
+        catch (SQLException sqle){
             sqle.printStackTrace();
-        } finally{
-            conexao.desconectar(conn); // fechando a conexão com o banco
+        }
+        finally{
+            conexao.desconectar(conn);
         }
         return informacaoNutricional;
-    } // buscarInfoNutri(InformacaoNutricional informacaoNutricional
+
+    }
 
     public int buscarIdInfoNutri(){
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
+        Conexao conexao=new Conexao();
+        Connection conn= conexao.conectar();
         ResultSet rset;
-        List<InformacaoNutricional> lista = new ArrayList<>();
-        int id = -1;
-
-        try {
-            String instrucaoSQL = "SELECT ID FROM INFO_NUTRI ORDER BY ID DESC LIMIT 1"; // procurando o ID da última informação nutricional inserida
-            Statement stmt = conn.createStatement();
-            rset = stmt.executeQuery(instrucaoSQL); // executando a instrução
-
+        int id=-1;
+        try{
+            String instrucaoSQL="SELECT ID FROM INFO_NUTRI ORDER BY ID DESC LIMIT 1";
+            Statement stmt= conn.createStatement();
+            rset=stmt.executeQuery(instrucaoSQL);
             while (rset.next()) {
                 id = rset.getInt("id");
             }
-        } catch (SQLException sqle){
+        }
+        catch (SQLException sqle){
             sqle.printStackTrace();
-        } finally{
-            conexao.desconectar(conn); // fechando a conexão com o banco
+        }
+        finally{
+            conexao.desconectar(conn);
         }
         return id;
-    } // buscarIdInfoNutri
-} // InformacaoNutricionalDAO
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+}

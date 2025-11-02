@@ -102,7 +102,7 @@
          class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
     <main class="sm:ml-64 flex-1 sm:p-8">
-        <a href="produtos" onclick="mostrarRedirecionando()"><h1 class="text-left"><i
+        <a href="produtos" onclick="mostrarRedirecionando()"><h1 class="text-left sm:mt-3"><i
             data-feather="arrow-left"></i></h1></a>
         <h1
                 class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[3%]"
@@ -110,7 +110,7 @@
         <div
                 class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]"
                 data-aos="fade-up" data-aos-delay="100">
-            <form action="adicionar-produto" method="post">
+            <form class="formAE" action="adicionar-produto" method="post">
 
                 <div id="etapa1" class="mb-6">
                     <label for="codigo-barras"
@@ -228,9 +228,9 @@
                                 class="bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-gray-300 transition-colors">
                             < Voltar
                         </button>
-                        <button type="submit" id="botaoAdicionar"
-                                class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-lemon-500 transition-colors">
-                            Adicionar
+                        <button type="submit" id="btn-adicionar"
+                        class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-[#B4DF00] transition-colors">
+                        <span id="btn-texto">Adicionar</span>
                         </button>
                     </div>
                 </div>
@@ -239,12 +239,7 @@
     </main>
 </div>
 
-
-
-
-<!-- Tela de carregamento -->
-
-<div id="tela-carregamento"
+<div id="tela-redirecionamento"
      class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
     <div class="logo-container absolute top-6 left-6">
         <img id="logo" src="${pageContext.request.contextPath}/assets/Group 28.png" alt="Logo Lumi" class="w-16 h-16 object-contain">
@@ -257,10 +252,14 @@
             <div class="bolinhas"></div>
             <div class="bolinhas"></div>
         </div>
-        <h1 class="text-2xl font-medium mt-8 text-gray-700">Adicionando...</h1>
-        <p class="text-gray-500 mt-2">Organizando tudo por aqui, rapidinho...</p>
+        <h1 class="text-2xl font-medium mt-8 text-gray-700">Redirecionando...</h1>
+        <p class="text-gray-500 mt-2">Só um instante...</p>
     </div>
 </div>
+
+
+
+
 
 <script>
     AOS.init({ duration: 800, once: true });
@@ -269,7 +268,7 @@
 <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 <script src="${pageContext.request.contextPath}/js/aumentar-texto.js"></script>
 <script src="${pageContext.request.contextPath}/js/informacao-nutricional.js"></script>
-<script src="${pageContext.request.contextPath}/js/carregandoAdicionar.js"></script>
+<script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
 
 </body>
 </html>

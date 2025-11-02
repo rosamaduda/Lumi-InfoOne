@@ -1,4 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.lumi.Model.Cliente" %>
+<%
+    @SuppressWarnings("unchecked")
+    List<String> alergias= (List<String>) request.getAttribute("alergias-lista");
+%>
     <!DOCTYPE html>
     <html lang="pt-BR">
 
@@ -95,18 +101,18 @@
 
             <main class="sm:ml-64 flex-1 sm:p-8">
                 <a href="ingredientes" onclick="mostrarRedirecionando()">
-                    <h1 class="text-left"><i data-feather="arrow-left"></i></h1>
+                    <h1 class="text-left sm:mt-3"><i data-feather="arrow-left"></i></h1>
                 </a>
                 <h1 class="text-[2.25rem] font-bold text-[#333333] mb-8 text-center mt-[3%]" data-aos="fade-down">
                     Alterar
                     Ingrediente</h1>
                 <div class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]" data-aos="fade-up"
                     data-aos-delay="100">
-                    <form action="alterar-ingrediente" method="post">
+                    <form class="formAE" action="alterar-ingrediente" method="post">
                         <div class="mb-6">
                             <label for="id" class="hidden block text-gray-700 text-sm font-medium mb-2">ID:</label>
                             <input type="text" id="id" name="id" value="<%=request.getAttribute("idIngrediente")%>"
-                            class="hidden w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2
+                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2
                             focus:ring-[#7F3FBF]
                             focus:border-transparent mb-2" readonly>
                             <label for="nome" class="block text-gray-700 text-sm font-medium mb-2">Nome:</label>
@@ -120,28 +126,52 @@
                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent resize-none overflow-hidden"
                                 rows="2"
                                 oninput="aumentarTexto(this)"><%=request.getAttribute("descricaoIngrediente")%></textarea>
-                            <label for="alergias-container"
-                                   class="block text-gray-700 text-sm font-medium mb-2 mt-2">Alergias relacionadas:</label>
-                            <div id="alergias-container" class="mb-2"></div>
-                            <button type="button" id="add-alergia"
-                                    class="flex items-center space-x-2 text-[#7F3FBF] hover:text-[#5B2E85] text-sm font-medium w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-3 py-2 rounded-[6px] mb-2 ">
-                                <span>Adicionar alergia</span>
-                            </button>
+                                <label for="alergias-container"
+                                class="block text-gray-700 text-sm font-medium mb-2 mt-2">Alergias:</label>
+                                <div id="alergias-container" class="flex flex-col">
+                                 <%
+                                 List<String> alergiasDoIngrediente = (List<String>) request.getAttribute("alergiasLista");
+                                 List<String> todasAlergias = (List<String>) request.getAttribute("todas-alergias");
+                                 
+                                 if (alergiasDoIngrediente != null) {
+                                     for (int i = 0; i < alergiasDoIngrediente.size(); i++) {
+                                         String alergiaSelecionada = alergiasDoIngrediente.get(i);
+                                 %>
+                                 <div data-alergia-wrapper class="flex items-start space-x-2 mb-2" id="alergia-wrapper-<%=i+1%>">
+                                     <button type="button" class="text-red-500 hover:text-red-700 p-2 mt-2 btn-remover-alergia">
+                                         <i data-feather="minus" class="w-5 h-5"></i>
+                                     </button>
+                                     <select name="alergia-<%=i+1%>" class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
+                                         <option value="" disabled hidden>Selecione uma alergia</option>
+                                         <% for (int j = 0; j < todasAlergias.size(); j++) { 
+                                               String nomeAlergia = todasAlergias.get(j);
+                                        %>
+                                             <option value="<%=nomeAlergia%>" <%=nomeAlergia.equals(alergiaSelecionada) ? "selected" : ""%>><%=nomeAlergia%></option>
+                                         <% } %>
+                                     </select>
+                                 </div>
+                                 <%
+                                     }
+                                 }
+                                 %>
+                                 </div>
+                         <button type="button" id="add-alergia"
+                                 class="flex items-center space-x-2 text-[#7F3FBF] hover:text-[#5B2E85] text-sm font-medium w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-3 py-2 rounded-[6px] ">
+                           <span>Adicionar alergia</span>
+                         </button>
                         </div>
                         <div class="text-center">
-                            <button type="submit"
-                                class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-lemon-500 transition-colors">
-                                Alterar
-                            </button>
+                            <button type="submit" id="btn-adicionar"
+                            class="bg-[#C6F500] text-gray-800 font-bold py-3 px-6 rounded-[15px] hover:bg-[#B4DF00] transition-colors">
+                        <span id="btn-texto">Salvar</span>
+                        </button>
                         </div>
                     </form>
                 </div>
             </main>
         </div>
 
-    <!-- Tela de carregamento -->
-
-    <div id="tela-carregamento"
+    <div id="tela-redirecionamento"
          class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
         <div class="logo-container absolute top-6 left-6">
             <img id="logo" src="${pageContext.request.contextPath}/assets/Group 28.png" alt="Logo Lumi" class="w-16 h-16 object-contain">
@@ -154,20 +184,26 @@
                 <div class="bolinhas"></div>
                 <div class="bolinhas"></div>
             </div>
-            <h1 class="text-2xl font-medium mt-8 text-gray-700">Alterando...</h1>
-            <p class="text-gray-500 mt-2">Organizando tudo por aqui, rapidinho...</p>
+            <h1 class="text-2xl font-medium mt-8 text-gray-700">Redirecionando...</h1>
+            <p class="text-gray-500 mt-2">Só um instante...</p>
         </div>
     </div>
+
 
         <script>
             AOS.init({ duration: 800, once: true });
             feather.replace();
+
+            const alergiasOp = [];
+            <% for (int i = 0; i < todasAlergias.size(); i++) { %>
+            alergiasOp.push("<%=todasAlergias.get(i) %>");
+            <% } %>
+
         </script>
         <script src="${pageContext.request.contextPath}/js/menu.js"></script>
         <script src="${pageContext.request.contextPath}/js/aumentar-texto.js"></script>
-        <script src="${pageContext.request.contextPath}/js/carregandoAdicionar.js"></script>
-        <script src="${pageContext.request.contextPath}/js/alergias.js"></script>
-        <script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+        <script src="${pageContext.request.contextPath}/js/alterarAlergia.js"></script>
+        <script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
     </body>
 
     </html>

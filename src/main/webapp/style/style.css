@@ -103,6 +103,7 @@ header ul li a:hover {
 }
 
 /* Esconde o menu pra celular */
+
 .menu-botao {
   display: none; 
   background: none;
@@ -111,6 +112,7 @@ header ul li a:hover {
   padding: 10px;
 }
 
+/* Troca cores dos ícones e texto de funcionalidades */
 .funcionalidades-header{
   color: #333333;
   opacity: 50%;
@@ -140,13 +142,13 @@ header ul li a:hover {
   opacity: 100%;
 }
 
-
+/*Cards*/
 .cards {
   min-width: 280px;
   scroll-snap-align: start;
 }
 
-/* Formas */
+/* formas */
 .caixa {
   clip-path: polygon(0 0, 100% 0, 100% 85%, 75% 100%, 0 100%);
 }
@@ -154,7 +156,7 @@ header ul li a:hover {
 .caixa-branca {
   clip-path: polygon(0 15%, 25% 0, 100% 0, 100% 100%, 0 100%);
 }
-
+/* FOOTER */
 .area-restrita {
   margin-top: 5%;
   font-family: 'Poppins';
@@ -182,11 +184,11 @@ html{
 }
 
 
-/* Media Query */
+/* Responsividade */
 
 /* HEADER */
 
-/* Efeito Dropdown */
+/* Dropdown */
 @keyframes slideDownMobile {
   from {
       opacity: 0;
@@ -259,7 +261,7 @@ transition: all 0.3s ease;
     flex-direction: column;
 }
 
-/* Deixa as funcionalidades em primeiro */
+/* deixa as funcionalidades em primeiro */
 #funcionalidades .funcionalidades-container {
     order: 1; 
     width: 100%;
@@ -267,7 +269,7 @@ transition: all 0.3s ease;
     margin-bottom: 30px; 
 }
 
-/* Deixa o mockup por ultimo (!important aumenta a prioridade) */
+/* deixa o mockup por ultimo (!important aumenta a prioridade) */
 #funcionalidades .mockup-container {
     order: 2; 
     width: 100%;

@@ -45,7 +45,7 @@ public class ServletAdicionarIndustria extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
             }
             String cnpj = request.getParameter("cnpj").replaceAll("[^0-9]","");
-            if (!cnpj.matches("^[0-9]{2}\\.?[0-9]{3}\\.?[0-9]{3}\\/?[0-9]{4}\\-?[0-9]{2}$")) {
+            if (!cnpj.matches("^[0-9]{2}.?[0-9]{3}\\.?[0-9]{3}\\/?[0-9]{4}\\-?[0-9]{2}")) {
                 request.setAttribute("mensagemErro", "CNPJ inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
             }
@@ -88,7 +88,7 @@ public class ServletAdicionarIndustria extends HttpServlet {
             // adicionando os telefones
             for (int i = 0; i < telefones.size(); i++) {
                 TelefoneIndustria telefoneIndustria = new TelefoneIndustria(telefones.get(i), idIndustria);
-                retornoInsercao = telefoneIndustriaDAO.adicionarTelIndustria(telefoneIndustria);
+                retornoInsercao = telefoneIndustriaDAO.inserirTelIndustria(telefoneIndustria);
                 if (retornoInsercao == 0 || retornoInsercao == -1) {
                     request.setAttribute("mensagemErro", "Não foi possível inserir o telefone da indústria");
                     request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);

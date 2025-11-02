@@ -261,7 +261,7 @@ List <Alergia> alergias = (List<Alergia>)
                                         <p
                                             class="text-sm text-[#333333 max-w-[20%] whitespace-normal break-words break-all]">
                                             <span
-                                                class="font-bold text-gray-700 max-w-[120%]">Descrição:</span>
+                                                class="font-bold text-gray-700 max-w-[20%] whitespace-normal break-words break-all">Descrição:</span>
                                             <span class="font text-gray-800">
                                                 <%=
                                                 alergias.get(i).getDescricao()
@@ -352,7 +352,6 @@ List <Alergia> alergias = (List<Alergia>)
                     </div>
                 </div>
 
-                <!-- Popup de Confirmação -->
                 <div id="popupConfirmacao"
                      class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm items-center justify-center z-50">
                     <div class="bg-white rounded-2xl shadow-xl p-6 w-90 text-center animate-fadeIn">
@@ -385,7 +384,7 @@ List <Alergia> alergias = (List<Alergia>)
                     feather.replace();
                 </script>
                 <script src="${pageContext.request.contextPath}/js/dropdown.js"></script>
-                <script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+                <script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
                 <script src="${pageContext.request.contextPath}/js/remover.js"></script>
                 <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 

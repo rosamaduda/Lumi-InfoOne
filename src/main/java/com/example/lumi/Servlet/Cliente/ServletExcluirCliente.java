@@ -24,7 +24,7 @@ public class ServletExcluirCliente extends HttpServlet {
 
         // deletando os campos com a FK do cliente
         String emailCliente = request.getParameter("emailCliente");
-        avaliacaoDAO.removerAvaliacao(emailCliente);
+        avaliacaoDAO.deletarAvaliacao(emailCliente);
         clienteAlergiaDAO.deletarClienteAlergia(emailCliente);
         favoritosDAO.deletarFavorito(emailCliente);
 

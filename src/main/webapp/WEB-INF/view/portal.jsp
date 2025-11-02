@@ -9,7 +9,7 @@
     @SuppressWarnings("unchecked")
     List<Industria> listaIndustrias = (List<Industria>) request.getAttribute("industrias-lista");
     @SuppressWarnings("unchecked")
-    List<List> listaTelefones = (List<List>) request.getAttribute("telefones-lista");
+    List<List<TelefoneIndustria>> listaTelefones = (List<List<TelefoneIndustria>>) request.getAttribute("telefones-lista");
     @SuppressWarnings("unchecked")
     List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("clientes-lista");
     @SuppressWarnings("unchecked")
@@ -74,33 +74,33 @@
             <div class="p-4 flex-grow overflow-y-auto">
                 <ul class="space-y-2">
                     <li><a href="portal" onclick="mostrarRedirecionando()"
-                           class="flex items-center p-3 bg-purple-100 rounded-lg  text-[#333333] font-medium"><i
-                            data-feather="home" class="mr-3"></i>Portal
-                        ADM</a></li>
+                            class="flex items-center p-3 bg-purple-100 rounded-lg text-[#333333] font-medium"><i
+                                data-feather="home" class="mr-3"></i>Portal
+                            ADM</a></li>
                     <li><a href="ingredientes" onclick="mostrarRedirecionando()"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333] "><i
-                            data-feather="package" onclick="mostrarRedirecionando()"
-                            class="mr-3"></i>Ingredientes</a></li>
+                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                                data-feather="package"
+                                class="mr-3"></i>Ingredientes</a></li>
                     <li><a href="alergias" onclick="mostrarRedirecionando()"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
-                            data-feather="alert-triangle"
-                            class="mr-3"></i>Alergias</a></li>
-                    <li><a href="clientes"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-[#333333]"><i
-                            data-feather="users" onclick="mostrarRedirecionando()"
-                            class="mr-3"></i>Cliente</a></li>
-                    <li><a href="industrias"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
-                            data-feather="tool" onclick="mostrarRedirecionando()"
-                            class="mr-3"></i>Indústria</a></li>
-                    <li><a href="produtos"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333] "><i
-                            data-feather="tag" onclick="mostrarRedirecionando()"
-                            class="mr-3"></i>Produtos</a></li>
-                    <li><a href="site"
-                           class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-red-500"><i
-                            data-feather="log-out" onclick="mostrarRedirecionando()"
-                            class="mr-3"></i>Sair</a></li>
+                            class="flex items-center p-3 p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                                data-feather="alert-triangle"
+                                class="mr-3"></i>Alergias</a></li>
+                    <li><a href="clientes" onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                                data-feather="users" class="mr-3"></i>Cliente</a>
+                    </li>
+                    <li><a href="industrias" onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                                data-feather="tool" class="mr-3"></i>Indústria</a>
+                    </li>
+                    <li><a href="produtos" onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 rounded-lg hover:bg-gray-100  text-[#333333]"><i
+                                data-feather="tag" class="mr-3"></i>Produtos</a>
+                    </li>
+                    <li><a href="site" onclick="mostrarRedirecionando()"
+                            class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-red-500"><i
+                                data-feather="log-out" class="mr-3"></i>Sair</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -264,6 +264,7 @@
                         <td class="p-3 border-b"><%=listaClientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getDiabetes()%></td>
+                        <td class="p-3 border-b"></td>
                         <td class="p-3 border-b max-w-full whitespace-nowrap"><%
                             String telefone = listaClientes.get(i).getTelefone();
                             telefone = telefone.replaceFirst("([0-9]{2})([0-9]{5})([0-9]{4})", "($1) $2-$3");
@@ -364,7 +365,7 @@
                                     <% for (int j=0; j < listaTelefones.get(i).size();
                                             j++) { %>
                                     <option>
-                                        <%= listaTelefones.get(i).get(j) %>
+                                        <%= listaTelefones.get(i).get(j).getTelefone() %>
                                     </option>
                                     <% } %>
                                 </select>
@@ -404,7 +405,7 @@
                                     <% for (int j=0; j <
                                             listaTelefones.get(i).size(); j++) { %>
                                     <option>
-                                        <%= listaTelefones.get(i).get(j) %>
+                                        <%= listaTelefones.get(i).get(j).getTelefone() %>
                                     </option>
                                     <% } %>
                                 </select>
@@ -525,6 +526,6 @@
 
 </script>
 <script src="${pageContext.request.contextPath}/js/menu.js"></script>
-<script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+<script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
 </body>
 </html>

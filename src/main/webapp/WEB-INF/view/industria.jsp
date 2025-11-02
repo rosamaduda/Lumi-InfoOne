@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.lumi.Model.Industria" %>
+<%@ page import="com.example.lumi.Model.TelefoneIndustria" %>
 <%
 @SuppressWarnings("unchecked")
 List<Industria> industrias = (List<Industria>)
         request.getAttribute("industrias-lista");
-    @SuppressWarnings("unchecked")
-        List<List> telefones = (List<List>)
+        List<List<TelefoneIndustria>> telefones = (List<List<TelefoneIndustria>>)
                 request.getAttribute("telefones-lista");
                 %>
                 <!DOCTYPE html>
@@ -208,7 +208,7 @@ List<Industria> industrias = (List<Industria>)
                                                             telefones.get(i).size();
                                                             j++) { %>
                                                             <option value="<%=i%>" id="telefoneSelecionado-<%=i%>"><%=
-                                                                telefones.get(i).get(j)
+                                                                telefones.get(i).get(j).getTelefone()
                                                                 %></option>
                                                             <% } %>
                                                             <% } %>
@@ -339,7 +339,7 @@ List<Industria> industrias = (List<Industria>)
                                                     <span
                                                         class="text-sm text-gray-800 block">-
                                                         <%=
-                                                        telefones.get(i).get(j)
+                                                        telefones.get(i).get(j).getTelefone()
                                                         %></span>
                                                     <% } %>
                                                     <% } else { %>
@@ -427,7 +427,7 @@ List<Industria> industrias = (List<Industria>)
                             </div>
                         </div>
 
-                        <!-- Popup de Confirmação -->
+
                         <div id="popupConfirmacao"
                              class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm items-center justify-center z-50">
                             <div class="bg-white rounded-2xl shadow-xl p-6 w-90 text-center animate-fadeIn">
@@ -460,7 +460,7 @@ List<Industria> industrias = (List<Industria>)
                             feather.replace();
                         </script>
                         <script src="${pageContext.request.contextPath}/js/dropdown.js"></script>
-                        <script src="${pageContext.request.contextPath}/js/mostrarRedirecionando.js"></script>
+                        <script src="${pageContext.request.contextPath}/js/mostrarTelas.js"></script>
                         <script src="${pageContext.request.contextPath}/js/remover.js"></script>
                         <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 

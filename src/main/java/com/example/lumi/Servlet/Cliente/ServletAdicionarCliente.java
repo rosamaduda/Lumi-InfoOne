@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import com.example.lumi.DAO.AlergiaDAO;
 import com.example.lumi.DAO.ClienteAlergiaDAO;
@@ -25,7 +24,7 @@ public class ServletAdicionarCliente extends HttpServlet {
         String caminho = request.getServletPath(); // recebendo o caminho do usuário
 
         if (caminho.equals("/cadastro-cliente")) {
-            // Faz uma lista de alergias
+            // faz uma lista de alergias
             AlergiaDAO alergiaDAO = new AlergiaDAO();
             List<Alergia> alergiasOp = alergiaDAO.buscarAlergia();
             request.setAttribute("alergias-lista", alergiasOp);
@@ -82,7 +81,7 @@ public class ServletAdicionarCliente extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
             }
 
-            // Pega as alergias escolhidas do formulário
+            // pega as alergias escolhidas do formulário
             List<Integer> idAlergias = new ArrayList<>();
             for (int i = 1; i < 1000; i++){
                 String nomeAlergia = request.getParameter("alergia-" + i);
@@ -94,7 +93,7 @@ public class ServletAdicionarCliente extends HttpServlet {
                 }
             }
 
-            // Adicionando relação
+            // adicionando relação
             if (!idAlergias.isEmpty()){
                 ClienteAlergiaDAO clienteAlergiaDAO = new ClienteAlergiaDAO();
                 for (int i = 0; i < idAlergias.size(); i++){
@@ -108,4 +107,3 @@ public class ServletAdicionarCliente extends HttpServlet {
         }
     }
 }
-
