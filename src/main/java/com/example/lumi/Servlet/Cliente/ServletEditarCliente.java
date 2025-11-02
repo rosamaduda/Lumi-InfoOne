@@ -1,7 +1,11 @@
 package com.example.lumi.Servlet.Cliente;
 
+import com.example.lumi.DAO.AlergiaDAO;
+import com.example.lumi.DAO.ClienteAlergiaDAO;
 import com.example.lumi.DAO.ClienteDAO;
+import com.example.lumi.Model.Alergia;
 import com.example.lumi.Model.Cliente;
+import com.example.lumi.Model.ClienteAlergia;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,6 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(urlPatterns = {"/alteracao-cliente", "/alterar-cliente"})
 public class ServletEditarCliente extends HttpServlet {
@@ -27,6 +33,20 @@ public class ServletEditarCliente extends HttpServlet {
             // buscando as informações a partir do email
             cliente = clienteDAO.buscarCliente(emailCliente);
 
+            // buscando as alergias que o cliente tem
+            ClienteAlergiaDAO clienteAlergiaDAO = new ClienteAlergiaDAO();
+            List<ClienteAlergia> listaIdAlergias = clienteAlergiaDAO.buscaClienteAlergia(cliente.getEmail());
+
+            // buscando os nomes das alergias
+            AlergiaDAO alergiaDAO = new AlergiaDAO();
+            List<Alergia> listaAlergias = new ArrayList<>();
+            for (int i = 0; i < listaIdAlergias.size(); i ++) {
+                listaAlergias = alergiaDAO.buscarNomeAlergia(listaIdAlergias.get(i).getId());
+            }
+
+            // buscando as alergias no banco
+            List<Alergia> listaBancoAlergias = alergiaDAO.buscarAlergia();
+
             // setando os atributos
             request.setAttribute("email", cliente.getEmail());
             request.setAttribute("cpf", cliente.getCpf());
@@ -43,6 +63,8 @@ public class ServletEditarCliente extends HttpServlet {
             request.setAttribute("uf", cliente.getEnderecoUf());
             request.setAttribute("cidade", cliente.getEnderecoCidade());
             request.setAttribute("cep", cliente.getEnderecoCep());
+            request.setAttribute("alergias-lista", listaAlergias);
+            request.setAttribute("alergias-banco-lista", listaBancoAlergias);
 
             // redirecionando para a página de edição
             request.getRequestDispatcher("WEB-INF/view/editar_cliente.jsp").forward(request, response);

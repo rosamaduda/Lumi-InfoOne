@@ -6,7 +6,10 @@
 <%
     @SuppressWarnings("unchecked")
     List<Plano> planos = (List<Plano>) request.getAttribute("planos-lista");
+    @SuppressWarnings("unchecked")
     List<String> telefones = (List<String>) request.getAttribute("telefones-lista");
+    @SuppressWarnings("unchecked")
+    List<String> telefonesSalvos = (List<String>) request.getAttribute("telefonesIndustria");
 %>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -136,7 +139,6 @@
                     
                     <div id="telefones-container" class="mb-2">
                         <%
-                            List<String> telefonesSalvos = (List<String>) request.getAttribute("telefonesIndustria");
                             if (telefonesSalvos != null) {
                                 for (int i = 0; i < telefonesSalvos.size(); i++) {
                                     String tel = telefonesSalvos.get(i);

@@ -22,7 +22,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
-            String instrucaoSQL = "INSERT INTO CLIENTE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // inserindo as informações do cliente
+            String instrucaoSQL = "INSERT INTO CLIENTE (EMAIL, CPF, NOME, NOME_SOBRENOME, DT_NASCIMENTO, SENHA, ALTURA, PESO, DIABETES, PRESSAO_ALTA, COLESTEROL_ALTO, TELEFONE, ENDERECO_UF, ENDERECO_CEP, ENDERECO_CIDADE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // inserindo as informações do cliente
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando parâmetros da instrução
@@ -33,14 +33,15 @@ public class ClienteDAO {
             pstmt.setObject(5, cliente.getDataNascimento());
             pstmt.setString(6, cliente.getSenha());
             pstmt.setDouble(7, cliente.getAltura());
-            pstmt.setString(8, cliente.getTelefone());
-            pstmt.setDouble(9, cliente.getPeso());
-            pstmt.setString(10, cliente.getDiabetes());
-            pstmt.setBoolean(11, cliente.isPressaoAlta());
-            pstmt.setString(12, cliente.getEnderecoUf());
-            pstmt.setString(13, cliente.getEnderecoCep());
-            pstmt.setString(14, cliente.getEnderecoCidade());
-            pstmt.setBoolean(15, cliente.isColesterolAlto());
+            pstmt.setDouble(8, cliente.getPeso());
+            pstmt.setString(9, cliente.getDiabetes());
+            pstmt.setBoolean(10, cliente.isPressaoAlta());
+            pstmt.setBoolean(11, cliente.isColesterolAlto());
+            pstmt.setString(12, cliente.getTelefone());
+            pstmt.setString(13, cliente.getEnderecoUf());
+            pstmt.setString(14, cliente.getEnderecoCep());
+            pstmt.setString(15, cliente.getEnderecoCidade());
+
 
             if (pstmt.executeUpdate() > 0) { // executando o comando e verificando o retorno
                 return 1; // conseguiu realizar a instrução
@@ -61,7 +62,7 @@ public class ClienteDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
 
         try {
-            String instrucaoSQL = "UPDATE CLIENTE SET CPF = ?, NOME = ?, NOME_SOBRENOME = ?, DATA_NASCIMENTO = ?, SENHA = ?, ALTURA = ?, PESO = ?, DIABETES = ?, PRESSAO_ALTA = ?, COLESTEROL_ALTO = ?, TELEFONE = ?, ENDERECO_UF = ?, ENDERECO_CIDADE = ?, ENDERECO_CEP = ? WHERE EMAIL = ?"; // alterando o cliente
+            String instrucaoSQL = "UPDATE CLIENTE SET CPF = ?, NOME = ?, NOME_SOBRENOME = ?, DT_NASCIMENTO = ?, SENHA = ?, ALTURA = ?, PESO = ?, DIABETES = ?, PRESSAO_ALTA = ?, COLESTEROL_ALTO = ?, TELEFONE = ?, ENDERECO_UF = ?, ENDERECO_CIDADE = ?, ENDERECO_CEP = ? WHERE EMAIL = ?"; // alterando o cliente
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
             // setando parâmetros da instrução
@@ -133,7 +134,7 @@ public class ClienteDAO {
 
             while (rset.next()) {
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
-                        rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
+                        rset.getString("nome_sobrenome"), rset.getObject("dt_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
@@ -163,7 +164,7 @@ public class ClienteDAO {
 
             while (rset.next()) {
                 cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
-                        rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
+                        rset.getString("nome_sobrenome"), rset.getObject("dt_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
@@ -190,7 +191,7 @@ public class ClienteDAO {
 
             while (rset.next()) {
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
-                        rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
+                        rset.getString("nome_sobrenome"), rset.getObject("dt_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
@@ -241,7 +242,7 @@ public class ClienteDAO {
 
             while(rset.next()){
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
-                        rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
+                        rset.getString("nome_sobrenome"), rset.getObject("dt_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
@@ -270,7 +271,7 @@ public class ClienteDAO {
             rset = pstmt.executeQuery(); // executando a instrução
             while(rset.next()){
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
-                        rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
+                        rset.getString("nome_sobrenome"), rset.getObject("dt_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));
@@ -297,7 +298,7 @@ public class ClienteDAO {
             rset = pstmt.executeQuery(); // executando a instrução
             while(rset.next()){
                 Cliente cliente = new Cliente(rset.getString("email"), rset.getString("cpf"), rset.getString("nome"),
-                        rset.getString("nome_sobrenome"), rset.getObject("data_nascimento", LocalDate.class), rset.getString("senha"),
+                        rset.getString("nome_sobrenome"), rset.getObject("dt_nascimento", LocalDate.class), rset.getString("senha"),
                         rset.getDouble("altura"), rset.getDouble("peso"), rset.getString("diabetes"), rset.getBoolean("pressao_alta"),
                         rset.getBoolean("colesterol_alto"), rset.getString("telefone"), rset.getString("endereco_uf"),
                         rset.getString("endereco_cidade"), rset.getString("endereco_cep"));

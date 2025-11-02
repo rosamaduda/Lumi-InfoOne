@@ -5,6 +5,7 @@
 @SuppressWarnings("unchecked")
 List<Industria> industrias = (List<Industria>)
         request.getAttribute("industrias-lista");
+    @SuppressWarnings("unchecked")
         List<List> telefones = (List<List>)
                 request.getAttribute("telefones-lista");
                 %>

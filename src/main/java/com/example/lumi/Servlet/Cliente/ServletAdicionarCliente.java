@@ -29,7 +29,7 @@ public class ServletAdicionarCliente extends HttpServlet {
             AlergiaDAO alergiaDAO = new AlergiaDAO();
             List<Alergia> alergiasOp = alergiaDAO.buscarAlergia();
             request.setAttribute("alergias-lista", alergiasOp);
-            request.getRequestDispatcher("WEB-INF/view/cadastro_cliente.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/cadastro_cliente.jsp").forward(request, response); // redirecionando
         }
     }
 

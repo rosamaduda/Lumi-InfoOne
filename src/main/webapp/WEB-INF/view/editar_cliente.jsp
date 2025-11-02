@@ -1,7 +1,14 @@
+<%@ page import="com.example.lumi.Model.Alergia" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    @SuppressWarnings("unchecked")
+    List<Alergia> listaAlergias = (List<Alergia>) request.getAttribute("alergias-lista");
+    @SuppressWarnings("unchecked")
+    List<Alergia> listaBancoAlergias = (List<Alergia>) request.getAttribute("alergias-banco-lista");
+%>
   <!DOCTYPE html>
   <html lang="pt-BR">
-
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -167,6 +174,33 @@
                 <span>Adicionar alergia</span>
               </button>
 
+                <div id="alergias-container" class="mb-2">
+                    <%
+                        if (listaAlergias != null) {
+                            for (int i = 0; i < listaAlergias.size(); i++) {
+
+                                String alergia = listaAlergias.get(i).getNome();
+                    %>
+                    <div class="flex items-center space-x-2 mb-2" data-telefone="<%=i + 1%>">
+                        <button type="button" class="text-red-500 hover:text-red-700 p-1 btn-remover-tel">
+                            <i data-feather="minus"></i>
+                        </button>
+                        <input type="text" name="alergia-<%=i + 1%>" value="<%=alergia%>"
+                               placeholder="Digite a alergia..."
+                               class="flex-grow px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
+                    </div>
+                    <%
+                            }
+                        }
+                    %>
+                </div>
+
+
+                <button type="button" id="add-telefone"
+                        class="flex items-center space-x-2 text-[#7F3FBF] hover:text-[#5B2E85] text-sm font-medium w-full sm:w-auto border-[2px] border-[#7F3FBF] px-3 py-2 rounded-[6px] mb-2 ">
+                    <span>Adicionar telefone</span>
+                </button>
+
               <label for="data"
                      class="block text-gray-700 text-sm font-medium mb-2 mt-2">Data
                 de nascimento:</label>
@@ -201,7 +235,7 @@
               <label for="estado"
                      class="block text-gray-700 text-sm font-medium mb-2 mt-2">Estado:</label>
               <select name="estado" id="estado"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"">
+                      class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent">
               <option disabled hidden selected value>Selecione um
                 estado</option>
               <option value="ac">Acre</option>

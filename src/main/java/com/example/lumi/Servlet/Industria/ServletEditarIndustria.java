@@ -31,22 +31,18 @@ public class ServletEditarIndustria extends HttpServlet {
             List<Plano> listaPlanos = planoDAO.buscarNomePlano();
             request.setAttribute("planos-lista", listaPlanos);
 
-            int idIndustria = Integer.parseInt(request.getParameter("idIndustria")); // recebendo o ID do ingrediente que será alterado
+            int idIndustria = Integer.parseInt(request.getParameter("idIndustria")); // recebendo o ID da industria que será alterado
             Industria industria = new Industria(idIndustria); // setando o id no model
             industria = industriaDAO.buscarIndustria(industria);// buscando as informações do id para poder setar como atributos
 
             TelefoneIndustriaDAO telefoneDAO = new TelefoneIndustriaDAO();
-            List<TelefoneIndustria> telefonesSalvos = telefoneDAO.buscarTelPorIndustria(idIndustria);
-            
-            // buscando os telefones
-            TelefoneIndustriaDAO telefoneIndustriaDAO = new TelefoneIndustriaDAO();
-            telefonesSalvos = telefoneIndustriaDAO.buscarTelefone(idIndustria);
-
+            List<TelefoneIndustria> telefonesSalvos = telefoneDAO.buscarTelefone(idIndustria); // buscando os telefones
 
             List<String> numeroTelefones = new ArrayList<>();
             for (int i = 0; i < telefonesSalvos.size(); i++) {
                 numeroTelefones.add(telefonesSalvos.get(i).getTelefone());
             }
+
             // setando os atributos
             request.setAttribute("idIndustria", industria.getId());
             request.setAttribute("cnpjIndustria", industria.getCnpj());
