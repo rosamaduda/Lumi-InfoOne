@@ -65,29 +65,46 @@ public class ServletEditarIndustria extends HttpServlet {
             // recebendo os parâmetros do form
             int id = Integer.parseInt(request.getParameter("id"));
             String email = request.getParameter("e-mail").trim();
-            if (!email.matches("^[A-Za-z0-9]{1,}@[A-Za-z0-9]{1,}\\.[a-z]+")) {
+            if (!email.matches("^[A-Za-z0-9._]{1,}@[A-Za-z]{1,}\\.[A-Za-z.]{1,}$")) {
                 request.setAttribute("mensagemErro", "E-mail inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                return; // interrompe o método caso encontre um erro
             }
-            String cnpj = request.getParameter("cnpj").replaceAll("[^0-9]","").trim();
+            String cnpj = request.getParameter("cnpj").trim();
             if (!cnpj.matches("^[0-9]{2}\\.?[0-9]{3}\\.?[0-9]{3}\\/?[0-9]{4}\\-?[0-9]{2}$")) {
                 request.setAttribute("mensagemErro", "CNPJ inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                return; // interrompe o método caso encontre um erro
             }
             String nome = request.getParameter("nome").trim();
             String objetivo = request.getParameter("objetivo").trim();
             String senha = request.getParameter("senha");
             String plano = request.getParameter("plano");
-            TelefoneIndustriaDAO telefoneDAO = new TelefoneIndustriaDAO();
-            telefoneDAO.deletarTelIdIndustria(id);
+
+            // alterando os telefones
+            TelefoneIndustriaDAO telefoneIndustriaDAO = new TelefoneIndustriaDAO();
+            telefoneIndustriaDAO.deletarTelIdIndustria(id);
             request.getParameterMap().forEach((key, value) -> {
                 if (key.startsWith("telefone-")) {
-                    String tel = request.getParameter(key).replaceAll("[^0-9]", "");
-                    if (!tel.isEmpty()) {
-                        telefoneDAO.inserirTelIndustria(new TelefoneIndustria(0, tel, id));
+                    String telefone = request.getParameter(key).replaceAll("[^0-9]", "");
+                    if (!telefone.isEmpty()) {
+                        if (!telefone.matches("^\\(?[0-9]{2}\\)? ?[0-9]?[0-9]{4}-?[0-9]{4}$")) {
+                            try {
+                                request.setAttribute("mensagemErro", "Telefone inválido: " + telefone);
+                                request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            return; // interrompe o processamento
+                        }
+
+                        telefoneIndustriaDAO.inserirTelIndustria(new TelefoneIndustria(telefone, id));
                     }
                 }
             });
+
+            // retirando os caracteres especiais
+            cnpj = cnpj.replaceAll("[^0-9]","");
 
             // instanciando o objeto
             Industria industria = new Industria(id, cnpj, nome, objetivo, email, senha, plano);
@@ -96,7 +113,7 @@ public class ServletEditarIndustria extends HttpServlet {
             int retornoAlteracao = industriaDAO.alterarIndustria(industria);
             if (retornoAlteracao == 0 || retornoAlteracao == -1) {
                 request.setAttribute("mensagemErro", "Não foi possível alterar a indústria");
-                request.getRequestDispatcher("WEB-INF/view/erro,jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
             }
 
             // redirecionando para a página de industrias

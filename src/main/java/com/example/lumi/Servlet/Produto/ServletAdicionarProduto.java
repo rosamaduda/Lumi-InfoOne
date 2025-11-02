@@ -59,6 +59,7 @@ public class ServletAdicionarProduto extends HttpServlet {
             if (retornoInsercao == 0 || retornoInsercao == -1) {
                 request.setAttribute("mensagemErro", "Não foi possível inserir a informação nutricional");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                return; // interrompe o método caso encontre um erro
             }
 
             // buscando o id da última informação nutricional adicionada
@@ -83,6 +84,7 @@ public class ServletAdicionarProduto extends HttpServlet {
             if (retornoInsercao == 0 || retornoInsercao == -1) {
                 request.setAttribute("mensagemErro", "Não foi possível inserir o produto");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                return; // interrompe o método caso encontre um erro
             }
 
             // redirecionando o usuário para a página do produto

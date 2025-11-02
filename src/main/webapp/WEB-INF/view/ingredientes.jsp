@@ -54,8 +54,7 @@
                                                             <i data-feather="user" class="text-[#7F3FBF]"></i>
                                                         </div>
                                                         <h2 class="font-bold text-lg">ADM</h2>
-                                                        <p class="text-sm text-gray-600">ID:
-                                                            #<%=session.getAttribute("adm")%>
+                                                        <p class="text-sm text-gray-600"><%=session.getAttribute("adm")%>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -151,7 +150,7 @@
                                                         <tr class="bg-[#3C9D9B] text-white">
                                                             <th class="p-3 text-left">Nome</th>
                                                             <th class="p-3 text-left">Descrição</th>
-                                                            <th class="p-3 text-left">Alergênicos</th>
+                                                            <th class="p-3 text-left">Alergias causadas</th>
                                                             <th class="p-3 text-right"></th>
                                                         </tr>
                                                     </thead>

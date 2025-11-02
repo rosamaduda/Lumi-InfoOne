@@ -1,9 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.example.lumi.Model.*"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%
     @SuppressWarnings("unchecked")
     List<Ingrediente> listaIngredientes = (List<Ingrediente>) request.getAttribute("ingredientes-lista");
+    @SuppressWarnings("unchecked")
+    List<List> listaAlergiasIngrediente = (List<List>) request.getAttribute("alergias-ingredientes-lista");
     @SuppressWarnings("unchecked")
     List<Alergia> listaAlergias = (List<Alergia>) request.getAttribute("alergias-lista");
     @SuppressWarnings("unchecked")
@@ -13,12 +17,13 @@
     @SuppressWarnings("unchecked")
     List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("clientes-lista");
     @SuppressWarnings("unchecked")
+    List<List> listaAlergiasClientes = (List<List>) request.getAttribute("alergias-clientes-lista");
+    @SuppressWarnings("unchecked")
     List <Produto> listaProdutos = (List<Produto>) request.getAttribute("produtos-lista");
     @SuppressWarnings("unchecked")
     List <Industria> listaNomeIndustria = (List<Industria>) request.getAttribute("nomeIndustria-lista");
     @SuppressWarnings("unchecked")
     List <InformacaoNutricional> listaInfoNutri = (List <InformacaoNutricional>) request.getAttribute("infoNutri-lista");
-
 %>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -67,7 +72,7 @@
                            class="text-[#7F3FBF]"></i>
                     </div>
                     <h2 class="font-bold text-lg">ADM</h2>
-                    <p class="text-sm text-gray-600">ID: #<%=session.getAttribute("adm")%></p>
+                    <p class="text-sm text-gray-600"><%=session.getAttribute("adm")%></p>
                 </div>
             </div>
 
@@ -130,6 +135,7 @@
                     <tr class="bg-[#3C9D9B] text-white">
                         <th class="p-3 text-left">Nome</th>
                         <th class="p-3 text-left">Descrição</th>
+                        <th class="p-3 text-left">Alergias causadas</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -137,20 +143,36 @@
                         for (int i = 0; i < listaIngredientes.size(); i++) {
                             if (i % 2 == 0) { %>
                     <tr class="bg-white">
+                        <td class="p-3 border-b"><%= listaIngredientes.get(i).getNome() %></td>
+                        <td class="p-3 border-b"><%= listaIngredientes.get(i).getDescricao() %></td>
                         <td class="p-3 border-b">
-                            <%=listaIngredientes.get(i).getNome()%>
-                        </td>
-                        <td class="p-3 border-b">
-                            <%=listaIngredientes.get(i).getDescricao()%>
+                            <div class="relative w-full">
+                                <select id="dropdown-alergias-<%=i%>"
+                                        class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 truncate">
+                                    <% for (int j=0; j < listaAlergiasIngrediente.get(i).size(); j++) { %>
+                                    <option value="<%=j%>"><%= listaAlergiasIngrediente.get(i).get(j) %></option>
+                                    <% } %>
+                                </select>
+                                <i data-feather="chevron-down"
+                                   class="pointer-events-none absolute right-1 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i>
+                            </div>
                         </td>
                     </tr>
                     <%} else {%>
                     <tr class="bg-[#C5E2E1]">
+                        <td class="p-3 border-b"><%= listaIngredientes.get(i).getNome() %></td>
+                        <td class="p-3 border-b"><%= listaIngredientes.get(i).getDescricao() %></td>
                         <td class="p-3 border-b">
-                            <%=listaIngredientes.get(i).getNome()%>
-                        </td>
-                        <td class="p-3 border-b">
-                            <%=listaIngredientes.get(i).getDescricao()%>
+                            <div class="relative w-full">
+                                <select id="dropdown-alergias-<%=i%>"
+                                        class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 truncate">
+                                    <% for (int j=0; j < listaAlergiasIngrediente.get(i).size(); j++) { %>
+                                    <option value="<%=j%>"><%= listaAlergiasIngrediente.get(i).get(j) %></option>
+                                    <% } %>
+                                </select>
+                                <i data-feather="chevron-down"
+                                   class="pointer-events-none absolute right-1 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i>
+                            </div>
                         </td>
                     </tr>
                     <% } } %>
@@ -234,70 +256,108 @@
                     <tr class="bg-[#3C9D9B] text-white">
                         <th class="p-3 text-left">CPF</th>
                         <th class="p-3 text-left">Nome Completo</th>
-                        <th class="p-3 text-left">Data de Nascimento</th>
+                        <th class="p-3 text-left">Data de <br> Nascimento</th>
                         <th class="p-3 text-left">Peso</th>
                         <th class="p-3 text-left">Altura</th>
                         <th class=" p-3 text-left">HTA</th>
                         <th class=" p-3 text-left">Colesterol Alto</th>
                         <th class="p-3 text-left">Diabetes</th>
+                        <th class="p-3 text-left">Alergias</th>
                         <th class="p-3 text-left">Telefone</th>
-                        <th class="p-3 text-left">E-mail</th>
+                        <th class="p-3 text-left">Email</th>
                         <th class="p-3 text-left">Senha</th>
                         <th class="p-3 text-left">Endereço</th>
                     </tr>
                     </thead>
                     <tbody>
-                        <%
-                        for (int i = 0; i < listaClientes.size(); i++) {
-                            if (i % 2 == 0) { %>
-                    <tr class="bg-white">
-                        <td class="p-3 border-b max-w-full whitespace-nowrap"> <%
-                            String cpf = listaClientes.get(i).getCpf();
-                            cpf = cpf.replaceFirst("([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})", "$1.$2.$3-$4");
-                        %>
-                        <%= cpf %>
-                        </td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getNome() + " " + listaClientes.get(i).getNomeSobrenome()%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getDataNascimento().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getPeso()%>kg</td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getAltura()%>m</td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getDiabetes()%></td>
-                        <td class="p-3 border-b"></td>
-                        <td class="p-3 border-b max-w-full whitespace-nowrap"><%
-                            String telefone = listaClientes.get(i).getTelefone();
-                            telefone = telefone.replaceFirst("([0-9]{2})([0-9]{5})([0-9]{4})", "($1) $2-$3");
-                        %>
-                        <%= telefone %></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getEmail()%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getSenha()%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getEnderecoUf() + ", " + listaClientes.get(i).getEnderecoCidade() + ", " + listaClientes.get(i).getEnderecoCep()%></td>
-                    </tr>
+                        <%for (int i=0; i < listaClientes.size(); i++){
+                            if (i % 2==0) { %>
+                        <tr class="bg-white">
+                            <td class="p-3 border-b max-w-full whitespace-nowrap">
+                                <%
+                                    String cpf = listaClientes.get(i).getCpf();
+                                    cpf = cpf.replaceFirst("([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})", "$1.$2.$3-$4");
+                                %>
+                                <%= cpf %>
+                            </td>
+                            <td class="p-3 border-b max-w-full whitespace-nowrap">
+                                <%=listaClientes.get(i).getNome() + " " + listaClientes.get(i).getNomeSobrenome()%>
+                            </td>
+                            <td
+                                    class="p-3 border-b">
+                                <%=listaClientes.get(i).getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))%>
+                            </td>
+                            <td class="p-3 border-b"><%=listaClientes.get(i).getPeso()%>kg</td>
+                            <td class="p-3 border-b"><%=listaClientes.get(i).getAltura()%>m</td>
+                            <td class="p-3 border-b"><%=listaClientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
+                            <td class="p-3 border-b"><%=listaClientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
+                            <td class="p-3 border-b"><%=listaClientes.get(i).getDiabetes()%></td>
+                            <td class="p-3 border-b">
+                                <div
+                                        class="relative w-full">
+                                    <select id="dropdown-alergias-<%=i%>" class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 truncate">
+                                        <% for (int j = 0; j < listaAlergiasClientes.get(i).size(); j++) { %>
+                                        <option value="<%=j%>"><%= listaAlergiasClientes.get(i).get(j) %></option>
+                                        <% } %>
+                                    </select>
+                                    <i
+                                            data-feather="chevron-down"
+                                            class="pointer-events-none absolute right-1 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i>
+                                </div>
+                            </td>
+                            <td class="p-3 border-b max-w-full whitespace-nowrap"><%
+                                String telefone = listaClientes.get(i).getTelefone();
+                                telefone = telefone.replaceFirst("([0-9]{2})([0-9]{5})([0-9]{4})", "($1) $2-$3");
+                            %>
+                                <%= telefone %>
+                            </td>
+                            <td class="p-3 border-b"><%=listaClientes.get(i).getEmail()%></td>
+                            <td class="p-3 border-b"><%=listaClientes.get(i).getSenha()%></td>
+                            <td class="p-3 border-b"><%=listaClientes.get(i).getEnderecoUf() + ", " + listaClientes.get(i).getEnderecoCidade() + ", " + listaClientes.get(i).getEnderecoCep()%></td></tr>
                     <% } else {%>
                     <tr class="bg-[#C5E2E1]">
-                        <td class="p-3 border-b max-w-full whitespace-nowrap">  <%
+                        <td class="p-3 border-b max-w-full whitespace-nowrap">
+                            <%
                             String cpf = listaClientes.get(i).getCpf();
                             cpf = cpf.replaceFirst("([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})", "$1.$2.$3-$4");
                         %>
                         <%= cpf %>
                         </td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getNome() + " " + listaClientes.get(i).getNomeSobrenome()%></td>
-                        <td class="p-3 border-b"><%=listaClientes.get(i).getDataNascimento().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))%></td>
+                        <td class="p-3 border-b max-w-full whitespace-nowrap">
+                            <%=listaClientes.get(i).getNome() + " " + listaClientes.get(i).getNomeSobrenome()%>
+                        </td>
+                        <td
+                                class="p-3 border-b">
+                            <%=listaClientes.get(i).getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))%>
+                        </td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getPeso()%>kg</td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getAltura()%>m</td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).isPressaoAlta() ? "Sim" : "Não"%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).isColesterolAlto() ? "Sim" : "Não"%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getDiabetes()%></td>
+                        <td class="p-3 border-b">
+                            <div
+                            class="relative w-full">
+                            <select id="dropdown-alergias-<%=i%>" class="appearance-none w-full bg-transparent border border-gray-300 rounded-md text-sm font-medium text-[#333333] cursor-pointer py-2 px-2 truncate">
+                                <% for (int j = 0; j < listaAlergiasClientes.get(i).size(); j++) { %>
+                                    <option value="<%=j%>"><%= listaAlergiasClientes.get(i).get(j) %></option>
+                                <% } %>
+                            </select>
+                            <i
+                                data-feather="chevron-down"
+                                class="pointer-events-none absolute right-1 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#333333]"></i>
+                        </div>
+                        </td>
                         <td class="p-3 border-b max-w-full whitespace-nowrap"><%
                             String telefone = listaClientes.get(i).getTelefone();
                             telefone = telefone.replaceFirst("([0-9]{2})([0-9]{5})([0-9]{4})", "($1) $2-$3");
                         %>
-                        <%= telefone %></td>
+                        <%= telefone %>
+                        </td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getEmail()%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getSenha()%></td>
                         <td class="p-3 border-b"><%=listaClientes.get(i).getEnderecoUf() + ", " + listaClientes.get(i).getEnderecoCidade() + ", " + listaClientes.get(i).getEnderecoCep()%></td>
-                    </tr>
+                        </tr>
                     <%}
                     }%>
                     </tbody>
@@ -455,7 +515,7 @@
                         <td class="p-3 border-b"><%=listaProdutos.get(i).getNome()%></td>
                         <td class="p-3 border-b"><%=listaNomeIndustria.get(i).getNome()%></td>
                         <td class="p-3 border-b"><%=listaProdutos.get(i).getFabricante()%></td>
-                        <td class="p-3 border-b max-w-[20%] whitespace-normal break-words align-top"><%=listaProdutos.get(i).getDescricao()%></td>
+                        <td class="p-3 border-b max-w-[20%] whitespace-normal break-words"><%=listaProdutos.get(i).getDescricao()%></td>
                         <td class="p-3 border-b"><%=listaProdutos.get(i).getMassa()%></td>
                         <td class="p-3 border-b">
                             <strong>Carboidratos: </strong><%=listaInfoNutri.get(i).getCarboidratos()%>,
@@ -474,7 +534,7 @@
                         <td class="p-3 border-b"><%=listaProdutos.get(i).getNome()%></td>
                         <td class="p-3 border-b"><%=listaNomeIndustria.get(i).getNome()%></td>
                         <td class="p-3 border-b"><%=listaProdutos.get(i).getFabricante()%></td>
-                        <td class="p-3 border-b max-w-[20%] whitespace-normal break-words align-top"><%=listaProdutos.get(i).getDescricao()%></td>
+                        <td class="p-3 border-b max-w-[20%] whitespace-normal break-words"><%=listaProdutos.get(i).getDescricao()%></td>
                         <td class="p-3 border-b"><%=listaProdutos.get(i).getMassa()%></td>
                         <td class="p-3 border-b">
                             <strong>Carboidratos: </strong><%=listaInfoNutri.get(i).getCarboidratos()%>,

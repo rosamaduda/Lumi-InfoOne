@@ -83,7 +83,7 @@ public class IngredienteDAO {
         } finally {
             conexao.desconectar(conn); // desconectou o BD
         }
-    } // removerIngrediente()
+    } // deletarIngrediente()
 
     // SELECT
     public List<Ingrediente> buscarIngrediente() {

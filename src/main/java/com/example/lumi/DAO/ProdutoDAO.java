@@ -87,14 +87,13 @@ public class ProdutoDAO {
             } else {
                 return 0; // não foi possível realizar a instrução
             }
-        }catch(SQLException sqle){
+        } catch(SQLException sqle){
             sqle.printStackTrace();
             return -1;
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
-        finally {
-            conexao.desconectar(conn);
-        }
-    }
+    } // deletarProduto(String codigoBarras)
 
     public int deletarProdutoIndustria(int idIndustria) {
         Conexao conexao = new Conexao();
@@ -117,41 +116,17 @@ public class ProdutoDAO {
         } finally {
             conexao.desconectar(conn); // desconectando o banco
         }
-    }
+    } // deletarProdutoIndustria(int idIndustria)
 
     // BUSCAR
-    public List<Produto> buscarNomeProduto() {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-        ResultSet rset;
-        List<Produto> listaProdutos = new ArrayList<>();
-
-        try {
-            String instrucaoSQL = "SELECT NOME FROM PRODUTO";
-            Statement stmt = conn.createStatement();
-            rset = stmt.executeQuery(instrucaoSQL); // realizando a query
-
-            while (rset.next()) {
-                Produto produto = new Produto(rset.getString("nome"));
-                listaProdutos.add(produto); // adicionando o objeto à lista que será retornada
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        } finally {
-            conexao.desconectar(conn); // desconectando o BD
-        }
-        return listaProdutos;
-    }
-
-
     public List<Produto> buscarProduto(){
         Conexao conexao= new Conexao();
-        Connection conn= conexao.conectar();
+        Connection conn= conexao.conectar(); // abrindo a conexão com o banco
         List<Produto> listaProdutos=new ArrayList<>();
         ResultSet rset;
 
         try {
-            String instrucaoSQL= "SELECT * FROM PRODUTO"; // procura todas as informações do produto
+            String instrucaoSQL= "SELECT P.* FROM PRODUTO P JOIN INFO_NUTRI I ON P.ID_INFO_NUTRI = I.ID ORDER BY I.ID"; // procura todas as informações do produto
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a instrução
 
@@ -165,23 +140,21 @@ public class ProdutoDAO {
                         rset.getInt("id_info_nutri"));
                 listaProdutos.add(produto);
             }
-        }
-        catch (SQLException sqle){
+        } catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally {
-            conexao.desconectar(conn);
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return listaProdutos;
-    }
+    } // buscarProduto()
 
     public Produto buscarProduto(Produto produto){
-        Conexao conexao= new Conexao();
-        Connection conn= conexao.conectar();
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "SELECT * FROM PRODUTO WHERE CODIGO_BARRAS = ?"; // busca o produto a partir do código de barras
+            String instrucaoSQL = "SELECT P.* FROM PRODUTO P JOIN INFO_NUTRI I ON P.ID_INFO_NUTRI = I.ID ORDER BY I.ID WHERE CODIGO_BARRAS = ?"; // busca o produto a partir do código de barras
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, produto.getCodigoBarras()); // setando os parâmetros da instrução
             rset = pstmt.executeQuery(); // executando a instrução
@@ -197,25 +170,24 @@ public class ProdutoDAO {
         }
         catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally {
-            conexao.desconectar(conn);
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return produto;
-    }
+    } // buscarProduto(Produto produto)
 
     public List<Produto> buscarProdutoPortal(){
         Conexao conexao= new Conexao();
-        Connection conn= conexao.conectar();
+        Connection conn= conexao.conectar(); // abrindo a conexão com o banco
         List<Produto> listaProdutos=new ArrayList<>();
         ResultSet rset;
         try{
-            String instrucaoSQL = "SELECT * FROM PRODUTO LIMIT 3"; // busca apenas 3 produtos para colocar no portal
+            String instrucaoSQL = "SELECT P.* FROM PRODUTO P JOIN INFO_NUTRI I ON P.ID_INFO_NUTRI = I.ID ORDER BY I.ID DESC LIMIT 3"; // busca apenas 3 produtos para colocar no portal
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a instrução
 
             while (rset.next()){
-                Produto produto=new Produto(rset.getString("codigo_barras"),
+                Produto produto = new Produto(rset.getString("codigo_barras"),
                         rset.getString("nome"),
                         rset.getString("fabricante"),
                         rset.getString("descricao"),
@@ -227,23 +199,20 @@ public class ProdutoDAO {
         }
         catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally {
-            conexao.desconectar(conn);
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return listaProdutos;
-
-
-    }
+    } // buscarProdutoPortal()
 
     public List<Produto> buscarProdutoPorNome(String nome){
         Conexao conexao= new Conexao();
-        Connection conn= conexao.conectar();
+        Connection conn= conexao.conectar(); // fechando a conexão com o banco
         List<Produto> listaProdutos=new ArrayList<>();
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "SELECT * FROM PRODUTO WHERE NOME LIKE ?"; // busca o produto a partir do nome
+            String instrucaoSQL = "SELECT P.* FROM PRODUTO P JOIN INFO_NUTRI I ON P.ID_INFO_NUTRI = I.ID ORDER BY I.ID WHERE LOWER(NOME) LIKE ?"; // busca o produto a partir do nome
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1,"%"+nome+"%"); // setando o parâmetro da instrução
             rset = pstmt.executeQuery(); // executando a instrução
@@ -258,58 +227,25 @@ public class ProdutoDAO {
                         rset.getInt("id_info_nutri"));
                 listaProdutos.add(produto);
             }
-        }
-        catch (SQLException sqle){
+        } catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally {
-            conexao.desconectar(conn);
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return listaProdutos;
-    }
-
-
-    public List<Produto> buscarProdutoPorCodBarras(String codBarras){
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
-        List<Produto> listaProdutos = new ArrayList<>();
-        ResultSet rset;
-        try{
-            String instrucaoSQL= "SELECT * FROM PRODUTO WHERE CAST(CODIGO_BARRAS AS VARCHAR) LIKE ?";
-            PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1,"%"+codBarras+"%");
-            rset=pstmt.executeQuery();
-            while (rset.next()){
-                Produto produto=new Produto(rset.getString("codigo_barras"),
-                        rset.getString("nome"),
-                        rset.getString("fabricante"),
-                        rset.getString("descricao"),
-                        rset.getDouble("massa"),
-                        rset.getInt("id_industria"),
-                        rset.getInt("id_info_nutri"));
-                listaProdutos.add(produto);
-            }
-        }
-        catch (SQLException sqle){
-            sqle.printStackTrace();
-        }
-        finally {
-            conexao.desconectar(conn);
-        }
-        return listaProdutos;
-    }
+    } // buscarProdutoPorNome(String nome)
 
 
     public List<Produto> buscarProdutoPorFabricante(String fabricante){
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         List<Produto> listaProdutos = new ArrayList<>();
         ResultSet rset;
         try{
-            String instrucaoSQL= "SELECT * FROM PRODUTO WHERE FABRICANTE LIKE ?";
+            String instrucaoSQL= "SELECT P.* FROM PRODUTO P JOIN INFO_NUTRI I ON P.ID_INFO_NUTRI = I.ID ORDER BY I.ID WHERE LOWER(FABRICANTE) LIKE ?"; // buscando indústria pelo fabricante
             PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1,"%"+fabricante+"%");
-            rset=pstmt.executeQuery();
+            pstmt.setString(1,"%"+fabricante+"%"); // setando os parâmetros da instrução
+            rset=pstmt.executeQuery(); // executando a instrução
             while (rset.next()){
                 Produto produto=new Produto(rset.getString("codigo_barras"),
                         rset.getString("nome"),
@@ -320,26 +256,24 @@ public class ProdutoDAO {
                         rset.getInt("id_info_nutri"));
                 listaProdutos.add(produto);
             }
-        }
-        catch (SQLException sqle){
+        } catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally {
+        } finally {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return listaProdutos;
-    }
+    } // buscarProdutoPorFabricante(String fabricante)
 
     public List<Produto> buscarProdutoPorIndustria(int idIndustria){
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         List<Produto> listaProdutos = new ArrayList<>();
         ResultSet rset;
         try{
-            String instrucaoSQL= "SELECT * FROM PRODUTO WHERE ID_INDUSTRIA = ?";
+            String instrucaoSQL= "SELECT P.* FROM PRODUTO P JOIN INFO_NUTRI I ON P.ID_INFO_NUTRI = I.ID ORDER BY I.ID WHERE ID_INDUSTRIA = ?"; // buscando os produtos pela indústria
             PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
-            pstmt.setInt(1,idIndustria);
-            rset=pstmt.executeQuery();
+            pstmt.setInt(1,idIndustria); // setando os parâmetros da indústria
+            rset=pstmt.executeQuery(); // executando a instrução
 
             while (rset.next()){
                 Produto produto = new Produto(rset.getString("codigo_barras"),
@@ -351,12 +285,10 @@ public class ProdutoDAO {
                         rset.getInt("id_info_nutri"));
                 listaProdutos.add(produto);
             }
-        }
-        catch (SQLException sqle){
+        } catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally {
-            conexao.desconectar(conn);
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return listaProdutos;
     } // buscarProdutoPorIndustria(int idIndustria)
@@ -367,10 +299,10 @@ public class ProdutoDAO {
         List<Produto> listaProduto = new ArrayList<>();
         ResultSet rset;
         try{
-            String instrucaoSQL= "SELECT * FROM PRODUTO WHERE MASSA = ?";
+            String instrucaoSQL= "SELECT P.* FROM PRODUTO P JOIN INFO_NUTRI I ON P.ID_INFO_NUTRI = I.ID ORDER BY I.ID WHERE MASSA = ?"; // buscando o produto pela massa
             PreparedStatement pstmt= conn.prepareStatement(instrucaoSQL);
-            pstmt.setDouble(1,massa);
-            rset=pstmt.executeQuery();
+            pstmt.setDouble(1,massa); // setando o parâmetro da instrução
+            rset=pstmt.executeQuery(); // executando a instrução
             while (rset.next()){
                 Produto produto = new Produto(rset.getString("codigo_barras"),
                         rset.getString("nome"),
@@ -381,15 +313,13 @@ public class ProdutoDAO {
                         rset.getInt("id_info_nutri"));
                 listaProduto.add(produto);
             }
-        }
-        catch (SQLException sqle){
+        } catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally {
-            conexao.desconectar(conn);
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return listaProduto;
-    }
+    } // buscarProdutoPorMassa(double massa)
 
     public int buscarIdInfoNutri(String codigoBarras) {
         Conexao conexao = new Conexao();
@@ -406,12 +336,10 @@ public class ProdutoDAO {
             while (rset.next()){
                 idInfoNutri = rset.getInt("id_info_nutri"); // recebendo o id da informação nutricional do produto
             }
-        }
-        catch (SQLException sqle){
+        } catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally {
-            conexao.desconectar(conn);
+        } finally {
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return idInfoNutri;
     } // buscarIdInfoNutri(long codigoBarras)

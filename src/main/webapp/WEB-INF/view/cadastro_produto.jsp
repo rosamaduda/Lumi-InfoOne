@@ -51,7 +51,7 @@
                            class="text-[#7F3FBF]"></i>
                     </div>
                     <h2 class="font-bold text-lg">ADM</h2>
-                    <p class="text-sm text-gray-600">ID: #ADM001</p>
+                    <p class="text-sm text-gray-600"><%=session.getAttribute("adm")%></p>
                 </div>
             </div>
 
@@ -171,56 +171,56 @@
                     <label for="calorias"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Valor
                         energético (kcal):</label>
-                    <input type="number" id="calorias" name="calorias" min="0" required
+                    <input type="number" id="calorias" name="calorias" min="0" max="99999" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
 
                     <label for="proteinas"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Proteínas
                         (g):</label>
                     <input type="number" step="0.01" id="proteinas"
-                           name="proteinas" min="0" required
+                           name="proteinas" min="0" max="99999" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
 
                     <label for="fibras"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Fibras
                         (g):</label>
                     <input type="number" step="0.01" id="fibras"
-                           name="fibras" min="0" required
+                           name="fibras" min="0" max="99999" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
 
                     <label for="carboidratos"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Carboidratos
                         (g):</label>
                     <input type="number" step="0.01" id="carboidratos"
-                           name="carboidratos" min="0" required
+                           name="carboidratos" min="0" max="99999" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
 
                     <label for="sodio"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Sódio
                         (g):</label>
                     <input type="number" step="0.01" id="sodio"
-                           name="sodio" min="0" required
+                           name="sodio" min="0" max="99999" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
 
                     <label for="gorduras-sat"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Gorduras
                         Saturadas (g):</label>
                     <input type="number" step="0.01" id="gorduras-sat"
-                           name="gorduras-sat" min="0" required
+                           name="gorduras-sat" min="0" max="99999" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-4">
 
                     <label for="gorduras-tot"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Gorduras
                         Totais (g):</label>
                     <input type="number" step="0.01" id="gorduras-tot"
-                           name="gorduras-tot" min="0" required
+                           name="gorduras-tot" min="0" max="99999" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-4">
 
                     <label for="gorduras-tr"
                            class="block text-gray-700 text-sm font-medium mb-2 mt-2">Gorduras
                         Trans (g):</label>
                     <input type="number" step="0.01" id="gorduras-tr"
-                           name="gorduras-tr" min="0" required
+                           name="gorduras-tr" min="0" max="99999" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-4">
 
                     <div class="flex justify-between mt-8">

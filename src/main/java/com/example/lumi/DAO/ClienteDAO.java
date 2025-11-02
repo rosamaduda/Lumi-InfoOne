@@ -203,29 +203,6 @@ public class ClienteDAO {
         return lista;
     } // buscarCliente()
 
-    public List<Cliente> buscarEmailCliente() {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão com o BD
-        ResultSet rset;
-        List<Cliente> clientes = new ArrayList<>();
-
-        try {
-            String instrucaoSQL = "SELECT EMAIL FROM CLIENTE";
-            Statement stmt = conn.createStatement();
-            rset = stmt.executeQuery(instrucaoSQL); // executando a query
-
-            while (rset.next()) {
-                Cliente cliente = new Cliente(rset.getString("email"));
-                clientes.add(cliente); // adicionando à lista que será retornada
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        } finally {
-            conexao.desconectar(conn); // desconectando do BD
-        }
-        return clientes;
-    } // buscarEmailCliente()
-
     public List<Cliente> buscarClientePorUF(String uf) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
@@ -233,9 +210,9 @@ public class ClienteDAO {
         List<Cliente> lista = new ArrayList<>();
 
         try{
-            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE ENDERECO_UF LIKE ?"; // buscando o cliente pela UF
+            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE LOWER(ENDERECO_UF) LIKE ?"; // buscando o cliente pela UF
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setString(1, uf); // setando o parâmetro da instrução
+            pstmt.setString(1, "%"+uf+"%"); // setando o parâmetro da instrução
             rset = pstmt.executeQuery(); // executando ao instrução
 
             while(rset.next()){
@@ -255,7 +232,6 @@ public class ClienteDAO {
         return lista;
     } // buscarClientePorUF(String uf)
 
-
     public List<Cliente> buscarClientePorCidade(String cidade) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
@@ -263,7 +239,7 @@ public class ClienteDAO {
         List<Cliente> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE ENDERECO_CIDADE LIKE ?"; // buscando o cliente pela cidade
+            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE LOWER(ENDERECO_CIDADE) LIKE ?"; // buscando o cliente pela cidade
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, "%"+cidade+"%"); // setando o parâmetro na instrução
             rset = pstmt.executeQuery(); // executando a instrução
@@ -290,7 +266,7 @@ public class ClienteDAO {
         List<Cliente> lista = new ArrayList<>();
 
         try {
-            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE NOME || ' ' || NOME_SOBRENOME LIKE ?"; // buscando o cliente pelo nome completo
+            String instrucaoSQL = "SELECT * FROM CLIENTE WHERE LOWER(NOME || ' ' || NOME_SOBRENOME) LIKE ?"; // buscando o cliente pelo nome completo
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setString(1, "%"+nomeSobrenome+"%"); // setando o parâmetro na instrução
             rset = pstmt.executeQuery(); // executando a instrução

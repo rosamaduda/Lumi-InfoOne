@@ -32,6 +32,7 @@ public class ServletVisualizarProduto extends HttpServlet {
 
         Industria industria;
 
+        // buscando as informações aqui para quando entrar na página as informações já estiverem carregadas
         if (caminho.equals("/produtos")) {
             listaProdutos = produtoDAO.buscarProduto();
             listaInfoNutri = informacaoNutricionalDAO.buscarInfoNutri();
@@ -48,7 +49,10 @@ public class ServletVisualizarProduto extends HttpServlet {
             request.setAttribute("filtro-selecionado", filtro);
             request.setAttribute("pesquisa-anterior", pesquisa);
 
-            // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
+            // transformando a string para todas as letras minúsculas
+            pesquisa = pesquisa.toLowerCase();
+
+            // buscando as informações depenedendo do filtro
             if (filtro.equals("Todos")) {
                 listaProdutos = produtoDAO.buscarProduto();
                 listaInfoNutri = informacaoNutricionalDAO.buscarInfoNutri();

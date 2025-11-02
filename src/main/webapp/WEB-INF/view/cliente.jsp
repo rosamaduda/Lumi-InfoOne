@@ -61,8 +61,7 @@
                            class="text-[#7F3FBF]"></i>
                     </div>
                     <h2 class="font-bold text-lg">ADM</h2>
-                    <p class="text-sm text-gray-600">ID:
-                        #<%=session.getAttribute("adm")%>
+                    <p class="text-sm text-gray-600"><%=session.getAttribute("adm")%>
                     </p>
                 </div>
             </div>
@@ -253,7 +252,7 @@
                     <%= cpf %>
                     </td>
                     <td class="p-3 border-b max-w-full whitespace-nowrap">
-                        <%=clientes.get(i).getNome()%>
+                        <%=clientes.get(i).getNome() + " " + clientes.get(i).getNomeSobrenome()%>
                     </td>
                     <td
                             class="p-3 border-b">
@@ -282,7 +281,7 @@
                         telefone = telefone.replaceFirst("([0-9]{2})([0-9]{5})([0-9]{4})", "($1) $2-$3");
                     %>
                     <%= telefone %>
-</td>
+                    </td>
                     <td class="p-3 border-b"><%=clientes.get(i).getEmail()%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getSenha()%></td>
                     <td class="p-3 border-b"><%=clientes.get(i).getEnderecoUf() + ", " + clientes.get(i).getEnderecoCidade() + ", " + clientes.get(i).getEnderecoCep()%></td>

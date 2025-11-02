@@ -21,13 +21,13 @@ public class ProdutoIngredienteDAO {
             } else {
                 return 0; // não realizou a instrução
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
             return -1; // caiu no catch
         } finally {
             conexao.desconectar(conn); // fechando a conexão
         }
-    } // removerProdutoIngrediente(int idIngrediente)
+    } // deletarProdutoIngrediente(int idIngrediente)
 
     public int deletarProdutoIngrediente(String codigoBarras){
         Conexao conexao = new Conexao();
@@ -43,11 +43,11 @@ public class ProdutoIngredienteDAO {
             } else {
                 return 0; // não realizou a instrução
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
             return -1; // caiu no catch
         } finally {
             conexao.desconectar(conn); // fechando a conexão
         }
-    } // removerProdutoIngrediente(String codigoBarras)
+    } // deletarProdutoIngrediente(String codigoBarras)
 } // ProdutoIngredienteDAO

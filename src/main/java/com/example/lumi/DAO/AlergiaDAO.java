@@ -90,7 +90,7 @@ public class AlergiaDAO {
         } finally {
             conexao.desconectar(conn); // desconectando o BD
         }
-    } // removerAlergia()
+    } // deletarAlergia()
 
     // SELECT
     public List<Alergia> buscarAlergia() {
@@ -281,7 +281,5 @@ public class AlergiaDAO {
         }
         return listaAlergias;
     } // buscarAlergiaPorAlergeno()
-    
-
 } // AlergiaDAO
 

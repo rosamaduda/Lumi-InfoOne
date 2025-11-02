@@ -81,11 +81,11 @@ public class ServletEditarCliente extends HttpServlet {
         ClienteDAO clienteDAO = new ClienteDAO();
 
         if (caminho.equals("/alterar-cliente")) {
-            String cpf = request.getParameter("cpf");
+            String cpf = request.getParameter("cpf").trim();
             if (!cpf.matches("^[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}-?[0-9]{2}$")) {
                 request.setAttribute("mensagemErro", "CPF inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
-                return;
+                return; // interrompe o método caso encontre um erro
             }
 
             String nome = request.getParameter("nome");
@@ -100,24 +100,24 @@ public class ServletEditarCliente extends HttpServlet {
             if (!email.matches("^[A-Za-z0-9.]{1,}@[A-Za-z]{1,}\\.[A-Za-z.]{1,}$"))  {
                 request.setAttribute("mensagemErro", "E-mail inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
-                return;
+                return; // interrompe o método caso encontre um erro
             }
 
-            String telefone = request.getParameter("telefone");
+            String telefone = request.getParameter("telefone").trim();
             if (!telefone.matches("^\\(?[0-9]{2}\\)? ?[0-9]{5}-?[0-9]{4}$")) {
                 request.setAttribute("mensagemErro", "Telefone inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
-                return;
+                return; // interrompe o método caso encontre um erro
             }
 
             String senha = request.getParameter("senha");
             String cidade = request.getParameter("cidade");
             String estado = request.getParameter("estado");
-            String cep = request.getParameter("cep");
+            String cep = request.getParameter("cep").trim();
             if (!cep.matches("^[0-9]{5}-?[0-9]{3}$")) {
                 request.setAttribute("mensagemErro", "CEP inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
-                return;
+                return; // interrompe o método caso encontre um erro
             }
 
             // deleta alergias antigas e inserir novas
@@ -134,6 +134,11 @@ public class ServletEditarCliente extends HttpServlet {
                     }
                 }
             });
+
+            // tirando os caracteres especiais
+            cpf = cpf.replaceAll("[^0-9]","");
+            telefone = telefone.replaceAll("[^0-9]","");
+            cep = cep.replaceAll("[^0-9]","");
 
             // cria objeto cliente
             Cliente cliente = new Cliente(email, cpf, nome, sobrenome, dataNascimento, senha, altura, peso, diabetes, pressaoAlta, colesterolAlto, telefone, estado, cidade, cep);

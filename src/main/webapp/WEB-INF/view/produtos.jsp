@@ -59,7 +59,7 @@
                                     class="text-[#7F3FBF]"></i>
                             </div>
                             <h2 class="font-bold text-lg">ADM</h2>
-                            <p class="text-sm text-gray-600">ID: #ADM001</p>
+                            <p class="text-sm text-gray-600"><%=session.getAttribute("adm")%></p>
                         </div>
                     </div>
 
@@ -176,7 +176,7 @@
                     <td class="p-3 border-b"><%=listaProdutos.get(i).getNome()%></td>
                     <td class="p-3 border-b"><%=listaIndustrias.get(i).getNome()%></td>
                     <td class="p-3 border-b"><%=listaProdutos.get(i).getFabricante()%></td>
-                    <td class="p-3 border-b max-w-[20%] whitespace-normal break-words align-top"><%=listaProdutos.get(i).getDescricao()%></td>
+                    <td class="p-3 border-b max-w-[20%] whitespace-normal break-words"><%=listaProdutos.get(i).getDescricao()%></td>
                     <td class="p-3 border-b"><%=listaProdutos.get(i).getMassa()%></td>
                     <td class="p-3 border-b">
                         <strong>Carboidratos: </strong><%=listaInfoNutri.get(i).getCarboidratos()%>,
@@ -194,18 +194,19 @@
                                class="p-1 text-blue-600 hover:text-blue-800">
                                 <i data-feather="edit" class="w-4 h-4"></i>
                             </a>
-                            <form action="exclusao-produto"
+                          <form action="exclusao-produto"
                             method="post"
                             class="formRemover"
                             style="display:inline;">
                           <input type="hidden"
-                                 name="CBProdutos"
+                                 name="codigoProduto"
                                  value="<%=listaProdutos.get(i).getCodigoBarras()%>">
                           <button type="button"
                                   class="botaoRemover p-1 text-red-600 hover:text-red-800"
                                   style="background:none; border:none;">
                               <i data-feather="trash-2" class="w-4 h-4"></i>
-                          </but
+                          </button>
+                          </form>
                         </div>
                     </td>
                 </tr>
@@ -215,7 +216,7 @@
                     <td class="p-3 border-b"><%=listaProdutos.get(i).getNome()%></td>
                     <td class="p-3 border-b"><%=listaIndustrias.get(i).getNome()%></td>
                     <td class="p-3 border-b"><%=listaProdutos.get(i).getFabricante()%></td>
-                    <td class="p-3 border-b max-w-[20%] whitespace-normal break-words align-top"><%=listaProdutos.get(i).getDescricao()%></td>
+                    <td class="p-3 border-b max-w-[20%] whitespace-normal break-words"><%=listaProdutos.get(i).getDescricao()%></td>
                     <td class="p-3 border-b"><%=listaProdutos.get(i).getMassa()%></td>
                     <td class="p-3 border-b">
                         <strong>Carboidratos: </strong><%=listaInfoNutri.get(i).getCarboidratos()%>,
@@ -238,13 +239,14 @@
                         class="formRemover"
                         style="display:inline;">
                       <input type="hidden"
-                             name="CBProdutos"
+                             name="codigoProduto"
                              value="<%=listaProdutos.get(i).getCodigoBarras()%>">
                       <button type="button"
                               class="botaoRemover p-1 text-red-600 hover:text-red-800"
                               style="background:none; border:none;">
                           <i data-feather="trash-2" class="w-4 h-4"></i>
-                      </but
+                      </button>
+                            </form>
                         </div>
                     </td>
                 </tr>

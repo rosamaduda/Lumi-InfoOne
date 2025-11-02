@@ -27,7 +27,7 @@ public class ServletExcluirProduto extends HttpServlet {
 
         // excluindo tabelas que recebem FK do produto
         informacaoNutricionalDAO.deletarInfoNutri(idInfoNutri);
-        avaliacaoDAO.removerAvaliacaoPorCodigo(codigoBarras);
+        avaliacaoDAO.deletarAvaliacaoPorCodigo(codigoBarras);
         favoritosDAO.deletarFavoritoPorCodigo(codigoBarras);
         produtoIngredienteDAO.deletarProdutoIngrediente(codigoBarras);
 

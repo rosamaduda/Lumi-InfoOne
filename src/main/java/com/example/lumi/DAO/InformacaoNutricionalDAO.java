@@ -98,11 +98,12 @@ public class InformacaoNutricionalDAO {
     // BUSCAR
     public List<InformacaoNutricional> buscarInfoNutri(){
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
         List<InformacaoNutricional> listaInfoNutri=new ArrayList<>();
+
         try{
-            String instrucaoSQL = "SELECT I.* FROM INFO_NUTRI I LEFT JOIN PRODUTO P ON I.ID = P.ID_INFO_NUTRI "; // buscando as informações da info. nutricional e usando o join para ficar na mesma ordem do produto
+            String instrucaoSQL = "SELECT * FROM INFO_NUTRI ORDER BY ID"; // buscando as informações da info. nutricional
             Statement stmt = conn.createStatement();
             rset = stmt.executeQuery(instrucaoSQL); // executando a instrução
             while (rset.next()){
@@ -117,24 +118,51 @@ public class InformacaoNutricionalDAO {
                         rset.getDouble("gordura_total"));
                 listaInfoNutri.add(informacaoNutricional);
             }
-        }
-        catch (SQLException sqle){
+        } catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally{
-            conexao.desconectar(conn);
+        } finally{
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return listaInfoNutri;
-
     }
+
+    public List<InformacaoNutricional> buscarInfoNutriPortal(){
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
+        ResultSet rset;
+        List<InformacaoNutricional> listaInfoNutri=new ArrayList<>();
+
+        try{
+            String instrucaoSQL = "SELECT I.* FROM INFO_NUTRI I ORDER BY ID DESC LIMIT 3"; // buscando as informações da info. nutricional ordenando pelo id de forma decrescente
+            Statement stmt = conn.createStatement();
+            rset = stmt.executeQuery(instrucaoSQL); // executando a instrução
+            while (rset.next()){
+                InformacaoNutricional informacaoNutricional = new InformacaoNutricional(rset.getInt("id"),
+                        rset.getDouble("valor_energetico"),
+                        rset.getDouble("proteina"),
+                        rset.getDouble("proteina"),
+                        rset.getDouble("carboidratos"),
+                        rset.getDouble("sodio"),
+                        rset.getDouble("gordura_saturada"),
+                        rset.getDouble("gordura_trans"),
+                        rset.getDouble("gordura_total"));
+                listaInfoNutri.add(informacaoNutricional);
+            }
+        } catch (SQLException sqle){
+            sqle.printStackTrace();
+        } finally{
+            conexao.desconectar(conn); // fechando a conexão com o banco
+        }
+        return listaInfoNutri;
+    } // buscarInfoNutriPortal()
 
     public InformacaoNutricional buscarInfoNutri(InformacaoNutricional informacaoNutricional) {
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
 
         try {
-            String instrucaoSQL = "SELECT I.* FROM INFO_NUTRI I LEFT JOIN PRODUTO P ON I.ID = P.ID_INFO_NUTRI WHERE ID = ?"; // procurando a informação nutricional pelo ID
+            String instrucaoSQL = "SELECT I.* FROM INFO_NUTRI I WHERE ID = ?"; // procurando a informação nutricional pelo ID
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
             pstmt.setInt(1, informacaoNutricional.getId()); // setando o parâmetro na instrução
             rset = pstmt.executeQuery(); // executando a instrução
@@ -150,48 +178,31 @@ public class InformacaoNutricionalDAO {
                         rset.getDouble("gordura_trans"),
                         rset.getDouble("gordura_total"));
             }
-        }
-        catch (SQLException sqle){
+        } catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally{
-            conexao.desconectar(conn);
+        } finally{
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return informacaoNutricional;
-
     }
 
     public int buscarIdInfoNutri(){
         Conexao conexao=new Conexao();
-        Connection conn= conexao.conectar();
+        Connection conn= conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
         int id=-1;
         try{
-            String instrucaoSQL="SELECT ID FROM INFO_NUTRI ORDER BY ID DESC LIMIT 1";
+            String instrucaoSQL="SELECT ID FROM INFO_NUTRI ORDER BY ID DESC LIMIT 1"; // buscando o id do último registro
             Statement stmt= conn.createStatement();
-            rset=stmt.executeQuery(instrucaoSQL);
+            rset=stmt.executeQuery(instrucaoSQL); // executando a instrução
             while (rset.next()) {
                 id = rset.getInt("id");
             }
-        }
-        catch (SQLException sqle){
+        } catch (SQLException sqle){
             sqle.printStackTrace();
-        }
-        finally{
-            conexao.desconectar(conn);
+        } finally{
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return id;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-}
+} // InformacaoNutricionalDAO

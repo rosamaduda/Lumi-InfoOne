@@ -50,7 +50,7 @@
                            class="text-[#7F3FBF]"></i>
                     </div>
                     <h2 class="font-bold text-lg">ADM</h2>
-                    <p class="text-sm text-gray-600">ID: #<%=session.getAttribute("adm")%></p>
+                    <p class="text-sm text-gray-600"><%=session.getAttribute("adm")%></p>
                 </div>
             </div>
 
@@ -166,7 +166,7 @@
 
                             <label for="idInfoNutri"
                                    class="hidden block text-gray-700 text-sm font-medium mb-2">ID:</label>
-                            <input type="text" id="idInfoNutri" name="idInfoNutri" value="<%=request.getAttribute("idInfoNutri")%>"
+                            <input type="text" id="idInfoNutri" name="idInfoNutri" value="<%=request.getAttribute("idInfoNutri")%>" min="0" max="99999"
                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px]
                                                 focus:ring-2
                                                 focus:ring-[#7F3FBF] focus:border-transparent" readonly>
@@ -174,56 +174,56 @@
                             <label for="calorias"
                                    class="block text-gray-700 text-sm font-medium mb-2 mt-2">Valor
                                 energético (kcal):</label>
-                            <input type="number" id="calorias" name="calorias" min="0" value="<%=request.getAttribute("calorias")%>" required
+                            <input type="number" id="calorias" name="calorias" min="0" max="99999" value="<%=request.getAttribute("calorias")%>" required
                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
 
                             <label for="proteinas"
                                    class="block text-gray-700 text-sm font-medium mb-2 mt-2">Proteínas
                                 (g):</label>
                             <input type="number" step="0.01" id="proteinas"
-                                   name="proteinas" min="0" value="<%=request.getAttribute("proteinas")%>" required
+                                   name="proteinas" min="0" max="99999" value="<%=request.getAttribute("proteinas")%>" required
                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
 
                             <label for="fibras"
                                    class="block text-gray-700 text-sm font-medium mb-2 mt-2">Fibras
                                 (g):</label>
                             <input type="number" step="0.01" id="fibras"
-                                   name="fibras" min="0" value="<%=request.getAttribute("fibras")%>" required
+                                   name="fibras" min="0" max="99999" value="<%=request.getAttribute("fibras")%>" required
                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
 
                             <label for="carboidratos"
                                    class="block text-gray-700 text-sm font-medium mb-2 mt-2">Carboidratos
                                 (g):</label>
                             <input type="number" step="0.01" id="carboidratos"
-                                   name="carboidratos" min="0" value="<%=request.getAttribute("carboidratos")%>" required
+                                   name="carboidratos" min="0" max="99999" value="<%=request.getAttribute("carboidratos")%>" required
                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
 
                             <label for="sodio"
                                    class="block text-gray-700 text-sm font-medium mb-2 mt-2">Sódio
                                 (g):</label>
                             <input type="number" step="0.01" id="sodio"
-                                   name="sodio" min="0" value="<%=request.getAttribute("sodio")%>" required
+                                   name="sodio" min="0" max="99999" value="<%=request.getAttribute("sodio")%>" required
                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-2">
 
                             <label for="gorduras-sat"
                                    class="block text-gray-700 text-sm font-medium mb-2 mt-2">Gorduras
                                 Saturadas (g):</label>
                             <input type="number" step="0.01" id="gorduras-sat"
-                                   name="gorduras-sat" min="0" value="<%=request.getAttribute("gorduras-sat")%>" required
+                                   name="gorduras-sat" min="0" max="99999" value="<%=request.getAttribute("gorduras-sat")%>" required
                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-4">
 
                             <label for="gorduras-tot"
                                    class="block text-gray-700 text-sm font-medium mb-2 mt-2">Gorduras
                                 Totais (g):</label>
                             <input type="number" step="0.01" id="gorduras-tot"
-                                   name="gorduras-tot" min="0" value="<%=request.getAttribute("gorduras-tot")%>" required
+                                   name="gorduras-tot" min="0" max="99999" value="<%=request.getAttribute("gorduras-tot")%>" required
                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-4">
 
                             <label for="gorduras-tr"
                                    class="block text-gray-700 text-sm font-medium mb-2 mt-2">Gorduras
                                 Trans (g):</label>
                             <input type="number" step="0.01" id="gorduras-tr"
-                                   name="gorduras-tr" min="0" value="<%=request.getAttribute("gorduras-tot")%>" required
+                                   name="gorduras-tr" min="0" max="99999" value="<%=request.getAttribute("gorduras-tot")%>" required
                                    class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent mb-4">
 
                             <div class="flex justify-between mt-8">

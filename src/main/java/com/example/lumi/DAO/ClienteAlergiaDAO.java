@@ -38,32 +38,6 @@ public class ClienteAlergiaDAO {
     }  // inserirClienteAlergia(String email, int idAlergia)
 
     // DELETAR
-    public int deletarClienteAlergia(String email,int id_alergia){
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar(); // abrindo a conexão como banco
-
-        try {
-            String instrucaoSQL = "DELETE FROM CLIENTE_ALERGIA WHERE EMAIL_CLIENTE= AND ID_PRODUTO=? ";
-            PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
-
-            // setando os parâmetros na instrução
-            pstm.setString(1, email);
-            pstm.setInt(2, id_alergia);
-
-            if (pstm.executeUpdate() > 0) { // executando a instrução e verificando o retorno
-                return 1; // realizou a instrução
-            } else {
-                return 0; // não realizou a instrução
-            }
-        } catch (SQLException sqle){
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // fechando a conexão com o banco
-        }
-    } // DeletarClienteAlergia(String email,int id_alergia)
-
-
     public int deletarClienteAlergia(String email){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
@@ -150,20 +124,11 @@ public class ClienteAlergiaDAO {
             while (rset.next()) {
                 listaAlergias.add(rset.getString("nome"));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return listaAlergias;
     } // buscaAlergiasporEmail(String emailCliente)
-
-
-
-
-
-
-
-
-
-}
+} // ClienteAlergiaDAO

@@ -18,8 +18,18 @@ public class ServletPortal extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // buscando 3 ingredientes
         IngredienteDAO ingredienteDAO = new IngredienteDAO();
+        AlergiaIngredienteDAO alergiaIngredienteDAO = new AlergiaIngredienteDAO();
         List<Ingrediente> listaIngredientes = ingredienteDAO.buscarIngredientePortal();
+        List<List> listaAlergiasIngredientes = new ArrayList<>();
+
+        for (int i = 0; i < listaIngredientes.size(); i++) {
+            int idIngrediente = listaIngredientes.get(i).getId();
+            listaAlergiasIngredientes.add(alergiaIngredienteDAO.buscarAlergiasPorIngrediente(idIngrediente));
+        }
+
+        // setando as listas como atributos
         request.setAttribute("ingredientes-lista", listaIngredientes);
+        request.setAttribute("alergias-ingredientes-lista", listaAlergiasIngredientes);
 
         // buscando 3 alergias
         AlergiaDAO alergiaDAO = new AlergiaDAO();
@@ -30,10 +40,18 @@ public class ServletPortal extends HttpServlet {
 
         // buscando 3 clientes
         ClienteDAO clienteDAO = new ClienteDAO();
+        ClienteAlergiaDAO clienteAlergiaDAO = new ClienteAlergiaDAO();
         List<Cliente> listaClientes = clienteDAO.buscarClientePortal();
+        List<List> listaAlergiasClientes = new ArrayList<>();
+
+        for (int i = 0; i < listaClientes.size(); i++){
+            String emailCliente = listaClientes.get(i).getEmail();
+            listaAlergiasClientes.add(clienteAlergiaDAO.buscarAlergiasPorEmail(emailCliente));
+        }
 
         // setando a lista como atributo
         request.setAttribute("clientes-lista", listaClientes);
+        request.setAttribute("alergias-clientes-lista", listaAlergiasClientes);
 
         // buscando 3 indústrias
         IndustriaDAO industriaDAO = new IndustriaDAO();
@@ -60,7 +78,7 @@ public class ServletPortal extends HttpServlet {
         List<InformacaoNutricional> listaInfoNutri = new ArrayList<>();
 
         listaProdutos = produtoDAO.buscarProdutoPortal();
-        listaInfoNutri = informacaoNutricionalDAO.buscarInfoNutri();
+        listaInfoNutri = informacaoNutricionalDAO.buscarInfoNutriPortal();
         for (int i = 0; i < listaProdutos.size(); i++) {
             Industria industria = industriaDAO.buscarNomeIndustria(listaProdutos.get(i).getIdIndustria());
             listaNomeIndustria.add(industria);

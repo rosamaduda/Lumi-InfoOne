@@ -26,7 +26,7 @@ public class ServletVisualizarCliente extends HttpServlet {
         List<Cliente> listaClientes = new ArrayList<>();
         List<List> listaAlergias = new ArrayList<>();
 
-        // buscando as informações aqui para quando entrar na hora página as informações já estiverem carregadas
+        // buscando as informações aqui para quando entrar na página as informações já estiverem carregadas
         if (caminho.equals("/clientes")) {
             // buscando as informações do cliente
             listaClientes = clienteDAO.buscarCliente();

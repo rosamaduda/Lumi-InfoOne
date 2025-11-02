@@ -39,10 +39,11 @@ public class ServletAdicionarCliente extends HttpServlet {
 
         if (caminho.equals("/adicionar-cliente")) {
             // recebendo os parâmetros do form e fazendo a verificação de formato com regex quando necessário
-            String cpf = request.getParameter("cpf").replaceAll("[^0-9]","");
+            String cpf = request.getParameter("cpf").replaceAll("[^0-9]","").trim();
             if (!cpf.matches("^[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}-?[0-9]{2}$")) {
                 request.setAttribute("mensagemErro", "CPF inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                return; // interrompe o método caso encontre um erro
             }
             String nome = request.getParameter("nome");
             String sobrenome = request.getParameter("sobrenome");
@@ -52,24 +53,32 @@ public class ServletAdicionarCliente extends HttpServlet {
             boolean colesterolAlto = Boolean.parseBoolean(request.getParameter("colesterol"));
             String diabetes = request.getParameter("diabetes");
             LocalDate dataNascimento = LocalDate.parse(request.getParameter("data"));
-            String email = request.getParameter("e-mail");
-            if (!email.matches("^[A-Za-z0-9.]{1,}@[A-Za-z]{1,}\\.[A-Za-z.]{1,}$"))  {
+            String email = request.getParameter("e-mail").trim();
+            if (!email.matches("^[A-Za-z0-9._]{1,}@[A-Za-z]{1,}\\.[A-Za-z.]{1,}$"))  {
                 request.setAttribute("mensagemErro", "E-mail inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                return; // interrompe o método caso encontre um erro
             }
-            String telefone = request.getParameter("telefone").replaceAll("[^0-9]","");
+            String telefone = request.getParameter("telefone").trim();
             if (!telefone.matches("^\\(?[0-9]{2}\\)? ?[0-9]{5}-?[0-9]{4}$")) {
                 request.setAttribute("mensagemErro", "Telefone inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                return; // interrompe o método caso encontre um erro
             }
             String senha = request.getParameter("senha");
             String cidade = request.getParameter("cidade");
             String estado = request.getParameter("estado").toUpperCase();
-            String cep = request.getParameter("cep").replaceAll("[^0-9]","");
+            String cep = request.getParameter("cep").trim();
             if (!cep.matches("^[0-9]{5}-?[0-9]{3}$")) {
                 request.setAttribute("mensagemErro", "CEP inválido");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                return; // interrompe o método caso encontre um erro
             }
+
+            // retirando os caracteres especiais
+            cpf = cpf.replaceAll("[^0-9]","");
+            telefone = telefone.replaceAll("[^0-9]","");
+            cep = cep.replaceAll("[^0-9]","");
 
             // instanciando o objeto
             Cliente cliente = new Cliente(email, cpf, nome, sobrenome, dataNascimento, senha, altura, peso, diabetes, pressaoAlta, colesterolAlto, telefone, estado, cidade, cep);
@@ -77,8 +86,9 @@ public class ServletAdicionarCliente extends HttpServlet {
             // adicionando o cliente
             int retornoInsercao = clienteDAO.inserirCliente(cliente);
             if (retornoInsercao == -1 || retornoInsercao == 0) {
-                request.setAttribute("mensagemErro", "Não foi possível inserir o cliente");
+                request.setAttribute("mensagemErro", "Não foi possível inserir o cliente\nTente trocar o e-mail ou CPF");
                 request.getRequestDispatcher("WEB-INF/view/erro.jsp").forward(request, response);
+                return; // interrompe o método caso encontre um erro
             }
 
             // pega as alergias escolhidas do formulário

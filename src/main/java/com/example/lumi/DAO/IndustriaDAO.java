@@ -261,7 +261,6 @@ public class IndustriaDAO {
         return industria;
     } // buscarNomeIndustria(Industria industria)
 
-
     public Industria buscarNomeIndustria(int id) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o BD
@@ -307,5 +306,4 @@ public class IndustriaDAO {
         }
         return idIndustria;
     } // buscarIdIndustria(String nome)
-
 } // IndustriaDAO

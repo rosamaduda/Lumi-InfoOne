@@ -37,31 +37,7 @@ public class AlergiaIngredienteDAO {
         }
     } // inserirAlergiaIngrediente(int idIngrediente, int idAlergia)
 
-    // REMOVER
-    public int deletarIngredienteAlergia(int idIngrediente,int idAlergia) {
-        Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
-        try{
-            String instrucaoSQL = "DELETE FROM ALERGIA_INGREDIENTE WHERE ID_INGREDIENTE=? AND ID_ALERGIA=? ";
-            PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
-
-            // setando os parâmetros da instrução
-            pstm.setInt(1, idIngrediente);
-            pstm.setInt(2, idAlergia);
-
-            if (pstm.executeUpdate() > 0) { // executando a instrução e verificando o retorno
-                return 1; // realizou a instrução
-            } else {
-                return 0; // não realizou a instrução
-            }
-        } catch (SQLException sqle){
-            sqle.printStackTrace();
-            return -1; // caiu no catch
-        } finally {
-            conexao.desconectar(conn); // fechando a conexão com o banco
-        }
-    } // DeletarIngredienteAlergia(int idIngrediente,int idAlergia)
-
+    // DELETAR
     public int deletarAlergiaIngrediente(int idAlergia){
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
@@ -108,6 +84,7 @@ public class AlergiaIngredienteDAO {
         }
     } // removerIngredienteAlergia(int idIngrediente)
 
+    // BUSCAR
     public List<String> buscarAlergiasPorIngrediente(int idIngrediente) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
@@ -123,8 +100,8 @@ public class AlergiaIngredienteDAO {
             while (rset.next()) {
                 listaAlergias.add(rset.getString("nome"));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
         } finally {
             conexao.desconectar(conn); // fechando a conexão com o banco
         }
@@ -133,7 +110,7 @@ public class AlergiaIngredienteDAO {
 
     public List<AlergiaIngrediente> buscarAlergiaIngrediente(int idIngrediente) {
         Conexao conexao = new Conexao();
-        Connection conn = conexao.conectar();
+        Connection conn = conexao.conectar(); // abrindo a conexão com o banco
         ResultSet rset;
         List<AlergiaIngrediente> listaAlergias = new ArrayList<>();
     
@@ -144,26 +121,18 @@ public class AlergiaIngredienteDAO {
                 "JOIN ALERGIA A ON AI.ID_ALERGIA = A.ID " +
                 "WHERE AI.ID_INGREDIENTE = ?";
             PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
-            pstmt.setInt(1, idIngrediente);
-            rset = pstmt.executeQuery();
+            pstmt.setInt(1, idIngrediente); // setando os parâmetros da instrução
+            rset = pstmt.executeQuery(); // executando a instrução
     
             while (rset.next()) {
-                int idIng = rset.getInt("ID_INGREDIENTE");
-                int idAlergia = rset.getInt("ID_ALERGIA");
-                String nome = rset.getString("NOME");
-    
-                AlergiaIngrediente a = new AlergiaIngrediente(idIng, idAlergia, nome);
-                listaAlergias.add(a);
+                AlergiaIngrediente alergiaIngrediente = new AlergiaIngrediente(rset.getInt("ID_INGREDIENTE"), rset.getInt("ID_ALERGIA"), rset.getString("NOME"));
+                listaAlergias.add(alergiaIngrediente);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // fechando a conexão com o banco
         }
         return listaAlergias;
     } // buscarAlergiaIngrediente (int idIngrediente)
-    
-
-
-    
 } // AlergiaIngredienteDAO

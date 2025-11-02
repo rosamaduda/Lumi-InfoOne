@@ -47,7 +47,7 @@
                     <i data-feather="user" class="text-[#7F3FBF]"></i>
                 </div>
                 <h2 class="font-bold text-lg">ADM</h2>
-                <p class="text-sm text-gray-600">ID: #<%=session.getAttribute("adm")%></p>
+                <p class="text-sm text-gray-600"><%=session.getAttribute("adm")%></p>
             </div>
 
             <div class="p-4 flex-grow overflow-y-auto">
