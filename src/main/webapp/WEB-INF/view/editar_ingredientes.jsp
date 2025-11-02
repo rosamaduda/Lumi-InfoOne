@@ -106,7 +106,7 @@
                         <div class="mb-6">
                             <label for="id" class="hidden block text-gray-700 text-sm font-medium mb-2">ID:</label>
                             <input type="text" id="id" name="id" value="<%=request.getAttribute("idIngrediente")%>"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2
+                            class="hidden w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2
                             focus:ring-[#7F3FBF]
                             focus:border-transparent mb-2" readonly>
                             <label for="nome" class="block text-gray-700 text-sm font-medium mb-2">Nome:</label>
@@ -122,8 +122,7 @@
                                 oninput="aumentarTexto(this)"><%=request.getAttribute("descricaoIngrediente")%></textarea>
                             <label for="alergias-container"
                                    class="block text-gray-700 text-sm font-medium mb-2 mt-2">Alergias relacionadas:</label>
-                            <div id="alergias-container" class="mb-2">
-                            </div>
+                            <div id="alergias-container" class="mb-2"></div>
                             <button type="button" id="add-alergia"
                                     class="flex items-center space-x-2 text-[#7F3FBF] hover:text-[#5B2E85] text-sm font-medium w-full sm:w-auto border-[2px] border-[#7F3FBF] text-[#7F3FBF] px-3 py-2 rounded-[6px] mb-2 ">
                                 <span>Adicionar alergia</span>

@@ -33,7 +33,7 @@ public class ServletAdicionarAlergia extends HttpServlet {
             String descricao = request.getParameter("descricao");
 
             // instanciando o objeto
-            Alergia alergia = new Alergia(nome, alergeno, descricao);
+            Alergia alergia = new Alergia(alergeno, nome, descricao);
 
             // adicionando a alergia
             int retornoInsercao = alergiaDAO.inserirAlergia(alergia);

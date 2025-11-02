@@ -107,7 +107,7 @@
                                     data-aos="fade-down">Adicionar Indústria</h1>
                                 <div class="bg-white rounded-[15px] shadow-md p-8 max-w-lg mx-auto mt-[3%]"
                                     data-aos="fade-up" data-aos-delay="100">
-                                    <form action="alteracao-industria" method="post">
+                                    <form action="adicionar-industria" method="post">
                                         <div class="mb-6">
                                             <label for="cnpj"
                                                 class="block text-gray-700 text-sm font-medium mb-2">CNPJ:</label>
@@ -138,7 +138,7 @@
                                                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Senha:</label>
                                             <input type="text" id="senha" name="senha" required
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-[15px] focus:ring-2 focus:ring-[#7F3FBF] focus:border-transparent"
-                                                placeholder="Digite o e-mail da indústria...">
+                                                placeholder="Digite a senha da indústria...">
 
                                             <label for="plano"
                                                 class="block text-gray-700 text-sm font-medium mb-2 mt-2">Plano:</label>
@@ -164,7 +164,6 @@
                                                     Adicionar
                                                 </button>
                                             </div>
-
                                     </form>
                                 </div>
                             </main>

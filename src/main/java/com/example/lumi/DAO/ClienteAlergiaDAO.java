@@ -93,12 +93,12 @@ public class ClienteAlergiaDAO {
         Connection conn = conexao.conectar(); // abrindo a conexão com o banco
 
         try {
-            String instrucaoSQL = "DELETE FROM ALERGIA_CLIENTE WHERE ID_ALERGIA=? ";// deletando o relacionamento a partir do id da alergia para nao dar problema na hora de deletar a alergia
-            PreparedStatement pstm = conn.prepareStatement(instrucaoSQL);
+            String instrucaoSQL = "DELETE FROM CLIENTE_ALERGIA WHERE ID_ALERGIA=? ";// deletando o relacionamento a partir do id da alergia para nao dar problema na hora de deletar a alergia
+            PreparedStatement pstmt = conn.prepareStatement(instrucaoSQL);
 
-            pstm.setInt(1, idAlergia); // setando o parâmetro da instrução
+            pstmt.setInt(1, idAlergia); // setando o parâmetro da instrução
 
-            if (pstm.executeUpdate() > 0) { // executando a instrução e verificando o retorno
+            if (pstmt.executeUpdate() > 0) { // executando a instrução e verificando o retorno
                 return 1; // realizou a instrução
             } else {
                 return 0; // não realizou a instrução
