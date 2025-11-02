@@ -1,22 +1,15 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const botaoVoltar = document.querySelector(".botaoVoltar"); // botão "Voltar"
+function voltar(){
+    window.history.back(); // leva o usuário a página anterior
+}
 
-    botaoVoltar.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        // pega a página anterior real
-        const referrer = document.referrer;
-
-        // se a página anterior contiver palavras-chave de páginas de cadastro, edição ou item
-        const paginasValidas = ["cadastro", "editar", "ingredientes", "alergias", "clientes", "produtos", "industria", "login"];
-        const paginaAnteriorValida = paginasValidas.some(p => referrer.includes(p));
-
-        if (paginaAnteriorValida) {
-            // vai para a página anterior real
-            window.location.href = referrer;
-        } else {
-            // se não tiver página válida no histórico, vai para o portal principal
-            window.location.href = "portal";
-        }
-    });
+// efeito de shake ao carregar a página
+document.addEventListener('DOMContentLoaded', function() {
+    const textoErro = document.querySelector('.shake-animacao');
+    // Define o tempo de animação do X
+    setTimeout(() => {
+        textoErro.classList.remove('shake-animacao');
+        setTimeout(() => {
+            textoErro.classList.add('shake-animacao');
+        }, 50);
+    }, 1000);
 });
