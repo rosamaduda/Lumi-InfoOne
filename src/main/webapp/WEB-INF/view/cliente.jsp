@@ -105,8 +105,7 @@
          class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300">
     </div>
 
-    <main
-            class="flex-1 p-4 sm:p-8 sm:ml-64 h-full flex flex-col overflow-x-hidden overflow-y-auto">
+    <main class="flex-1 p-4 sm:p-8 sm:ml-64 h-full flex flex-col overflow-x-hidden overflow-y-auto">
 
         <h1
                 class="text-2xl sm:text-[2.25rem] font-bold text-gray-800 mb-6 sm:mb-8"
@@ -147,11 +146,7 @@
         </form>
 
 
-        <div
-                class="bg-white rounded-lg shadow overflow-x-auto overflow-y-auto w-full flex-1 max-h-full"
-                data-aos="fade-up"
-                data-aos-delay="200">
-
+        <div class="bg-white rounded-lg shadow overflow-x-auto overflow-y-auto w-full" data-aos="fade-up" data-aos-delay="200">
             <table
                     class="hidden sm:table table-auto text-left align-top min-w-full">
                 <thead>

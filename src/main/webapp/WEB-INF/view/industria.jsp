@@ -30,7 +30,7 @@ List<Industria> industrias = (List<Industria>)
                             src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
                     </head>
 
-                    <body class="h-screen overflow-hidden">
+                    <body class="bg-gray-50 min-h-screen">
                         <header
                             class="bg-[#7F3FBF] text-white fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 shadow-md overflow-visible">
                             <div
@@ -102,9 +102,8 @@ List<Industria> industrias = (List<Industria>)
                             <div id="sidebar-overlay"
                                 class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
-                            <main
-                                class="flex-1 p-4 sm:p-8 sm:ml-64 h-full flex flex-col overflow-x-hidden overflow-y-auto">
-                                <h1
+                            <main class="flex-1 p-4 sm:p-8 sm:ml-64 h-full flex flex-col overflow-x-hidden overflow-y-auto">
+                             <h1
                                     class="text-2xl sm:text-[2.25rem] font-bold text-gray-800 mb-6 sm:mb-8"
                                     data-aos="fade-down">Indústria</h1>
 
@@ -141,9 +140,7 @@ List<Industria> industrias = (List<Industria>)
                                 </div>
                             </form>
 
-                                <div
-                                    class="bg-white rounded-lg shadow overflow-x-auto overflow-y-auto w-full"
-                                    data-aos="fade-up" data-aos-delay="200">
+                                <div class="bg-white rounded-lg shadow overflow-x-auto overflow-y-auto w-full" data-aos="fade-up" data-aos-delay="200">
 
                                     <table
                                         class="table-auto text-left align-top hidden sm:table min-w-full">

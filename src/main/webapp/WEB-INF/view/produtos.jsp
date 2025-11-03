@@ -27,7 +27,7 @@
         <script
             src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     </head>
-    <body class="h-screen overflow-hidden">
+    <body class="bg-gray-50 min-h-screen">
 
         <header
             class="bg-[#7F3FBF] text-white fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 shadow-md">
@@ -109,7 +109,7 @@
             <div id="sidebar-overlay"
                 class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300"></div>
 
-    <main class="flex-1 p-4 sm:p-8 sm:ml-64">
+    <main class="flex-1 p-4 sm:p-8 sm:ml-64 h-full flex flex-col overflow-x-hidden overflow-y-auto">
 
                 <h1
                     class="text-2xl sm:text-[2.25rem] font-bold text-gray-800 mb-6 sm:mb-8"
@@ -150,8 +150,7 @@
             </div>
         </form>
 
-        <div class="bg-white rounded-lg shadow overflow-x-auto overflow-y-auto w-full flex-1 max-h-full"
-             data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white rounded-lg shadow overflow-x-auto overflow-y-auto w-full" data-aos="fade-up" data-aos-delay="200">
 
             <table class="hidden sm:table table-auto text-left align-top min-w-full">
                 <thead>
@@ -186,7 +185,7 @@
                         <strong>Gorduras Totais: </strong><%=listaInfoNutri.get(i).getGordurasTotais()%>,
                         <strong>Proteína: </strong><%=listaInfoNutri.get(i).getProteina()%>,<br>
                         <strong>Sódio: </strong><%=listaInfoNutri.get(i).getSodio()%>,
-                        <strong>Kcal: </strong><%=listaInfoNutri.get(i).getValorEnergetico()%>,<br>
+                        <strong>Kcal: </strong><%=listaInfoNutri.get(i).getValorEnergetico()%><br>
                     </td>
                     <td class="p-3 border-b text-right">
                         <div class="flex space-x-2 justify-end">
@@ -226,7 +225,7 @@
                         <strong>Gorduras Totais: </strong><%=listaInfoNutri.get(i).getGordurasTotais()%>,
                         <strong>Proteína: </strong><%=listaInfoNutri.get(i).getProteina()%>,<br>
                         <strong>Sódio: </strong><%=listaInfoNutri.get(i).getSodio()%>,
-                        <strong>Kcal: </strong><%=listaInfoNutri.get(i).getValorEnergetico()%>,<br>
+                        <strong>Kcal: </strong><%=listaInfoNutri.get(i).getValorEnergetico()%><br>
                     </td>
                     <td class="p-3 border-b text-right">
                         <div class="flex space-x-2 justify-end">
@@ -284,7 +283,7 @@
                                             class="font-bold text-gray-700">Indústria:</span>
                             <span class="font text-gray-800">
                                         <%=
-                                        listaProdutos.get(i).getIdIndustria()
+                                        listaIndustrias.get(i).getNome()
                                         %>
                                     </span>
                         </p>
@@ -318,9 +317,18 @@
                         </p>
                         <p class="text-sm text-[#333333]">
                                     <span
-                                            class="font-bold text-gray-700">Informação
-                                        Nutricional:</span>
-                            <span class="font text-gray-800"></span>
+                                            class="font-bold text-gray-700"><br>Informação
+                                        Nutricional: <br></span>
+                            <span class="font text-gray-800">
+                                  <strong>Carboidratos: </strong><%=listaInfoNutri.get(i).getCarboidratos()%>,<br>
+                                    <strong>Fibras: </strong><%=listaInfoNutri.get(i).getFibras()%>,<br>
+                                    <strong>Gorduras Saturadas: </strong><%=listaInfoNutri.get(i).getGorduraSaturada()%>,<br>
+                                    <strong>Gorduras Trans: </strong><%=listaInfoNutri.get(i).getGorduraTrans()%>,<br>
+                                    <strong>Gorduras Totais: </strong><%=listaInfoNutri.get(i).getGordurasTotais()%>, <br>
+                                    <strong>Proteína: </strong><%=listaInfoNutri.get(i).getProteina()%>,<br>
+                                    <strong>Sódio: </strong><%=listaInfoNutri.get(i).getSodio()%>,<br>
+                                    <strong>Kcal: </strong><%=listaInfoNutri.get(i).getValorEnergetico()%>,<br>
+                            </span>
                         </p>
 
                     </div>
