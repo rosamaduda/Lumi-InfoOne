@@ -41,6 +41,7 @@
             src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 </head>
 <body class="min-h-screen">
+    <!-- HEADER -->
 <header class="bg-[#7F3FBF] text-white fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 shadow-md overflow-visible">
     <div class="container mx-auto px-4 py-3 sm:py-4 h-full flex items-center justify-between">
         <h1 class="flex items-center">
@@ -58,7 +59,7 @@
 </header>
 
 <div class="flex pt-16 sm:pt-20 min-h-screen">
-
+ <!-- SIDEBAR -->
     <nav id="sidebar"
          class="fixed left-0 top-16 sm:top-20 h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] w-64 bg-white shadow-lg z-40 transform -translate-x-full sm:translate-x-0 transition-transform duration-300">
 
@@ -114,7 +115,8 @@
     <div id="sidebar-overlay"
          class="fixed inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none z-30 sm:hidden">
     </div>
-
+    
+<!-- TABELAS -->
     <main id="main-content"
           class="flex-1 p-4 sm:p-8 sm:ml-64 transition-all duration-300 overflow-x-hidden">
         <h1

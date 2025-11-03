@@ -16,10 +16,11 @@
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- HEADER -->
 <header>
     <h1><img src="${pageContext.request.contextPath}/assets/logo branca.png" width="80%" style="align-items: center;"></h1>
 </header>
-
+<!-- CAIXA DE LOGIN -->
 <main class="flex-column flex items-center justify-center relative overflow-hidden mb-[5%] mt-[5%]">
     <section class="login">
         <div class="login-form-container w-full max-w-[37.5rem] mx-auto p-8" data-aos="fade-up">
@@ -57,6 +58,7 @@
     </section>
 </main>
 
+<!-- FOOTER -->
 <footer class="bg-black text-white py-16">
     <div class="container mx-auto px-6">
         <div class="grid md:grid-cols-3 gap-8 items-center">

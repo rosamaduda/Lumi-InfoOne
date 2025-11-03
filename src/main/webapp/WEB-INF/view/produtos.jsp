@@ -28,7 +28,7 @@
             src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     </head>
     <body class="bg-gray-50 min-h-screen">
-
+<!-- HEADER -->
         <header
             class="bg-[#7F3FBF] text-white fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 shadow-md">
             <div
@@ -46,6 +46,7 @@
 
         <div class="flex pt-16 sm:pt-20 min-h-screen">
 
+            <!-- SIDEBAR -->
             <nav id="sidebar"
                 class="fixed left-0 top-16 sm:top-20 h-full w-64 bg-white shadow-lg z-40 transform -translate-x-full sm:translate-x-0 transition-transform duration-300">
 
@@ -149,7 +150,7 @@
                 </button>
             </div>
         </form>
-
+        <!-- TABELA -->
         <div class="bg-white rounded-lg shadow overflow-x-auto overflow-y-auto w-full" data-aos="fade-up" data-aos-delay="200">
 
             <table class="hidden sm:table table-auto text-left align-top min-w-full">
@@ -253,7 +254,7 @@
                 }%>
                 </tbody>
             </table>
-
+                <!-- MOBILE -->
             <div
                     class="block sm:hidden sm:overflow-y-auto sm:overflow-x-auto space-y-3 p-3">
                 <% if (listaProdutos.isEmpty()) { %>
@@ -362,6 +363,7 @@
 
         </div>
 
+        <!-- BOTAO DE ADICIONAR -->
 
                 <div
                     class="mt-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
@@ -374,6 +376,7 @@
             </main>
         </div>
 
+        <!-- TELA DE REDIRECIONAMENTO/CARREGAMENTO E POPUP PARA REMOVER -->
         <div id="tela-carregamento"
             class="fixed inset-0 bg-gray-50 z-[9999] flex-col items-center justify-center hidden">
             <div class="logo-container absolute top-6 left-6">

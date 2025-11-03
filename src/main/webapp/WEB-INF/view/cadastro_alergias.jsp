@@ -16,6 +16,7 @@
 </head>
 
 <body class="bg-gray-50 min-h-screen">
+     <!-- HEADER -->
 <header class="bg-[#7F3FBF] text-white fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 shadow-md overflow-visible">
     <div class="container mx-auto px-4 py-3 sm:py-4 h-full flex items-center justify-between">
         <h1 class="flex items-center">
@@ -34,7 +35,7 @@
 </header>
 
 <div class="flex pt-16 sm:pt-20 min-h-screen">
-
+ <!-- SIDEBAR -->
     <nav id="sidebar"
          class="fixed left-0 top-16 sm:top-20 h-full w-64 bg-white shadow-lg z-40 transform -translate-x-full sm:translate-x-0 transition-transform duration-300">
 
@@ -92,7 +93,7 @@
     <div id="sidebar-overlay"
          class="fixed inset-0 bg-black opacity-0 sm:hidden z-30 pointer-events-none transition-opacity duration-300">
     </div>
-
+<!-- INPUT -->
     <main class="sm:ml-64 flex-1 sm:p-8">
         <a href="alergias" onclick="mostrarRedirecionando()">
             <h1 class="text-left sm:mt-3"><i data-feather="arrow-left"></i></h1>
